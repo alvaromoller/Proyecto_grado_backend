@@ -33,7 +33,6 @@ public class Brand {
     }
 
     //transaction
-
     public Transaction getTransaction() {
         return transaction;
     }
