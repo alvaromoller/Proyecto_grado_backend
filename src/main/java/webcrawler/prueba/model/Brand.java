@@ -2,21 +2,18 @@ package webcrawler.prueba.model;
 
 import java.util.Date;
 
-public class    Product {
-    private Integer productId;
+public class Brand {
+    private Integer BrandId;
     private String name;
-    private String description;
-    private String img;
     private Integer status;
-    //transaction
     private Transaction transaction;
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getBrandId() {
+        return BrandId;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setBrandId(Integer brandId) {
+        BrandId = brandId;
     }
 
     public String getName() {
@@ -25,22 +22,6 @@ public class    Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
     }
 
     public Integer getStatus() {
@@ -98,11 +79,9 @@ public class    Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "productId=" + productId +
+        return "Brand{" +
+                "BrandId=" + BrandId +
                 ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", img='" + img + '\'' +
                 ", status=" + status +
                 ", txId=" + transaction.getTxId() +
                 ", txHost='" + transaction.getTxHost() + '\'' +
