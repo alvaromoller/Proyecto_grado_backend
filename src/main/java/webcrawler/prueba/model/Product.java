@@ -2,12 +2,16 @@ package webcrawler.prueba.model;
 
 import java.util.Date;
 
-public class    Product {
+public class Product {
     private Integer productId;
     private String name;
     private String description;
     private String img;
     private Integer status;
+    private Integer brandId;
+    private Integer shopId;
+    private Integer productTypeId;
+
     //transaction
     private Transaction transaction;
 
@@ -49,6 +53,30 @@ public class    Product {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getProductTypeId() {
+        return productTypeId;
+    }
+
+    public void setProductTypeId(Integer productTypeId) {
+        this.productTypeId = productTypeId;
     }
 
     //transaction
@@ -104,6 +132,9 @@ public class    Product {
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
                 ", status=" + status +
+                ", brandId=" + brandId +
+                ", shopId=" + shopId +
+                ", productTypeId=" + productTypeId +
                 ", txId=" + transaction.getTxId() +
                 ", txHost='" + transaction.getTxHost() + '\'' +
                 ", txUserId=" + transaction.getTxUserId() +
