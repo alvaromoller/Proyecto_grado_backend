@@ -22,8 +22,8 @@ public class ProductBl {
 
     //listado de productos
     public List<ProductDto> selectProducts(){
-        List<Product> products = productDao.getProducts();
-        List<ProductDto> productDtos = new ArrayList<ProductDto>();
+        List<Product> products = productDao.getProducts();      //productos, se crea un for para recorrer products
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
 
         for(int i=0; i < products.size(); i++){
             Product product = products.get(i);
