@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="webcrawler.prueba.dao.ProductDao">
+
+    <select id="getProducts" resultType="webcrawler.prueba.model.Product">
+        SELECT
+            product_id as productId,
+            name as name,
+            description as description,
+            img as img,
+            brand_id as brandId,
+            shop_id as shopId,
+            product_type_id as productTypeId
+        FROM product
+        WHERE
+            status = 1
+    </select>
+
+</mapper>

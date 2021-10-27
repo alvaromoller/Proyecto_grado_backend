@@ -13,7 +13,7 @@ class PruebaApplication {
 
 
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(PruebaApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina
