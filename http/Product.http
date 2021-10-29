@@ -2,3 +2,4 @@ GET http://localhost:8080/v1/product
 Accept: application/json
 
 ###
+## Falta crear metodos de listado para las otras clases
