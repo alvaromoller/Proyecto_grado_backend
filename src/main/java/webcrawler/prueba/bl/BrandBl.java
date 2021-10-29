@@ -3,7 +3,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webcrawler.prueba.dao.BrandDao;
 import webcrawler.prueba.dto.BrandDto;
+import webcrawler.prueba.model.Brand;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,5 +19,19 @@ public class BrandBl {
     }
 
     //Listado de marca
-    public List<BrandDto>
+    public List<BrandDto> selectBrands(){
+        List<Brand> brands = brandDao.getBrands();
+        List<BrandDto> brandDtos = new ArrayList<BrandDto>();
+
+        for (int i=0; i < brands.size(); i++){
+            Brand brand = brands.get(i);
+            BrandDto brandDto = new BrandDto();
+            brandDto.setBrandId(brand.getBrandId());
+            brandDto.setName(brand.getName());
+
+            brandDtos.add(i, brandDto);
+        }
+        return  brandDtos;
+    }
+
 }

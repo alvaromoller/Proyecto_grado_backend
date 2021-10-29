@@ -2,15 +2,15 @@ package webcrawler.prueba.dto;
 
 public class BrandDto {
 
-    private Integer BrandId;
+    private Integer brandId;
     private String name;
 
     public Integer getBrandId() {
-        return BrandId;
+        return brandId;
     }
 
     public void setBrandId(Integer brandId) {
-        BrandId = brandId;
+        this.brandId = brandId;
     }
 
     public String getName() {
@@ -24,7 +24,7 @@ public class BrandDto {
     @Override
     public String toString() {
         return "BrandDto{" +
-                "BrandId=" + BrandId +
+                "brandId=" + brandId +
                 ", name='" + name + '\'' +
                 '}';
     }

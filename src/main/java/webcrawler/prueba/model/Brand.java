@@ -3,18 +3,19 @@ package webcrawler.prueba.model;
 import java.util.Date;
 
 public class Brand {
-    private Integer BrandId;
+    private Integer brandId;
     private String name;
     private Integer status;
     private Transaction transaction;
 
     public Integer getBrandId() {
-        return BrandId;
+        return brandId;
     }
 
     public void setBrandId(Integer brandId) {
-        BrandId = brandId;
+        this.brandId = brandId;
     }
+
 
     public String getName() {
         return name;
@@ -79,7 +80,7 @@ public class Brand {
     @Override
     public String toString() {
         return "Brand{" +
-                "BrandId=" + BrandId +
+                "brandId=" + brandId +
                 ", name='" + name + '\'' +
                 ", status=" + status +
                 ", txId=" + transaction.getTxId() +
