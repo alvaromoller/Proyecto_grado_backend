@@ -22,9 +22,9 @@ class PruebaApplication {
 
 		//EJEMPLO 1
 		Example1 example1 = new Example1();
-		example1.getPageLinks("http://www.mkyong.com");
-		example1.getArticles();
-		example1.writeToFile("Java 8 Articles");
+		example1.obtenerEnlacesExtraidos("http://www.mkyong.com");
+		example1.obtenerArticulos();
+		example1.escribirArchivo("Java 8 Articles");
 
 		//EJEMPLO 2
 

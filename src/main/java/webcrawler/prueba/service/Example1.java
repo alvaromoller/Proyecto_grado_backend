@@ -12,34 +12,31 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class
+public class Example1 {
 
 
-Example1 {
-
-    private HashSet<String> links;
-    private List<List<String>> articles;
+    private HashSet<String> enlaces;
+    private List<List<String>> articulos;
 
     public Example1() {
-        links = new HashSet<>();
-        articles = new ArrayList<>();
+        enlaces = new HashSet<>();
+        articulos = new ArrayList<>();
     }
 
     //Find all URLs that start with "http://www.mkyong.com/page/" and add them to the HashSet
     //Encuentra todas las URL que comienzan con "http://www.mkyong.com/page/" y agrégalas al HashSet
-    public void getPageLinks(String URL) {
-        if (!links.contains(URL)) {
+    public void obtenerEnlacesExtraidos(String URL) {
+        if (!enlaces.contains(URL)) {
             try {
-                Document document = Jsoup.connect(URL).get();
-                Elements otherLinks = document.select("a[href^=\"http://www.mkyong.com/page/\"]");
-
-                for (Element page : otherLinks) {
-                    if (links.add(URL)) {
+                Document documento = Jsoup.connect(URL).get();
+                Elements enlacesWeb = documento.select("a[href^=\"https://mkyong.com/page/\"]");
+                for (Element enlace : enlacesWeb) {
+                    if (enlaces.add(URL)) {
                         //Remove the comment from the line below if you want to see it running on your editor
                         //Elimina el comentario de la línea de abajo si quieres verlo ejecutándose en tu editor
                         System.out.println(URL);
                     }
-                    getPageLinks(page.attr("abs:href"));
+                    obtenerEnlacesExtraidos(enlace.attr("abs:href"));
                 }
             } catch (IOException e) {
                 System.err.println(e.getMessage());
@@ -47,27 +44,22 @@ Example1 {
         }
     }
 
-
     //Connect to each link saved in the article and find all the articles in the page
     //Conéctese a cada enlace guardado en el artículo y encuentre todos los artículos en la página
-    public void getArticles() {
-        links.forEach(x -> {
+    public void obtenerArticulos() {
+        enlaces.forEach(x -> {
             Document document;
             try {
                 document = Jsoup.connect(x).get();
-                Elements articleLinks = document.select("h3 a[href^=\"http://www.mkyong.com/\"]");
-                for (Element article : articleLinks) {
+                Elements enlacesArticulos = document.select("h2 a[href^=\"https://mkyong.com/\"]");
+                for (Element articulo : enlacesArticulos) {
                     //Only retrieve the titles of the articles that contain Java 8
                     //Recuperar solo los títulos de los artículos que contienen Java 8
-                    if (article.text().matches("^.*?(Java 8|java 8|JAVA 8).*$")) {
-                        //Remove the comment from the line below if you want to see it running on your editor,
-                        //or wait for the File at the end of the execution
-                        //System.out.println(article.attr("abs:href"));
-
-                        ArrayList<String> temporary = new ArrayList<>();
-                        temporary.add(article.text()); //The title of the article
-                        temporary.add(article.attr("abs:href")); //The URL of the article
-                        articles.add(temporary);
+                    if (articulo.text().matches("^.*?(Java|java|JAVA).*$")) {
+                        ArrayList<String> temporal = new ArrayList<>();
+                        temporal.add(articulo.text());
+                        temporal.add(articulo.attr("abs:href"));
+                        articulos.add(temporal);
                     }
                 }
             } catch (IOException e) {
@@ -75,30 +67,28 @@ Example1 {
             }
         });
     }
-
-
-
-    public void writeToFile(String filename) {
-        FileWriter writer;
+    public void escribirArchivo(String nombreArchivo) {
+        FileWriter archivo;
         try {
-            writer = new FileWriter(filename);
-            articles.forEach(a -> {
+            archivo = new FileWriter(nombreArchivo);
+            articulos.forEach(a -> {
                 try {
-                    String temp = "- Title: " + a.get(0) + " (link: " + a.get(1) + ")\n";
+                    String str = "- Title: " + a.get(0) + " (link: " + a.get(1) + ")\n";
                     //display to console
                     //mostrar a la consola
-                    System.out.println(temp);
-                    //save to file
+                    System.out.println(str);
                     //Guardar en archivo
-                    writer.write(temp);
+                    archivo.write(str);
                 } catch (IOException e) {
-                    System.err.println(e.getMessage());
+                    System.out.println(e.getMessage());
                 }
             });
-            writer.close();
+            archivo.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
+
+
 
 }
