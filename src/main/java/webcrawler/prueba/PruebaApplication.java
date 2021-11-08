@@ -12,7 +12,7 @@ import  webcrawler.prueba.service.Example1;
 class PruebaApplication {
 
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
@@ -21,11 +21,12 @@ class PruebaApplication {
 		// tambien se puede elegir etiquetas especificas y buscarlas en la pagina web, ejemplo etiqueta <H2>
 
 		//EJEMPLO 1
+		/**
 		Example1 example1 = new Example1();
 		example1.obtenerEnlacesExtraidos("http://www.mkyong.com");
 		example1.obtenerArticulos();
 		example1.escribirArchivo("Java 8 Articles");
-
+*/
 		//EJEMPLO 2
 
 		//ParsePage

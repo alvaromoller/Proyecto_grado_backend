@@ -9,4 +9,5 @@ import java.util.List;
 public interface ProductDao {
 
     public List<Product> getProducts();
+    public Product findByProductId(Integer productId);
 }

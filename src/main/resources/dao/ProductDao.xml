@@ -18,4 +18,18 @@
             status = 1
     </select>
 
+    <select id="findByProductId" parameterType="int" resultType="webcrawler.prueba.model.Product">
+        SELECT
+        product_id as productId,
+        name as name,
+        description as description,
+        img as img,
+        brand_id as brandId,
+        shop_id as shopId,
+        product_type_id as productTypeId
+        FROM product
+        WHERE
+            product_id = #{productId}
+    </select>
+
 </mapper>

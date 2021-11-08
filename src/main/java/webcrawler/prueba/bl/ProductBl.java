@@ -42,5 +42,20 @@ public class ProductBl {
         return  productDtos;
     }
 
+    //Encontrar producto por ID
+    public ProductDto findProductById(Integer productId){
+        Product product = productDao.findByProductId(productId);
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(product.getProductId());
+        productDto.setName(product.getName());
+        productDto.setDescription(product.getDescription());
+        productDto.setImg(product.getImg());
+        productDto.setBrandId(product.getBrandId());
+        productDto.setShopId(product.getShopId());
+        productDto.setProductTypeId(product.getProductTypeId());
+        return productDto;
+    }
+
 
 }
