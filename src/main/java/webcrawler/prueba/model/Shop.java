@@ -7,6 +7,7 @@ public class Shop {
     private String name;
     private String description;
     private String location;
+    private String img;
     private Integer status;
 
     private Transaction transaction;
@@ -41,6 +42,14 @@ public class Shop {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public Integer getStatus() {
@@ -102,6 +111,7 @@ public class Shop {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
+                ", img='" + img + '\'' +
                 ", status=" + status +
                 ", txId=" + transaction.getTxId() +
                 ", txHost='" + transaction.getTxHost() + '\'' +

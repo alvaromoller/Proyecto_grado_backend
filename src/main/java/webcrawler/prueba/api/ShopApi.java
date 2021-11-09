@@ -2,6 +2,7 @@ package webcrawler.prueba.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,12 @@ public class ShopApi {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ShopDto> selectShops(HttpServletRequest request){
         return shopBl.selectShops();
+    }
+
+    //encontar shop ID
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto findById(@PathVariable("id") Integer id, HttpServletRequest request){
+        return shopBl.findShopById(id);
     }
 
 }

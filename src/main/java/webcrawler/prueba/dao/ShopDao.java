@@ -10,4 +10,5 @@ import java.util.List;
 public interface ShopDao {
 
     public List<Shop> getShops();
+    public Shop findShopById(Integer shopId);
 }

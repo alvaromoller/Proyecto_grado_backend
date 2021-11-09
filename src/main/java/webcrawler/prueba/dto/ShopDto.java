@@ -6,6 +6,7 @@ public class ShopDto {
     private String name;
     private String description;
     private String location;
+    private  String img;
 
     public Integer getShopId() {
         return shopId;
@@ -39,6 +40,14 @@ public class ShopDto {
         this.location = location;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "ShopDto{" +
@@ -46,6 +55,7 @@ public class ShopDto {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
+                ", img='" + img + '\'' +
                 '}';
     }
 }

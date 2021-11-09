@@ -30,10 +30,23 @@ public class ShopBl {
             shopDto.setName(shop.getName());
             shopDto.setDescription(shop.getDescription());
             shopDto.setLocation(shop.getLocation());
+            shopDto.setImg(shop.getImg());
 
             shopDtos.add(i, shopDto);
         }
         return shopDtos;
+    }
+
+    public ShopDto findShopById(Integer shopId){
+        Shop shop = shopDao.findShopById(shopId);
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(shop.getShopId());
+        shopDto.setName(shop.getName());
+        shopDto.setDescription(shop.getDescription());
+        shopDto.setLocation(shop.getLocation());
+        shopDto.setImg(shop.getImg());
+        return  shopDto;
     }
 
 

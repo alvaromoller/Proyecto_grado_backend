@@ -9,10 +9,23 @@
             shop_id as shopId,
             name as name,
             description as description,
-            location as location
+            location as location,
+            img as img
         FROM shop
         WHERE
             status = 1
+    </select>
+
+    <select id="findShopById" parameterType="int" resultType="webcrawler.prueba.model.Shop">
+        SELECT
+        shop_id as shopId,
+        name as name,
+        description as description,
+        location as location,
+        img as img
+        FROM shop
+        WHERE
+            shop_id = #{shopId}
     </select>
 
 </mapper>
