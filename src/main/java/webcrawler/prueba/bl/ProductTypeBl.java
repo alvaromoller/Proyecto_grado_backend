@@ -34,4 +34,14 @@ public class ProductTypeBl {
         return productTypeDtos;
     }
 
+    //encontrando ProductType por ID
+    public ProductTypeDto findProductTypeById(Integer productTypeId){
+        ProductType productType = productTypeDao.findProductTypeById(productTypeId);
+        ProductTypeDto productTypeDto = new ProductTypeDto();
+
+        productTypeDto.setProductTypeId(productType.getProductTypeId());
+        productTypeDto.setName(productType.getName());
+        return productTypeDto;
+    }
+
 }

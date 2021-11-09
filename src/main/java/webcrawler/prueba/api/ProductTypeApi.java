@@ -2,12 +2,14 @@ package webcrawler.prueba.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import webcrawler.prueba.bl.ProductTypeBl;
 import webcrawler.prueba.dto.ProductTypeDto;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -25,6 +27,12 @@ public class ProductTypeApi {
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductTypeDto> selectProductTypes(){
         return productTypeBl.selectProductTypes();
+    }
+
+    //metodo para encontrar productType por ID
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ProductTypeDto findById(@PathVariable("id") Integer id, HttpServletRequest request){
+        return productTypeBl.findProductTypeById(id);
     }
 
 

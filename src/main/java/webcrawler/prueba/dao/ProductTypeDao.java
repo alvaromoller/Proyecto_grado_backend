@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductTypeDao {
 
     public List<ProductType> getProductTypes();
+    public ProductType findProductTypeById(Integer productTypeid);
 }

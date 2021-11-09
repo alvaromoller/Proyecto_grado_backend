@@ -13,4 +13,13 @@
             status = 1
     </select>
 
+    <select id="findProductTypeById" parameterType="int" resultType="webcrawler.prueba.model.ProductType">
+        SELECT
+        product_type_id as productTypeId,
+        name as name
+        FROM product_type
+        WHERE
+            product_type_id = #{productTypeId}
+    </select>
+
 </mapper>
