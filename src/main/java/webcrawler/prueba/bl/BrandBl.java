@@ -34,4 +34,14 @@ public class BrandBl {
         return  brandDtos;
     }
 
+    //encontrar marca por ID
+    public BrandDto findBrandById(Integer brandId){
+        Brand brand = brandDao.findBrandById(brandId);
+        BrandDto brandDto = new BrandDto();
+
+        brandDto.setBrandId(brand.getBrandId());
+        brandDto.setName(brand.getName());
+        return  brandDto;
+    }
+
 }

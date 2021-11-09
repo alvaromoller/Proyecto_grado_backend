@@ -13,4 +13,13 @@
             status = 1
     </select>
 
+    <select id="findBrandById" parameterType="int" resultType="webcrawler.prueba.model.Brand">
+        SELECT
+        brand_id as brandId,
+        name as name
+        FROM brand
+        WHERE
+        brand_id = #{brandId}
+    </select>
+
 </mapper>

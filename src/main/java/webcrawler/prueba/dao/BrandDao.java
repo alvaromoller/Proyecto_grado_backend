@@ -9,4 +9,5 @@ import java.util.List;
 public interface BrandDao {
 
     public List<Brand> getBrands();
+    public Brand findBrandById(Integer brandId);
 }
