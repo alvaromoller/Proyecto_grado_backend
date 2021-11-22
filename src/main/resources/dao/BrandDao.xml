@@ -22,4 +22,10 @@
         brand_id = #{brandId}
     </select>
 
+    <insert id="create" parameterType="webcrawler.prueba.model.Brand">
+        INSERT INTO brand VALUES (
+        null, #{name}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
+        )
+    </insert>
+
 </mapper>

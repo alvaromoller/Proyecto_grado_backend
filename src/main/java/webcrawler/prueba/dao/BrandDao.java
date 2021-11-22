@@ -10,4 +10,5 @@ public interface BrandDao {
 
     public List<Brand> getBrands();
     public Brand findBrandById(Integer brandId);
+    public void create(Brand brand);
 }

@@ -8,6 +8,11 @@ public class Brand {
     private Integer status;
     private Transaction transaction;
 
+
+    public Brand(){
+        this.transaction= new Transaction();
+    }
+
     public Integer getBrandId() {
         return brandId;
     }

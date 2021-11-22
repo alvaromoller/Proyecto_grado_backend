@@ -32,4 +32,5 @@ public class ProductApi {
     public ProductDto findById(@PathVariable("id") Integer id, HttpServletRequest request){
         return productBl.findProductById(id);
     }
+
 }

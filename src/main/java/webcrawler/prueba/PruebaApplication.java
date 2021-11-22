@@ -34,11 +34,25 @@ class PruebaApplication {
 		//String url = "http://elfreneticoinformatico.com";
 		//parser.listAllLinks(url);
 
-		//EJEMPLO 3
+		//EJEMPLO 1 tutorial
 		//ParseComputerPage  PRUEBA
-		//ParseComputerPage compu = new ParseComputerPage();
-		//String urltwo = "https://mkyong.com/";
-		//compu.listAllPages(urltwo);
+		ParseComputerPage compu = new ParseComputerPage();
+		String urltwo = "https://www.intecsa.com.bo/";
+		try {
+			compu.listAllPages(urltwo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		//EJEMPLO 2 tutorial
+		ParseComputerPage compu2 = new ParseComputerPage();
+		String urltwo2 = "https://www.imdb.com/chart/top";
+		try {
+			compu2.listAllPagesExampleTwo(urltwo2);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 

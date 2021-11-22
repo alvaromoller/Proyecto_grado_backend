@@ -15,6 +15,10 @@ public class Transaction {
         this.setTxDate(txDate);
     }
 
+    public Transaction() {
+
+    }
+
     public Integer getTxId() {
         return txId;
     }
