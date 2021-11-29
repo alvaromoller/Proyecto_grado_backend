@@ -1,4 +1,4 @@
-package webcrawler.prueba.service;
+package webcrawler.prueba.webCrawler;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

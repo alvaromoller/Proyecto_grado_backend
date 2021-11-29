@@ -6,7 +6,9 @@ import webcrawler.prueba.dao.TransactionDao;
 import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.model.Brand;
 import webcrawler.prueba.model.Transaction;
+import webcrawler.prueba.webCrawler.ParseComputerPage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class BrandBl {
         brand.setTxUserId(transaction.getTxUserId());
         brand.setTxDate(transaction.getTxDate());
         brand.setStatus(1);
-
+        //
         brandDao.create(brand);
         Integer getLastId = transactionDao.getLastInsertId();
         brandDto.setBrandId(getLastId);

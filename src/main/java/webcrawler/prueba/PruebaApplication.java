@@ -3,16 +3,14 @@ import java.io.IOException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import webcrawler.prueba.service.ParseComputerPage;
-import webcrawler.prueba.service.ParsePage;
-
-import  webcrawler.prueba.service.Example1;
+import webcrawler.prueba.dto.BrandDto;
+import webcrawler.prueba.model.Transaction;
+import webcrawler.prueba.webCrawler.ParseComputerPage;
 
 @SpringBootApplication
 class PruebaApplication {
 
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
@@ -26,14 +24,9 @@ class PruebaApplication {
 		example1.obtenerEnlacesExtraidos("http://www.mkyong.com");
 		example1.obtenerArticulos();
 		example1.escribirArchivo("Java 8 Articles");
-*/
-		//EJEMPLO 2
+		*/
 
-		//ParsePage
-		//ParsePage parser = new ParsePage();
-		//String url = "http://elfreneticoinformatico.com";
-		//parser.listAllLinks(url);
-
+/**
 		//EJEMPLO 1 tutorial
 		//ParseComputerPage  PRUEBA
 		ParseComputerPage compu = new ParseComputerPage();
@@ -44,19 +37,7 @@ class PruebaApplication {
 			e.printStackTrace();
 		}
 
-		//EJEMPLO 2 tutorial
-		ParseComputerPage compu2 = new ParseComputerPage();
-		String urltwo2 = "https://www.imdb.com/chart/top";
-		try {
-			compu2.listAllPagesExampleTwo(urltwo2);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+*/
 
 	}
-
-
-
-
 }

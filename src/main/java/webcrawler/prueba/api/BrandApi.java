@@ -7,8 +7,10 @@ import webcrawler.prueba.bl.TransactionBl;
 import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
+import webcrawler.prueba.webCrawler.ParseComputerPage;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -18,10 +20,13 @@ public class BrandApi {
     private BrandBl brandBl;
     private TransactionBl transactionBl;
 
+    private ParseComputerPage parseComputerPage;
+
     @Autowired
-    public BrandApi (BrandBl brandBl, TransactionBl transactionBl){
+    public BrandApi (BrandBl brandBl, TransactionBl transactionBl, ParseComputerPage parseComputerPage){
         this.brandBl = brandBl;
         this.transactionBl = transactionBl;
+        this.parseComputerPage = parseComputerPage;
     }
 
     //lista de marca
@@ -45,5 +50,15 @@ public class BrandApi {
         BrandDto brandDtoResponse = brandBl.createBrand(brandDto, transaction);
         return brandDtoResponse;
     }
+
+    // extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void webCrawler(HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        String url="https://www.imdb.com/chart/top";
+        parseComputerPage.listPages(url, transaction);
+    }
+
 
 }
