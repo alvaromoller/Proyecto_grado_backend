@@ -10,6 +10,11 @@
             name as name,
             description as description,
             img as img,
+            procesador as procesador,
+            memoria_ram as memoriaRam,
+            disco_almacenamiento as discoAlmacenamiento,
+            tarjeta_video as tarjetaVideo,
+            pantalla as pantalla,
             brand_id as brandId,
             shop_id as shopId,
             product_type_id as productTypeId
@@ -24,6 +29,11 @@
         name as name,
         description as description,
         img as img,
+        procesador as procesador,
+        memoria_ram as memoriaRam,
+        disco_almacenamiento as discoAlmacenamiento,
+        tarjeta_video as tarjetaVideo,
+        pantalla as pantalla,
         brand_id as brandId,
         shop_id as shopId,
         product_type_id as productTypeId
@@ -31,5 +41,12 @@
         WHERE
             product_id = #{productId}
     </select>
+
+    <insert id="create" parameterType="webcrawler.prueba.model.Product">
+        INSERT INTO product VALUES (
+        null, #{name}, #{description}, #{img}, #{procesador}, #{memoriaRam}, #{discoAlmacenamiento}, #{tarjetaVideo},
+        #{pantalla}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}, 1, 1, 1
+        )
+    </insert>
 
 </mapper>

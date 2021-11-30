@@ -59,7 +59,7 @@ public class BrandBl {
         brand.setTxUserId(transaction.getTxUserId());
         brand.setTxDate(transaction.getTxDate());
         brand.setStatus(1);
-        //
+        //create
         brandDao.create(brand);
         Integer getLastId = transactionDao.getLastInsertId();
         brandDto.setBrandId(getLastId);

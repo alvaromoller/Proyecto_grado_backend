@@ -10,4 +10,5 @@ public interface ProductDao {
 
     public List<Product> getProducts();
     public Product findByProductId(Integer productId);
+    public void create(Product product);
 }

@@ -4,8 +4,10 @@ package webcrawler.prueba.bl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import webcrawler.prueba.dao.ProductDao;
+import webcrawler.prueba.dao.TransactionDao;
 import webcrawler.prueba.dto.ProductDto;
 import webcrawler.prueba.model.Product;
+import webcrawler.prueba.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +16,12 @@ import java.util.List;
 public class ProductBl {
 
     private ProductDao productDao;
+    private TransactionDao transactionDao;
 
     @Autowired
-    public ProductBl(ProductDao productDao){
+    public ProductBl(ProductDao productDao, TransactionDao transactionDao){
         this.productDao = productDao;
+        this.transactionDao = transactionDao;
     }
 
     //listado de productos
@@ -32,6 +36,11 @@ public class ProductBl {
             productDto.setName(product.getName());
             productDto.setDescription(product.getDescription());
             productDto.setImg(product.getImg());
+            productDto.setProcesador(product.getProcesador());
+            productDto.setMemoriaRam(product.getMemoriaRam());
+            productDto.setDiscoAlmacenamiento(product.getDiscoAlmacenamiento());
+            productDto.setTarjetaVideo(product.getTarjetaVideo());
+            productDto.setPantalla(product.getPantalla());
             //llaves foraneas
             productDto.setBrandId(product.getBrandId());
             productDto.setShopId(product.getShopId());
@@ -55,6 +64,30 @@ public class ProductBl {
         productDto.setShopId(product.getShopId());
         productDto.setProductTypeId(product.getProductTypeId());
         return productDto;
+    }
+
+    //Crear producto
+    public ProductDto createProduct(ProductDto productDto, Transaction transaction){
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setDescription(productDto.getDescription());
+        product.setImg(productDto.getImg());
+        product.setProcesador(productDto.getProcesador());
+        product.setMemoriaRam(productDto.getMemoriaRam());
+        product.setDiscoAlmacenamiento(productDto.getDiscoAlmacenamiento());
+        product.setTarjetaVideo(productDto.getTarjetaVideo());
+        product.setPantalla(productDto.getPantalla());
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        //create
+        productDao.create(product);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productDto.setProductId(getLastId);
+        return  productDto;
     }
 
 
