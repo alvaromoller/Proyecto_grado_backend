@@ -369,14 +369,14 @@ public class ComputerPageOne {
 
     //PRODUCTO DETALLE, extraccion de Producto y guardado en la BD
     public void extractProduct3(String url1, Transaction transaction) throws IOException {
-        System.out.println("Computadoras, Página Intecsa url1" + url1 + "...");
-        Document doc1 = Jsoup.connect(url1).timeout(10000).get();
-        Elements imgProduct = doc1.select("div.site-content");  //extraccion de imagen
-        Elements pc = doc1.select("div.woocommerce-tabs.wc-tabs-wrapper"); //extracion de detalle del PC
+        System.out.println("Computadoras, Página Intecsa url" + url1 + "...");
+        Document doc = Jsoup.connect(url1).timeout(10000).get();
+        Elements imgProduct = doc.select("div.site-content");  //extraccion de imagen
+        Elements pc = doc.select("div.woocommerce-tabs.wc-tabs-wrapper"); //extracion de detalle del PC
 
         //Extraccion de la img
         String img="";
-        for (Element e : imgProduct.select("div.product.type-product.post-6928"))
+        for (Element e : imgProduct.select("div.product.type-product.post-6733"))
         {
             img = e.select("div.woocommerce-product-gallery img").attr("src"); //Obtener src, img del PC
             System.out.println("imagen : " + img);
@@ -396,11 +396,11 @@ public class ComputerPageOne {
         {
             //Datos del producto
             nameProduct = e.select("p strong span ").text(); //Obtener nombre del PC
-            processor = e.select("p:matches(Intel core i7 1165G7|intel core i7 1165G7|INTEL core i7 1165G7)" ).text(); //Obtener procesador de PC
+            processor = e.select("p:matches(Intel core i7 de décima generación)" ).text(); //Obtener procesador de PC
             ram = e.select("p:matches(Memoria RAM)" ).text(); //Obtener procesador de PC
-            discoAlmacenamiento = e.select("p:matches(Disco)" ).text(); //Obtener procesador de PC
-            video = e.select("p:matches(Nvidia MX 330 2GB)" ).text(); //Obtener procesador de PC
-            pantalla = e.select("p:matches(Pantalla)" ).text(); //Obtener procesador de PC
+            discoAlmacenamiento = e.select("p:matches(Almacenamiento)" ).text(); //Obtener procesador de PC
+            video = e.select("p:matches(Video:)" ).text(); //Obtener procesador de PC
+            pantalla = e.select("p:matches(15,6 pulgadas.)" ).text(); //Obtener procesador de PC
             description = e.select("p:matches(Garantía)" ).text(); //Obtener procesador de PC
 
             System.out.println("imagen: " + img); //llamando Img del primer For
