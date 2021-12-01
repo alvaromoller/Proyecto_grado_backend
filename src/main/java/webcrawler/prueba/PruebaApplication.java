@@ -3,9 +3,8 @@ import java.io.IOException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import webcrawler.prueba.dto.BrandDto;
-import webcrawler.prueba.model.Transaction;
-import webcrawler.prueba.webCrawler.ParseComputerPage;
+import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.Example3;
 
 @SpringBootApplication
 class PruebaApplication {
@@ -18,7 +17,7 @@ class PruebaApplication {
 		//3. con un FOR recorremos todos los links y los extraemos
 		// tambien se puede elegir etiquetas especificas y buscarlas en la pagina web, ejemplo etiqueta <H2>
 
-		//EJEMPLO 1
+		//EJEMPLO
 		/**
 		Example1 example1 = new Example1();
 		example1.obtenerEnlacesExtraidos("http://www.mkyong.com");
@@ -26,18 +25,22 @@ class PruebaApplication {
 		example1.escribirArchivo("Java 8 Articles");
 		*/
 
-/**
-		//EJEMPLO 1 tutorial
+
+		//EJEMPLO 1
 		//ParseComputerPage  PRUEBA
-		ParseComputerPage compu = new ParseComputerPage();
-		String urltwo = "https://www.intecsa.com.bo/";
+        /**
+		ComputerPageOne compu = new ComputerPageOne();
+		String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
 		try {
-			compu.listAllPages(urltwo);
+		    //compu.extractBrand(urltwo);
+		    //compu.extractProductType(urltwo);
+			//compu.extractProduct(urltwo);
+            //compu.extractImg(urltwo);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+        */
 
-*/
 
 	}
 }

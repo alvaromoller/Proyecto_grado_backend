@@ -7,7 +7,7 @@ import webcrawler.prueba.bl.TransactionBl;
 import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
-import webcrawler.prueba.webCrawler.ParseComputerPage;
+import webcrawler.prueba.webCrawler.ComputerPageOne;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -20,13 +20,13 @@ public class BrandApi {
     private BrandBl brandBl;
     private TransactionBl transactionBl;
 
-    private ParseComputerPage parseComputerPage;
+    private ComputerPageOne computerPageOne;
 
     @Autowired
-    public BrandApi (BrandBl brandBl, TransactionBl transactionBl, ParseComputerPage parseComputerPage){
+    public BrandApi (BrandBl brandBl, TransactionBl transactionBl, ComputerPageOne computerPageOne){
         this.brandBl = brandBl;
         this.transactionBl = transactionBl;
-        this.parseComputerPage = parseComputerPage;
+        this.computerPageOne = computerPageOne;
     }
 
     //lista de marca
@@ -51,13 +51,13 @@ public class BrandApi {
         return brandDtoResponse;
     }
 
-    // extrae informacion de pagina web y guarda los datos en BD.
+    //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void webCrawler(HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        String url="https://www.imdb.com/chart/top";
-        parseComputerPage.listPages(url, transaction);
+        String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //Pc1
+        computerPageOne.extractBrand(url, transaction);
     }
 
 

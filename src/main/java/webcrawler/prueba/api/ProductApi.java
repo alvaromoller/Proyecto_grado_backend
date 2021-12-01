@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.*;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
+import webcrawler.prueba.webCrawler.ComputerPageOne;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -19,12 +21,14 @@ public class ProductApi {
 
     private ProductBl productBl;
     private TransactionBl transactionBl;
+    private ComputerPageOne computerPageOne;
 
 
     @Autowired
-    public ProductApi (ProductBl productBl, TransactionBl transactionBl){
+    public ProductApi (ProductBl productBl, TransactionBl transactionBl, ComputerPageOne computerPageOne){
         this.productBl = productBl;
         this.transactionBl = transactionBl;
+        this.computerPageOne = computerPageOne;
     }
 
     //listado de productos
@@ -49,4 +53,17 @@ public class ProductApi {
         return productDtoResponse;
     }
 
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void webCrawler(HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //PC1
+        computerPageOne.extractProduct(url, transaction);
+    }
+
+    //url1
+    //https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/
+    //url2
+    //https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/
 }

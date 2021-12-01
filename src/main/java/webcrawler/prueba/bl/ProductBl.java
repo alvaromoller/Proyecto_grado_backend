@@ -55,11 +55,16 @@ public class ProductBl {
     public ProductDto findProductById(Integer productId){
         Product product = productDao.findByProductId(productId);
         ProductDto productDto = new ProductDto();
-
         productDto.setProductId(product.getProductId());
         productDto.setName(product.getName());
         productDto.setDescription(product.getDescription());
         productDto.setImg(product.getImg());
+        productDto.setProcesador(product.getProcesador());
+        productDto.setMemoriaRam(product.getMemoriaRam());
+        productDto.setDiscoAlmacenamiento(product.getDiscoAlmacenamiento());
+        productDto.setTarjetaVideo(product.getTarjetaVideo());
+        productDto.setPantalla(product.getPantalla());
+        //llaves foraneas
         productDto.setBrandId(product.getBrandId());
         productDto.setShopId(product.getShopId());
         productDto.setProductTypeId(product.getProductTypeId());

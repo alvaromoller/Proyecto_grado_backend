@@ -8,7 +8,7 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
-public class ParsePage {
+public class Example2 {
 
     public void listAllLinks(String url) throws IOException {
         System.out.println("Parsing page " + url + "...");
