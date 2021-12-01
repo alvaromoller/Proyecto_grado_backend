@@ -22,4 +22,10 @@
             product_type_id = #{productTypeId}
     </select>
 
+    <insert id="create" parameterType="webcrawler.prueba.model.ProductType">
+        INSERT INTO product_type VALUES (
+        null, #{name}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
+        )
+    </insert>
+
 </mapper>

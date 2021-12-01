@@ -8,6 +8,10 @@ public class ProductType {
     private Integer status;
     private Transaction transaction;
 
+    public ProductType(){
+        this.transaction = new Transaction();
+    }
+
     public Integer getProductTypeId() {
         return productTypeId;
     }

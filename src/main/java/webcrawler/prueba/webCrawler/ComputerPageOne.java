@@ -76,7 +76,8 @@ public class ComputerPageOne {
         //brandDto.setBrandId(getLastId);
     }
 
-
+    //Tipo de Producto
+    //extraccion de Tipo de Producto y guardado en la BD
     public void extractProductType(String url, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -89,7 +90,7 @@ public class ComputerPageOne {
             System.out.println("Tipo de PC: " + tipoProducto);
         }
 
-        //brandBl
+        //ProductTypeBl
         ProductType productType = new ProductType();
         productType.setName(tipoProducto);
         //transaction
@@ -98,14 +99,14 @@ public class ComputerPageOne {
         productType.setTxUserId(transaction.getTxUserId());
         productType.setTxDate(transaction.getTxDate());
         productType.setStatus(1);
-        //productTypeDao.create(productType);
+        productTypeDao.create(productType);
         //Integer getLastId = transactionDao.getLastInsertId();
         //brandDto.setBrandId(getLastId);
     }
 
 
     //PRODUCTO url1
-    //Transaction transaction
+    //extraccion de Producto y guardado en la BD
     public void extractProduct(String url1, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página Intecsa url1" + url1 + "...");
         Document doc1 = Jsoup.connect(url1).timeout(10000).get();
@@ -150,7 +151,7 @@ public class ComputerPageOne {
             System.out.println(pantalla); // medidas de la pantalla
             System.out.println(description); // descripcion de la garantía
 
-            //Bl createProduct
+            //ProductBl, create
             Product product = new Product();
             product.setName(nameProduct);
             product.setDescription(description);

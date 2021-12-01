@@ -11,4 +11,6 @@ public interface ProductTypeDao {
 
     public List<ProductType> getProductTypes();
     public ProductType findProductTypeById(Integer productTypeid);
+    public void create(ProductType productType);
+
 }
