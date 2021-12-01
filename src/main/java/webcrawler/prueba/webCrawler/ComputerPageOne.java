@@ -349,7 +349,7 @@ public class ComputerPageOne {
         String tipoProducto="";
         for (Element e : producto.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
         {
-            tipoProducto = e.select("p  a:matches(Notebook|notebook|NOTEBOOK)" ).text(); //Obtener tipo de PC
+            tipoProducto = e.select("p  a:matches(Pc Portátil)" ).text(); //Obtener tipo de PC
             System.out.println("Tipo de PC: " + tipoProducto);
         }
 

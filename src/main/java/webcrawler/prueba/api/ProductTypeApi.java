@@ -76,5 +76,16 @@ public class ProductTypeApi {
         computerPageOne.extractProductType2(url, transaction);
     }
 
+    //Producto 3
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler3(HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 3
+        String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
+        computerPageOne.extractProductType3(url, transaction);
+    }
+
 
 }
