@@ -53,17 +53,27 @@ public class ProductApi {
         return productDtoResponse;
     }
 
+    //producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void webCrawler(HttpServletRequest request)throws IOException {
+    public void crawler1(HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
+        //dirección producto 1
         String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //PC1
         computerPageOne.extractProduct(url, transaction);
     }
 
-    //url1
-    //https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/
-    //url2
-    //https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/
+    //producto 2
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler2", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler2(HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 2
+        String url="https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/";  //Pc2
+        computerPageOne.extractProduct2(url, transaction);
+    }
+
+
 }
