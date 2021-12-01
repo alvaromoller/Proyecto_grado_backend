@@ -72,5 +72,15 @@ public class BrandApi {
         computerPageOne.extractBrand2(url, transaction);
     }
 
+    //producto 3 HP
+    @RequestMapping(path ="/crawler3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler3(HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 3
+        String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
+        computerPageOne.extractBrand3(url, transaction);
+    }
+
 
 }
