@@ -11,4 +11,5 @@ public interface ShopDao {
 
     public List<Shop> getShops();
     public Shop findShopById(Integer shopId);
+    public void create(Shop shop);
 }
