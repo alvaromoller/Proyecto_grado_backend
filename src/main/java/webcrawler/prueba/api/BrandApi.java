@@ -54,32 +54,32 @@ public class BrandApi {
     //producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void crawler1(HttpServletRequest request)throws IOException{
+    public void crawler1(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 1
         String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //Pc1
-        computerPageOne.extractBrand(url, transaction);
+        computerPageOne.extractBrand(url, brandDto,transaction);
     }
 
     //producto 2
     @RequestMapping(path ="/crawler2", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void crawler2(HttpServletRequest request)throws IOException{
+    public void crawler2(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 2
         String url="https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/";  //Pc2
-        computerPageOne.extractBrand2(url, transaction);
+        computerPageOne.extractBrand2(url, brandDto, transaction);
     }
 
     //producto 3 HP
     @RequestMapping(path ="/crawler3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void crawler3(HttpServletRequest request)throws IOException{
+    public void crawler3(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 3
         String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
-        computerPageOne.extractBrand3(url, transaction);
+        computerPageOne.extractBrand3(url, brandDto, transaction);
     }
 
 

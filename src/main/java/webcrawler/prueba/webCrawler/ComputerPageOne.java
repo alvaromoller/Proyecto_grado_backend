@@ -13,6 +13,8 @@ import webcrawler.prueba.dao.ProductDao;
 import webcrawler.prueba.dao.ProductTypeDao;
 import webcrawler.prueba.dao.TransactionDao;
 import webcrawler.prueba.dto.BrandDto;
+import webcrawler.prueba.dto.ProductDto;
+import webcrawler.prueba.dto.ProductTypeDto;
 import webcrawler.prueba.model.Brand;
 import webcrawler.prueba.model.Product;
 import webcrawler.prueba.model.ProductType;
@@ -51,7 +53,7 @@ public class ComputerPageOne {
     //Productos DELL
     //Producto 1
     // MARCA, extraccion de marca y guardado en la BD
-    public void extractBrand(String url, Transaction transaction) throws IOException {
+    public BrandDto extractBrand(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto1 = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -73,11 +75,14 @@ public class ComputerPageOne {
         brand.setTxDate(transaction.getTxDate());
         brand.setStatus(1);
         brandDao.create(brand);
+        Integer getLastId = transactionDao.getLastInsertId();
+        brandDto.setBrandId(getLastId);
+        return  brandDto;
 
     }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
-    public void extractProductType(String url, Transaction transaction) throws IOException {
+    public ProductTypeDto extractProductType(String url,ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -99,12 +104,13 @@ public class ComputerPageOne {
         productType.setTxDate(transaction.getTxDate());
         productType.setStatus(1);
         productTypeDao.create(productType);
-        //Integer getLastId = transactionDao.getLastInsertId();
-        //brandDto.setBrandId(getLastId);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productTypeDto.setProductTypeId(getLastId);
+        return productTypeDto;
     }
 
     //PRODUCTO DETALLE, extraccion de Producto y guardado en la BD
-    public void extractProduct(String url1, Transaction transaction) throws IOException {
+    public ProductDto extractProduct(String url1, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página Intecsa url1" + url1 + "...");
         Document doc1 = Jsoup.connect(url1).timeout(10000).get();
         Elements imgProduct = doc1.select("div.site-content");  //extraccion de imagen
@@ -128,16 +134,15 @@ public class ComputerPageOne {
         String description="";
 
         print("\nBody: (%d)", pc1.size());
-        for (Element e : pc1.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
-        {
+        for (Element e : pc1.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab")) {
             //Datos del producto
             nameProduct = e.select("p strong span ").text(); //Obtener nombre del PC
-            processor = e.select("p:matches(Intel core i7 1135G7|intel core i7 1135G7|INTEL core i7 1135G7)" ).text(); //Obtener procesador de PC
-            ram = e.select("p:matches(Memoria RAM)" ).text(); //Obtener procesador de PC
-            discoAlmacenamiento = e.select("p:matches(Disco)" ).text(); //Obtener procesador de PC
-            video = e.select("p:matches(Video)" ).text(); //Obtener procesador de PC
-            pantalla = e.select("p:matches(Pantalla)" ).text(); //Obtener procesador de PC
-            description = e.select("p:matches(Garantía)" ).text(); //Obtener procesador de PC
+            processor = e.select("p:matches(Intel core i7 1135G7|intel core i7 1135G7|INTEL core i7 1135G7)").text(); //Obtener procesador de PC
+            ram = e.select("p:matches(Memoria RAM)").text(); //Obtener procesador de PC
+            discoAlmacenamiento = e.select("p:matches(Disco)").text(); //Obtener procesador de PC
+            video = e.select("p:matches(Video)").text(); //Obtener procesador de PC
+            pantalla = e.select("p:matches(Pantalla)").text(); //Obtener procesador de PC
+            description = e.select("p:matches(Garantía)").text(); //Obtener procesador de PC
 
             System.out.println("imagen: " + img); //llamando Img del primer For
             System.out.println("Nombre: " + nameProduct);
@@ -147,7 +152,7 @@ public class ComputerPageOne {
             System.out.println(video); // tarjeta de video
             System.out.println(pantalla); // medidas de la pantalla
             System.out.println(description); // descripcion de la garantía
-
+        }
             //ProductBl, create
             Product product = new Product();
             product.setName(nameProduct);
@@ -166,9 +171,9 @@ public class ComputerPageOne {
             product.setStatus(1);
             //create
             productDao.create(product);
-            //Integer getLastId = transactionDao.getLastInsertId();
-            //productDto.setProductId(getLastId);
-        }
+            Integer getLastId = transactionDao.getLastInsertId();
+            productDto.setProductId(getLastId);
+            return  productDto;
     }
 
     //Extraccion prueba de PRODUCTO IMG
@@ -191,7 +196,7 @@ public class ComputerPageOne {
 ////////////////
     //Producto 2
     // MARCA, extraccion de marca y guardado en la BD
-    public void extractBrand2(String url, Transaction transaction) throws IOException {
+    public BrandDto extractBrand2(String url, BrandDto brandDto, Transaction transaction) throws IOException {
     System.out.println("Extrayendo Marca de la página " + url + "...");
     Document doc = Jsoup.connect(url).timeout(8000).get();
     Elements producto = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -202,7 +207,6 @@ public class ComputerPageOne {
         marca = e.select("p  a:matches(Dell|dell|DELL)" ).text(); //Obtener nombre del PC
         System.out.println("Marca: " + marca);
     }
-
     //brandBl
     Brand brand = new Brand();
     brand.setName(marca);
@@ -213,11 +217,13 @@ public class ComputerPageOne {
     brand.setTxDate(transaction.getTxDate());
     brand.setStatus(1);
     brandDao.create(brand);
-
+    Integer getLastId = transactionDao.getLastInsertId();
+    brandDto.setBrandId(getLastId);
+    return  brandDto;
 }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
-    public void extractProductType2(String url, Transaction transaction) throws IOException {
+    public ProductTypeDto extractProductType2(String url, ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -239,12 +245,13 @@ public class ComputerPageOne {
         productType.setTxDate(transaction.getTxDate());
         productType.setStatus(1);
         productTypeDao.create(productType);
-        //Integer getLastId = transactionDao.getLastInsertId();
-        //brandDto.setBrandId(getLastId);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productTypeDto.setProductTypeId(getLastId);
+        return productTypeDto;
     }
 
     //PRODUCTO DETALLE, extraccion de Producto y guardado en la BD
-    public void extractProduct2(String url1, Transaction transaction) throws IOException {
+    public ProductDto extractProduct2(String url1, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página Intecsa url1" + url1 + "...");
         Document doc1 = Jsoup.connect(url1).timeout(10000).get();
         Elements imgProduct = doc1.select("div.site-content");  //extraccion de imagen
@@ -268,16 +275,15 @@ public class ComputerPageOne {
         String description="";
 
         print("\nBody: (%d)", pc.size());
-        for (Element e : pc.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
-        {
+        for (Element e : pc.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab")) {
             //Datos del producto
             nameProduct = e.select("p strong span ").text(); //Obtener nombre del PC
-            processor = e.select("p:matches(Intel core i7 1165G7|intel core i7 1165G7|INTEL core i7 1165G7)" ).text(); //Obtener procesador de PC
-            ram = e.select("p:matches(Memoria RAM)" ).text(); //Obtener procesador de PC
-            discoAlmacenamiento = e.select("p:matches(Disco)" ).text(); //Obtener procesador de PC
-            video = e.select("p:matches(Nvidia MX 330 2GB)" ).text(); //Obtener procesador de PC
-            pantalla = e.select("p:matches(Pantalla)" ).text(); //Obtener procesador de PC
-            description = e.select("p:matches(Garantía)" ).text(); //Obtener procesador de PC
+            processor = e.select("p:matches(Intel core i7 1165G7|intel core i7 1165G7|INTEL core i7 1165G7)").text(); //Obtener procesador de PC
+            ram = e.select("p:matches(Memoria RAM)").text(); //Obtener procesador de PC
+            discoAlmacenamiento = e.select("p:matches(Disco)").text(); //Obtener procesador de PC
+            video = e.select("p:matches(Nvidia MX 330 2GB)").text(); //Obtener procesador de PC
+            pantalla = e.select("p:matches(Pantalla)").text(); //Obtener procesador de PC
+            description = e.select("p:matches(Garantía)").text(); //Obtener procesador de PC
 
             System.out.println("imagen: " + img); //llamando Img del primer For
             System.out.println("Nombre: " + nameProduct);
@@ -287,7 +293,7 @@ public class ComputerPageOne {
             System.out.println(video); // tarjeta de video
             System.out.println(pantalla); // medidas de la pantalla
             System.out.println(description); // descripcion de la garantía
-
+        }
             //ProductBl, create
             Product product = new Product();
             product.setName(nameProduct);
@@ -306,16 +312,16 @@ public class ComputerPageOne {
             product.setStatus(1);
             //create
             productDao.create(product);
-            //Integer getLastId = transactionDao.getLastInsertId();
-            //productDto.setProductId(getLastId);
-        }
+            Integer getLastId = transactionDao.getLastInsertId();
+            productDto.setProductId(getLastId);
+            return  productDto;
     }
 //
 
     //Productos HP
     //Producto 3
     // MARCA, extraccion de marca y guardado en la BD
-    public void extractBrand3(String url, Transaction transaction) throws IOException {
+    public BrandDto extractBrand3(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -337,11 +343,14 @@ public class ComputerPageOne {
         brand.setTxDate(transaction.getTxDate());
         brand.setStatus(1);
         brandDao.create(brand);
+        Integer getLastId = transactionDao.getLastInsertId();
+        brandDto.setBrandId(getLastId);
+        return  brandDto;
 
     }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
-    public void extractProductType3(String url, Transaction transaction) throws IOException {
+    public ProductTypeDto extractProductType3(String url, ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
@@ -363,12 +372,13 @@ public class ComputerPageOne {
         productType.setTxDate(transaction.getTxDate());
         productType.setStatus(1);
         productTypeDao.create(productType);
-        //Integer getLastId = transactionDao.getLastInsertId();
-        //brandDto.setBrandId(getLastId);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productTypeDto.setProductTypeId(getLastId);
+        return productTypeDto;
     }
 
     //PRODUCTO DETALLE, extraccion de Producto y guardado en la BD
-    public void extractProduct3(String url1, Transaction transaction) throws IOException {
+    public ProductDto extractProduct3(String url1, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página Intecsa url" + url1 + "...");
         Document doc = Jsoup.connect(url1).timeout(10000).get();
         Elements imgProduct = doc.select("div.site-content");  //extraccion de imagen
@@ -392,16 +402,15 @@ public class ComputerPageOne {
         String description="";
 
         print("\nBody: (%d)", pc.size());
-        for (Element e : pc.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
-        {
+        for (Element e : pc.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab")) {
             //Datos del producto
-            nameProduct = e.select("p strong span ").text(); //Obtener nombre del PC
-            processor = e.select("p:matches(Intel core i7 de décima generación)" ).text(); //Obtener procesador de PC
-            ram = e.select("p:matches(Memoria RAM)" ).text(); //Obtener procesador de PC
-            discoAlmacenamiento = e.select("p:matches(Almacenamiento)" ).text(); //Obtener procesador de PC
-            video = e.select("p:matches(Video:)" ).text(); //Obtener procesador de PC
-            pantalla = e.select("p:matches(15,6 pulgadas.)" ).text(); //Obtener procesador de PC
-            description = e.select("p:matches(Garantía)" ).text(); //Obtener procesador de PC
+            nameProduct = e.select("p span strong ").text(); //Obtener nombre del PC
+            processor = e.select("p:matches(Intel core i7 de décima generación)").text(); //Obtener procesador de PC
+            ram = e.select("p:matches(Memoria RAM)").text(); //Obtener procesador de PC
+            discoAlmacenamiento = e.select("p:matches(Almacenamiento)").text(); //Obtener procesador de PC
+            video = e.select("p:matches(Video:)").text(); //Obtener procesador de PC
+            pantalla = e.select("p:matches(15,6 pulgadas.)").text(); //Obtener procesador de PC
+            description = e.select("p:matches(Garantía)").text(); //Obtener procesador de PC
 
             System.out.println("imagen: " + img); //llamando Img del primer For
             System.out.println("Nombre: " + nameProduct);
@@ -411,7 +420,7 @@ public class ComputerPageOne {
             System.out.println(video); // tarjeta de video
             System.out.println(pantalla); // medidas de la pantalla
             System.out.println(description); // descripcion de la garantía
-
+        }
             //ProductBl, create
             Product product = new Product();
             product.setName(nameProduct);
@@ -430,9 +439,9 @@ public class ComputerPageOne {
             product.setStatus(1);
             //create
             productDao.create(product);
-            //Integer getLastId = transactionDao.getLastInsertId();
-            //productDto.setProductId(getLastId);
-        }
+            Integer getLastId = transactionDao.getLastInsertId();
+            productDto.setProductId(getLastId);
+            return  productDto;
     }
 //
 

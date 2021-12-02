@@ -12,6 +12,10 @@ public class Shop {
 
     private Transaction transaction;
 
+    public Shop(){
+        this.transaction= new Transaction();
+    }
+
     public Integer getShopId() {
         return shopId;
     }
