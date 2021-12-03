@@ -8,38 +8,33 @@ import org.jsoup.select.Elements;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import webcrawler.prueba.dao.BrandDao;
-import webcrawler.prueba.dao.ProductDao;
-import webcrawler.prueba.dao.ProductTypeDao;
-import webcrawler.prueba.dao.TransactionDao;
+import webcrawler.prueba.dao.*;
 import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.dto.ProductDto;
 import webcrawler.prueba.dto.ProductTypeDto;
-import webcrawler.prueba.model.Brand;
-import webcrawler.prueba.model.Product;
-import webcrawler.prueba.model.ProductType;
-import webcrawler.prueba.model.Transaction;
+import webcrawler.prueba.dto.ShopDto;
+import webcrawler.prueba.model.*;
 
 import java.io.IOException;
 
 @Service
 public class ComputerPageOne {
 
-    //brand
+    //BrandDao
     private BrandDao brandDao;
     private TransactionDao transactionDao;
-    //private BrandDto brandDto;
-    //private Transaction transaction;
-
     //ProductType
     private ProductTypeDao productTypeDao;
-    //Product
+    //ShopDao
+    private ShopDao shopDao;
+    //ProductDao
     private ProductDao productDao;
 
     @Autowired
-    public ComputerPageOne(BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, TransactionDao transactionDao){
+    public ComputerPageOne(BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, ShopDao shopDao, TransactionDao transactionDao){
         this.brandDao = brandDao;
         this.productTypeDao = productTypeDao;
+        this.shopDao = shopDao;
         this.productDao = productDao;
         this.transactionDao = transactionDao;
         //this.brandDto = brandDto;
@@ -50,8 +45,61 @@ public class ComputerPageOne {
 
     }
 
+//Tienda 1, que contiene productos 1, 2 y 3
+    //Tienda Intecsa, de Bolivia
+    //ShopDto shopDto, Transaction transaction
+    public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 1, página Intecsa " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements descriptionPagina1 = doc.select(" div.elementor-element.elementor-element-73b3094b"); // buscando por clase, <div class = elementor-element>
+        Elements locationPagina1 = doc.select(" aside#custom_html-3.widget_text.widget.widget_custom_html");//buscando por ID, <aside id=custom_html-3>
+        Elements imgPagina1 = doc.select(" div.headerwrap");
+
+        String description="";
+        String location="";
+        String img="";
+        //Description
+        for (Element e : descriptionPagina1.select("div.elementor-text-editor.elementor-clearfix"))
+        {
+            description = e.select("p span strong:matches(La empresa INTECSA SRL)" ).text(); //Obtener nombre del PC
+            System.out.println("Descripcion: " + description);
+        }
+
+        //Ubicacion
+        for (Element e : locationPagina1.select("div.textwidget.custom-html-widget"))
+        {
+            location = e.select("center " ).text(); //Obtener nombre del PC
+            System.out.println("Ubicación: " + location );
+        }
+
+        //img
+        for (Element e : imgPagina1.select("div.headerinnerwrap"))
+        {
+            img = e.select("a span img").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 1: " + img);
+        }
+
+        //ShopBl
+        Shop shop = new Shop();
+        shop.setName("INTECSA SRL");
+        shop.setDescription(description);
+        shop.setLocation(location);
+        shop.setImg(img);
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.create(shop);
+        Integer getLastId = transactionDao.getLastInsertId();
+        shopDto.setShopId(getLastId);
+        return  shopDto;
+
+    }
+
+//Producto 1
     //Productos DELL
-    //Producto 1
     // MARCA, extraccion de marca y guardado en la BD
     public BrandDto extractBrand(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
@@ -78,7 +126,6 @@ public class ComputerPageOne {
         Integer getLastId = transactionDao.getLastInsertId();
         brandDto.setBrandId(getLastId);
         return  brandDto;
-
     }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
@@ -193,8 +240,7 @@ public class ComputerPageOne {
         }
     }
 
-////////////////
-    //Producto 2
+//Producto 2
     // MARCA, extraccion de marca y guardado en la BD
     public BrandDto extractBrand2(String url, BrandDto brandDto, Transaction transaction) throws IOException {
     System.out.println("Extrayendo Marca de la página " + url + "...");
@@ -316,10 +362,9 @@ public class ComputerPageOne {
             productDto.setProductId(getLastId);
             return  productDto;
     }
-//
 
+//Producto 3
     //Productos HP
-    //Producto 3
     // MARCA, extraccion de marca y guardado en la BD
     public BrandDto extractBrand3(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");

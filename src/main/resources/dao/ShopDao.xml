@@ -28,4 +28,10 @@
             shop_id = #{shopId}
     </select>
 
+    <insert id="create" parameterType="webcrawler.prueba.model.Shop">
+        INSERT INTO shop VALUES (
+        null, #{name}, #{description}, #{location}, #{img}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
+        )
+    </insert>
+
 </mapper>

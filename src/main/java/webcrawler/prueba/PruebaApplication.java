@@ -27,19 +27,21 @@ class PruebaApplication {
 
 
 		//EJEMPLO 1
+		/**
 		//ParseComputerPage  PRUEBA
-        /**
 		ComputerPageOne compu = new ComputerPageOne();
-		String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
+		//String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
+		String shopUrl = "https://www.intecsa.com.bo/nosotros/";
 		try {
 		    //compu.extractBrand(urltwo);
 		    //compu.extractProductType(urltwo);
 			//compu.extractProduct(urltwo);
             //compu.extractImg(urltwo);
+			//compu.extractShop(shopUrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        */
+		*/
 
 
 	}
