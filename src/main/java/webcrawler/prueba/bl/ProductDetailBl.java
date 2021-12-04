@@ -22,7 +22,7 @@ public class ProductDetailBl {
     }
 
     //listado de ProductDetail
-    public List<ProductDetailDto> selectProductDetailDto(){
+    public List<ProductDetailDto> selectProductDetail(){
         List<ProductDetail> productDetails = productDetailDao.getProductDetail();  //productDetails, se crea un for para recorrer products
         List<ProductDetailDto> productDetailDtos = new ArrayList<ProductDetailDto>(); //se crea productDetailDtos para tener el listado de products
 
