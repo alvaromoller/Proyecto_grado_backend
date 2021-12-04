@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="webcrawler.prueba.dao.ProductDetailDao">
+
+    <select id="getProductDetail" resultType="webcrawler.prueba.model.ProductDetail">
+        SELECT
+        product_detail_id as productDetailId,
+        price as price,
+        quantity as quantity,
+        product_id as productId,
+        FROM product_detail
+        WHERE
+        status = 1
+    </select>
+
+    <select id="findDetailById" parameterType="int" resultType="webcrawler.prueba.model.ProductDetail">
+        SELECT
+        product_detail_id as productDetailId,
+        price as price,
+        quantity as quantity,
+        product_id as productId,
+
+        FROM product_detail
+        WHERE
+        product_detail_id = #{productDetailId}
+    </select>
+
+    <insert id="create" parameterType="webcrawler.prueba.model.ProductDetail">
+        INSERT INTO product_detail VALUES (
+        null, #{price}, #{quantity}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}, 1
+        )
+    </insert>
+
+</mapper>
