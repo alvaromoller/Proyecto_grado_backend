@@ -156,7 +156,7 @@ public class ComputerPageOne {
         return productTypeDto;
     }
 
-    //PRODUCTO DETALLE, extraccion de Producto y guardado en la BD
+    //PRODUCTO, extraccion de Producto y guardado en la BD
     public ProductDto extractProduct(String url1, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página Intecsa url1" + url1 + "...");
         Document doc1 = Jsoup.connect(url1).timeout(10000).get();
@@ -223,7 +223,38 @@ public class ComputerPageOne {
             return  productDto;
     }
 
-    //Extraccion prueba de PRODUCTO IMG
+
+    //Detalle del producto, precio y cantidad
+//  , BrandDto brandDto, Transaction transaction
+    public void extractDetail(String url) throws IOException {
+        System.out.println("Extrayendo precio y cantidad de la página " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements producto1 = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
+
+        String detalle1="";
+        for (Element e : producto1.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
+        {
+            detalle1 = e.select("p  a:matches(Dell|dell|DELL)" ).text(); //Obtener nombre del PC
+            System.out.println("Marca: " + detalle1);
+        }
+/**
+        //ProductDetailBl
+        Brand brand = new Brand();
+        brand.setName(marca1);
+        //transaction
+        brand.setTxId(transaction.getTxId());
+        brand.setTxHost(transaction.getTxHost());
+        brand.setTxUserId(transaction.getTxUserId());
+        brand.setTxDate(transaction.getTxDate());
+        brand.setStatus(1);
+        brandDao.create(brand);
+        Integer getLastId = transactionDao.getLastInsertId();
+        brandDto.setBrandId(getLastId);
+        return  brandDto;
+ */
+    }
+
+    //Extraccion de prueba IMG
     public void extractImg(String url) throws IOException {
         System.out.println("IMG, Página Intecsa url2" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
@@ -239,6 +270,7 @@ public class ComputerPageOne {
 
         }
     }
+
 
 //Producto 2
     // MARCA, extraccion de marca y guardado en la BD

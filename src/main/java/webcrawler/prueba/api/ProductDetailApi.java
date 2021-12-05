@@ -3,11 +3,9 @@ package webcrawler.prueba.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import webcrawler.prueba.bl.ProductBl;
 import webcrawler.prueba.bl.ProductDetailBl;
 import webcrawler.prueba.bl.TransactionBl;
 import webcrawler.prueba.dto.ProductDetailDto;
-import webcrawler.prueba.dto.ProductDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
@@ -23,14 +21,16 @@ public class ProductDetailApi {
 
     private ProductDetailBl productDetailBl;
     private TransactionBl transactionBl;
-    private ComputerPageOne computerPageOne;
+    //private ComputerPageOne computerPageOne;
 
     @Autowired
-    public ProductDetailApi (ProductDetailBl productDetailBl, TransactionBl transactionBl, ComputerPageOne computerPageOne){
+    public ProductDetailApi (ProductDetailBl productDetailBl, TransactionBl transactionBl){
         this.productDetailBl = productDetailBl;
-        this.transactionBl = transactionBl;
-        this.computerPageOne = computerPageOne;
+         this.transactionBl = transactionBl;
+       // this.computerPageOne = computerPageOne;
     }
+
+
 
     //listado de productos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

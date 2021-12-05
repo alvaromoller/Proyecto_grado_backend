@@ -2,8 +2,8 @@ package webcrawler.prueba.dto;
 
 public class ProductDetailDto {
     private Integer productDetailId;
-    private Number price;
-    private Integer quantity;
+    private Double price;
+    private String quantity;
     private Integer productId;
 
     public Integer getProductDetailId() {
@@ -14,19 +14,19 @@ public class ProductDetailDto {
         this.productDetailId = productDetailId;
     }
 
-    public Number getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Number price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Integer getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
@@ -43,7 +43,7 @@ public class ProductDetailDto {
         return "ProductDetailDto{" +
                 "productDetailId=" + productDetailId +
                 ", price=" + price +
-                ", quantity=" + quantity +
+                ", quantity=" + quantity + '\'' +
                 ", productId=" + productId +
                 '}';
     }

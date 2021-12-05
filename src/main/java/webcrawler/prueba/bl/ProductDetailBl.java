@@ -1,6 +1,7 @@
 package webcrawler.prueba.bl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import webcrawler.prueba.dao.ProductDetailDao;
 import webcrawler.prueba.dao.TransactionDao;
 import webcrawler.prueba.dto.ProductDetailDto;
@@ -10,6 +11,7 @@ import webcrawler.prueba.model.Transaction;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ProductDetailBl {
 
     private ProductDetailDao productDetailDao;

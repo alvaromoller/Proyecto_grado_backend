@@ -10,7 +10,7 @@ import webcrawler.prueba.webCrawler.Example3;
 class PruebaApplication {
 
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
+		//SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina
@@ -27,21 +27,23 @@ class PruebaApplication {
 
 
 		//EJEMPLO 1
-		/**
+		/***/
 		//ParseComputerPage  PRUEBA
 		ComputerPageOne compu = new ComputerPageOne();
 		//String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
 		String shopUrl = "https://www.intecsa.com.bo/nosotros/";
 		try {
-		    //compu.extractBrand(urltwo);
+			//compu.extractBrand(urltwo);
 		    //compu.extractProductType(urltwo);
-			//compu.extractProduct(urltwo);
-            //compu.extractImg(urltwo);
 			//compu.extractShop(shopUrl);
+			//compu.extractProduct(urltwo);
+			compu.extractDetail();
+
+            //compu.extractImg(urltwo); // img prueba
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
+
 
 
 	}
