@@ -23,7 +23,7 @@ public class ComputerPageOne {
     //BrandDao
     private BrandDao brandDao;
     private TransactionDao transactionDao;
-    //ProductType
+    //ProductTypeDao
     private ProductTypeDao productTypeDao;
     //ShopDao
     private ShopDao shopDao;
@@ -37,8 +37,6 @@ public class ComputerPageOne {
         this.shopDao = shopDao;
         this.productDao = productDao;
         this.transactionDao = transactionDao;
-        //this.brandDto = brandDto;
-        //this.transaction = transaction;
     }
 
     public ComputerPageOne() {
@@ -47,7 +45,6 @@ public class ComputerPageOne {
 
 //Tienda 1, que contiene productos 1, 2 y 3
     //Tienda Intecsa, de Bolivia
-    //ShopDto shopDto, Transaction transaction
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página Intecsa " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -99,8 +96,7 @@ public class ComputerPageOne {
     }
 
 //Producto 1
-    //Productos DELL
-    // MARCA, extraccion de marca y guardado en la BD
+    //MARCA DELL, extraccion de marca y guardado en la BD
     public BrandDto extractBrand(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -109,7 +105,7 @@ public class ComputerPageOne {
         String marca1="";
         for (Element e : producto1.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
         {
-            marca1 = e.select("p  a:matches(Dell|dell|DELL)" ).text(); //Obtener nombre del PC
+            marca1 = e.select("p  a:matches(Dell|dell|DELL)" ).text(); //Obtener marca del PC
             System.out.println("Marca: " + marca1);
         }
 
@@ -171,7 +167,7 @@ public class ComputerPageOne {
             System.out.println("imagen : " + img);
         }
 
-        //extracion de detalle del PC
+        //extracion del PC
         String nameProduct="";
         String processor="";
         String ram="";
@@ -223,37 +219,6 @@ public class ComputerPageOne {
             return  productDto;
     }
 
-
-    //Detalle del producto, precio y cantidad
-//  , BrandDto brandDto, Transaction transaction
-    public void extractDetail(String url) throws IOException {
-        System.out.println("Extrayendo precio y cantidad de la página " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(8000).get();
-        Elements producto1 = doc.select(" div.woocommerce-tabs.wc-tabs-wrapper");
-
-        String detalle1="";
-        for (Element e : producto1.select("div.woocommerce-Tabs-panel.woocommerce-Tabs-panel--description.panel.entry-content.wc-tab"))
-        {
-            detalle1 = e.select("p  a:matches(Dell|dell|DELL)" ).text(); //Obtener nombre del PC
-            System.out.println("Marca: " + detalle1);
-        }
-/**
-        //ProductDetailBl
-        Brand brand = new Brand();
-        brand.setName(marca1);
-        //transaction
-        brand.setTxId(transaction.getTxId());
-        brand.setTxHost(transaction.getTxHost());
-        brand.setTxUserId(transaction.getTxUserId());
-        brand.setTxDate(transaction.getTxDate());
-        brand.setStatus(1);
-        brandDao.create(brand);
-        Integer getLastId = transactionDao.getLastInsertId();
-        brandDto.setBrandId(getLastId);
-        return  brandDto;
- */
-    }
-
     //Extraccion de prueba IMG
     public void extractImg(String url) throws IOException {
         System.out.println("IMG, Página Intecsa url2" + url + "...");
@@ -273,7 +238,7 @@ public class ComputerPageOne {
 
 
 //Producto 2
-    // MARCA, extraccion de marca y guardado en la BD
+    // MARCA DELL, extraccion de marca y guardado en la BD
     public BrandDto extractBrand2(String url, BrandDto brandDto, Transaction transaction) throws IOException {
     System.out.println("Extrayendo Marca de la página " + url + "...");
     Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -396,8 +361,8 @@ public class ComputerPageOne {
     }
 
 //Producto 3
-    //Productos HP
-    // MARCA, extraccion de marca y guardado en la BD
+    //HP
+    //MARCA HP, extraccion de marca y guardado en la BD
     public BrandDto extractBrand3(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -520,7 +485,7 @@ public class ComputerPageOne {
             productDto.setProductId(getLastId);
             return  productDto;
     }
-//
+
 
 
 

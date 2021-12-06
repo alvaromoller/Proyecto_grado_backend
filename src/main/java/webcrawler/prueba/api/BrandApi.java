@@ -8,6 +8,7 @@ import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -21,12 +22,15 @@ public class BrandApi {
     private TransactionBl transactionBl;
 
     private ComputerPageOne computerPageOne;
+    private ComputerPageTwo computerPageTwo;
+
 
     @Autowired
-    public BrandApi (BrandBl brandBl, TransactionBl transactionBl, ComputerPageOne computerPageOne){
+    public BrandApi (BrandBl brandBl,  ComputerPageOne computerPageOne,ComputerPageTwo computerPageTwo,TransactionBl transactionBl){
         this.brandBl = brandBl;
-        this.transactionBl = transactionBl;
         this.computerPageOne = computerPageOne;
+        this.computerPageTwo = computerPageTwo;
+        this.transactionBl = transactionBl;
     }
 
     //lista de marca
@@ -51,13 +55,13 @@ public class BrandApi {
         return brandDtoResponse;
     }
 
-    //producto 1
+//TIENDA 1, producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler1(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        //dirección producto 1
+        //dirección marca 1
         String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //Pc1
         computerPageOne.extractBrand(url, brandDto,transaction);
     }
@@ -67,7 +71,7 @@ public class BrandApi {
     public void crawler2(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        //dirección producto 2
+        //dirección marca 2
         String url="https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/";  //Pc2
         computerPageOne.extractBrand2(url, brandDto, transaction);
     }
@@ -77,9 +81,20 @@ public class BrandApi {
     public void crawler3(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        //dirección producto 3
+        //dirección marca 3
         String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
         computerPageOne.extractBrand3(url, brandDto, transaction);
+    }
+
+//TIENDA 2,
+    //producto 1
+    @RequestMapping(path ="/crawler4", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler4(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 1
+        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
+        computerPageTwo.extractBrand(url, brandDto, transaction);
     }
 
 

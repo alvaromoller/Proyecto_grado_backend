@@ -4,13 +4,14 @@ import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageTwo;
 import webcrawler.prueba.webCrawler.Example3;
 
 @SpringBootApplication
 class PruebaApplication {
 
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(PruebaApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina
@@ -27,24 +28,36 @@ class PruebaApplication {
 
 
 		//EJEMPLO 1
-		/***/
+		/**
 		//ParseComputerPage  PRUEBA
 		ComputerPageOne compu = new ComputerPageOne();
 		//String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
 		String shopUrl = "https://www.intecsa.com.bo/nosotros/";
 		try {
-			//compu.extractBrand(urltwo);
+		    //compu.extractBrand(urltwo);
 		    //compu.extractProductType(urltwo);
-			//compu.extractShop(shopUrl);
 			//compu.extractProduct(urltwo);
-			compu.extractDetail();
-
-            //compu.extractImg(urltwo); // img prueba
+            //compu.extractImg(urltwo);
+			//compu.extractShop(shopUrl);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
+		*/
+/**
+		//EJEMPLO 2
+		 //ParseComputerPage  PRUEBA
+		 ComputerPageTwo compu = new ComputerPageTwo();
+		 String shopUrl = "https://www.dismac.com.bo/empresa.html";
+		 String url = "https://www.dismac.com.bo/o85pd.html";
+		 try {
+		 	//compu.extractShop(shopUrl);
+		 	//compu.extractBrand(url);
+		 	//compu.extractProductType(url);
+			 compu.extractDetail(url);
+		 } catch (IOException e) {
+		 	e.printStackTrace();
+		 }
+*/
 
 	}
 }

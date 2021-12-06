@@ -9,6 +9,7 @@ import webcrawler.prueba.dto.ShopDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -23,11 +24,13 @@ public class ShopApi {
     private TransactionBl transactionBl;
 
     private ComputerPageOne computerPageOne;
+    private ComputerPageTwo computerPageTwo;
 
     @Autowired
-    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, TransactionBl transactionBl){
+    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, TransactionBl transactionBl){
         this. shopBl = shopBl;
         this.computerPageOne = computerPageOne;
+        this.computerPageTwo = computerPageTwo;
         this.transactionBl = transactionBl;
     }
     //listado de tiendas
@@ -61,6 +64,17 @@ public class ShopApi {
         //dirección tienda 1
         String url="https://www.intecsa.com.bo/nosotros/";  //tienda 1
         computerPageOne.extractShop(url, shopDto,transaction);
+    }
+
+    //Tienda 2
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler2", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler2(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección tienda 2
+        String url="https://www.dismac.com.bo/empresa.html/";  //tienda 2
+        computerPageTwo.extractShop(url, shopDto,transaction);
     }
 
 }

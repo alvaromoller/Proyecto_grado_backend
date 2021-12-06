@@ -9,6 +9,7 @@ import webcrawler.prueba.dto.ProductTypeDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -23,13 +24,17 @@ public class ProductTypeApi {
     private TransactionBl transactionBl;
 
     private ComputerPageOne computerPageOne;
+    private ComputerPageTwo computerPageTwo;
+
 
 
     @Autowired
-    public ProductTypeApi (ProductTypeBl productTypeBl, TransactionBl transactionBl, ComputerPageOne computerPageOne){
+    public ProductTypeApi (ProductTypeBl productTypeBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo,TransactionBl transactionBl){
         this.productTypeBl = productTypeBl;
-        this.transactionBl = transactionBl;
         this.computerPageOne = computerPageOne;
+        this.computerPageTwo = computerPageTwo;
+        this.transactionBl = transactionBl;
+
     }
 
     //listado de tipos de productos
@@ -54,7 +59,7 @@ public class ProductTypeApi {
         return productTypeDtoResponse;
     }
 
-    //Producto 1
+//TIENDA 1, Producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler1(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
@@ -85,6 +90,17 @@ public class ProductTypeApi {
         //dirección product 3
         String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
         computerPageOne.extractProductType3(url, productTypeDto, transaction);
+    }
+
+
+//TIENDA 2, Producto 1
+    @RequestMapping(path ="/crawler4", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler4(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 1
+        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
+        computerPageTwo.extractProductType(url, productTypeDto,transaction);
     }
 
 
