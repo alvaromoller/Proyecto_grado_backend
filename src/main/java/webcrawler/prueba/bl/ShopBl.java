@@ -22,6 +22,8 @@ public class ShopBl {
         this.shopDao = shopDao;
         this.transactionDao = transactionDao;
     }
+    public ShopBl (){
+    }
 
     //listado de Tiendas
     public List<ShopDto> selectShops(){

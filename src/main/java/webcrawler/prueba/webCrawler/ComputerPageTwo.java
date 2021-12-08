@@ -3,6 +3,7 @@ package webcrawler.prueba.webCrawler;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,7 +45,7 @@ public class ComputerPageTwo {
 //Tienda 2, que contiene productos 1, 2 y 3
 //Tienda DISMAC, de Bolivia
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
-        System.out.println("Extrayendo inf. de Tienda 1, página Intecsa " + url + "...");
+        System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements descriptionPagina2 = doc.select(" div.first"); // buscando por clase, <div class = first >
         Elements imgPagina2 = doc.select(" div.category-view");
@@ -195,11 +196,6 @@ public class ComputerPageTwo {
         product.setName(nameProduct);
         product.setDescription(description);
         product.setImg(img);
-        product.setProcesador(processor);
-        product.setMemoriaRam(ram);
-        product.setDiscoAlmacenamiento("SSD de 256GB");
-        product.setTarjetaVideo(video);
-        product.setPantalla("Pantalla de 15.6 LED");
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -245,5 +241,62 @@ public class ComputerPageTwo {
         productDetailDto.setProductDetailId(getLastId);
         return  productDetailDto;
     }
+
+
+//Producto 2
+//MARCA DELL, extraccion de marca y guardado en la BD
+    //, BrandDto brandDto, Transaction transaction
+    public void extractBrand2(String url) throws IOException {
+        System.out.println("Extrayendo Marca de la página " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements producto = doc.select(" div.data.item.content").append("\\nl");
+        producto.select(" div.data.item.content");
+        producto.select("br").append("\\nl");    //append añade HTML justo después del último seleccionado
+        producto.select("div").append("\\nl");
+        producto.select("p").prepend("\\nl\\nl"); //append añade HTML al comienzo del elemento seleccionado
+        producto.select("p").append("\\nl\\nl");
+
+        //Limpiando doc. extraido
+        org.jsoup.parser.Parser.unescapeEntities(Jsoup.clean
+                (producto.html(),
+                "",
+                Whitelist.none(),
+                new org.jsoup.nodes.Document.OutputSettings().prettyPrint(true)),false).
+               /**
+                replaceAll("\\\\nl", "\n").
+                replaceAll("\r","").
+                replaceAll("\n\\s+\n","\n").
+                replaceAll("\n\n+","\n\n").
+                */
+                trim();
+
+        String marca1="";
+        for (Element e : producto.select("div.product.attribute.description"))
+        {
+            marca1 = e.select("td" ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
+            //System.out.println("Marca: " + marca1 );
+        }
+
+        System.out.println("Marca: \n" + marca1);
+
+
+        /**
+        //brandBl
+        Brand brand = new Brand();
+        brand.setName(marca1);
+        //transaction
+        brand.setTxId(transaction.getTxId());
+        brand.setTxHost(transaction.getTxHost());
+        brand.setTxUserId(transaction.getTxUserId());
+        brand.setTxDate(transaction.getTxDate());
+        brand.setStatus(1);
+        brandDao.create(brand);
+        Integer getLastId = transactionDao.getLastInsertId();
+        brandDto.setBrandId(getLastId);
+        return  brandDto;
+         */
+    }
+
+
 
 }

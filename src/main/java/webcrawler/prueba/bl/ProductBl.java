@@ -36,11 +36,6 @@ public class ProductBl {
             productDto.setName(product.getName());
             productDto.setDescription(product.getDescription());
             productDto.setImg(product.getImg());
-            productDto.setProcesador(product.getProcesador());
-            productDto.setMemoriaRam(product.getMemoriaRam());
-            productDto.setDiscoAlmacenamiento(product.getDiscoAlmacenamiento());
-            productDto.setTarjetaVideo(product.getTarjetaVideo());
-            productDto.setPantalla(product.getPantalla());
             //llaves foraneas
             productDto.setBrandId(product.getBrandId());
             productDto.setShopId(product.getShopId());
@@ -59,11 +54,6 @@ public class ProductBl {
         productDto.setName(product.getName());
         productDto.setDescription(product.getDescription());
         productDto.setImg(product.getImg());
-        productDto.setProcesador(product.getProcesador());
-        productDto.setMemoriaRam(product.getMemoriaRam());
-        productDto.setDiscoAlmacenamiento(product.getDiscoAlmacenamiento());
-        productDto.setTarjetaVideo(product.getTarjetaVideo());
-        productDto.setPantalla(product.getPantalla());
         //llaves foraneas
         productDto.setBrandId(product.getBrandId());
         productDto.setShopId(product.getShopId());
@@ -77,11 +67,6 @@ public class ProductBl {
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg());
-        product.setProcesador(productDto.getProcesador());
-        product.setMemoriaRam(productDto.getMemoriaRam());
-        product.setDiscoAlmacenamiento(productDto.getDiscoAlmacenamiento());
-        product.setTarjetaVideo(productDto.getTarjetaVideo());
-        product.setPantalla(productDto.getPantalla());
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());

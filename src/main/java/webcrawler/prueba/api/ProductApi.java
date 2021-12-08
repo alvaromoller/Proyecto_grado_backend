@@ -63,7 +63,7 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 1
-        String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //PC1
+        String url="https://www.dismac.com.bo/o85pd.html";  //PC1
         computerPageOne.extractProduct(url, productDto, transaction);
     }
 
@@ -74,7 +74,7 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 2
-        String url="https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/";  //Pc2
+        String url="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
         computerPageOne.extractProduct2(url, productDto, transaction);
     }
 
@@ -86,7 +86,7 @@ public class ProductApi {
         transactionBl.createTransaction(transaction);
         //dirección producto 2
         String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
-        computerPageOne.extractProduct3(url, productDto, transaction);
+        //computerPageOne.extractProduct3(url, productDto, transaction);
     }
 
 //TIENDA 2, producto 1
@@ -96,7 +96,7 @@ public class ProductApi {
         transactionBl.createTransaction(transaction);
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
-        computerPageTwo.extractProduct(url, productDto, transaction);
+        //computerPageTwo.extractProduct(url, productDto, transaction);
     }
 
 

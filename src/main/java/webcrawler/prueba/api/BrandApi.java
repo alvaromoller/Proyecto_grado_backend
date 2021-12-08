@@ -62,7 +62,7 @@ public class BrandApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección marca 1
-        String url="https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";  //Pc1
+        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
         computerPageOne.extractBrand(url, brandDto,transaction);
     }
 
@@ -72,7 +72,7 @@ public class BrandApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección marca 2
-        String url="https://www.intecsa.com.bo/product/dell-nb-inspiron-5502-silver-core-i7/";  //Pc2
+        String url="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
         computerPageOne.extractBrand2(url, brandDto, transaction);
     }
 
@@ -83,7 +83,7 @@ public class BrandApi {
         transactionBl.createTransaction(transaction);
         //dirección marca 3
         String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
-        computerPageOne.extractBrand3(url, brandDto, transaction);
+        //computerPageOne.extractBrand3(url, brandDto, transaction);
     }
 
 //TIENDA 2,
@@ -94,7 +94,7 @@ public class BrandApi {
         transactionBl.createTransaction(transaction);
         //dirección marca 1
         String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
-        computerPageTwo.extractBrand(url, brandDto, transaction);
+        //computerPageTwo.extractBrand(url, brandDto, transaction);
     }
 
 

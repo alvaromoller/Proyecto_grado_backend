@@ -8,6 +8,9 @@ public class ShopDto {
     private String location;
     private  String img;
 
+    public ShopDto(){
+    }
+
     public Integer getShopId() {
         return shopId;
     }

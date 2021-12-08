@@ -7,11 +7,6 @@ public class Product {
     private String name;
     private String description;
     private String img;
-    private String procesador;
-    private String memoriaRam;
-    private String discoAlmacenamiento;
-    private String tarjetaVideo;
-    private String pantalla;
     private Integer status;
     private Integer brandId;
     private Integer shopId;
@@ -56,47 +51,6 @@ public class Product {
         this.img = img;
     }
     //
-
-    public String getProcesador() {
-        return procesador;
-    }
-
-    public void setProcesador(String procesador) {
-        this.procesador = procesador;
-    }
-
-    public String getMemoriaRam() {
-        return memoriaRam;
-    }
-
-    public void setMemoriaRam(String memoriaRam) {
-        this.memoriaRam = memoriaRam;
-    }
-
-    public String getDiscoAlmacenamiento() {
-        return discoAlmacenamiento;
-    }
-
-    public void setDiscoAlmacenamiento(String discoAlmacenamiento) {
-        this.discoAlmacenamiento = discoAlmacenamiento;
-    }
-
-    public String getTarjetaVideo() {
-        return tarjetaVideo;
-    }
-
-    public void setTarjetaVideo(String tarjetaVideo) {
-        this.tarjetaVideo = tarjetaVideo;
-    }
-
-    public String getPantalla() {
-        return pantalla;
-    }
-
-    public void setPantalla(String pantalla) {
-        this.pantalla = pantalla;
-    }
-
     //
 
     public Integer getStatus() {
@@ -182,11 +136,6 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
-                ", procesador='" + procesador + '\'' +
-                ", memoriaRam='" + memoriaRam + '\'' +
-                ", discoAlmacenamiento='" + discoAlmacenamiento + '\'' +
-                ", tarjetaVideo='" + tarjetaVideo + '\'' +
-                ", pantalla='" + pantalla + '\'' +
                 ", status=" + status +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +

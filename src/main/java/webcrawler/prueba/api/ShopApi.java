@@ -22,7 +22,6 @@ public class ShopApi {
 
     private ShopBl shopBl;
     private TransactionBl transactionBl;
-
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
 
@@ -33,6 +32,8 @@ public class ShopApi {
         this.computerPageTwo = computerPageTwo;
         this.transactionBl = transactionBl;
     }
+    public ShopApi(){}
+
     //listado de tiendas
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ShopDto> selectShops(HttpServletRequest request){
@@ -62,7 +63,7 @@ public class ShopApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección tienda 1
-        String url="https://www.intecsa.com.bo/nosotros/";  //tienda 1
+        String url="https://www.dismac.com.bo/empresa.html";  //tienda 1
         computerPageOne.extractShop(url, shopDto,transaction);
     }
 
@@ -74,7 +75,7 @@ public class ShopApi {
         transactionBl.createTransaction(transaction);
         //dirección tienda 2
         String url="https://www.dismac.com.bo/empresa.html/";  //tienda 2
-        computerPageTwo.extractShop(url, shopDto,transaction);
+        //computerPageTwo.extractShop(url, shopDto,transaction);
     }
 
 }

@@ -26,34 +26,30 @@ class PruebaApplication {
 		example1.escribirArchivo("Java 8 Articles");
 		*/
 
-
-		//EJEMPLO 1
-		/**
-		//ParseComputerPage  PRUEBA
-		ComputerPageOne compu = new ComputerPageOne();
-		//String urltwo = "https://www.intecsa.com.bo/product/dell-latitude-3520-core-i5-2/";
-		String shopUrl = "https://www.intecsa.com.bo/nosotros/";
-		try {
-		    //compu.extractBrand(urltwo);
-		    //compu.extractProductType(urltwo);
-			//compu.extractProduct(urltwo);
-            //compu.extractImg(urltwo);
-			//compu.extractShop(shopUrl);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		*/
 /**
-		//EJEMPLO 2
+		//EJEMPLO 1
 		 //ParseComputerPage  PRUEBA
-		 ComputerPageTwo compu = new ComputerPageTwo();
+		 ComputerPageOne compu = new ComputerPageOne();
+		//ComputerPageTwo compu2 = new ComputerPageTwo();
+
+		//product1
 		 String shopUrl = "https://www.dismac.com.bo/empresa.html";
 		 String url = "https://www.dismac.com.bo/o85pd.html";
-		 try {
+		String url2 = "https://www.dismac.com.bo/3g573lt-abm.html";
+
+		try {
+		 //product1
 		 	//compu.extractShop(shopUrl);
 		 	//compu.extractBrand(url);
 		 	//compu.extractProductType(url);
-			 compu.extractDetail(url);
+			//compu.extractProduct(url);
+			//compu.extractDetail(url);
+		//product2
+			 //compu.extractBrand2(url2);
+			 //compu.extractProductType2(url2);
+			//compu.extractProduct2(url2);
+			//compu.extractDetail2(url2);
+
 		 } catch (IOException e) {
 		 	e.printStackTrace();
 		 }
