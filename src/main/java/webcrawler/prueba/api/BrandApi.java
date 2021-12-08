@@ -82,8 +82,8 @@ public class BrandApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección marca 3
-        String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
-        //computerPageOne.extractBrand3(url, brandDto, transaction);
+        String url="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        computerPageOne.extractBrand3(url, brandDto, transaction);
     }
 
 //TIENDA 2,

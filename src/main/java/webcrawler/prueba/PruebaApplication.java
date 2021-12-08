@@ -32,28 +32,36 @@ class PruebaApplication {
 		 ComputerPageOne compu = new ComputerPageOne();
 		//ComputerPageTwo compu2 = new ComputerPageTwo();
 
-		//product1
+		//products
 		 String shopUrl = "https://www.dismac.com.bo/empresa.html";
 		 String url = "https://www.dismac.com.bo/o85pd.html";
 		String url2 = "https://www.dismac.com.bo/3g573lt-abm.html";
+		 String url3 = "https://www.dismac.com.bo/82a2007lm.html";
 
 		try {
-		 //product1
-		 	//compu.extractShop(shopUrl);
-		 	//compu.extractBrand(url);
-		 	//compu.extractProductType(url);
-			//compu.extractProduct(url);
-			//compu.extractDetail(url);
-		//product2
-			 //compu.extractBrand2(url2);
-			 //compu.extractProductType2(url2);
-			//compu.extractProduct2(url2);
-			//compu.extractDetail2(url2);
+			 //product1
+				//compu.extractShop(shopUrl);
+				//compu.extractBrand(url);
+				//compu.extractProductType(url);
+				//compu.extractProduct(url);
+				//compu.extractDetail(url);
+			//product2
+				 //compu.extractBrand2(url2);
+				 //compu.extractProductType2(url2);
+				//compu.extractProduct2(url2);
+				//compu.extractDetail2(url2);
+			 //product3
+			 //compu.extractBrand3(url3);
+			 //compu.extractProductType3(url3);
+			 //compu.extractProduct3(url3);
+			 //compu.extractDetail3(url3);
 
-		 } catch (IOException e) {
-		 	e.printStackTrace();
-		 }
+
+ 		} catch (IOException e) {
+					e.printStackTrace();
+				 }
 */
+
 
 	}
 }

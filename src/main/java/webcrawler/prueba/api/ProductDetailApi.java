@@ -59,7 +59,7 @@ public class ProductDetailApi {
         return productDtoResponse;
     }
 
-//TIENDA 2 DISMAC,
+//TIENDA 1 DISMAC,
 //producto 1
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler1(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
@@ -70,7 +70,7 @@ public class ProductDetailApi {
         computerPageOne.extractDetail(url, productDetailDto, transaction);
     }
 
-//producto 1
+//producto 2
     @RequestMapping(path ="/crawler2", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler2(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -80,5 +80,15 @@ public class ProductDetailApi {
         computerPageOne.extractDetail2(url, productDetailDto, transaction);
     }
 
+
+//Producto 3
+    @RequestMapping(path ="/crawler3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler3(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección  3
+        String url="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        computerPageOne.extractDetail3(url, productDetailDto, transaction);
+    }
 
 }

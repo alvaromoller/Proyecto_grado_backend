@@ -85,8 +85,8 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 2
-        String url="https://www.intecsa.com.bo/product/hp-nb-15-dw2034la/";  //Pc3
-        //computerPageOne.extractProduct3(url, productDto, transaction);
+        String url="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        computerPageOne.extractProduct3(url, productDto, transaction);
     }
 
 //TIENDA 2, producto 1

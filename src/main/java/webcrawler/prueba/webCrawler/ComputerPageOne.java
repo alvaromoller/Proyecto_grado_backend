@@ -378,8 +378,143 @@ public class ComputerPageOne {
     }
 
 
-
 //Producto 3
+    //MARCA, extraccion de marca y guardado en la BD
+    public BrandDto extractBrand3(String url, BrandDto brandDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo Marca de la página " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements product = doc.select(" div.columns");
+
+        String marca="";
+        for (Element e : product.select("div.page-title-wrapper.product"))
+        {
+            marca = e.select("h1 span " ).text(); //Obtener marca del PC
+            System.out.println("Marca: " + marca);
+        }
+        //brandBl
+        Brand brand = new Brand();
+        brand.setName("Lenovo");
+        //transaction
+        brand.setTxId(transaction.getTxId());
+        brand.setTxHost(transaction.getTxHost());
+        brand.setTxUserId(transaction.getTxUserId());
+        brand.setTxDate(transaction.getTxDate());
+        brand.setStatus(1);
+        brandDao.create(brand);
+        Integer getLastId = transactionDao.getLastInsertId();
+        brandDto.setBrandId(getLastId);
+        return  brandDto;
+    }
+
+    //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
+    public ProductTypeDto extractProductType3(String url, ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo tipo de producto de la página " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements producto = doc.select(" div.columns");
+
+        String tipoProducto="";
+        for (Element e : producto.select("div.page-title-wrapper.product"))
+        {
+            tipoProducto = e.select("h1 span" ).text(); //Obtener tipo de PC
+            System.out.println("Tipo de PC: " + tipoProducto);
+        }
+        //ProductTypeBl
+        ProductType productType = new ProductType();
+        productType.setName(tipoProducto);
+        //transaction
+        productType.setTxId(transaction.getTxId());
+        productType.setTxHost(transaction.getTxHost());
+        productType.setTxUserId(transaction.getTxUserId());
+        productType.setTxDate(transaction.getTxDate());
+        productType.setStatus(1);
+        productTypeDao.create(productType);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productTypeDto.setProductTypeId(getLastId);
+        return productTypeDto;
+    }
+
+    //PRODUCTO, extraccion de Producto y guardado en la BD
+    public ProductDto extractProduct3(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.columns");
+        Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.data.item.content"); //extracion de detalle del PC
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.page-title-wrapper.product"))
+        {
+            name = e.select("h1 span" ).text(); //Obtener tipo de PC
+            System.out.println("Nombre del PC: " + name);
+        }
+        //imgProduct
+        for (Element e : imgProduct.select("div"))
+        {
+            img = e.select("div img").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.product.attribute.description"))
+        {
+            description = e.select("div.value " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+        //ProductBl, create
+        Product product = new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        //create
+        productDao.create(product);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productDto.setProductId(getLastId);
+        return  productDto;
+    }
+
+    //Detalle producto, precio y cantidad
+    public ProductDetailDto extractDetail3(String url, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo Precio del producto " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements producto = doc.select(" div.product-info-price");
+
+        String precio="";
+        for (Element e : producto.select("span.pixel-price"))
+        {
+            precio = e.select("span.pixel-price " ).text(); //Obtener precio del PC
+            //System.out.println("Precio: " + precio + ".00");
+
+        }
+        //Convertir de String a Double
+        Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
+        System.out.println("Precio: " + precioConvertido + ".00");
+
+        //brandBl, agregar precio, cantidad
+        ProductDetail detail = new ProductDetail();
+        detail.setPrice(precioConvertido);
+        detail.setQuantity("no especificado");
+        //transaction
+        detail.setTxId(transaction.getTxId());
+        detail.setTxHost(transaction.getTxHost());
+        detail.setTxUserId(transaction.getTxUserId());
+        detail.setTxDate(transaction.getTxDate());
+        detail.setStatus(1);
+        productDetailDao.create(detail);
+        Integer getLastId = transactionDao.getLastInsertId();
+        productDetailDto.setProductDetailId(getLastId);
+        return  productDetailDto;
+    }
 
 
 
