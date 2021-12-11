@@ -27,12 +27,10 @@ class PruebaApplication {
 		*/
 
 /**
-		//EJEMPLO 1
-		 //ParseComputerPage  PRUEBA
+        //TIENDA 1
 		 ComputerPageOne compu = new ComputerPageOne();
-		//ComputerPageTwo compu2 = new ComputerPageTwo();
 
-		//products
+		//URLs
 		 String shopUrl = "https://www.dismac.com.bo/empresa.html";
 		 String url = "https://www.dismac.com.bo/o85pd.html";
 		String url2 = "https://www.dismac.com.bo/3g573lt-abm.html";
@@ -61,6 +59,40 @@ class PruebaApplication {
 					e.printStackTrace();
 				 }
 */
+/**
+        //TIENDA 2
+        ComputerPageTwo compu = new ComputerPageTwo();
+        //URLs
+        String shopUrl = "https://compucenter.store/donde-estamos";  // img y ubicacion
+        String shopUrl2 = "https://compucenter.store/quienes-somos"; // descripcion Quienes somos
+
+        String url = "https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";
+        String url2 = "https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";
+        String url3 = "https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";
+
+        try {
+            //product1
+            //compu.extractShop(shopUrl,shopUrl2);
+            //compu.extractBrand(url);
+            //compu.extractProductType(url);
+            //compu.extractProduct(url);
+            //compu.extractDetail(url);
+            //product2
+            //compu.extractBrand2(url2);
+            //compu.extractProductType2(url2);
+            //compu.extractProduct2(url2);
+            //compu.extractDetail2(url2);
+            //product3
+            //compu.extractBrand3(url3);
+            //compu.extractProductType3(url3);
+            //compu.extractProduct3(url3);
+            //compu.extractDetail3(url3);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ */  //
 
 
 	}

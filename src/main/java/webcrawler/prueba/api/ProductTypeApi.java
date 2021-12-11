@@ -93,14 +93,35 @@ public class ProductTypeApi {
     }
 
 
-//TIENDA 2, Producto 1
+//TIENDA 2,
+    //Producto 1
     @RequestMapping(path ="/crawler4", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler4(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección product 1
-        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
+        String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //Pc1
         computerPageTwo.extractProductType(url, productTypeDto,transaction);
+    }
+
+    //Producto 2
+    @RequestMapping(path ="/crawler5", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler5(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 2
+        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //Pc2
+        computerPageTwo.extractProductType2(url, productTypeDto,transaction);
+    }
+
+    //Producto 3
+    @RequestMapping(path ="/crawler6", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler6(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 3
+        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
+        computerPageTwo.extractProductType3(url, productTypeDto,transaction);
     }
 
 

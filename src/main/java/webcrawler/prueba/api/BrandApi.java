@@ -93,8 +93,28 @@ public class BrandApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección marca 1
-        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
-        //computerPageTwo.extractBrand(url, brandDto, transaction);
+        String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //Pc1
+        computerPageTwo.extractBrand(url, brandDto, transaction);
+    }
+
+    //producto 2
+    @RequestMapping(path ="/crawler5", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler5(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 2
+        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //Pc2
+        computerPageTwo.extractBrand2(url, brandDto, transaction);
+    }
+
+    //producto 3
+    @RequestMapping(path ="/crawler6", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler6(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 3
+        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
+        computerPageTwo.extractBrand3(url, brandDto, transaction);
     }
 
 

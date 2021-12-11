@@ -91,4 +91,35 @@ public class ProductDetailApi {
         computerPageOne.extractDetail3(url, productDetailDto, transaction);
     }
 
+//TIENDA 2,
+    //producto 1
+    @RequestMapping(path ="/crawler4", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler4(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección  1
+        String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //Pc1
+        computerPageTwo.extractDetail(url, productDetailDto, transaction);
+    }
+
+    //producto 2
+    @RequestMapping(path ="/crawler5", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler5(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección  2
+        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //Pc2
+        computerPageTwo.extractDetail2(url, productDetailDto, transaction);
+    }
+
+    //producto 3
+    @RequestMapping(path ="/crawler6", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler6(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección  3
+        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
+        computerPageTwo.extractDetail3(url, productDetailDto, transaction);
+    }
+
 }

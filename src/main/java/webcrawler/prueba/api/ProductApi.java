@@ -89,14 +89,35 @@ public class ProductApi {
         computerPageOne.extractProduct3(url, productDto, transaction);
     }
 
-//TIENDA 2, producto 1
+//TIENDA 2,
+    // producto 1
     @RequestMapping(path ="/crawler4", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler4(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 1
-        String url="https://www.dismac.com.bo/o85pd.html";  //PC1
-        //computerPageTwo.extractProduct(url, productDto, transaction);
+        String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC1
+        computerPageTwo.extractProduct(url, productDto, transaction);
+    }
+
+    // producto 2
+    @RequestMapping(path ="/crawler5", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler5(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 2
+        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //PC2
+        computerPageTwo.extractProduct2(url, productDto, transaction);
+    }
+
+    // producto 3
+    @RequestMapping(path ="/crawler6", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler6(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 3
+        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //PC3
+        computerPageTwo.extractProduct3(url, productDto, transaction);
     }
 
 
