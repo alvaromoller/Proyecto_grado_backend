@@ -9,6 +9,7 @@ import webcrawler.prueba.dto.ShopDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageThree;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +25,15 @@ public class ShopApi {
     private TransactionBl transactionBl;
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
+    private ComputerPageThree computerPageThree;
+
 
     @Autowired
-    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, TransactionBl transactionBl){
+    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
         this. shopBl = shopBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
+        this.computerPageThree = computerPageThree;
         this.transactionBl = transactionBl;
     }
     public ShopApi(){}
@@ -77,6 +81,17 @@ public class ShopApi {
         String url="https://compucenter.store/donde-estamos";  //tienda 2, img y ubicacion
         String url2="https://compucenter.store/quienes-somos";  //tienda 2, descripcion Quienes somos
         computerPageTwo.extractShop(url, url2, shopDto,transaction);
+    }
+
+    //Tienda 3
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/crawler3", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler3(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección tienda 2
+        String url="https://www.multilaptops.net/acerca";  //tienda 2, img, descripcipon y ubicacion
+        computerPageThree.extractShop(url, shopDto,transaction);
     }
 
 }
