@@ -43,7 +43,7 @@ public class ComputerPageTwo {
     }
 
 //Tienda 2, que contiene productos 1, 2 y 3
-//Tienda , de Bolivia
+//Tienda CompuCenter, de Bolivia
     public ShopDto extractShop(String url, String url2, ShopDto shopDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 2, página CompuCenter  " + url + "..." +url2);
         Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion
