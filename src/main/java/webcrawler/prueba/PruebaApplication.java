@@ -4,6 +4,7 @@ import java.io.IOException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageThree;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 import webcrawler.prueba.webCrawler.Example3;
 
@@ -11,7 +12,7 @@ import webcrawler.prueba.webCrawler.Example3;
 class PruebaApplication {
 
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
+		//SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina
@@ -93,6 +94,40 @@ class PruebaApplication {
             e.printStackTrace();
         }
  */  //
+
+/**/
+		 //TIENDA
+		 ComputerPageThree compu = new ComputerPageThree();
+		 //URLs
+		 String shopUrl = "https://www.multilaptops.net/acerca";  // img, descripcion y ubicacion
+
+		 String url = "https://www.multilaptops.net/store2/191";
+		 String url2 = "https://www.multilaptops.net/store2/194";
+		 String url3 = "https://www.multilaptops.net/store2/181";
+
+		 try {
+		 //product1
+		 //compu.extractShop(shopUrl);
+		 //compu.extractBrand(url);
+		 //compu.extractProductType(url);
+		 //compu.extractProduct(url);
+		 //compu.extractDetail(url);
+		 //product2
+		 //ompu.extractBrand2(url2);
+		 //compu.extractProductType2(url2);
+		 //compu.extractProduct2(url2);
+		 //compu.extractDetail2(url2);
+		 //product3
+		 //compu.extractBrand3(url3);
+		 //compu.extractProductType3(url3);
+		 //compu.extractProduct3(url3);
+		 compu.extractDetail3(url3);
+
+
+		 } catch (IOException e) {
+		 e.printStackTrace();
+		 }
+		 //
 
 
 	}
