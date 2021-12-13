@@ -89,8 +89,8 @@ public class ShopApi {
     public void crawler3(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        //dirección tienda 2
-        String url="https://www.multilaptops.net/acerca";  //tienda 2, img, descripcipon y ubicacion
+        //dirección tienda 3
+        String url="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
         computerPageThree.extractShop(url, shopDto,transaction);
     }
 
