@@ -60,20 +60,20 @@ class PruebaApplication {
 					e.printStackTrace();
 				 }
 */
+
 /**
         //TIENDA 2
         ComputerPageTwo compu = new ComputerPageTwo();
         //URLs
-        String shopUrl = "https://compucenter.store/donde-estamos";  // img y ubicacion
-        String shopUrl2 = "https://compucenter.store/quienes-somos"; // descripcion Quienes somos
+        String shopUrl = "https://compucenter.store/about";  // img y ubicacion, description
 
         String url = "https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";
-        String url2 = "https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";
-        String url3 = "https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";
+        String url2 = "https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";
+        String url3 = "https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";
 
         try {
             //product1
-            //compu.extractShop(shopUrl,shopUrl2);
+            //compu.extractShop(shopUrl);
             //compu.extractBrand(url);
             //compu.extractProductType(url);
             //compu.extractProduct(url);
@@ -93,7 +93,7 @@ class PruebaApplication {
         } catch (IOException e) {
             e.printStackTrace();
         }
- */  //
+*/   //
 
 /**/
         /**

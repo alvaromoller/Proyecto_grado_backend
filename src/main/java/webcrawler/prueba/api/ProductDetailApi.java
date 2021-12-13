@@ -112,7 +112,7 @@ public class ProductDetailApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección  2
-        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //Pc2
+        String url="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //Pc2
         computerPageTwo.extractDetail2(url, productDetailDto, transaction);
     }
 
@@ -122,7 +122,7 @@ public class ProductDetailApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección  3
-        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
+        String url="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //Pc3
         computerPageTwo.extractDetail3(url, productDetailDto, transaction);
     }
 

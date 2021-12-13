@@ -78,9 +78,8 @@ public class ShopApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección tienda 2
-        String url="https://compucenter.store/donde-estamos";  //tienda 2, img y ubicacion
-        String url2="https://compucenter.store/quienes-somos";  //tienda 2, descripcion Quienes somos
-        computerPageTwo.extractShop(url, url2, shopDto,transaction);
+        String url="https://compucenter.store/about";  //tienda 2, img y ubicacion, description
+        computerPageTwo.extractShop(url, shopDto,transaction);
     }
 
     //Tienda 3
