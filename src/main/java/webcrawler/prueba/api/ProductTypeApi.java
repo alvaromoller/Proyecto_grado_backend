@@ -9,6 +9,7 @@ import webcrawler.prueba.dto.ProductTypeDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageThree;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,14 +26,16 @@ public class ProductTypeApi {
 
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
+    private ComputerPageThree computerPageThree;
 
 
 
     @Autowired
-    public ProductTypeApi (ProductTypeBl productTypeBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo,TransactionBl transactionBl){
+    public ProductTypeApi (ProductTypeBl productTypeBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
         this.productTypeBl = productTypeBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
+        this.computerPageThree = computerPageThree;
         this.transactionBl = transactionBl;
 
     }
@@ -122,6 +125,39 @@ public class ProductTypeApi {
         //dirección product 3
         String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
         computerPageTwo.extractProductType3(url, productTypeDto,transaction);
+    }
+
+
+
+//TIENDA 3,
+    //Producto 1
+    @RequestMapping(path ="/crawler7", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler7(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 1
+        String url="https://www.multilaptops.net/store2/191";  //Pc1
+        computerPageThree.extractProductType(url, productTypeDto,transaction);
+    }
+
+    //Producto 2
+    @RequestMapping(path ="/crawler8", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler8(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 2
+        String url="https://www.multilaptops.net/store2/194";  //Pc2
+        computerPageThree.extractProductType2(url, productTypeDto,transaction);
+    }
+
+    //Producto 3
+    @RequestMapping(path ="/crawler9", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler9(@RequestBody ProductTypeDto productTypeDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección product 3
+        String url="https://www.multilaptops.net/store2/181";  //Pc3
+        computerPageThree.extractProductType3(url, productTypeDto,transaction);
     }
 
 
