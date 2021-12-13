@@ -12,7 +12,7 @@ import webcrawler.prueba.webCrawler.Example3;
 class PruebaApplication {
 
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(PruebaApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina
@@ -96,6 +96,7 @@ class PruebaApplication {
  */  //
 
 /**/
+        /**
 		 //TIENDA
 		 ComputerPageThree compu = new ComputerPageThree();
 		 //URLs
@@ -127,7 +128,7 @@ class PruebaApplication {
 		 } catch (IOException e) {
 		 e.printStackTrace();
 		 }
-		 //
+	*/	 //
 
 
 	}

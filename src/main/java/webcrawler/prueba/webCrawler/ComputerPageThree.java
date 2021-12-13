@@ -263,8 +263,7 @@ public class ComputerPageThree {
 
  //Producto 2
     //MARCA Hp, extraccion de marca y guardado en la BD
-    //, BrandDto brandDto, Transaction transaction
-    public void extractBrand2(String url) throws IOException {
+    public BrandDto extractBrand2(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements product = doc.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
@@ -275,8 +274,6 @@ public class ComputerPageThree {
             marca = e.select(" span ").text(); //Obtener marca del PC
         }
         System.out.println("Marca: " + marca);
-
-        /**
          //brandBl
          Brand brand = new Brand();
          brand.setName(marca);
@@ -290,12 +287,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          brandDto.setBrandId(getLastId);
          return  brandDto;
-         */
     }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
-    //, ProductTypeDto productTypeDto, Transaction transaction
-    public void extractProductType2(String url) throws IOException {
+    public ProductTypeDto extractProductType2(String url, ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0 ");
@@ -306,8 +301,6 @@ public class ComputerPageThree {
             tipoProducto = e.select(" span " ).text(); //Obtener tipo de PC
         }
         System.out.println("Tipo de PC: " + tipoProducto);
-
-        /**
          //ProductTypeBl
          ProductType productType = new ProductType();
          productType.setName(tipoProducto);
@@ -321,12 +314,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productTypeDto.setProductTypeId(getLastId);
          return productTypeDto;
-         */
     }
 
     //PRODUCTO, extraccion de Producto y guardado en la BD
-    //, ProductDto productDto, Transaction transaction
-    public void extractProduct2(String url) throws IOException {
+    public ProductDto extractProduct2(String url, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
@@ -339,7 +330,6 @@ public class ComputerPageThree {
         //productDescription.select("p").append("\\nl");
         productDescription.select("li").append("\\nl");
         //
-
         //extracion del PC
         String name="";
         String img="";
@@ -365,7 +355,6 @@ public class ComputerPageThree {
             description = e.select(" li " ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
-        /**
          //ProductBl, create
          Product product = new Product();
          product.setName(name);
@@ -382,12 +371,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productDto.setProductId(getLastId);
          return  productDto;
-         */
     }
 
     //Detalle producto, precio y cantidad
-    //, ProductDetailDto productDetailDto, Transaction transaction
-    public void extractDetail2(String url) throws IOException {
+    public ProductDetailDto extractDetail2(String url, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Precio del producto " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.card-body.bg-transparent");
@@ -406,7 +393,6 @@ public class ComputerPageThree {
         Double precioConvertido = Double.parseDouble(precio2.replaceAll(","  , "."));
         System.out.println("Precio2: " + precioConvertido );
 
-        /**
          //brandBl, agregar precio, cantidad
          ProductDetail detail = new ProductDetail();
          detail.setPrice(precioConvertido);
@@ -421,7 +407,6 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productDetailDto.setProductDetailId(getLastId);
          return  productDetailDto;
-         */
     }
 
 
@@ -429,8 +414,7 @@ public class ComputerPageThree {
 
 //Producto 3
     //MARCA Hp, extraccion de marca y guardado en la BD
-    //, BrandDto brandDto, Transaction transaction
-    public void extractBrand3(String url) throws IOException {
+    public BrandDto extractBrand3(String url, BrandDto brandDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Marca de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements product = doc.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
@@ -441,8 +425,6 @@ public class ComputerPageThree {
             marca = e.select(" span ").text(); //Obtener marca del PC
         }
         System.out.println("Marca: " + marca);
-
-        /**
          //brandBl
          Brand brand = new Brand();
          brand.setName(marca);
@@ -456,12 +438,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          brandDto.setBrandId(getLastId);
          return  brandDto;
-         */
     }
 
     //Tipo de Producto, extraccion de Tipo de Producto y guardado en la BD
-    //, ProductTypeDto productTypeDto, Transaction transaction
-    public void extractProductType3(String url) throws IOException {
+    public ProductTypeDto extractProductType3(String url, ProductTypeDto productTypeDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo tipo de producto de la página " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0 ");
@@ -472,8 +452,6 @@ public class ComputerPageThree {
             tipoProducto = e.select(" span " ).text(); //Obtener tipo de PC
         }
         System.out.println("Tipo de PC: " + tipoProducto);
-
-        /**
          //ProductTypeBl
          ProductType productType = new ProductType();
          productType.setName(tipoProducto);
@@ -487,12 +465,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productTypeDto.setProductTypeId(getLastId);
          return productTypeDto;
-         */
     }
 
     //PRODUCTO, extraccion de Producto y guardado en la BD
-    //, ProductDto productDto, Transaction transaction
-    public void extractProduct3(String url) throws IOException {
+    public ProductDto extractProduct3(String url, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
@@ -505,7 +481,6 @@ public class ComputerPageThree {
         //productDescription.select("p").append("\\nl");
         productDescription.select("li").append("\\nl");
         //
-
         //extracion del PC
         String name="";
         String img="";
@@ -531,7 +506,6 @@ public class ComputerPageThree {
             description = e.select(" li " ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
-        /**
          //ProductBl, create
          Product product = new Product();
          product.setName(name);
@@ -548,12 +522,10 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productDto.setProductId(getLastId);
          return  productDto;
-         */
     }
 
     //Detalle producto, precio y cantidad
-    //, ProductDetailDto productDetailDto, Transaction transaction
-    public void extractDetail3(String url) throws IOException {
+    public ProductDetailDto extractDetail3(String url, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo Precio del producto " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.card-body.bg-transparent");
@@ -572,7 +544,6 @@ public class ComputerPageThree {
         Double precioConvertido = Double.parseDouble(precio2.replaceAll(","  , "."));
         System.out.println("Precio2: " + precioConvertido );
 
-        /**
          //brandBl, agregar precio, cantidad
          ProductDetail detail = new ProductDetail();
          detail.setPrice(precioConvertido);
@@ -587,7 +558,6 @@ public class ComputerPageThree {
          Integer getLastId = transactionDao.getLastInsertId();
          productDetailDto.setProductDetailId(getLastId);
          return  productDetailDto;
-         */
     }
 
 
