@@ -8,6 +8,7 @@ import webcrawler.prueba.dto.BrandDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
+import webcrawler.prueba.webCrawler.ComputerPageThree;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,13 +24,15 @@ public class BrandApi {
 
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
+    private ComputerPageThree computerPageThree;
 
 
     @Autowired
-    public BrandApi (BrandBl brandBl,  ComputerPageOne computerPageOne,ComputerPageTwo computerPageTwo,TransactionBl transactionBl){
+    public BrandApi (BrandBl brandBl,  ComputerPageOne computerPageOne,ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
         this.brandBl = brandBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
+        this.computerPageThree = computerPageThree;
         this.transactionBl = transactionBl;
     }
 
@@ -115,6 +118,38 @@ public class BrandApi {
         //dirección marca 3
         String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //Pc3
         computerPageTwo.extractBrand3(url, brandDto, transaction);
+    }
+
+
+//TIENDA 3,
+    //producto 1
+    @RequestMapping(path ="/crawler7", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler7(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 1
+        String url="https://www.multilaptops.net/store2/191";  //Pc1
+        computerPageThree.extractBrand(url, brandDto, transaction);
+    }
+
+    //producto 2
+    @RequestMapping(path ="/crawler8", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler8(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 2
+        String url="https://www.multilaptops.net/store2/194";  //Pc2
+        computerPageThree.extractBrand2(url, brandDto, transaction);
+    }
+
+    //producto 3
+    @RequestMapping(path ="/crawler9", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void crawler9(@RequestBody BrandDto brandDto, HttpServletRequest request)throws IOException{
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección marca 3
+        String url="https://www.multilaptops.net/store2/181";  //Pc3
+        computerPageThree.extractBrand3(url, brandDto, transaction);
     }
 
 

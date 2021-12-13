@@ -97,7 +97,7 @@ class PruebaApplication {
 
 /**/
         /**
-		 //TIENDA
+		 //TIENDA 3
 		 ComputerPageThree compu = new ComputerPageThree();
 		 //URLs
 		 String shopUrl = "https://www.multilaptops.net/acerca";  // img, descripcion y ubicacion
