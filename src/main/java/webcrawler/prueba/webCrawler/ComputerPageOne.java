@@ -44,8 +44,7 @@ public class ComputerPageOne {
 
     }
 
-//Tienda 1, que contiene productos 1, 2 y 3
-    //Tienda Dismac, de Bolivia
+//Tienda 1: Dismac que contiene productos 1, 2 y 3
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -78,7 +77,7 @@ public class ComputerPageOne {
 
         //ShopBl
         Shop shop = new Shop();
-        shop.setName("DISMAC");
+        shop.setName("Dismac");
         shop.setDescription(description);
         shop.setLocation(location);
         shop.setImg(img);
@@ -520,7 +519,56 @@ public class ComputerPageOne {
 
 
 
+//ACTUALIZACIONES
+//Tienda 1: Dismac que contiene productos 1, 2 y 3
+    public ShopDto updateShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo inf. actualizada de Tienda 1, página DISMAC " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
+        Elements locationPage = doc.select("div.full");
+        Elements imgPage = doc.select(" div.category-view");
 
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select("div.full"))
+        {
+            description = e.select("div.span-text" ).text();
+            System.out.println("Descripcion: " + description);
+        }
+        //location
+        for (Element e : locationPage.select("div.span-text"))
+        {
+            location = e.select("span.text" ).text();
+        }
+        System.out.println("Location: " + location);
+
+        //img
+        for (Element e : imgPage.select("div.empresa"))
+        {
+            img = e.select("div.banner.desktop img").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 1: " + img);
+        }
+
+        //ShopBl Update
+        Shop shop= new Shop();
+        shop.setShopId(shopDto.getShopId());
+        shop.setName("DISMAC UP DATE"); //"DISMAC UP DATE"
+        shop.setDescription(description);
+        shop.setLocation(location);
+        shop.setImg(img);
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.update(shop);
+        Integer getLastId = transactionDao.getLastInsertId();
+        shopDto.setShopId(getLastId);
+        return shopDto;
+    }
 
 
 

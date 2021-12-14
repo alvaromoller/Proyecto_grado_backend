@@ -76,5 +76,23 @@ public class ShopBl {
         return  shopDto;
     }
 
+    //Actualizacion de productos
+    public ShopDto updateShop(ShopDto shopDto, Transaction transaction){
+        Shop shop= new Shop();
+        shop.setShopId(shopDto.getShopId());
+        shop.setName(shopDto.getName());
+        shop.setDescription(shopDto.getDescription());
+        shop.setLocation(shopDto.getLocation());
+        shop.setImg(shopDto.getImg());
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.update(shop);
+        return shopDto;
+    }
+
 
 }

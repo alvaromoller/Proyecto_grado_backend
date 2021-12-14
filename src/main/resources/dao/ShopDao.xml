@@ -34,4 +34,11 @@
         )
     </insert>
 
+    <update id="update" parameterType="webcrawler.prueba.model.Shop">
+        UPDATE `shop`
+        SET name=#{name}, description=#{description}, location=#{location}, img=#{img},
+        tx_id = #{txId}, tx_host = #{txHost}, tx_user_id = #{txUserId}, tx_date = #{txDate}
+        WHERE shop_id = #{shopId}
+    </update>
+
 </mapper>

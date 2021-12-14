@@ -77,7 +77,7 @@ public class ComputerPageThree {
         }
         //ShopBl
         Shop shop = new Shop();
-        shop.setName("CompuCenter");
+        shop.setName("Multilaptops");
         shop.setDescription(description);
         shop.setLocation(location);
         shop.setImg(img);

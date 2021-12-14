@@ -101,7 +101,7 @@ public class ProductApi {
         transactionBl.createTransaction(transaction);
         //dirección producto 1
         String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC1
-        //computerPageTwo.extractProduct(url, productDto, transaction);
+        computerPageTwo.extractProduct(url, productDto, transaction);
     }
 
     // producto 2
@@ -110,8 +110,8 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 2
-        String url="https://compucenter.store/product/1658-equipo-dell-laptop-latitude-5420";  //PC2
-        //computerPageTwo.extractProduct2(url, productDto, transaction);
+        String url="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC2
+        computerPageTwo.extractProduct2(url, productDto, transaction);
     }
 
     // producto 3
@@ -120,8 +120,8 @@ public class ProductApi {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
         //dirección producto 3
-        String url="https://compucenter.store/product/1671-equipo-lenovo-laptop-yoga-720-12ikb";  //PC3
-        //computerPageTwo.extractProduct3(url, productDto, transaction);
+        String url="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC3
+        computerPageTwo.extractProduct3(url, productDto, transaction);
     }
 
 

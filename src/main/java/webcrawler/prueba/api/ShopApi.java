@@ -50,7 +50,7 @@ public class ShopApi {
         return shopBl.findShopById(id);
     }
 
-    //Crear Marca
+    //Crear shop
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ShopDto createBrand(@RequestBody ShopDto shopDto, HttpServletRequest request){
         //Creamos transaccion para la operacion.
@@ -58,6 +58,14 @@ public class ShopApi {
         transactionBl.createTransaction(transaction);
         ShopDto shopDtoResponse = shopBl.createShop(shopDto, transaction);
         return shopDtoResponse;
+    }
+    //UPDATE de Shop
+    @RequestMapping(method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto updateShop(@RequestBody ShopDto shopDto, HttpServletRequest request){
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction((transaction));
+        ShopDto Response = shopBl.updateShop(shopDto, transaction);
+        return Response;
     }
 
     //Tienda 1
@@ -91,6 +99,19 @@ public class ShopApi {
         //dirección tienda 3
         String url="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
         computerPageThree.extractShop(url, shopDto,transaction);
+    }
+
+
+//Actualizar tiendas
+    //Tienda 1
+    @RequestMapping(path ="/updateShopCrawler1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto updateShopCrawler1(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction((transaction));
+        //dirección tienda 1
+        String url="https://www.dismac.com.bo/empresa.html";  //tienda 1
+        ShopDto Response = computerPageOne.updateShop(url, shopDto, transaction);
+        return Response;
     }
 
 }
