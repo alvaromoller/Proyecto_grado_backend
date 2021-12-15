@@ -157,4 +157,20 @@ public class ProductApi {
     }
 
 
+//ACTUALIZACIONES producto
+//TIENDA 1, producto 1
+    //Extrae informacion de pagina web y guarda los datos en BD.
+    @RequestMapping(path ="/updateCrawler1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler1(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 1
+        String url="https://www.dismac.com.bo/o85pd.html";  //PC1
+        ProductDto Response = computerPageOne.updateProduct(url, productDto, transaction);
+        return Response;
+    }
+
+
+
+
 }
