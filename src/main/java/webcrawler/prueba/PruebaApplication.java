@@ -131,5 +131,27 @@ class PruebaApplication {
 	*/	 //
 
 
+/**
+		 //TIENDA prueba para la actualizacion
+		 ComputerPageOne compu = new ComputerPageOne();
+		 //URLs
+		 String shopUrl = "https://stackblitz.com/edit/angular-ivy-oudv5d?file=src%2Fapp%2Fapp.component.html";  // img, descripcion y ubicacion
+
+		 String url = "https://www.multilaptops.net/store2/191";
+		 String url2 = "https://www.multilaptops.net/store2/194";
+		 String url3 = "https://www.multilaptops.net/store2/181";
+
+		 try {
+		 //product1
+		 compu.extractShopPrueba(shopUrl);
+
+
+
+		 } catch (IOException e) {
+		 e.printStackTrace();
+		 }
+	*/	 	 //
+
+
 	}
 }

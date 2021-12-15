@@ -74,4 +74,20 @@ public class ProductDetailBl {
         return  productDetailDto;
     }
 
+    //Actualizacion de productos
+    public ProductDetailDto updateShop(ProductDetailDto productDetailDto, Transaction transaction){
+        ProductDetail productDetail= new ProductDetail();
+        productDetail.setProductDetailId(productDetailDto.getProductDetailId());
+        productDetail.setPrice(productDetailDto.getPrice());
+        productDetail.setQuantity(productDetailDto.getQuantity());
+        //transaction
+        productDetail.setTxId(transaction.getTxId());
+        productDetail.setTxUserId(transaction.getTxUserId());
+        productDetail.setTxHost(transaction.getTxHost());
+        productDetail.setTxDate(transaction.getTxDate());
+        productDetail.setStatus(1);
+        productDetailDao.update(productDetail);
+        return productDetailDto;
+    }
+
 }

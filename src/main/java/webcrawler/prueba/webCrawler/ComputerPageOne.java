@@ -554,7 +554,7 @@ public class ComputerPageOne {
         //ShopBl Update
         Shop shop= new Shop();
         shop.setShopId(shopDto.getShopId());
-        shop.setName("DISMAC UP DATE"); //"DISMAC UP DATE"
+        shop.setName(" Dismac "); //"DISMAC UP DATE"
         shop.setDescription(description);
         shop.setLocation(location);
         shop.setImg(img);
@@ -570,6 +570,62 @@ public class ComputerPageOne {
         return shopDto;
     }
 
+//
+
+
+
+
+
+//prueba para la actualizacion, probar en pagina donde se pueda cambiar los datos
+//    , ShopDto shopDto, Transaction transaction
+    public void extractShopPrueba(String url) throws IOException {
+        System.out.println("Extrayendo html " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements descriptionPage = doc.select(" div.PreviewContentWrapper "); // buscando por clase, <div class = first >
+        Elements locationPage = doc.select("body");
+        Elements imgPage = doc.select(" body");
+
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select(" div.PreviewFrame-iframeWrapper  "))
+        {
+            description = e.select("  div  " ).text();
+            System.out.println("Descripcion: " + description);
+        }
+        //location
+        for (Element e : locationPage.select(" div.body "))
+        {
+            location = e.select("p.location" ).text();
+        }
+        System.out.println("Location: " + location);
+
+        //img
+        for (Element e : imgPage.select(" div.divImg "))
+        {
+            img = e.select(" img ").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda prueba: " + img);
+        }
+    /**
+        //ShopBl
+        Shop shop = new Shop();
+        shop.setName("Pagina Prueba");
+        shop.setDescription(description);
+        shop.setLocation(location);
+        shop.setImg(img);
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.create(shop);
+        Integer getLastId = transactionDao.getLastInsertId();
+        shopDto.setShopId(getLastId);
+        return  shopDto;
+     */
+    }
 
 
 

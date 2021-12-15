@@ -10,4 +10,5 @@ public interface ProductDetailDao {
     public List<ProductDetail> getProductDetail();
     public ProductDetail findDetailById(Integer productDetailId);
     public void create(ProductDetail productDetail);
+    public void update(ProductDetail productDetail);
 }
