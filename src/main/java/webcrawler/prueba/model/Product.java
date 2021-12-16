@@ -7,6 +7,7 @@ public class Product {
     private String name;
     private String description;
     private String img;
+    private Double price;
     private Integer status;
     private Integer brandId;
     private Integer shopId;
@@ -50,6 +51,15 @@ public class Product {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     //
     //
 
@@ -136,6 +146,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
+                ", price=" + price +
                 ", status=" + status +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +

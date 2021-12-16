@@ -155,6 +155,8 @@ public class ComputerPageThree {
         Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
         Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
         Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
         //Salto de linea productDescription
         productDescription.select("br").append("\\nl"); //append salto de linea
         productDescription.select("div").append("\\nl");
@@ -188,11 +190,27 @@ public class ComputerPageThree {
             description = e.select(" li " ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
+
+        String precio="";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block"))
+        {
+            precio = e.select(" div:matches(Bs.)   " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n" );
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double" );
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(","  , "."));
+        System.out.println("Precio2: " + precioConvertido );
+
         //ProductBl, create
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
+        product.setPrice(precioConvertido);
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -228,7 +246,7 @@ public class ComputerPageThree {
 
         //brandBl, agregar precio, cantidad
         ProductDetail detail = new ProductDetail();
-        detail.setPrice(precioConvertido);
+        detail.setDetail("no especificado");
         detail.setQuantity("no especificado");
         //transaction
         detail.setTxId(transaction.getTxId());
@@ -306,6 +324,8 @@ public class ComputerPageThree {
         Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
         Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
         Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
         //Salto de linea productDescription
         productDescription.select("br").append("\\nl"); //append salto de linea
         productDescription.select("div").append("\\nl");
@@ -338,12 +358,28 @@ public class ComputerPageThree {
             description = e.select(" li " ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
-         //ProductBl, create
+
+        String precio="";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block"))
+        {
+            precio = e.select(" div:matches(Bs.)   " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n" );
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double" );
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(","  , "."));
+        System.out.println("Precio2: " + precioConvertido );
+
+        //ProductBl, create
          Product product = new Product();
          product.setName(name);
          product.setDescription(description);
          product.setImg(img);
-         //transaction
+        product.setPrice(precioConvertido);
+        //transaction
          product.setTxId(transaction.getTxId());
          product.setTxHost(transaction.getTxHost());
          product.setTxUserId(transaction.getTxUserId());
@@ -378,7 +414,7 @@ public class ComputerPageThree {
 
          //brandBl, agregar precio, cantidad
          ProductDetail detail = new ProductDetail();
-         detail.setPrice(precioConvertido);
+         detail.setDetail("no especificado");
          detail.setQuantity("no especificado");
          //transaction
          detail.setTxId(transaction.getTxId());
@@ -457,6 +493,8 @@ public class ComputerPageThree {
         Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
         Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
         Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
         //Salto de linea productDescription
         productDescription.select("br").append("\\nl"); //append salto de linea
         productDescription.select("div").append("\\nl");
@@ -489,12 +527,28 @@ public class ComputerPageThree {
             description = e.select(" li " ).text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
-         //ProductBl, create
+
+        String precio="";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block"))
+        {
+            precio = e.select(" div:matches(Bs.)   " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n" );
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double" );
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(","  , "."));
+        System.out.println("Precio2: " + precioConvertido );
+
+        //ProductBl, create
          Product product = new Product();
          product.setName(name);
          product.setDescription(description);
          product.setImg(img);
-         //transaction
+        product.setPrice(precioConvertido);
+        //transaction
          product.setTxId(transaction.getTxId());
          product.setTxHost(transaction.getTxHost());
          product.setTxUserId(transaction.getTxUserId());
@@ -529,7 +583,7 @@ public class ComputerPageThree {
 
          //brandBl, agregar precio, cantidad
          ProductDetail detail = new ProductDetail();
-         detail.setPrice(precioConvertido);
+         detail.setDetail("no especificado");
          detail.setQuantity("no especificado");
          //transaction
          detail.setTxId(transaction.getTxId());

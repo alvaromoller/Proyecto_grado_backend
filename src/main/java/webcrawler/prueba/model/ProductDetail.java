@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ProductDetail {
     private Integer productDetailId;
-    private Double price;
+    private String detail;
     private String quantity;
     private Integer productId;
     private Integer status;
@@ -25,12 +25,12 @@ public class ProductDetail {
         this.productDetailId = productDetailId;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getQuantity() {
@@ -105,7 +105,7 @@ public class ProductDetail {
     public String toString() {
         return "ProductDetail{" +
                 "productDetailId=" + productDetailId +
-                ", price=" + price +
+                ", detail=" + detail + '\'' +
                 ", quantity=" + quantity + '\'' +
                 ", productId=" + productId +
                 ", status=" + status +

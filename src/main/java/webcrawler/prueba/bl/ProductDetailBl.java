@@ -33,7 +33,7 @@ public class ProductDetailBl {
             ProductDetailDto productDetailDto = new ProductDetailDto();
 
             productDetailDto.setProductDetailId(productDetail.getProductDetailId());
-            productDetailDto.setPrice(productDetail.getPrice());
+            productDetailDto.setDetail(productDetail.getDetail());
             productDetailDto.setQuantity(productDetail.getQuantity());
             //llaves foraneas
             productDetailDto.setProductId(productDetail.getProductId());
@@ -49,7 +49,7 @@ public class ProductDetailBl {
         ProductDetailDto productDetailDto = new ProductDetailDto();
 
         productDetailDto.setProductDetailId(productDetail.getProductDetailId());
-        productDetailDto.setPrice(productDetail.getPrice());
+        productDetailDto.setDetail(productDetail.getDetail());
         productDetailDto.setQuantity(productDetail.getQuantity());
         //llave foranea
         productDetailDto.setProductId(productDetail.getProductId());
@@ -59,7 +59,7 @@ public class ProductDetailBl {
     //Crear producto
     public ProductDetailDto createDetail(ProductDetailDto productDetailDto, Transaction transaction){
         ProductDetail productDetail = new ProductDetail();
-        productDetail.setPrice(productDetailDto.getPrice());
+        productDetail.setDetail(productDetailDto.getDetail());
         productDetail.setQuantity(productDetailDto.getQuantity());
         //transaction
         productDetail.setTxId(transaction.getTxId());
@@ -78,7 +78,7 @@ public class ProductDetailBl {
     public ProductDetailDto updateShop(ProductDetailDto productDetailDto, Transaction transaction){
         ProductDetail productDetail= new ProductDetail();
         productDetail.setProductDetailId(productDetailDto.getProductDetailId());
-        productDetail.setPrice(productDetailDto.getPrice());
+        productDetail.setDetail(productDetailDto.getDetail());
         productDetail.setQuantity(productDetailDto.getQuantity());
         //transaction
         productDetail.setTxId(transaction.getTxId());

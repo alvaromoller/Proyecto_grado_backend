@@ -164,6 +164,7 @@ public class ComputerPageTwo {
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
         Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
         //extracion del PC
         String name="";
@@ -190,11 +191,31 @@ public class ComputerPageTwo {
             description = e.select(" div " ).text(); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
         //ProductBl, create
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
+        product.setPrice( precioConvertido );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -234,7 +255,7 @@ public class ComputerPageTwo {
 
         //brandBl, agregar precio, cantidad
         ProductDetail detail = new ProductDetail();
-        detail.setPrice(precioConvertido);
+        detail.setDetail("no especificado");
         detail.setQuantity("no especificado");
         //transaction
         detail.setTxId(transaction.getTxId());
@@ -311,6 +332,7 @@ public class ComputerPageTwo {
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
         Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
         //extracion del PC
         String name="";
@@ -337,11 +359,31 @@ public class ComputerPageTwo {
             description = e.select(" div " ).text(); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
         //ProductBl, create
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
+        product.setPrice( precioConvertido );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -381,7 +423,7 @@ public class ComputerPageTwo {
 
         //brandBl, agregar precio, cantidad
         ProductDetail detail = new ProductDetail();
-        detail.setPrice(precioConvertido);
+        detail.setDetail("no especificado");
         detail.setQuantity("no especificado");
         //transaction
         detail.setTxId(transaction.getTxId());
@@ -458,6 +500,7 @@ public class ComputerPageTwo {
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
         Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
         //extracion del PC
         String name="";
@@ -484,11 +527,31 @@ public class ComputerPageTwo {
             description = e.select(" div " ).text(); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
         //ProductBl, create
         Product product = new Product();
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
+        product.setPrice( precioConvertido );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -528,7 +591,7 @@ public class ComputerPageTwo {
 
         //brandBl, agregar precio, cantidad
         ProductDetail detail = new ProductDetail();
-        detail.setPrice(precioConvertido);
+        detail.setDetail("no especificado");
         detail.setQuantity("no especificado");
         //transaction
         detail.setTxId(transaction.getTxId());

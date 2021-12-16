@@ -36,6 +36,7 @@ public class ProductBl {
             productDto.setName(product.getName());
             productDto.setDescription(product.getDescription());
             productDto.setImg(product.getImg());
+            productDto.setPrice(product.getPrice());
             //llaves foraneas
             productDto.setBrandId(product.getBrandId());
             productDto.setShopId(product.getShopId());
@@ -54,6 +55,7 @@ public class ProductBl {
         productDto.setName(product.getName());
         productDto.setDescription(product.getDescription());
         productDto.setImg(product.getImg());
+        productDto.setPrice(product.getPrice());
         //llaves foraneas
         productDto.setBrandId(product.getBrandId());
         productDto.setShopId(product.getShopId());
@@ -67,6 +69,7 @@ public class ProductBl {
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg());
+        product.setPrice(productDto.getPrice());
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -87,6 +90,7 @@ public class ProductBl {
         product.setName(productDto.getName());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg());
+        product.setPrice(productDto.getPrice());
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxUserId(transaction.getTxUserId());

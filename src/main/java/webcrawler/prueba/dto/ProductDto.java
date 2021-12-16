@@ -7,6 +7,7 @@ public class ProductDto {
     private String name;
     private String description;
     private String img;
+    private Double price;
     private Integer brandId;
     private Integer shopId;
     private Integer productTypeId;
@@ -52,6 +53,15 @@ public class ProductDto {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     //
     //
 
@@ -86,6 +96,7 @@ public class ProductDto {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
+                ", price=" + price +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +
                 ", productTypeId=" + productTypeId +

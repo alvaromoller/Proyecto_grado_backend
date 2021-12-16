@@ -2,7 +2,7 @@ package webcrawler.prueba.dto;
 
 public class ProductDetailDto {
     private Integer productDetailId;
-    private Double price;
+    private String detail;
     private String quantity;
     private Integer productId;
 
@@ -14,12 +14,12 @@ public class ProductDetailDto {
         this.productDetailId = productDetailId;
     }
 
-    public Double getPrice() {
-        return price;
+    public String getDetail() {
+        return detail;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     public String getQuantity() {
@@ -42,7 +42,7 @@ public class ProductDetailDto {
     public String toString() {
         return "ProductDetailDto{" +
                 "productDetailId=" + productDetailId +
-                ", price=" + price +
+                ", detail=" + detail + '\'' +
                 ", quantity=" + quantity + '\'' +
                 ", productId=" + productId +
                 '}';

@@ -10,6 +10,7 @@
             name as name,
             description as description,
             img as img,
+            price as price,
             brand_id as brandId,
             shop_id as shopId,
             product_type_id as productTypeId
@@ -24,6 +25,7 @@
         name as name,
         description as description,
         img as img,
+        price as price,
         brand_id as brandId,
         shop_id as shopId,
         product_type_id as productTypeId
@@ -34,13 +36,13 @@
 
     <insert id="create" parameterType="webcrawler.prueba.model.Product">
         INSERT INTO product VALUES (
-        null, #{name}, #{description}, #{img}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}, 1, 1, 1
+        null, #{name}, #{description}, #{img}, #{price}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}, 1, 1, 1
         )
     </insert>
 
     <update id="update" parameterType="webcrawler.prueba.model.Product">
         UPDATE `product`
-        SET name=#{name}, description=#{description}, img=#{img},
+        SET name=#{name}, description=#{description}, img=#{img}, price=#{price},
         tx_id = #{txId}, tx_host = #{txHost}, tx_user_id = #{txUserId}, tx_date = #{txDate}
         WHERE product_id = #{productId}
     </update>
