@@ -29,6 +29,12 @@ public class ComputerPageOne {
     private ProductDao productDao;
     //ProductDetailDao
     private ProductDetailDao productDetailDao;  //precio
+    //prueba
+    private ShopDto shopDto;
+    private ProductDto productDto;
+    private ProductDetailDto productDetailDto;
+    private Transaction transaction;
+
 
     @Autowired
     public ComputerPageOne(BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, ShopDao shopDao, ProductDetailDao productDetailDao, TransactionDao transactionDao){
@@ -38,6 +44,7 @@ public class ComputerPageOne {
         this.productDao = productDao;
         this.productDetailDao = productDetailDao;
         this.transactionDao = transactionDao;
+
     }
 
     public ComputerPageOne() {
@@ -522,7 +529,7 @@ public class ComputerPageOne {
 //ACTUALIZACIONES
 //Tienda 1: Dismac que contiene productos 1, 2 y 3
     public ShopDto updateShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
-        System.out.println("Extrayendo inf. actualizada de Tienda 1, página DISMAC " + url + "...");
+        System.out.println("## Actualizando inf. de Tienda 1: ## " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
         Elements locationPage = doc.select("div.full");
@@ -550,11 +557,10 @@ public class ComputerPageOne {
             img = e.select("div.banner.desktop img").attr("src"); //Obtener src, img del PC
             System.out.println("Logo de la tienda 1: " + img);
         }
-
         //ShopBl Update
         Shop shop= new Shop();
         shop.setShopId(shopDto.getShopId());
-        shop.setName(" Dismac "); //"DISMAC UP DATE"
+        shop.setName(" Dismac PRUEBA2 "); //"DISMAC UP DATE"
         shop.setDescription(description);
         shop.setLocation(location);
         shop.setImg(img);
@@ -573,7 +579,7 @@ public class ComputerPageOne {
 
 //PRODUCTO 1, update
     public ProductDto updateProduct(String url, ProductDto productDto, Transaction transaction) throws IOException {
-        System.out.println("Actualizacion de, Página Dismac url1" + url + "...");
+        System.out.println("## Actualizando Producto ##: " + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.columns");
         Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
@@ -602,7 +608,6 @@ public class ComputerPageOne {
             description = e.select("div.value " ).text(); //Obtener marca del PC
             System.out.println("Descripción: \n" + description);
         }
-
         //ProductBl, update
         Product product= new Product();
         product.setProductId(productDto.getProductId());
@@ -621,7 +626,7 @@ public class ComputerPageOne {
 
     //Detalle 1
     public ProductDetailDto updateDetail(String url, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
-        System.out.println("Actualizacion de Precio del producto " + url + "...");
+        System.out.println(" ## Actualizando Precio del producto ##" + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
         Elements producto = doc.select(" div.product-info-price");
 
@@ -635,7 +640,6 @@ public class ComputerPageOne {
         //Convertir de String a Double
         Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
         System.out.println("Precio: " + precioConvertido + ".00");
-
         //Bl update
         ProductDetail productDetail= new ProductDetail();
         productDetail.setProductDetailId(productDetailDto.getProductDetailId());
@@ -820,59 +824,23 @@ public class ComputerPageOne {
 
 
     //prueba para la actualizacion, probar en pagina donde se pueda cambiar los datos
-//    , ShopDto shopDto, Transaction transaction
-    public void extractShopPrueba(String url) throws IOException {
-        System.out.println("Extrayendo html " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(8000).get();
-        Elements descriptionPage = doc.select(" div.PreviewContentWrapper "); // buscando por clase, <div class = first >
-        Elements locationPage = doc.select("body");
-        Elements imgPage = doc.select(" body");
-
-        String description="";
-        String location ="";
-        String img="";
-        //Description
-        for (Element e : descriptionPage.select(" div.PreviewFrame-iframeWrapper  "))
-        {
-            description = e.select("  div  " ).text();
-            System.out.println("Descripcion: " + description);
-        }
-        //location
-        for (Element e : locationPage.select(" div.body "))
-        {
-            location = e.select("p.location" ).text();
-        }
-        System.out.println("Location: " + location);
-
-        //img
-        for (Element e : imgPage.select(" div.divImg "))
-        {
-            img = e.select(" img ").attr("src"); //Obtener src, img del PC
-            System.out.println("Logo de la tienda prueba: " + img);
-        }
-    /**
-        //ShopBl
-        Shop shop = new Shop();
-        shop.setName("Pagina Prueba");
-        shop.setDescription(description);
-        shop.setLocation(location);
-        shop.setImg(img);
-        //transaction
-        shop.setTxId(transaction.getTxId());
-        shop.setTxHost(transaction.getTxHost());
-        shop.setTxUserId(transaction.getTxUserId());
-        shop.setTxDate(transaction.getTxDate());
-        shop.setStatus(1);
-        shopDao.create(shop);
-        Integer getLastId = transactionDao.getLastInsertId();
-        shopDto.setShopId(getLastId);
-        return  shopDto;
-     */
+//   ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto,Transaction transaction
+    public void updateShopPrueba(ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto) throws IOException {
+        System.out.println("#### Actualizando toda la tienda 1 Dismac: #### ");
+        ComputerPageOne update = new ComputerPageOne();
+        String url ="https://www.dismac.com.bo/empresa.html";
+        String url1 ="https://www.dismac.com.bo/o85pd.html";
+        String url2 = "https://www.dismac.com.bo/o85pd.html";
+        //tienda 1
+        update.updateShop(url, shopDto, transaction);               //update shop
+        //Producto 1
+        update.updateProduct(url1, productDto, transaction);        //update product
+        update.updateDetail(url2, productDetailDto, transaction);   //update productDetail
     }
 
 
-
-
+    // apuntes, clases comentadas
+    // ComputerPageOne, ApiShop, ApiProduct, ApiProductDetail , metodos Update
     private static void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));
     }

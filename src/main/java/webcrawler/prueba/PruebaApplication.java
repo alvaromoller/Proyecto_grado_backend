@@ -132,7 +132,7 @@ class PruebaApplication {
 
 
 /**
-		 //TIENDA prueba para la actualizacion
+		 //TIENDA 1 prueba para la actualizacion
 		 ComputerPageOne compu = new ComputerPageOne();
 		 //URLs
 		 String shopUrl = "https://stackblitz.com/edit/angular-ivy-oudv5d?file=src%2Fapp%2Fapp.component.html";  // img, descripcion y ubicacion
@@ -143,14 +143,14 @@ class PruebaApplication {
 
 		 try {
 		 //product1
-		 compu.extractShopPrueba(shopUrl);
+		 compu.updateShopPrueba();
 
 
 
 		 } catch (IOException e) {
 		 e.printStackTrace();
 		 }
-	*/	 	 //
+		*/ 	 //
 
 
 	}

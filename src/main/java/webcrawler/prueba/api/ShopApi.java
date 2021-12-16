@@ -5,6 +5,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import webcrawler.prueba.bl.ShopBl;
 import webcrawler.prueba.bl.TransactionBl;
+import webcrawler.prueba.dto.ProductDetailDto;
+import webcrawler.prueba.dto.ProductDto;
 import webcrawler.prueba.dto.ShopDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
@@ -113,5 +115,14 @@ public class ShopApi {
         ShopDto Response = computerPageOne.updateShop(url, shopDto, transaction);
         return Response;
     }
+
+    // prueba actualizando Shop1, product and productDetail
+    @RequestMapping(path ="/updateShop1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateShop1(@RequestBody ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction((transaction));
+        computerPageOne.updateShopPrueba(shopDto, productDto, productDetailDto);
+    }
+
 
 }
