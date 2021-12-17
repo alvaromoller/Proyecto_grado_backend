@@ -6,6 +6,7 @@ import webcrawler.prueba.dao.CategoryDao;
 import webcrawler.prueba.dao.TransactionDao;
 import webcrawler.prueba.dto.CategoryDto;
 import webcrawler.prueba.model.Category;
+import webcrawler.prueba.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,29 +40,29 @@ public class CategoryBl {
     }
 
     //encontrar marca por ID
-    public BrandDto findBrandById(Integer brandId){
-        Brand brand = brandDao.findBrandById(brandId);
-        BrandDto brandDto = new BrandDto();
+    public CategoryDto findCategoryById(Integer categoryId){
+        Category category = categoryDao.findCategoryById(categoryId);
+        CategoryDto categoryDto = new CategoryDto();
 
-        brandDto.setBrandId(brand.getBrandId());
-        brandDto.setName(brand.getName());
-        return  brandDto;
+        categoryDto.setCategoryId(category.getCategoryId());
+        categoryDto.setName(category.getName());
+        return  categoryDto;
     }
 
     //Crear marca
-    public BrandDto createBrand(BrandDto brandDto, Transaction transaction){
-        Brand brand = new Brand();
-        brand.setName(brandDto.getName());
-        brand.setTxId(transaction.getTxId());
-        brand.setTxHost(transaction.getTxHost());
-        brand.setTxUserId(transaction.getTxUserId());
-        brand.setTxDate(transaction.getTxDate());
-        brand.setStatus(1);
+    public CategoryDto createBrand(CategoryDto categoryDto, Transaction transaction){
+        Category category = new Category();
+        category.setName(categoryDto.getName());
+        category.setTxId(transaction.getTxId());
+        category.setTxHost(transaction.getTxHost());
+        category.setTxUserId(transaction.getTxUserId());
+        category.setTxDate(transaction.getTxDate());
+        category.setStatus(1);
         //create
-        brandDao.create(brand);
+        categoryDao.create(category);
         Integer getLastId = transactionDao.getLastInsertId();
-        brandDto.setBrandId(getLastId);
-        return  brandDto;
+        categoryDto.setCategoryId(getLastId);
+        return  categoryDto;
     }
 
 
