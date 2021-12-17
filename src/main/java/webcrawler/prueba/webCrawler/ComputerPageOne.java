@@ -598,7 +598,7 @@ public class ComputerPageOne {
         //ShopBl Update
         Shop shop= new Shop();
         shop.setShopId(shopDto.getShopId());
-        shop.setName(" Dismac PRUEBA2 "); //"DISMAC UP DATE"
+        shop.setName(" Dismac "); //"DISMAC UP DATE"
         shop.setDescription(description);
         shop.setLocation(location);
         shop.setImg(img);
@@ -613,7 +613,6 @@ public class ComputerPageOne {
         shopDto.setShopId(getLastId);
         return shopDto;
     }
-
 
 //PRODUCTO 1, update
     public ProductDto updateProduct(String url, ProductDto productDto, Transaction transaction) throws IOException {
@@ -676,14 +675,43 @@ public class ComputerPageOne {
         return productDto;
     }
 
-    //Detalle 1
-    public ProductDetailDto updateDetail(String url, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
-        System.out.println(" ## Actualizando Precio del producto ##" + url + "...");
-        Document doc = Jsoup.connect(url).timeout(8000).get();
-        Elements producto = doc.select(" div.product-info-price");
+
+//PRODUCTO 2, update
+    public ProductDto updateProduct2(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.columns");
+        Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.data.item.content"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.product-info-price");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.page-title-wrapper.product"))
+        {
+            name = e.select("h1 span" ).text(); //Obtener tipo de PC
+            System.out.println("Nombre del PC: " + name);
+        }
+        //imgProduct
+        for (Element e : imgProduct.select("div"))
+        {
+            img = e.select("div img").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.product.attribute.description"))
+        {
+            description = e.select("div.value " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
 
         String precio="";
-        for (Element e : producto.select("div.price-box.price-final_price"))
+        for (Element e : price.select("span.pixel-price"))
         {
             precio = e.select("span.pixel-price " ).text(); //Obtener precio del PC
             //System.out.println("Precio: " + precio + ".00");
@@ -692,34 +720,97 @@ public class ComputerPageOne {
         //Convertir de String a Double
         Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
         System.out.println("Precio: " + precioConvertido + ".00");
-        //Bl update
-        ProductDetail productDetail= new ProductDetail();
-        productDetail.setProductDetailId(productDetailDto.getProductDetailId());
-        productDetail.setDetail("no especificado");
-        productDetail.setQuantity("no especificado");
+
+        //ProductBl, update
+        Product product= new Product();
+        product.setProductId(productDto.getProductId());
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        product.setPrice(precioConvertido);
         //transaction
-        productDetail.setTxId(transaction.getTxId());
-        productDetail.setTxUserId(transaction.getTxUserId());
-        productDetail.setTxHost(transaction.getTxHost());
-        productDetail.setTxDate(transaction.getTxDate());
-        productDetail.setStatus(1);
-        productDetailDao.update(productDetail);
-        return productDetailDto;
+        product.setTxId(transaction.getTxId());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        productDao.update(product);
+        return productDto;
     }
 
 
-//PRODUCTO 2, update
-
-
 //PRODUCTO 3, update
+    public ProductDto updateProduct3(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.columns");
+        Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.data.item.content"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.product-info-price");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.page-title-wrapper.product"))
+        {
+            name = e.select("h1 span" ).text(); //Obtener tipo de PC
+            System.out.println("Nombre del PC: " + name);
+        }
+        //imgProduct
+        for (Element e : imgProduct.select("div"))
+        {
+            img = e.select("div img").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.product.attribute.description"))
+        {
+            description = e.select("div.value " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("span.pixel-price"))
+        {
+            precio = e.select("span.pixel-price " ).text(); //Obtener precio del PC
+            //System.out.println("Precio: " + precio + ".00");
+
+        }
+        //Convertir de String a Double
+        Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
+        System.out.println("Precio: " + precioConvertido + ".00");
+
+        //ProductBl, update
+        Product product= new Product();
+        product.setProductId(productDto.getProductId());
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        product.setPrice(precioConvertido);
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        productDao.update(product);
+        return productDto;
+    }
 
 
 
 
 
-    //prueba para la actualizacion, probar en pagina donde se pueda cambiar los datos
-//   ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto,Transaction transaction
-    public void updateShopPrueba(ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto, Transaction transaction) throws IOException {
+
+
+
+
+    //PRUEBA para la actualizacion, de shop y product en conjunto, FALTA
+    public void updateShopPrueba(ShopDto shopDto, ProductDto productDto, Transaction transaction) throws IOException {
         System.out.println("#### Actualizando toda la tienda 1 Dismac: #### ");
         ComputerPageOne update = new ComputerPageOne();
         String url ="https://www.dismac.com.bo/empresa.html";
@@ -729,10 +820,7 @@ public class ComputerPageOne {
         update.updateShop(url, shopDto, transaction);               //update shop
         //Producto 1
         update.updateProduct(url1, productDto, transaction);        //update product
-        update.updateDetail(url2, productDetailDto, transaction);   //update productDetail
     }
-
-
 
     private static void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));

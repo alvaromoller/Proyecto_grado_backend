@@ -607,4 +607,279 @@ public class ComputerPageTwo {
 
 
 
+
+//ACTUALIZACIONES
+//Tienda 2: Compucenter que contiene productos 1, 2 y 3
+    public ShopDto updateShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 2, página CompuCenter  " + url );
+        Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion, description
+        Elements descriptionPage = doc.select(" div.min-h-screen"); //
+        Elements locationPage = doc.select(" footer#contacts ");
+        Elements imgPage = doc.select(" nav.relative.container");
+        //Salto de linea descriptionPage
+        descriptionPage.select("br").append("\\nl"); //append salto de linea despues de un elemento
+        descriptionPage.select("div").append("\\nl");
+        descriptionPage.select("p").prepend("\\nl"); //append salto de linea Antes de un elemento
+        //
+        //Salto de linea locationPage
+        locationPage.select("div.my-2 span:matches(La Paz|Cochabamba|Santa Cruz) ").prepend("\\nl "); //append salto de linea
+        locationPage.select("div.my-1 span").prepend("\\nl "); //append salto de linea
+        locationPage.select("div.my-1 span").append("\\nl "); //append salto de linea
+        //
+
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select("section"))
+        {
+            description = e.select("div.mb-10 " ).text().replaceAll("\\\\nl", "\n");
+            System.out.println("Descripcion: \n" + description);
+        }
+        //location
+        for (Element e : locationPage.select(" div.m-auto.text-gray-800 "))
+        {
+            location = e.select("div span" ).text().replaceAll("\\\\nl", "\n");
+            System.out.println("Location: " + location );
+
+        }
+
+        //img
+        for (Element e : imgPage.select("div.mb-0"))
+        {
+            img = e.select(" a img ").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 2: " + img);
+        }
+        //ShopBl Update
+        Shop shop= new Shop();
+        shop.setShopId(shopDto.getShopId());
+        shop.setName("CompuCenter");
+        shop.setDescription(description);
+        shop.setLocation(location);
+        shop.setImg("https://compucenter.store/_nuxt/img/logo_cc_lg.c362771.svg");
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.update(shop);
+        Integer getLastId = transactionDao.getLastInsertId();
+        shopDto.setShopId(getLastId);
+        return shopDto;
+    }
+
+//PRODUCTO 1, update
+    public ProductDto updateProduct(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        //ProductBl, update
+        Product product= new Product();
+        product.setProductId(productDto.getProductId());
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        product.setPrice(precioConvertido);
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        productDao.update(product);
+        return productDto;
+    }
+
+
+//PRODUCTO 2, update
+    public ProductDto updateProduct2(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        //ProductBl, update
+        Product product= new Product();
+        product.setProductId(productDto.getProductId());
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        product.setPrice(precioConvertido);
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        productDao.update(product);
+        return productDto;
+    }
+
+
+//PRODUCTO 3, update
+    public ProductDto updateProduct3(String url, ProductDto productDto, Transaction transaction) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        //ProductBl, update
+        Product product= new Product();
+        product.setProductId(productDto.getProductId());
+        product.setName(name);
+        product.setDescription(description);
+        product.setImg(img);
+        product.setPrice(precioConvertido);
+        //transaction
+        product.setTxId(transaction.getTxId());
+        product.setTxUserId(transaction.getTxUserId());
+        product.setTxHost(transaction.getTxHost());
+        product.setTxDate(transaction.getTxDate());
+        product.setStatus(1);
+        productDao.update(product);
+        return productDto;
+    }
+
+
 }

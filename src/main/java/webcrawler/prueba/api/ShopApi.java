@@ -105,7 +105,7 @@ public class ShopApi {
 
 
 //Actualizar tiendas
-    //Tienda 1
+ //Tienda 1
     @RequestMapping(path ="/updateShopCrawler1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ShopDto updateShopCrawler1(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -116,12 +116,37 @@ public class ShopApi {
         return Response;
     }
 
-    // prueba actualizando Shop1, product and productDetail
-    @RequestMapping(path ="/updateShop1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateShop1(@RequestBody ShopDto shopDto, ProductDto productDto, ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
+
+//Tienda 2
+    @RequestMapping(path ="/updateShopCrawler2", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto updateShopCrawler2(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction((transaction));
-        computerPageOne.updateShopPrueba(shopDto, productDto, productDetailDto);
+        //dirección tienda 2
+        String url="https://compucenter.store/about";  //tienda 2, img y ubicacion, description
+        ShopDto Response = computerPageTwo.updateShop(url, shopDto, transaction);
+        return Response;
+    }
+
+//Tienda 3
+    @RequestMapping(path ="/updateShopCrawler3", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto updateShopCrawler3(@RequestBody ShopDto shopDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction((transaction));
+        //dirección tienda 2
+        String url="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
+        ShopDto Response = computerPageThree.updateShop(url, shopDto, transaction);
+        return Response;
+    }
+
+
+
+    // PRUEBA, actualizando Shop1, product and productDetail
+    @RequestMapping(path ="/updateShop1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateShop1(@RequestBody ShopDto shopDto, ProductDto productDto,Transaction transaction2, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction((transaction));
+        computerPageOne.updateShopPrueba(shopDto, productDto,transaction2);
     }
 
 

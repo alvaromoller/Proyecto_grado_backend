@@ -163,15 +163,7 @@ public class ProductDetailApi {
 //ACTUALIZACIONES
 //TIENDA 1 DISMAC,
 //producto 1
-    @RequestMapping(path ="/updateCrawler1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDetailDto updateCrawler1(@RequestBody ProductDetailDto productDetailDto, HttpServletRequest request)throws IOException {
-        Transaction transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction(transaction);
-        //dirección  1
-        String url="https://www.dismac.com.bo/o85pd.html";  //Pc1
-        ProductDetailDto Response = computerPageOne.updateDetail(url, productDetailDto, transaction);
-        return Response;
-    }
+
 
 
 }

@@ -88,7 +88,7 @@ public class ProductApi {
     public void crawler3(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
         transactionBl.createTransaction(transaction);
-        //dirección producto 2
+        //dirección producto 3
         String url="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
         computerPageOne.extractProduct3(url, productDto, transaction);
     }
@@ -157,9 +157,9 @@ public class ProductApi {
     }
 
 
-//ACTUALIZACIONES producto
-//TIENDA 1, producto 1
-    //Extrae informacion de pagina web y guarda los datos en BD.
+//ACTUALIZACIONES
+//TIENDA 1,
+// producto 1
     @RequestMapping(path ="/updateCrawler1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto updateCrawler1(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
         Transaction transaction = TransactionUtil.createTransaction(request);
@@ -170,7 +170,96 @@ public class ProductApi {
         return Response;
     }
 
+// producto 2
+    @RequestMapping(path ="/updateCrawler2", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler2(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 2
+        String url="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
+        ProductDto Response = computerPageOne.updateProduct2(url, productDto, transaction);
+        return Response;
+    }
 
+// producto 3
+    @RequestMapping(path ="/updateCrawler3", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler3(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 3
+        String url="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        ProductDto Response = computerPageOne.updateProduct3(url, productDto, transaction);
+        return Response;
+    }
+
+//TIENDA 2,
+// producto 1
+    @RequestMapping(path ="/updateCrawler4", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler4(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 1
+        String url="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC1
+        ProductDto Response = computerPageTwo.updateProduct(url, productDto, transaction);
+        return Response;
+    }
+
+    // producto 2
+    @RequestMapping(path ="/updateCrawler5", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler5(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 2
+        String url="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC2
+        ProductDto Response = computerPageTwo.updateProduct2(url, productDto, transaction);
+        return Response;
+    }
+
+    // producto 3
+    @RequestMapping(path ="/updateCrawler6", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler6(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 3
+        String url="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC3
+        ProductDto Response = computerPageTwo.updateProduct3(url, productDto, transaction);
+        return Response;
+    }
+
+
+//TIENDA 3,
+// producto 1
+    @RequestMapping(path ="/updateCrawler7", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler7(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 1
+        String url="https://www.multilaptops.net/store2/191";  //PC1
+        ProductDto Response = computerPageThree.updateProduct(url, productDto, transaction);
+        return Response;
+    }
+
+// producto 2
+    @RequestMapping(path ="/updateCrawler8", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler8(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 2
+        String url="https://www.multilaptops.net/store2/194";  //PC2
+        ProductDto Response = computerPageThree.updateProduct2(url, productDto, transaction);
+        return Response;
+    }
+
+// producto 3
+    @RequestMapping(path ="/updateCrawler9", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ProductDto updateCrawler9(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
+        Transaction transaction = TransactionUtil.createTransaction(request);
+        transactionBl.createTransaction(transaction);
+        //dirección producto 3
+        String url="https://www.multilaptops.net/store2/181";  //PC3
+        ProductDto Response = computerPageThree.updateProduct3(url, productDto, transaction);
+        return Response;
+    }
 
 
 }
