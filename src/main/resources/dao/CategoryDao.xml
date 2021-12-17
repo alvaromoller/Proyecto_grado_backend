@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="webcrawler.prueba.dao.CategoryDao">
+
+    <select id="getCategories" resultType="webcrawler.prueba.model.Category">
+        SELECT
+        category_id as categoryId,
+        name as name
+        FROM category_name
+        WHERE
+        status = 1
+    </select>
+
+    <select id="findCategoryById" parameterType="int" resultType="webcrawler.prueba.model.Category">
+        SELECT
+        category_id as categoryId,
+        name as name
+        FROM category_name
+        WHERE
+        category_id = #{categoryId}
+    </select>
+
+    <insert id="create" parameterType="webcrawler.prueba.model.Category">
+        INSERT INTO category_name VALUES (
+        null, #{name}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
+        )
+    </insert>
+
+
+</mapper>

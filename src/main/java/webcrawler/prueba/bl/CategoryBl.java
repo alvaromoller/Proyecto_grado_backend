@@ -50,7 +50,7 @@ public class CategoryBl {
     }
 
     //Crear marca
-    public CategoryDto createBrand(CategoryDto categoryDto, Transaction transaction){
+    public CategoryDto createCategory(CategoryDto categoryDto, Transaction transaction){
         Category category = new Category();
         category.setName(categoryDto.getName());
         category.setTxId(transaction.getTxId());
