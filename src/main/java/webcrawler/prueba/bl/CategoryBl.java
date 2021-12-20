@@ -32,7 +32,7 @@ public class CategoryBl {
             Category category = categories.get(i);
             CategoryDto categoryDto = new CategoryDto();
             categoryDto.setCategoryId(category.getCategoryId());
-            categoryDto.setName(category.getName());
+            categoryDto.setCategoryName(category.getCategoryName());
 
             categoryDtos.add(i, categoryDto);
         }
@@ -45,14 +45,14 @@ public class CategoryBl {
         CategoryDto categoryDto = new CategoryDto();
 
         categoryDto.setCategoryId(category.getCategoryId());
-        categoryDto.setName(category.getName());
+        categoryDto.setCategoryName(category.getCategoryName());
         return  categoryDto;
     }
 
     //Crear marca
     public CategoryDto createCategory(CategoryDto categoryDto, Transaction transaction){
         Category category = new Category();
-        category.setName(categoryDto.getName());
+        category.setCategoryName(categoryDto.getCategoryName());
         category.setTxId(transaction.getTxId());
         category.setTxHost(transaction.getTxHost());
         category.setTxUserId(transaction.getTxUserId());

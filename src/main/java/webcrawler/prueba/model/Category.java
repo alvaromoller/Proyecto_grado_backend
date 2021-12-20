@@ -5,7 +5,7 @@ import java.util.Date;
 public class Category {
 
     private Integer categoryId;
-    private String name;
+    private String categoryName;
     private Integer status;
     private Transaction transaction;
 
@@ -22,12 +22,12 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public Integer getStatus() {
@@ -86,7 +86,7 @@ public class Category {
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +
-                ", name='" + name + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 ", status=" + status +
                 ", txId=" + transaction.getTxId() +
                 ", txHost='" + transaction.getTxHost() + '\'' +

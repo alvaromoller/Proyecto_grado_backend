@@ -47,4 +47,24 @@
         WHERE product_id = #{productId}
     </update>
 
+    <select id="getProductListByCategory" resultType="webcrawler.prueba.model.Product">
+        SELECT
+        p.product_id as productId,
+        p.name as name,
+        p.description as description,
+        p.img as img,
+        p.price as price,
+        p.brand_id as brandId,
+        p.shop_id as shopId,
+        p.product_type_id as productTypeId
+        FROM product as p
+        JOIN product_category as pc
+        on p.product_id = pc.product_id
+        WHERE
+            p.status = 1
+        AND
+            pc.category_id = #{categoryId};
+    </select>
+
+
 </mapper>

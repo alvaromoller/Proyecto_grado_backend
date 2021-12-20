@@ -3,7 +3,7 @@ package webcrawler.prueba.dto;
 public class CategoryDto {
 
     private Integer categoryId;
-    private String name;
+    private String categoryName;
 
     public Integer getCategoryId() {
         return categoryId;
@@ -13,20 +13,19 @@ public class CategoryDto {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
-
 
     @Override
     public String toString() {
         return "CategoryDto{" +
                 "categoryId=" + categoryId +
-                ", name='" + name + '\'' +
+                ", categoryName='" + categoryName + '\'' +
                 '}';
     }
 }

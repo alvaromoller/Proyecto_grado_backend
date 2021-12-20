@@ -12,4 +12,6 @@ public interface ProductDao {
     public Product findByProductId(Integer productId);
     public void create(Product product);
     public void update(Product product);
+
+    public List<Product> getProductListByCategory(Integer categoryId);
 }

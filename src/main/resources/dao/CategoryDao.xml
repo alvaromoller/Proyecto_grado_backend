@@ -7,7 +7,7 @@
     <select id="getCategories" resultType="webcrawler.prueba.model.Category">
         SELECT
         category_id as categoryId,
-        name as name
+        name as categoryName
         FROM category_name
         WHERE
         status = 1
@@ -16,7 +16,7 @@
     <select id="findCategoryById" parameterType="int" resultType="webcrawler.prueba.model.Category">
         SELECT
         category_id as categoryId,
-        name as name
+        name as categoryName
         FROM category_name
         WHERE
         category_id = #{categoryId}
@@ -24,7 +24,7 @@
 
     <insert id="create" parameterType="webcrawler.prueba.model.Category">
         INSERT INTO category_name VALUES (
-        null, #{name}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
+        null, #{categoryName}, #{txId}, #{txHost}, #{txUserId}, #{txDate}, #{status}
         )
     </insert>
 
