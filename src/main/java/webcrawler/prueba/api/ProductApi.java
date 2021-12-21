@@ -44,6 +44,13 @@ public class ProductApi {
         return productBl.selectProducts();
     }
 
+    //listado de productos por categoria,
+    //JOIN de tabla product con productCategory
+    @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDto> selectProductsByCategory(@PathVariable("categoryId") Integer categoryId, HttpServletRequest request){
+        return productBl.selectProductsByCategory(categoryId);
+    }
+
     // encontrar producto por ID
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto findById(@PathVariable("id") Integer id, HttpServletRequest request){

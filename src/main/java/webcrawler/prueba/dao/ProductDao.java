@@ -13,5 +13,7 @@ public interface ProductDao {
     public void create(Product product);
     public void update(Product product);
 
+    //Listado de JOIN de tabla product con productCategory
+    //para saber y obtener cuantos productos tiene categoria
     public List<Product> getProductListByCategory(Integer categoryId);
 }

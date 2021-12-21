@@ -47,6 +47,29 @@ public class ProductBl {
         return  productDtos;
     }
 
+    //listado de productos por categoria, JOIN de tabla product con productCategory
+    public List<ProductDto> selectProductsByCategory(Integer categoryId){
+        List<Product> products = productDao.getProductListByCategory(categoryId);      //productos, se crea un for para recorrer products
+        List<ProductDto> productDtos = new ArrayList<ProductDto>();      //se crea productDtos para tener el listado de products
+
+        for(int i=0; i < products.size(); i++){
+            Product product = products.get(i);
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(product.getProductId());
+            productDto.setName(product.getName());
+            productDto.setDescription(product.getDescription());
+            productDto.setImg(product.getImg());
+            productDto.setPrice(product.getPrice());
+            //llaves foraneas
+            productDto.setBrandId(product.getBrandId());
+            productDto.setShopId(product.getShopId());
+            productDto.setProductTypeId(product.getProductTypeId());
+
+            productDtos.add(i, productDto);
+        }
+        return  productDtos;
+    }
+
     //Encontrar producto por ID
     public ProductDto findProductById(Integer productId){
         Product product = productDao.findByProductId(productId);
