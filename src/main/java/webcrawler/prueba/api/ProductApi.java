@@ -37,13 +37,13 @@ public class ProductApi {
         this.computerPageThree = computerPageThree;
         this.transactionBl = transactionBl;
     }
-
+/**
     //listado de productos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProducts(HttpServletRequest request){
         return productBl.selectProducts();
     }
-
+*/
     //listado de productos por categoria,
     //JOIN de tabla product con productCategory
     @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -67,7 +67,18 @@ public class ProductApi {
         return productDtoResponse;
     }
 
-//TIENDA 1, producto 1
+//TIENDA 1,
+
+    //Prueba de listado de productos Sin base de datos
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
+        //dirección producto 1
+        String url="https://www.dismac.com.bo/o85pd.html";  //PC1
+        return computerPageOne.extractProductList(url);
+    }
+
+
+    // producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void crawler1(@RequestBody ProductDto productDto, HttpServletRequest request)throws IOException {
@@ -77,6 +88,7 @@ public class ProductApi {
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
         computerPageOne.extractProduct(url, productDto, transaction);
     }
+
 
     //producto 2
     //Extrae informacion de pagina web y guarda los datos en BD.

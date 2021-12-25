@@ -14,6 +14,8 @@ import webcrawler.prueba.dto.*;
 import webcrawler.prueba.model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ComputerPageOne {
@@ -218,6 +220,78 @@ public class ComputerPageOne {
             Integer getLastId = transactionDao.getLastInsertId();
             productDto.setProductId(getLastId);
             return  productDto;
+    }
+
+    //PRODUCTO, extraccion de Producto y sin  BD
+    public List<ProductDto> extractProductList(String url) throws IOException {
+        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.columns");
+        Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.data.item.content"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.product-info-price");
+
+        //extracion del PC
+        String name = "";
+        String img = "";
+        String description = "";
+
+        //productName
+        for (Element e : productName.select("div.page-title-wrapper.product")) {
+            name = e.select("h1 span").text(); //Obtener tipo de PC
+            System.out.println("Nombre del PC: " + name);
+        }
+        //imgProduct
+        for (Element e : imgProduct.select("div")) {
+            img = e.select("div img").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.product.attribute.description")) {
+            description = e.select("div.value ").text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio = "";
+        for (Element e : price.select("div.price-box.price-final_price")) {
+            precio = e.select("span.pixel-price ").text(); //Obtener precio del PC
+            //System.out.println("Precio: " + precio + ".00");
+
+        }
+        //Convertir de String a Double
+        Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
+        System.out.println("Precio: " + precioConvertido + ".00");
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY
+        ArrayList Array = new ArrayList();      //productos, se crea un for para recorrer products
+        Array.add(name);
+        Array.add(description);
+        Array.add(img);
+        Array.add(precioConvertido);
+        System.out.println("Producto 1: " + Array );
+        //PRUEBA FIN
+        /////////////////////////////////////////////////////////////////////////
+
+
+        List<Product> products = productDao.getProducts();      //productos, se crea un for para recorrer products
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+
+        for(int i=0; i < products.size(); i++){
+            Product product = products.get(i);
+            ProductDto productDto = new ProductDto();
+
+            //productDto.setProductId(product.getProductId());
+            productDto.setName(name);
+            productDto.setDescription(description);
+            productDto.setImg(img);
+            productDto.setPrice(precioConvertido);
+
+            productDtos.add(i, productDto);
+            System.out.println("Producto 1 desde ProductDto: " + productDtos );
+        }
+        return  Array;
     }
 
     //Detalle producto, precio y cantidad
