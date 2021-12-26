@@ -1,6 +1,8 @@
 package webcrawler.prueba.webCrawler;
 
+import com.google.gson.Gson;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.tomcat.util.json.JSONParser;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -264,34 +266,19 @@ public class ComputerPageOne {
         System.out.println("Precio: " + precioConvertido + ".00");
 
         /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY
-        ArrayList Array = new ArrayList();      //productos, se crea un for para recorrer products
-        Array.add(name);
-        Array.add(description);
-        Array.add(img);
-        Array.add(precioConvertido);
-        System.out.println("Producto 1: " + Array );
-        //PRUEBA FIN
-        /////////////////////////////////////////////////////////////////////////
-
-
-        List<Product> products = productDao.getProducts();      //productos, se crea un for para recorrer products
+        //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
 
-        for(int i=0; i < products.size(); i++){
-            Product product = products.get(i);
-            ProductDto productDto = new ProductDto();
+        productDto.setProductId(1);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precioConvertido);
 
-            //productDto.setProductId(product.getProductId());
-            productDto.setName(name);
-            productDto.setDescription(description);
-            productDto.setImg(img);
-            productDto.setPrice(precioConvertido);
-
-            productDtos.add(i, productDto);
-            System.out.println("Producto 1 desde ProductDto: " + productDtos );
-        }
-        return  Array;
+        productDtos.add( productDto);
+        System.out.println("productDtos: " + productDtos);
+        return  productDtos;
     }
 
     //Detalle producto, precio y cantidad

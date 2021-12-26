@@ -71,6 +71,7 @@ public class ProductApi {
 
     //Prueba de listado de productos Sin base de datos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    //List<ProductDto>
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
