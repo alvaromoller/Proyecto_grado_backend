@@ -222,7 +222,7 @@ public class ComputerPageOne {
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
         ProductDto productDto = new ProductDto();
 
-        productDto.setProductId(1);
+        productDto.setProductId(3);
         productDto.setName(name);
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -255,8 +255,14 @@ public class ComputerPageOne {
             productDtos3 = extractProductList3(url3);
             System.out.println("producto3: " + productDtos3);
 
+            //System.out.println("Tamaño: " + productDtos.size());
+            List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
+            productAll.addAll(productDtos);
+            productAll.addAll(productDtos2);
+            productAll.addAll(productDtos3);
+            System.out.println("product all: " + productAll);
 
-        return  productDtos;
+        return  productAll;
     }
     //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
 
