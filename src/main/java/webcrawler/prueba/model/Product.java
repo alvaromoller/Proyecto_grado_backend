@@ -7,7 +7,7 @@ public class Product {
     private String name;
     private String description;
     private String img;
-    private Double price;
+    private String price;
     private Integer status;
     private Integer brandId;
     private Integer shopId;
@@ -52,11 +52,11 @@ public class Product {
         this.img = img;
     }
 
-    public Double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -146,7 +146,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
-                ", price=" + price +
+                ", price=" + price + '\'' +
                 ", status=" + status +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +

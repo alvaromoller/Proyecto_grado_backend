@@ -215,7 +215,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice( precioConvertido );
+        product.setPrice( precio );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -383,7 +383,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice( precioConvertido );
+        product.setPrice( precio );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -551,7 +551,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice( precioConvertido );
+        product.setPrice( precio );
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxHost(transaction.getTxHost());
@@ -728,7 +728,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice(precioConvertido);
+        product.setPrice(precio);
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxUserId(transaction.getTxUserId());
@@ -799,7 +799,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice(precioConvertido);
+        product.setPrice(precio);
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxUserId(transaction.getTxUserId());
@@ -870,7 +870,7 @@ public class ComputerPageTwo {
         product.setName(name);
         product.setDescription(description);
         product.setImg(img);
-        product.setPrice(precioConvertido);
+        product.setPrice(precio);
         //transaction
         product.setTxId(transaction.getTxId());
         product.setTxUserId(transaction.getTxUserId());

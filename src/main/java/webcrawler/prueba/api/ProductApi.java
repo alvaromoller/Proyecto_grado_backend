@@ -67,7 +67,7 @@ public class ProductApi {
         return productDtoResponse;
     }
 
-//TIENDA 1,
+//LISTA DE PRODUCTOS SIN BASE DE DATOS
 
     //Prueba de listado de productos Sin base de datos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -75,10 +75,16 @@ public class ProductApi {
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
-        return computerPageOne.extractProductList(url);
+        //dirección producto 2
+        String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
+        //dirección producto 3
+        String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        return computerPageOne.ProductList123(url, url2, url3);
     }
+//LISTA DE PRODUCTOS SIN BASE DE DATOS
 
 
+    //TIENDA 1,
     // producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
