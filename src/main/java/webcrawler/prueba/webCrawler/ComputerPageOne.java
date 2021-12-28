@@ -767,7 +767,7 @@ public class ComputerPageOne {
 
 
 //LISTADO de TIENDAS, extraccion de tiendas  sin  BD
-//Tienda 1
+    //Tienda 1
     public List<ShopDto> extractShopList(String url) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -814,6 +814,108 @@ public class ComputerPageOne {
         return shopDtos;
     }
 
+    //Tienda 2
+    public List<ShopDto> extractShopList2(String url) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 2, página CompuCenter  " + url );
+        Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion, description
+        Elements descriptionPage = doc.select(" div.min-h-screen"); //
+        Elements locationPage = doc.select(" footer#contacts ");
+        Elements imgPage = doc.select(" nav.relative.container");
+        //Salto de linea descriptionPage
+        descriptionPage.select("br").append("\\nl"); //append salto de linea despues de un elemento
+        descriptionPage.select("div").append("\\nl");
+        descriptionPage.select("p").prepend("\\nl"); //append salto de linea Antes de un elemento
+        //
+        //Salto de linea locationPage
+        locationPage.select("div.my-2 span:matches(La Paz|Cochabamba|Santa Cruz) ").prepend("\\nl "); //append salto de linea
+        locationPage.select("div.my-1 span").prepend("\\nl "); //append salto de linea
+        locationPage.select("div.my-1 span").append("\\nl "); //append salto de linea
+        //
+
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select("section"))
+        {
+            description = e.select("div.mb-10 " ).text().replaceAll("\\\\nl", "\n");
+            System.out.println("Descripcion: \n" + description);
+        }
+        //location
+        for (Element e : locationPage.select(" div.m-auto.text-gray-800 "))
+        {
+            location = e.select("div span" ).text().replaceAll("\\\\nl", "\n");
+            System.out.println("Location: " + location );
+
+        }
+
+        //img
+        for (Element e : imgPage.select("div.mb-0"))
+        {
+            img = e.select(" a img ").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 2: " + img);
+        }
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(2);
+        shopDto.setName("CompuCenter");
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        shopDto.setImg("https://compucenter.store/_nuxt/img/logo_cc_lg.c362771.svg");
+
+        shopDtos.add( shopDto);
+        System.out.println("shopDtos 2: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Tienda 3
+    public List<ShopDto> extractShopList3(String url) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 3, página CompuCenter  " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion
+        Elements descriptionPage = doc.select(" section.content-section.bg-light.mt-5.mb-2.py-5.col-12"); // buscando por clase, <div class = first >
+        Elements locationPage = doc.select("section.content-section.col-12.col-md-6.p-0.pr-2.d-flex");
+        Elements imgPage = doc.select(" div.carousel-inner");
+
+        String description = "";
+        String location = "";
+        String img = "";
+        //Description
+        for (Element e : descriptionPage.select("div.col-lg-10")) {
+            description = e.select(" p ").text();
+            System.out.println("Descripcion: " + description);
+        }
+        //location
+        for (Element e : locationPage.select("div.col-lg-10")) {
+            location = e.select("p ").text();
+        }
+        System.out.println("Location: " + location);
+
+        //img
+        for (Element e : imgPage.select("div.carousel-item ")) {
+            img = e.select(" img ").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 3: " + img);
+        }
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(3);
+        shopDto.setName("Multilaptops");
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        shopDto.setImg(img);
+
+        shopDtos.add( shopDto);
+        System.out.println("shopDtos 3: " + shopDtos);
+        return shopDtos;
+
+    }
+
+
     //LISTADO DE TODAS LAS TIENDAS
     public List<ShopDto> shopListAll(String url, String url2, String url3) throws IOException{
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); //se crea productDtos para tener el listado de products
@@ -824,21 +926,30 @@ public class ComputerPageOne {
         shopDtos = extractShopList(url);
         System.out.println(" Tienda 1: " + shopDtos);
 
+        //Tienda 2
+        shopDtos2 = extractShopList2(url2);
+        System.out.println(" Tienda 2: " + shopDtos2);
 
+        //Tienda 3
+        shopDtos3 = extractShopList3(url3);
+        System.out.println(" Tienda 3: " + shopDtos3);
 
         //System.out.println("Tamaño: " + productDtos.size());
         List<ShopDto> shopAll = new ArrayList<ShopDto>(); // Lista para guardar todos los productos
         shopAll.addAll(shopDtos);
+        shopAll.addAll(shopDtos2);
+        shopAll.addAll(shopDtos3);
 
 
-        System.out.println("product all: " + shopAll);
+        System.out.println("Shops all: " + shopAll);
 
         return  shopAll;
     }
 
 
 
-//LISTADO de TIENDAS, extraccion de tiendas  sin  BD
+
+//FIN
 
 
 
