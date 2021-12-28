@@ -53,7 +53,58 @@ public class ComputerPageOne {
 
 
 
-    //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
+//LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
+
+//Tienda 1: Dismac que contiene productos 1, 2 y 3
+    public ShopDto extractShopList(String url, ShopDto shopDto, Transaction transaction) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
+        Elements locationPage = doc.select("div.full");
+        Elements imgPage = doc.select(" div.category-view");
+
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select("div.full"))
+        {
+            description = e.select("div.span-text" ).text();
+            System.out.println("Descripcion: " + description);
+        }
+        //location
+        for (Element e : locationPage.select("div.span-text"))
+        {
+            location = e.select("span.text" ).text();
+        }
+        System.out.println("Location: " + location);
+
+        //img
+        for (Element e : imgPage.select("div.empresa"))
+        {
+            img = e.select("div.banner.desktop img").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 1: " + img);
+        }
+
+        //ShopBl
+        Shop shop = new Shop();
+        shop.setName("Dismac");
+        shop.setDescription(description);
+        shop.setLocation(location);
+        shop.setImg(img);
+        //transaction
+        shop.setTxId(transaction.getTxId());
+        shop.setTxHost(transaction.getTxHost());
+        shop.setTxUserId(transaction.getTxUserId());
+        shop.setTxDate(transaction.getTxDate());
+        shop.setStatus(1);
+        shopDao.create(shop);
+        Integer getLastId = transactionDao.getLastInsertId();
+        shopDto.setShopId(getLastId);
+        return  shopDto;
+
+    }
+
     //PRODUCTO 1
     public List<ProductDto> extractProductList(String url) throws IOException {
         System.out.println("Computadoras, Página Dismac url1" + url + "...");
@@ -113,7 +164,7 @@ public class ComputerPageOne {
 
     //PRODUCTO 2
     public List<ProductDto> extractProductList2(String url) throws IOException {
-        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        //System.out.println("Computadoras, Página Dismac url1" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.columns");
         Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
@@ -174,7 +225,7 @@ public class ComputerPageOne {
 
     //PRODUCTO 3
     public List<ProductDto> extractProductList3(String url) throws IOException {
-        System.out.println("Computadoras, Página Dismac url1" + url + "...");
+        //System.out.println("Computadoras, Página Dismac url1" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.columns");
         Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
@@ -233,38 +284,567 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
+//tienda 2, CompuCenter
+    //Producto 4
+    public List<ProductDto> extractProductList4(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url2" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
-    //List<ProductDto>
-    public List<ProductDto> ProductList123(String url, String url2, String url3) throws IOException{
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        List<ProductDto> productDtos2 = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        List<ProductDto> productDtos3 = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
 
-            //producto 1
-            extractProductList(url);
-            productDtos = extractProductList(url);
-            System.out.println("producto1: " + productDtos);
+        productDto.setProductId(4);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
 
-            //producto 2
-            extractProductList2(url);      //producto 2
-            productDtos2 = extractProductList2(url2);
-            System.out.println("producto2 url2: " + productDtos2);
+        productDtos.add( productDto);
+        System.out.println("productDtos 4: " + productDtos);
+        return  productDtos;
+    }
 
-            //producto 3
-            extractProductList3(url);
-            productDtos3 = extractProductList3(url3);
-            System.out.println("producto3: " + productDtos3);
+    //Producto 5
+    public List<ProductDto> extractProductList5(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
-            //System.out.println("Tamaño: " + productDtos.size());
-            List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
-            productAll.addAll(productDtos);
-            productAll.addAll(productDtos2);
-            productAll.addAll(productDtos3);
-            System.out.println("product all: " + productAll);
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(5);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 5: " + productDtos);
+        return  productDtos;
+    }
+
+    //Producto 6
+    public List<ProductDto> extractProductList6(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
+
+        //extracion del PC
+        String name="";
+        String img="";
+        String description="";
+
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs" , "");
+        System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+
+        //se quito la coma
+        String precio3 = precio2.replace(",", "");
+        System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+
+        Double precioConvertido = Double.parseDouble(precio3);
+        System.out.println("precio Convertido a Double " + precioConvertido );
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(6);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 6: " + productDtos);
+        return  productDtos;
+    }
+
+//tienda 3, Multilaptos
+    //Producto7
+    public List<ProductDto> extractProductList7(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
+        Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
+        //Salto de linea productDescription
+        productDescription.select("br").append("\\nl"); //append salto de linea
+        productDescription.select("div").append("\\nl");
+        //productDescription.select("p").prepend("\\nl"); //append salto de linea
+        //productDescription.select("p").append("\\nl");
+        productDescription.select("li").append("\\nl");
+        //
+
+        //extracion del PC
+        String name = "";
+        String img = "";
+        String description = "";
+
+        //productName
+        for (Element e : productName.select("div.px-2.titulo ")) {
+            name = e.select(" span ").text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.row")) {
+            img = e.select("   div a  ").attr("href"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("ul.list-group")) {
+            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio = "";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block")) {
+            precio = e.select(" div:matches(Bs.)   ").text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        System.out.println("Precio2: " + precioConvertido);
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(7);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 7: " + productDtos);
+        return  productDtos;
+    }
+
+    //Producto 8
+    public List<ProductDto> extractProductList8(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
+        Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
+        //Salto de linea productDescription
+        productDescription.select("br").append("\\nl"); //append salto de linea
+        productDescription.select("div").append("\\nl");
+        //productDescription.select("p").prepend("\\nl"); //append salto de linea
+        //productDescription.select("p").append("\\nl");
+        productDescription.select("li").append("\\nl");
+        //
+        //extracion del PC
+        String name = "";
+        String img = "";
+        String description = "";
+
+        //productName
+        for (Element e : productName.select("div.px-2.titulo ")) {
+            name = e.select(" span ").text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.row")) {
+            img = e.select("   div a  ").attr("href"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("ul.list-group")) {
+            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio = "";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block")) {
+            precio = e.select(" div:matches(Bs.)   ").text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        System.out.println("Precio2: " + precioConvertido);
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(8);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 8: " + productDtos);
+        return  productDtos;
+    }
+
+    //Producto 9
+    public List<ProductDto> extractProductList9(String url) throws IOException {
+        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        Document doc1 = Jsoup.connect(url).timeout(10000).get();
+        Elements productName = doc1.select(" div.col-12.col-md-6.px-1.px-md-1.my-0.my-md-0");
+        Elements imgProduct = doc1.select("div.card-body.pt-2");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.col-12.boxe"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.card-body.bg-transparent");
+
+        //Salto de linea productDescription
+        productDescription.select("br").append("\\nl"); //append salto de linea
+        productDescription.select("div").append("\\nl");
+        //productDescription.select("p").prepend("\\nl"); //append salto de linea
+        //productDescription.select("p").append("\\nl");
+        productDescription.select("li").append("\\nl");
+        //
+        //extracion del PC
+        String name = "";
+        String img = "";
+        String description = "";
+
+        //productName
+        for (Element e : productName.select("div.px-2.titulo ")) {
+            name = e.select(" span ").text(); //Obtener tipo de PC
+        }
+        System.out.println("Nombre del PC: " + name);
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.row")) {
+            img = e.select("   div a  ").attr("href"); //Obtener src, img del PC
+            System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("ul.list-group")) {
+            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
+            System.out.println("Descripción: \n" + description);
+        }
+
+        String precio = "";
+        for (Element e : price.select("div.col-6.p-0.m-0.let.precioB.d-block")) {
+            precio = e.select(" div:matches(Bs.)   ").text(); //Obtener precio del PC
+            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
+        }
+        //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        String precio2 = precio.replace("Bs.", "");
+        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+
+        //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
+        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        System.out.println("Precio2: " + precioConvertido);
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(9);
+        productDto.setName(name);
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 9: " + productDtos);
+        return productDtos;
+    }
+
+
+    //LISTADO DE TODOS LOS PRODUCTOS
+    public List<ProductDto> productListAll(String url, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9) throws IOException{
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
+        List<ProductDto> productDtos2 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos3 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos4 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos5 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos6 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos7 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos8 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos9 = new ArrayList<ProductDto>();
+
+        //producto 1
+        productDtos = extractProductList(url);
+        System.out.println("producto1: " + productDtos);
+
+        //producto 2
+        productDtos2 = extractProductList2(url2);
+        System.out.println("producto2 url2: " + productDtos2);
+
+        //producto 3
+        productDtos3 = extractProductList3(url3);
+        System.out.println("producto3: " + productDtos3);
+
+        //producto 4
+        productDtos4 = extractProductList4(url4);
+        System.out.println("producto4: " + productDtos4);
+
+        //producto 5
+        productDtos5 = extractProductList5(url5);
+        System.out.println("producto5: " + productDtos5);
+
+        //producto 6
+        productDtos6 = extractProductList6(url6);
+        System.out.println("producto6: " + productDtos6);
+
+        //producto 7
+        productDtos7 = extractProductList7(url7);
+        System.out.println("producto7: " + productDtos7);
+
+        //producto 8
+        productDtos8 = extractProductList8(url8);
+        System.out.println("producto8: " + productDtos8);
+
+        //producto 9
+        productDtos9 = extractProductList9(url9);
+        System.out.println("producto9: " + productDtos9);
+
+        //System.out.println("Tamaño: " + productDtos.size());
+        List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
+        productAll.addAll(productDtos);
+        productAll.addAll(productDtos2);
+        productAll.addAll(productDtos3);
+        productAll.addAll(productDtos4);
+        productAll.addAll(productDtos5);
+        productAll.addAll(productDtos6);
+        productAll.addAll(productDtos7);
+        productAll.addAll(productDtos8);
+        productAll.addAll(productDtos9);
+
+        System.out.println("product all: " + productAll);
 
         return  productAll;
     }
-    //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
+//FIN
+
+
+//LISTADO de TIENDAS, extraccion de tiendas  sin  BD
+//Tienda 1
+    public List<ShopDto> extractShopList(String url) throws IOException {
+        System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(8000).get();
+        Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
+        Elements locationPage = doc.select("div.full");
+        Elements imgPage = doc.select(" div.category-view");
+
+        String description="";
+        String location ="";
+        String img="";
+        //Description
+        for (Element e : descriptionPage.select("div.full"))
+        {
+            description = e.select("div.span-text" ).text();
+            System.out.println("Descripcion: " + description);
+        }
+        //location
+        for (Element e : locationPage.select("div.span-text"))
+        {
+            location = e.select("span.text" ).text();
+        }
+        System.out.println("Location: " + location);
+
+        //img
+        for (Element e : imgPage.select("div.empresa"))
+        {
+            img = e.select("div.banner.desktop img").attr("src"); //Obtener src, img del PC
+            System.out.println("Logo de la tienda 1: " + img);
+        }
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(1);
+        shopDto.setName("Dismac");
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        shopDto.setImg(img);
+
+        shopDtos.add( shopDto);
+        System.out.println("shopDtos 1: " + shopDtos);
+        return shopDtos;
+    }
+
+    //LISTADO DE TODAS LAS TIENDAS
+    public List<ShopDto> shopListAll(String url, String url2, String url3) throws IOException{
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); //se crea productDtos para tener el listado de products
+        List<ShopDto> shopDtos2 = new ArrayList<ShopDto>();
+        List<ShopDto> shopDtos3 = new ArrayList<ShopDto>();
+
+        //Tienda 1
+        shopDtos = extractShopList(url);
+        System.out.println(" Tienda 1: " + shopDtos);
+
+
+
+        //System.out.println("Tamaño: " + productDtos.size());
+        List<ShopDto> shopAll = new ArrayList<ShopDto>(); // Lista para guardar todos los productos
+        shopAll.addAll(shopDtos);
+
+
+        System.out.println("product all: " + shopAll);
+
+        return  shopAll;
+    }
+
+
+
+//LISTADO de TIENDAS, extraccion de tiendas  sin  BD
+
+
+
+
+
+
 
 
 
