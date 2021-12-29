@@ -54,57 +54,7 @@ public class ComputerPageOne {
 
 
 //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
-
-//Tienda 1: Dismac que contiene productos 1, 2 y 3
-    public ShopDto extractShopList(String url, ShopDto shopDto, Transaction transaction) throws IOException {
-        System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(8000).get();
-        Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
-        Elements locationPage = doc.select("div.full");
-        Elements imgPage = doc.select(" div.category-view");
-
-        String description="";
-        String location ="";
-        String img="";
-        //Description
-        for (Element e : descriptionPage.select("div.full"))
-        {
-            description = e.select("div.span-text" ).text();
-            System.out.println("Descripcion: " + description);
-        }
-        //location
-        for (Element e : locationPage.select("div.span-text"))
-        {
-            location = e.select("span.text" ).text();
-        }
-        System.out.println("Location: " + location);
-
-        //img
-        for (Element e : imgPage.select("div.empresa"))
-        {
-            img = e.select("div.banner.desktop img").attr("src"); //Obtener src, img del PC
-            System.out.println("Logo de la tienda 1: " + img);
-        }
-
-        //ShopBl
-        Shop shop = new Shop();
-        shop.setName("Dismac");
-        shop.setDescription(description);
-        shop.setLocation(location);
-        shop.setImg(img);
-        //transaction
-        shop.setTxId(transaction.getTxId());
-        shop.setTxHost(transaction.getTxHost());
-        shop.setTxUserId(transaction.getTxUserId());
-        shop.setTxDate(transaction.getTxDate());
-        shop.setStatus(1);
-        shopDao.create(shop);
-        Integer getLastId = transactionDao.getLastInsertId();
-        shopDto.setShopId(getLastId);
-        return  shopDto;
-
-    }
-
+    //tienda 1, Dismac
     //PRODUCTO 1
     public List<ProductDto> extractProductList(String url) throws IOException {
         System.out.println("Computadoras, Página Dismac url1" + url + "...");
@@ -156,6 +106,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos: " + productDtos);
@@ -284,7 +236,7 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
-//tienda 2, CompuCenter
+    //tienda 2, CompuCenter
     //Producto 4
     public List<ProductDto> extractProductList4(String url) throws IOException {
         System.out.println("Computadoras, Página CompuCenter url2" + url + "...");
@@ -492,7 +444,7 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
-//tienda 3, Multilaptos
+    //tienda 3, Multilaptos
     //Producto7
     public List<ProductDto> extractProductList7(String url) throws IOException {
         System.out.println("Computadoras, Página CompuCenter url" + url + "...");
@@ -763,11 +715,40 @@ public class ComputerPageOne {
 
         return  productAll;
     }
+
+    //PRODUCTO POR ID
+    public ProductDto findProductById(Integer productId, String url, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9)throws IOException {
+        List<ProductDto> productDtosFor = productListAll(url, url2, url3, url4, url5, url6, url7, url8, url9); //se crea para el for y para llamar al metodo productListAll
+        ProductDto productAux = new ProductDto();                          // para el return, para guardar el listado final
+
+        for(int i=0; i < productDtosFor.size(); i++) {
+            ProductDto product = productDtosFor.get(i);      // product para guardar el recorrido del for
+            ProductDto productDto = new ProductDto();
+
+            System.out.println("shopId de la tienda desde el for: "+ product.getProductId());     //condicional IF(), product.getProductId()
+            System.out.println("shopId de la tienda, declarado Integer: "+ productId);       //condicional IF(), productId
+
+            if(product.getProductId() == productId){                 //listado: product.getProductId() ==  parametro introducido: Integer productId
+                System.out.println("product.getProductId() desde el for: "+ product.getProductId() + ", es igual a parametro productId? "+ productId);
+                productDto.setProductId(product.getProductId());
+                productDto.setName(product.getName());
+                productDto.setDescription(product.getDescription());
+                productDto.setImg(product.getImg());
+                productDto.setPrice(product.getPrice());
+
+                productAux = productDto;
+            }//fin IF
+        }//fin FOR
+        //System.out.println("findShopById: "+ productAux);
+        return  productAux;
+    }
 //FIN
 
 
+
+
 //LISTADO de TIENDAS, extraccion de tiendas  sin  BD
-    //Tienda 1
+    //Tienda 1: Dismac
     public List<ShopDto> extractShopList(String url) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
@@ -814,7 +795,7 @@ public class ComputerPageOne {
         return shopDtos;
     }
 
-    //Tienda 2
+    //Tienda 2: CompuCenter
     public List<ShopDto> extractShopList2(String url) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 2, página CompuCenter  " + url );
         Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion, description
@@ -871,7 +852,7 @@ public class ComputerPageOne {
         return shopDtos;
     }
 
-    //Tienda 3
+    //Tienda 3: Multilaptops
     public List<ShopDto> extractShopList3(String url) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 3, página CompuCenter  " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();      //para buscar img y ubicacion
@@ -914,7 +895,6 @@ public class ComputerPageOne {
         return shopDtos;
 
     }
-
 
 
     //LISTADO DE TODAS LAS TIENDAS
@@ -977,6 +957,9 @@ public class ComputerPageOne {
 //FIN
 
 
+//LISTADO de brands, extraccion de marcas  sin  BD
+
+//FIN
 
 
 
@@ -984,7 +967,8 @@ public class ComputerPageOne {
 
 
 
-//Tienda 1: Dismac que contiene productos 1, 2 y 3
+
+    //Tienda 1: Dismac que contiene productos 1, 2 y 3
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).timeout(8000).get();
