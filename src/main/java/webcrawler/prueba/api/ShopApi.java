@@ -84,14 +84,23 @@ public class ShopApi {
         //dirección tienda 3
         String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
 
-
         return computerPageOne.shopListAll(url, url2 ,url3);
     }
 //FIN
 
 
-//encontar shop ID
+//encontar shop ID SIN BASE DE DATOS
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ShopDto findById(@PathVariable("id") Integer id, HttpServletRequest request)throws IOException {
+        //dirección tienda 1
+        String url="https://www.dismac.com.bo/empresa.html";  //tienda 1
+        //dirección tienda 2
+        String url2="https://compucenter.store/about";  //tienda 2, img y ubicacion, description
+        //dirección tienda 3
+        String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
 
+        return computerPageOne.findShopById(id, url, url2, url3);
+    }
 //FIN
 
 

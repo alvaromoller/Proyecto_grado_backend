@@ -916,6 +916,7 @@ public class ComputerPageOne {
     }
 
 
+
     //LISTADO DE TODAS LAS TIENDAS
     public List<ShopDto> shopListAll(String url, String url2, String url3) throws IOException{
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); //se crea productDtos para tener el listado de products
@@ -946,9 +947,33 @@ public class ComputerPageOne {
         return  shopAll;
     }
 
+    //TIENDA POR ID
+    public ShopDto findShopById(Integer shopId, String url, String url2, String url3 ) throws IOException {
+        List<ShopDto> shopDtosFor = shopListAll(url, url2, url3); //se crea para el for y para llamar al metodo shopListAll
+        ShopDto shopAux = new ShopDto();                          // para el return, para guardar el listado final
 
+        for(int i=0; i < shopDtosFor.size(); i++) {
+            ShopDto shop = shopDtosFor.get(i);      // shop para guardar el recorrido del for
+            ShopDto shopDto = new ShopDto();
 
+            //System.out.println("tamaño de la lista: " + shopDtosFor.size());
+            //System.out.println("Posicion I: " + i + ", shop obtenidos: "+ shop );
+            //System.out.println("shopId de la tienda desde el for: "+ shop.getShopId());     //condicional IF(), shop.getShopId()
+            //System.out.println("shopId de la tienda, declarado Integer: "+ shopId);       //condicional IF(), shopId
+            if(shop.getShopId() == shopId){                 //listado: shop.getShopId() ==  parametro introducido: Integer shopId
+                System.out.println("shopId de la tienda desde el for: "+ shop.getShopId() + ", es igual a parametro shopId? "+ shopId);
+                shopDto.setShopId(shop.getShopId());
+                shopDto.setName(shop.getName());
+                shopDto.setDescription(shop.getDescription());
+                shopDto.setLocation(shop.getLocation());
+                shopDto.setImg(shop.getImg());
 
+                shopAux = shopDto;
+            }//fin IF
+        }//fin FOR
+            //System.out.println("findShopById: "+ shopAux);
+        return  shopAux;
+    }
 //FIN
 
 
