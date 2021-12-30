@@ -35,10 +35,10 @@ public class CategoryApi {
         this.transactionBl = transactionBl;
     }
 
-    //lista de categoria
+    //lista de categoria nuevo
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CategoryDto> selectCategories(HttpServletRequest request){
-        return categoryBl.selectCategories();
+        return categoryBl.categoryListAll();
     }
 
     //encontrar por ID

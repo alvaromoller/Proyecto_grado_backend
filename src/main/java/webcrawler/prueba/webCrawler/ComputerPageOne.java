@@ -169,6 +169,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos 2 : " + productDtos);
@@ -230,6 +232,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos 3: " + productDtos);
@@ -300,6 +304,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(2);
 
         productDtos.add( productDto);
         System.out.println("productDtos 4: " + productDtos);
@@ -369,6 +375,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(2);
 
         productDtos.add( productDto);
         System.out.println("productDtos 5: " + productDtos);
@@ -438,6 +446,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(6);
 
         productDtos.add( productDto);
         System.out.println("productDtos 6: " + productDtos);
@@ -508,6 +518,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(3);
 
         productDtos.add( productDto);
         System.out.println("productDtos 7: " + productDtos);
@@ -576,6 +588,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(3);
 
         productDtos.add( productDto);
         System.out.println("productDtos 8: " + productDtos);
@@ -644,6 +658,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        //llaves foraneas
+        productDto.setShopId(3);
 
         productDtos.add( productDto);
         System.out.println("productDtos 9: " + productDtos);
@@ -665,35 +681,35 @@ public class ComputerPageOne {
 
         //producto 1
         productDtos = extractProductList(url);
-        System.out.println("producto1: " + productDtos);
+        //System.out.println("producto1: " + productDtos);
 
         //producto 2
         productDtos2 = extractProductList2(url2);
-        System.out.println("producto2 url2: " + productDtos2);
+        //System.out.println("producto2 url2: " + productDtos2);
 
         //producto 3
         productDtos3 = extractProductList3(url3);
-        System.out.println("producto3: " + productDtos3);
+        //System.out.println("producto3: " + productDtos3);
 
         //producto 4
         productDtos4 = extractProductList4(url4);
-        System.out.println("producto4: " + productDtos4);
+        //System.out.println("producto4: " + productDtos4);
 
         //producto 5
         productDtos5 = extractProductList5(url5);
-        System.out.println("producto5: " + productDtos5);
+        //System.out.println("producto5: " + productDtos5);
 
         //producto 6
         productDtos6 = extractProductList6(url6);
-        System.out.println("producto6: " + productDtos6);
+        //System.out.println("producto6: " + productDtos6);
 
         //producto 7
         productDtos7 = extractProductList7(url7);
-        System.out.println("producto7: " + productDtos7);
+        //System.out.println("producto7: " + productDtos7);
 
         //producto 8
         productDtos8 = extractProductList8(url8);
-        System.out.println("producto8: " + productDtos8);
+        //System.out.println("producto8: " + productDtos8);
 
         //producto 9
         productDtos9 = extractProductList9(url9);
@@ -711,8 +727,7 @@ public class ComputerPageOne {
         productAll.addAll(productDtos8);
         productAll.addAll(productDtos9);
 
-        System.out.println("product all: " + productAll);
-
+        //System.out.println("product all: " + productAll);
         return  productAll;
     }
 
@@ -724,9 +739,6 @@ public class ComputerPageOne {
         for(int i=0; i < productDtosFor.size(); i++) {
             ProductDto product = productDtosFor.get(i);      // product para guardar el recorrido del for
             ProductDto productDto = new ProductDto();
-
-            System.out.println("shopId de la tienda desde el for: "+ product.getProductId());     //condicional IF(), product.getProductId()
-            System.out.println("shopId de la tienda, declarado Integer: "+ productId);       //condicional IF(), productId
 
             if(product.getProductId() == productId){                 //listado: product.getProductId() ==  parametro introducido: Integer productId
                 System.out.println("product.getProductId() desde el for: "+ product.getProductId() + ", es igual a parametro productId? "+ productId);
@@ -905,25 +917,22 @@ public class ComputerPageOne {
 
         //Tienda 1
         shopDtos = extractShopList(url);
-        System.out.println(" Tienda 1: " + shopDtos);
+        //System.out.println(" Tienda 1: " + shopDtos);
 
         //Tienda 2
         shopDtos2 = extractShopList2(url2);
-        System.out.println(" Tienda 2: " + shopDtos2);
+        //System.out.println(" Tienda 2: " + shopDtos2);
 
         //Tienda 3
         shopDtos3 = extractShopList3(url3);
-        System.out.println(" Tienda 3: " + shopDtos3);
+        //System.out.println(" Tienda 3: " + shopDtos3);
 
         //System.out.println("Tamaño: " + productDtos.size());
         List<ShopDto> shopAll = new ArrayList<ShopDto>(); // Lista para guardar todos los productos
         shopAll.addAll(shopDtos);
         shopAll.addAll(shopDtos2);
         shopAll.addAll(shopDtos3);
-
-
-        System.out.println("Shops all: " + shopAll);
-
+        //System.out.println("Shops all: " + shopAll);
         return  shopAll;
     }
 
