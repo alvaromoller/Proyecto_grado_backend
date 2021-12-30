@@ -92,16 +92,23 @@ public class CategoryBl {
 
 //FIN
 
-
-
     //encontrar categoria por ID
     public CategoryDto findCategoryById(Integer categoryId){
-        Category category = categoryDao.findCategoryById(categoryId);
-        CategoryDto categoryDto = new CategoryDto();
+        //Category category = categoryDao.findCategoryById(categoryId);
+        List<CategoryDto> categoryDtosFor = categoryListAll(); //se crea para el for y para llamar al metodo categoryListAll
+        CategoryDto categoryAux = new CategoryDto();                          // para el return, para guardar el listado final
 
-        categoryDto.setCategoryId(category.getCategoryId());
-        categoryDto.setCategoryName(category.getCategoryName());
-        return  categoryDto;
+        for(int i=0; i < categoryDtosFor.size(); i++) {
+            CategoryDto category = categoryDtosFor.get(i);  //guardar el recorrido del for
+            CategoryDto categoryDto = new CategoryDto();
+
+            if(category.getCategoryId() == categoryId) {    //listado: category.getCategoryId() ==  parametro introducido: Integer categoryId
+                categoryDto.setCategoryId(category.getCategoryId());
+                categoryDto.setCategoryName(category.getCategoryName());
+                categoryAux = categoryDto;
+            }//if
+        }//for
+        return  categoryAux;
     }
 
     //Crear categoria
