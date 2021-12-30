@@ -966,7 +966,30 @@ public class ComputerPageOne {
 //FIN
 
 
-//LISTADO de brands, extraccion de marcas  sin  BD
+//LISTADO ProductCategory  por categoriaId
+    //listado de productos por categoria, JOIN SIN BASE DE DATOS
+    public List<ProductDto> selectProductsByCategory(Integer categoryId, String url, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9)throws IOException{
+    //List<Product> products = productDao.getProductListByCategory(categoryId);      //productos, se crea un for para recorrer products
+    List<ProductDto> productDtosFor = productListAll(url,url2,url3,url4,url5,url6,url7,url8,url9); //se crea para el for y para llamar al metodo productListAll y obtener sus datos extraidos
+    List<ProductDto> productAux = new ArrayList<ProductDto>();      //return aux
+
+    for(int i=0; i < productDtosFor.size(); i++){
+        ProductDto product = productDtosFor.get(i);
+        ProductDto productDto = new ProductDto();
+        productDto.setProductId(product.getProductId());
+        productDto.setName(product.getName());
+        productDto.setDescription(product.getDescription());
+        productDto.setImg(product.getImg());
+        productDto.setPrice(product.getPrice());
+        //llaves foraneas
+        //productDto.setBrandId(product.getBrandId());
+        productDto.setShopId(product.getShopId());
+        //productDto.setProductTypeId(product.getProductTypeId());
+
+        productAux.add(i, productDto);
+    }
+    return  productAux;
+}
 
 //FIN
 

@@ -92,7 +92,7 @@ public class CategoryBl {
 
 //FIN
 
-    //encontrar categoria por ID
+    //encontrar categoria por ID de categoryListAll
     public CategoryDto findCategoryById(Integer categoryId){
         //Category category = categoryDao.findCategoryById(categoryId);
         List<CategoryDto> categoryDtosFor = categoryListAll(); //se crea para el for y para llamar al metodo categoryListAll
@@ -110,6 +110,8 @@ public class CategoryBl {
         }//for
         return  categoryAux;
     }
+
+
 
     //Crear categoria
     public CategoryDto createCategory(CategoryDto categoryDto, Transaction transaction){

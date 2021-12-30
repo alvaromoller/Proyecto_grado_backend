@@ -70,6 +70,9 @@ public class ProductBl {
         return  productDtos;
     }
 
+
+
+
     //Encontrar producto por ID
     public ProductDto findProductById(Integer productId){
         Product product = productDao.findByProductId(productId);
