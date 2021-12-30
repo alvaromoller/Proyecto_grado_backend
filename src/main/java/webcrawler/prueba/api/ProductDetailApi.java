@@ -63,6 +63,8 @@ public class ProductDetailApi {
         return productDtoResponse;
     }
 
+
+/**
 //TIENDA 1 DISMAC,
 //producto 1
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -157,12 +159,7 @@ public class ProductDetailApi {
         String url="https://www.multilaptops.net/store2/181";  //Pc3
         computerPageThree.extractDetail3(url, productDetailDto, transaction);
     }
-
-
-
-//ACTUALIZACIONES
-//TIENDA 1 DISMAC,
-//producto 1
+*/
 
 
 

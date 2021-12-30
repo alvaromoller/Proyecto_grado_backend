@@ -24,7 +24,7 @@ public class CategoryBl {
         this.transactionDao = transactionDao;
     }
 
-//CATEGORIAS
+//CATEGORIAS sin base de datos
     //Categoria 1
     public List<CategoryDto> selectCategories(){
         List<CategoryDto> categoryDtos = new ArrayList<CategoryDto>(); // para GUARDAR el listado de Category
@@ -32,9 +32,9 @@ public class CategoryBl {
 
         categoryDto.setCategoryId(1);       //3 categorias
         categoryDto.setCategoryName("Categoria 1");
-
         categoryDtos.add(categoryDto);
-        System.out.println("Categoria1: "+ categoryDtos);
+
+        //System.out.println("Categoria1: "+ categoryDtos);
         return  categoryDtos;
     }
 
@@ -45,9 +45,9 @@ public class CategoryBl {
 
         categoryDto.setCategoryId(2);       //3 categorias
         categoryDto.setCategoryName("Categoria 2");
-
         categoryDtos.add(categoryDto);
-        System.out.println("Categoria2: "+ categoryDtos);
+
+        //System.out.println("Categoria2: "+ categoryDtos);
         return  categoryDtos;
     }
 
@@ -58,11 +58,13 @@ public class CategoryBl {
 
         categoryDto.setCategoryId(3);       //3 categorias
         categoryDto.setCategoryName("Categoria 3");
-
         categoryDtos.add(categoryDto);
-        System.out.println("Categoria3: "+ categoryDtos);
+
+        //System.out.println("Categoria3: "+ categoryDtos);
         return  categoryDtos;
     }
+
+
 
     //Lista de las 3 categorias
     public List<CategoryDto> categoryListAll() {
@@ -90,9 +92,7 @@ public class CategoryBl {
         return  categoryAll;
     }
 
-//FIN
-
-    //encontrar categoria por ID de categoryListAll
+    //Categoria por ID de categoryListAll
     public CategoryDto findCategoryById(Integer categoryId){
         //Category category = categoryDao.findCategoryById(categoryId);
         List<CategoryDto> categoryDtosFor = categoryListAll(); //se crea para el for y para llamar al metodo categoryListAll
@@ -110,6 +110,9 @@ public class CategoryBl {
         }//for
         return  categoryAux;
     }
+//FIN
+
+
 
 
 

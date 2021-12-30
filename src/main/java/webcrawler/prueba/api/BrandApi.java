@@ -58,6 +58,8 @@ public class BrandApi {
         return brandDtoResponse;
     }
 
+
+/**
 //TIENDA 1, producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -151,6 +153,6 @@ public class BrandApi {
         String url="https://www.multilaptops.net/store2/181";  //Pc3
         computerPageThree.extractBrand3(url, brandDto, transaction);
     }
-
+*/
 
 }

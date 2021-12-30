@@ -64,6 +64,7 @@ public class ShopApi {
         ShopDto shopDtoResponse = shopBl.createShop(shopDto, transaction);
         return shopDtoResponse;
     }
+
     //UPDATE de Shop
     @RequestMapping(method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ShopDto updateShop(@RequestBody ShopDto shopDto, HttpServletRequest request){
@@ -73,8 +74,10 @@ public class ShopApi {
         return Response;
     }
 
-//LISTA DE PRODUCTOS SIN BASE DE DATOS
-    //listado de tiendas
+
+///////////////////////////
+    //TIENDAS 1, 2, 3
+    //LISTA DE TIENDAS SIN BASE DE DATOS
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ShopDto> selectShops(HttpServletRequest request)throws IOException {
         //dirección tienda 1
@@ -86,10 +89,10 @@ public class ShopApi {
 
         return computerPageOne.shopListAll(url, url2 ,url3);
     }
-//FIN
+    //FIN
 
 
-//encontar shop ID SIN BASE DE DATOS
+    //encontar shop ID SIN BASE DE DATOS
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ShopDto findById(@PathVariable("id") Integer id, HttpServletRequest request)throws IOException {
         //dirección tienda 1
@@ -101,10 +104,19 @@ public class ShopApi {
 
         return computerPageOne.findShopById(id, url, url2, url3);
     }
-//FIN
+    //FIN
+///////////////////////////
+
+
+///////////////////////////
+    //TIENDAS 4, 5, 6
+    //LISTA DE TIENDAS SIN BASE DE DATOS
+    //cambiamos en path=" ", para que el frontend reconozco la lista de productos de tiendas 4 , 5 ,6
+//    @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 
 
 
+/**
     //Tienda 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -176,13 +188,8 @@ public class ShopApi {
 
 
 
-    // PRUEBA, actualizando Shop1, product and productDetail
-    @RequestMapping(path ="/updateShop1", method = RequestMethod.PATCH, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void updateShop1(@RequestBody ShopDto shopDto, ProductDto productDto,Transaction transaction2, HttpServletRequest request)throws IOException {
-        Transaction transaction = TransactionUtil.createTransaction(request);
-        transactionBl.createTransaction((transaction));
-        computerPageOne.updateShopPrueba(shopDto, productDto,transaction2);
-    }
+
+*/
 
 
 }

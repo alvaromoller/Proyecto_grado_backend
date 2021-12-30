@@ -62,6 +62,8 @@ public class ProductTypeApi {
         return productTypeDtoResponse;
     }
 
+
+/**
 //TIENDA 1, Producto 1
     //Extrae informacion de pagina web y guarda los datos en BD.
     @RequestMapping(path ="/crawler1", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -159,6 +161,6 @@ public class ProductTypeApi {
         String url="https://www.multilaptops.net/store2/181";  //Pc3
         computerPageThree.extractProductType3(url, productTypeDto,transaction);
     }
-
+*/
 
 }

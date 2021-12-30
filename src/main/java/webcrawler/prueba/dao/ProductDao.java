@@ -14,6 +14,6 @@ public interface ProductDao {
     public void update(Product product);
 
     //Listado de JOIN de tabla product con productCategory
-    //para saber y obtener cuantos productos tiene categoria
+    //para saber y obtener cuantos productos tiene una categoria
     public List<Product> getProductListByCategory(Integer categoryId);
 }

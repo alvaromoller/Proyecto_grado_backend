@@ -44,6 +44,8 @@ public class ComputerPageThree {
     }
 
 
+
+/** Con Base de Datos
 //Tienda 3, que contiene productos 1, 2 y 3
 //Tienda Multilaptos, La Paz Bolivia
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
@@ -828,5 +830,8 @@ public class ComputerPageThree {
         productDao.update(product);
         return productDto;
 }
+
+ */
+
 
 }

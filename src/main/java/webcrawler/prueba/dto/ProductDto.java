@@ -11,6 +11,8 @@ public class ProductDto {
     private Integer brandId;
     private Integer shopId;
     private Integer productTypeId;
+    private Integer categoryId;
+
 
     /** img
     public java.lang.String getImg() {
@@ -89,6 +91,18 @@ public class ProductDto {
         this.productTypeId = productTypeId;
     }
 
+    //categoryId
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    //
+
     @Override
     public String toString() {
         return "ProductDto{" +
@@ -100,6 +114,7 @@ public class ProductDto {
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +
                 ", productTypeId=" + productTypeId +
+                ", categoryId=" + categoryId +
                 '}';
     }
 }

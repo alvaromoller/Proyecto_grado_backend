@@ -35,17 +35,21 @@ public class CategoryApi {
         this.transactionBl = transactionBl;
     }
 
-    //lista de categoria nuevo
+///////////////////////////
+    //lista de categoria nuevo, sin base de datos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CategoryDto> selectCategories(HttpServletRequest request){
         return categoryBl.categoryListAll();
     }
 
-    //encontrar por ID
+    //encontrar por ID nuevo, sin base de datos
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public CategoryDto findById(@PathVariable("id") Integer id, HttpServletRequest request){
         return categoryBl.findCategoryById(id);
     }
+///////////////////////////
+
+
 
     //Crear categoria
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)

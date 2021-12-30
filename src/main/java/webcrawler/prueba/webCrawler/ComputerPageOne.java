@@ -52,6 +52,7 @@ public class ComputerPageOne {
     }
 
 
+//TIENDAS 1, 2, 3
 
 //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
     //tienda 1, Dismac
@@ -108,6 +109,7 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(1);
+        productDto.setCategoryId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos: " + productDtos);
@@ -966,32 +968,6 @@ public class ComputerPageOne {
 //FIN
 
 
-//LISTADO ProductCategory  por categoriaId
-    //listado de productos por categoria, JOIN SIN BASE DE DATOS
-    public List<ProductDto> selectProductsByCategory(Integer categoryId, String url, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9)throws IOException{
-    //List<Product> products = productDao.getProductListByCategory(categoryId);      //productos, se crea un for para recorrer products
-    List<ProductDto> productDtosFor = productListAll(url,url2,url3,url4,url5,url6,url7,url8,url9); //se crea para el for y para llamar al metodo productListAll y obtener sus datos extraidos
-    List<ProductDto> productAux = new ArrayList<ProductDto>();      //return aux
-
-    for(int i=0; i < productDtosFor.size(); i++){
-        ProductDto product = productDtosFor.get(i);
-        ProductDto productDto = new ProductDto();
-        productDto.setProductId(product.getProductId());
-        productDto.setName(product.getName());
-        productDto.setDescription(product.getDescription());
-        productDto.setImg(product.getImg());
-        productDto.setPrice(product.getPrice());
-        //llaves foraneas
-        //productDto.setBrandId(product.getBrandId());
-        productDto.setShopId(product.getShopId());
-        //productDto.setProductTypeId(product.getProductTypeId());
-
-        productAux.add(i, productDto);
-    }
-    return  productAux;
-}
-
-//FIN
 
 
 
@@ -1000,6 +976,8 @@ public class ComputerPageOne {
 
 
 
+
+/** Con base de datos
     //Tienda 1: Dismac que contiene productos 1, 2 y 3
     public ShopDto extractShop(String url, ShopDto shopDto, Transaction transaction) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
@@ -1754,26 +1732,11 @@ public class ComputerPageOne {
         return productDto;
     }
 
+*/
 
 
 
 
-
-
-
-
-    //PRUEBA para la actualizacion, de shop y product en conjunto, FALTA
-    public void updateShopPrueba(ShopDto shopDto, ProductDto productDto, Transaction transaction) throws IOException {
-        System.out.println("#### Actualizando toda la tienda 1 Dismac: #### ");
-        ComputerPageOne update = new ComputerPageOne();
-        String url ="https://www.dismac.com.bo/empresa.html";
-        String url1 ="https://www.dismac.com.bo/o85pd.html";
-        String url2 = "https://www.dismac.com.bo/o85pd.html";
-        //tienda 1
-        update.updateShop(url, shopDto, transaction);               //update shop
-        //Producto 1
-        update.updateProduct(url1, productDto, transaction);        //update product
-    }
 
     private static void print(String msg, Object... args) {
         System.out.println(String.format(msg, args));
