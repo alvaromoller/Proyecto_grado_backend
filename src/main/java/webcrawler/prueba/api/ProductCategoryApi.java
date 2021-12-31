@@ -74,7 +74,7 @@ public class ProductCategoryApi {
         String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
 
 
-        //dirección producto 4, Categoria Gamer
+        //dirección producto 4
         String url4="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC4
         // dirección producto 5
         String url5="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC5
@@ -103,7 +103,7 @@ public class ProductCategoryApi {
         String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
 
 
-        //dirección producto 4, Categoria Gamer
+        //dirección producto 4
         String url4="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC4
         // dirección producto 5
         String url5="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC5
@@ -130,19 +130,25 @@ public class ProductCategoryApi {
         //dirección producto 3
         String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
 
-        //dirección producto 4, Categoria Gamer
-        String url4="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC4
-        // dirección producto 5
-        String url5="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC5
-        //dirección producto 6
-        String url6="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC6
+        //dirección producto 1, Categoria Gamer
+        String urlG1="https://compucenter.store/product/2049-gamer-dell-portatil-inspiron-gaming-g3-3500";  //PC4
+        // dirección producto 2
+        String urlG2="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC5
+        //dirección producto 3
+        String urlG3="https://compucenter.store/product/2631-equipo-dell-gaming-inspiron-gaming-g5-5510";  //PC6
+        // dirección producto 4
+        String urlG4="https://compucenter.store/product/2674-gamer-asus-gaming-tuf-516pr-ds77-wh";  //PC5
+        //dirección producto 5
+        String urlG5="https://compucenter.store/product/teclado-gamer-retroiluminado-marvo-k632-usb";  //PC6
+        //Fin categoria gamer
+
         //dirección producto 7
         String url7="https://www.multilaptops.net/store2/191";  //PC7
         //dirección producto 8
         String url8="https://www.multilaptops.net/store2/194";  //PC9
         //dirección producto 9
         String url9="https://www.multilaptops.net/store2/181";  //PC9
-        return computerPageTwo.selectProductsByCategory(categoryId,url,url2,url3,url4,url5,url6,url7,url8,url9);
+        return computerPageTwo.selectProductsByCategory(categoryId,url,url2,url3,  urlG1,urlG2,urlG3, urlG4, urlG5  ,url7,url8,url9);
     }
     //FIN
 

@@ -132,25 +132,23 @@ class PruebaApplication {
 
 
 /**
-		 //TIENDA 1 prueba para la actualizacion
-		 ComputerPageOne compu = new ComputerPageOne();
+		 //PRUEBA
+		 ComputerPageTwo compu = new ComputerPageTwo();
 		 //URLs
 		 String shopUrl = "https://stackblitz.com/edit/angular-ivy-oudv5d?file=src%2Fapp%2Fapp.component.html";  // img, descripcion y ubicacion
 
-		 String url = "https://www.multilaptops.net/store2/191";
+		 String url = "https://compucenter.store/product/2049-gamer-dell-portatil-inspiron-gaming-g3-3500";
 		 String url2 = "https://www.multilaptops.net/store2/194";
 		 String url3 = "https://www.multilaptops.net/store2/181";
 
 		 try {
 		 //product1
-		 compu.updateShopPrueba();
-
-
+		 compu.extractProductList(url);
 
 		 } catch (IOException e) {
 		 e.printStackTrace();
 		 }
-		*/ 	 //
+*/ //
 
 
 	}

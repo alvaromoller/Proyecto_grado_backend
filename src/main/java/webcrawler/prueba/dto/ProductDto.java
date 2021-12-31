@@ -5,6 +5,7 @@ public class ProductDto {
     //sin status ni transaction
     private Integer productId;
     private String name;
+    private String name2;
     private String description;
     private String img;
     private String price;
@@ -38,6 +39,14 @@ public class ProductDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName2() {
+        return name2;
+    }
+
+    public void setName2(String name2) {
+        this.name2 = name2;
     }
 
     public String getDescription() {
@@ -108,6 +117,7 @@ public class ProductDto {
         return "ProductDto{" +
                 "productId=" + productId +
                 ", name='" + name + '\'' +
+                ", name2='" + name2 + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
                 ", price=" + price + '\'' +
