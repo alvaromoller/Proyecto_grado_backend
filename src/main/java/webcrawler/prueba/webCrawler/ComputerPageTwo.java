@@ -166,6 +166,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(1);
+        productDto.setCategoryId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos 2 : " + productDtos);
@@ -229,6 +230,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(1);
+        productDto.setCategoryId(1);
 
         productDtos.add( productDto);
         System.out.println("productDtos 3: " + productDtos);
@@ -301,7 +303,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(2);
-        //productDto.setCategoryId(1);  //problema, da error no acepta mas de 1 equipo
+        productDto.setCategoryId(2);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 4: " + productDtos);
@@ -373,6 +375,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(2);
+        productDto.setCategoryId(2);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 5: " + productDtos);
@@ -443,7 +446,8 @@ public class ComputerPageTwo {
         productDto.setImg(img);
         productDto.setPrice(precio);
         //llaves foraneas
-        productDto.setShopId(6);
+        productDto.setShopId(2);
+        productDto.setCategoryId(2);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 6: " + productDtos);
@@ -518,6 +522,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(3);
+        productDto.setCategoryId(3);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 7: " + productDtos);
@@ -588,6 +593,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(3);
+        productDto.setCategoryId(3);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 8: " + productDtos);
@@ -658,6 +664,7 @@ public class ComputerPageTwo {
         productDto.setPrice(precio);
         //llaves foraneas
         productDto.setShopId(3);
+        productDto.setCategoryId(3);  //problema,
 
         productDtos.add( productDto);
         System.out.println("productDtos 9: " + productDtos);
@@ -765,8 +772,17 @@ public class ComputerPageTwo {
         for(int i=0; i < productDtosFor.size(); i++) {
             ProductDto product = productDtosFor.get(i);
             ProductDto productDto = new ProductDto();
-
+            //System.out.println("tamaño de productListAll: " +i +", "+ product);   //recorre todo el for
             if(product.getCategoryId()  == categoryId ){            //si product.getCategoryId() es == al parametro Integer categoryId
+                /**
+                System.out.println("cumple con la condicion, parametro introducido: " +categoryId +", CategoryId del producto: "+ product.getCategoryId());   //
+                System.out.println("productoId: " + product.getProductId() );   //
+                System.out.println("name: " + product.getName() );   //
+                System.out.println("description: " + product.getDescription() );   //
+                System.out.println("img: " + product.getImg() );   //
+                System.out.println("precio: " + product.getPrice() );   //
+                System.out.println("categoria a la que pertenece: " + product.getCategoryId() );   //
+                */
                 productDto.setProductId(product.getProductId());
                 productDto.setName(product.getName());
                 productDto.setDescription(product.getDescription());
@@ -779,7 +795,8 @@ public class ComputerPageTwo {
                 productDto.setShopId(product.getShopId());
                 //productDto.setProductTypeId(product.getProductTypeId());
 
-                productAux.add(i, productDto);
+                productAux.add( productDto);
+                //System.out.println("productAux: " +i +", "+ productAux);    //muestra los arreglos de los productos que cumplen con la condicion
             }//if
         }//for
         return  productAux;
