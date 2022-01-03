@@ -73,18 +73,18 @@ public class ComputerPageOne {
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
-            System.out.println("Nombre del PC: " + name);
+            //System.out.println("Nombre del PC: " + name);
         }
         //imgProduct
         for (Element e : imgProduct.select("div")) {
             img = e.select("div img").attr("src"); //Obtener src, img del PC
-            System.out.println("imagen : " + img);
+            //System.out.println("imagen : " + img);
         }
 
         //pruductDescription
         for (Element e : productDescription.select("div.product.attribute.description")) {
             description = e.select("div.value ").text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio = "";
@@ -94,8 +94,8 @@ public class ComputerPageOne {
 
         }
         //Convertir de String a Double
-        Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        System.out.println("Precio: " + precioConvertido + ".00");
+        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
+        //System.out.println("Precio: " + precioConvertido + ".00");
 
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
@@ -134,20 +134,20 @@ public class ComputerPageOne {
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
             name = e.select("h1 span" ).text(); //Obtener tipo de PC
-            System.out.println("Nombre del PC: " + name);
+            //System.out.println("Nombre del PC: " + name);
         }
         //imgProduct
         for (Element e : imgProduct.select("div"))
         {
             img = e.select("div img").attr("src"); //Obtener src, img del PC
-            System.out.println("imagen : " + img);
+            //System.out.println("imagen : " + img);
         }
 
         //pruductDescription
         for (Element e : productDescription.select("div.product.attribute.description"))
         {
             description = e.select("div.value " ).text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio="";
@@ -155,7 +155,7 @@ public class ComputerPageOne {
         {
             precio = e.select("span.pixel-price " ).text(); //Obtener precio del PC
         }
-        System.out.println("Precio INT: " + precio );
+        //System.out.println("Precio INT: " + precio );
 
         //Convertir de String a Double
         //Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
@@ -197,20 +197,20 @@ public class ComputerPageOne {
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
             name = e.select("h1 span" ).text(); //Obtener tipo de PC
-            System.out.println("Nombre del PC: " + name);
+            //System.out.println("Nombre del PC: " + name);
         }
         //imgProduct
         for (Element e : imgProduct.select("div"))
         {
             img = e.select("div img").attr("src"); //Obtener src, img del PC
-            System.out.println("imagen : " + img);
+            //System.out.println("imagen : " + img);
         }
 
         //pruductDescription
         for (Element e : productDescription.select("div.product.attribute.description"))
         {
             description = e.select("div.value " ).text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio="";
@@ -221,8 +221,8 @@ public class ComputerPageOne {
 
         }
         //Convertir de String a Double
-        Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
-        System.out.println("Precio: " + precioConvertido + ".00");
+        //Double precioConvertido = Double.parseDouble(precio.replace("," , "."));
+        //System.out.println("Precio: " + precioConvertido + ".00");
 
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
@@ -262,40 +262,39 @@ public class ComputerPageOne {
         {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
-        System.out.println("Nombre del PC: " + name);
+        //System.out.println("Nombre del PC: " + name);
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
         {
             img = e.select("  img ").attr("src"); //Obtener src, img del PC
-            System.out.println("imagen : " + img);
+            //System.out.println("imagen : " + img);
         }
 
         //pruductDescription
         for (Element e : productDescription.select("div.text-base"))
         {
             description = e.select(" div " ).text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio="";
         for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
         {
             precio = e.select("span  " ).text(); //Obtener precio del PC
-            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+            //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
 
         }
+        /**
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
         String precio2 = precio.replace("Bs" , "");
         System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
-
         //se quito la coma
         String precio3 = precio2.replace(",", "");
         System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
-
         Double precioConvertido = Double.parseDouble(precio3);
         System.out.println("precio Convertido a Double " + precioConvertido );
-
+        */
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
@@ -333,40 +332,39 @@ public class ComputerPageOne {
         {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
-        System.out.println("Nombre del PC: " + name);
+        //System.out.println("Nombre del PC: " + name);
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
         {
             img = e.select("  img ").attr("src"); //Obtener src, img del PC
-            System.out.println("imagen : " + img);
+            //System.out.println("imagen : " + img);
         }
 
         //pruductDescription
         for (Element e : productDescription.select("div.text-base"))
         {
             description = e.select(" div " ).text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio="";
         for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
         {
             precio = e.select("span  " ).text(); //Obtener precio del PC
-            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+            //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
 
         }
+        /**
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
         String precio2 = precio.replace("Bs" , "");
         System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
-
         //se quito la coma
         String precio3 = precio2.replace(",", "");
         System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
-
         Double precioConvertido = Double.parseDouble(precio3);
         System.out.println("precio Convertido a Double " + precioConvertido );
-
+        */
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
@@ -404,7 +402,7 @@ public class ComputerPageOne {
         {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
-        System.out.println("Nombre del PC: " + name);
+        //System.out.println("Nombre del PC: " + name);
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -417,27 +415,26 @@ public class ComputerPageOne {
         for (Element e : productDescription.select("div.text-base"))
         {
             description = e.select(" div " ).text(); //Obtener marca del PC
-            System.out.println("Descripción: \n" + description);
+            //System.out.println("Descripción: \n" + description);
         }
 
         String precio="";
         for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
         {
             precio = e.select("span  " ).text(); //Obtener precio del PC
-            System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+            //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
 
         }
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
+        /**
         String precio2 = precio.replace("Bs" , "");
         System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
-
         //se quito la coma
         String precio3 = precio2.replace(",", "");
         System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
-
         Double precioConvertido = Double.parseDouble(precio3);
         System.out.println("precio Convertido a Double " + precioConvertido );
-
+         */
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
@@ -503,12 +500,12 @@ public class ComputerPageOne {
             System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
         }
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
-        String precio2 = precio.replace("Bs.", "");
-        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+        //String precio2 = precio.replace("Bs.", "");
+        //System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
 
         //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
-        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
-        System.out.println("Precio2: " + precioConvertido);
+        //Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        //System.out.println("Precio2: " + precioConvertido);
 
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
@@ -573,12 +570,12 @@ public class ComputerPageOne {
             System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
         }
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
-        String precio2 = precio.replace("Bs.", "");
-        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+        //String precio2 = precio.replace("Bs.", "");
+        //System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
 
         //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
-        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
-        System.out.println("Precio2: " + precioConvertido);
+        //Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        //System.out.println("Precio2: " + precioConvertido);
 
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
@@ -643,12 +640,12 @@ public class ComputerPageOne {
             System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double \n");
         }
         //En replace se quito exitosamente el Bs: para convertir el precio en Double
-        String precio2 = precio.replace("Bs.", "");
-        System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
+        //String precio2 = precio.replace("Bs.", "");
+        //System.out.println("Precio2: " + precio2 + " , se quito exitosamente el Bs: para convertir el precio en Double");
 
         //Convertir de String a Double, problema, hay letras adelante de los numeros, Bs: 7980
-        Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
-        System.out.println("Precio2: " + precioConvertido);
+        //Double precioConvertido = Double.parseDouble(precio2.replaceAll(",", "."));
+        //System.out.println("Precio2: " + precioConvertido);
 
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS

@@ -123,14 +123,17 @@ public class ProductCategoryApi {
     //JOIN de tabla product con productCategory
     @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsByCategory(@PathVariable("categoryId") Integer categoryId, HttpServletRequest request)throws IOException{
-        //dirección producto 1
-        String url="https://www.dismac.com.bo/o85pd.html";  //PC1
+        //dirección producto 1, PC.com
+        String urlS1="https://www.pc.com.bo/assets/html/hp15-ef0025wm.html";  //PC1
         //dirección producto 2
-        String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
+        String urlS2="https://www.pc.com.bo/assets/html/hp15-dy1751ms.html";  //Pc2
         //dirección producto 3
-        String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+        String urlS3="https://www.pc.com.bo/assets/html/hp14-dk1022wm.html";  //Pc3
+        //dirección producto 4
+        String urlS4="https://www.pc.com.bo/assets/html/hp13-ag0003la.html";  //Pc4
 
-        //dirección producto 1, Categoria Gamer
+        //Categoria Gamer, compucenter
+        //dirección producto 1, +
         String urlG1="https://compucenter.store/product/2049-gamer-dell-portatil-inspiron-gaming-g3-3500";  //PC4
         // dirección producto 2
         String urlG2="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC5
@@ -142,13 +145,13 @@ public class ProductCategoryApi {
         String urlG5="https://compucenter.store/product/teclado-gamer-retroiluminado-marvo-k632-usb";  //PC6
         //Fin categoria gamer
 
-        //dirección producto 7
-        String url7="https://www.multilaptops.net/store2/191";  //PC7
+        //dirección producto 7, Pc.com, compucenter
+        String url7="https://compucenter.store/product/2578-equipo-dell-laptop-inspiron-5502";  //PC7
         //dirección producto 8
-        String url8="https://www.multilaptops.net/store2/194";  //PC9
+        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC9
         //dirección producto 9
-        String url9="https://www.multilaptops.net/store2/181";  //PC9
-        return computerPageTwo.selectProductsByCategory(categoryId,url,url2,url3,  urlG1,urlG2,urlG3, urlG4, urlG5  ,url7,url8,url9);
+        String url9="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC9
+        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,  urlG1,urlG2,urlG3, urlG4, urlG5  ,url7,url8,url9);
     }
     //FIN
 
