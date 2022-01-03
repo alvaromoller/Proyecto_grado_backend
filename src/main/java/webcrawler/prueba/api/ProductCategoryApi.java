@@ -123,7 +123,8 @@ public class ProductCategoryApi {
     //JOIN de tabla product con productCategory
     @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsByCategory(@PathVariable("categoryId") Integer categoryId, HttpServletRequest request)throws IOException{
-        //dirección producto 1, PC.com
+        //Categoria Study, PC.com
+        //dirección producto 1,
         String urlS1="https://www.pc.com.bo/assets/html/hp15-ef0025wm.html";  //PC1
         //dirección producto 2
         String urlS2="https://www.pc.com.bo/assets/html/hp15-dy1751ms.html";  //Pc2
@@ -133,7 +134,7 @@ public class ProductCategoryApi {
         String urlS4="https://www.pc.com.bo/assets/html/hp13-ag0003la.html";  //Pc4
 
         //Categoria Gamer, compucenter
-        //dirección producto 1, +
+        //dirección producto 1,
         String urlG1="https://compucenter.store/product/2049-gamer-dell-portatil-inspiron-gaming-g3-3500";  //PC4
         // dirección producto 2
         String urlG2="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC5
@@ -145,13 +146,18 @@ public class ProductCategoryApi {
         String urlG5="https://compucenter.store/product/teclado-gamer-retroiluminado-marvo-k632-usb";  //PC6
         //Fin categoria gamer
 
-        //dirección producto 7, Pc.com, compucenter
-        String url7="https://compucenter.store/product/2578-equipo-dell-laptop-inspiron-5502";  //PC7
-        //dirección producto 8
-        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC9
-        //dirección producto 9
-        String url9="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC9
-        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,  urlG1,urlG2,urlG3, urlG4, urlG5  ,url7,url8,url9);
+        //Categoria Work, Compucenter y Pc.com
+        //dirección producto 1,
+        String urlW1="https://compucenter.store/product/2578-equipo-dell-laptop-inspiron-5502";  //PC1
+        //dirección producto 2,
+        String urlW2="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC2
+        //dirección producto 3
+        String urlW3="https://compucenter.store/brand/8-apple";  //PC3
+        //dirección producto 4
+        String urlW4="https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html";  //PC4
+        // dirección producto 5
+        String urlW5="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC5
+        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,  urlG1,urlG2,urlG3, urlG4, urlG5  ,urlW1,urlW2,urlW3,urlW4,urlW5 );
     }
     //FIN
 
