@@ -3,6 +3,8 @@ package webcrawler.prueba.dto;
 public class CategoryDto {
 
     private Integer categoryId;
+    private Integer shopId; //llave foranea
+    private Integer productId;
     private String categoryName;
     private String img;
 
@@ -12,6 +14,22 @@ public class CategoryDto {
 
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Integer getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(Integer shopId) {
+        this.shopId = shopId;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 
     public String getCategoryName() {
@@ -34,6 +52,8 @@ public class CategoryDto {
     public String toString() {
         return "CategoryDto{" +
                 "categoryId=" + categoryId +
+                "shopId=" + shopId +
+                "productId=" + productId +
                 ", categoryName='" + categoryName + '\'' +
                 ", img='" + img + '\'' +
 

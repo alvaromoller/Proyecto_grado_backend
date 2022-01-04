@@ -9,8 +9,10 @@ public class ProductDto {
     private String description;
     private String img;
     private String price;
+
     private Integer brandId;
     private Integer shopId;
+    private String shopName;
     private Integer productTypeId;
     private Integer categoryId;
 
@@ -49,6 +51,7 @@ public class ProductDto {
         this.name2 = name2;
     }
 
+
     public String getDescription() {
         return description;
     }
@@ -74,6 +77,15 @@ public class ProductDto {
     }
 
     //
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
     //
 
     public Integer getBrandId() {
@@ -101,7 +113,6 @@ public class ProductDto {
     }
 
     //categoryId
-
     public Integer getCategoryId() {
         return categoryId;
     }
@@ -109,7 +120,6 @@ public class ProductDto {
     public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
-
     //
 
     @Override
@@ -123,6 +133,7 @@ public class ProductDto {
                 ", price=" + price + '\'' +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +
+                ", shopName='" + shopName + '\'' +
                 ", productTypeId=" + productTypeId +
                 ", categoryId=" + categoryId +
                 '}';

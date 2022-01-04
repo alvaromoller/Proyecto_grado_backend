@@ -146,7 +146,7 @@ public class ProductCategoryApi {
         String urlG5="https://compucenter.store/product/teclado-gamer-retroiluminado-marvo-k632-usb";  //PC6
         //Fin categoria gamer
 
-        //Categoria Work, Compucenter y Pc.com
+        //Categoria Work, Compucenter
         //dirección producto 1,
         String urlW1="https://compucenter.store/product/2578-equipo-dell-laptop-inspiron-5502";  //PC1
         //dirección producto 2,
