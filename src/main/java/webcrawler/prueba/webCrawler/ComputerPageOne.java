@@ -67,6 +67,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name = "";
+        String name2 ="";
         String img = "";
         String description = "";
 
@@ -75,6 +76,8 @@ public class ComputerPageOne {
             name = e.select("h1 span").text(); //Obtener tipo de PC
             //System.out.println("Nombre del PC: " + name);
         }
+        name2 ="DELL Inspiron 5502";
+
         //imgProduct
         for (Element e : imgProduct.select("div")) {
             img = e.select("div img").attr("src"); //Obtener src, img del PC
@@ -104,6 +107,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(1);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("Dismac");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -128,6 +132,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2 ="";
         String img="";
         String description="";
 
@@ -137,6 +142,7 @@ public class ComputerPageOne {
             name = e.select("h1 span" ).text(); //Obtener tipo de PC
             //System.out.println("Nombre del PC: " + name);
         }
+        name2="HP 245";
         //imgProduct
         for (Element e : imgProduct.select("div"))
         {
@@ -169,6 +175,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(2);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("Dismac");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -192,6 +199,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2="";
         String img="";
         String description="";
 
@@ -201,6 +209,7 @@ public class ComputerPageOne {
             name = e.select("h1 span" ).text(); //Obtener tipo de PC
             //System.out.println("Nombre del PC: " + name);
         }
+        name2="Lenovo";
         //imgProduct
         for (Element e : imgProduct.select("div"))
         {
@@ -233,6 +242,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(3);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("Dismac");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -257,6 +267,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2="";
         String img="";
         String description="";
 
@@ -266,6 +277,14 @@ public class ComputerPageOne {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
         //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -305,6 +324,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(4);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -319,7 +339,7 @@ public class ComputerPageOne {
 
     //Producto 5
     public List<ProductDto> extractProductList5(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url );
+        //System.out.println("Computadoras, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -328,6 +348,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2="";
         String img="";
         String description="";
 
@@ -336,7 +357,15 @@ public class ComputerPageOne {
         {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
-        //System.out.println("Nombre del PC: " + name);
+        //System.out.println("Nombre del PC: " +
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -376,6 +405,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(5);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -390,7 +420,7 @@ public class ComputerPageOne {
 
     //Producto 6
     public List<ProductDto> extractProductList6(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url);
+        //System.out.println("Computadoras, Página CompuCenter url" + url);
         Document doc1 = Jsoup.connect(url).get();   //.timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -399,6 +429,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name = "";
+        String name2="";
         String img = "";
         String description = "";
 
@@ -407,6 +438,14 @@ public class ComputerPageOne {
             name = e.select("h1").text(); //Obtener tipo de PC
         }
         //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg")) {
@@ -443,6 +482,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(6);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -468,6 +508,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2 ="";
         String img="";
         String description="";
 
@@ -477,6 +518,14 @@ public class ComputerPageOne {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
         //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -516,6 +565,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(7);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -530,7 +580,7 @@ public class ComputerPageOne {
 
     //Producto 8
     public List<ProductDto> extractProductList8(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url );
+        //System.out.println("Computadoras, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -539,6 +589,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2 = "";
         String img="";
         String description="";
 
@@ -548,6 +599,14 @@ public class ComputerPageOne {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
         //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -587,6 +646,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(8);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);
@@ -601,7 +661,7 @@ public class ComputerPageOne {
 
     //Producto 9
     public List<ProductDto> extractProductList9(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url );
+        //System.out.println("Computadoras, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -610,6 +670,7 @@ public class ComputerPageOne {
 
         //extracion del PC
         String name="";
+        String name2="";
         String img="";
         String description="";
 
@@ -619,6 +680,14 @@ public class ComputerPageOne {
             name = e.select("h1" ).text(); //Obtener tipo de PC
         }
         //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
 
         //imgProduct
         for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
@@ -658,6 +727,7 @@ public class ComputerPageOne {
 
         productDto.setProductId(9);
         productDto.setName(name);
+        productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
         productDto.setImg(img);

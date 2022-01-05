@@ -34,6 +34,7 @@ public class ProductBl {
             ProductDto productDto = new ProductDto();
             productDto.setProductId(product.getProductId());
             productDto.setName(product.getName());
+            productDto.setName2(product.getName2());
             productDto.setDescription(product.getDescription());
             productDto.setImg(product.getImg());
             productDto.setPrice(product.getPrice());
@@ -57,6 +58,7 @@ public class ProductBl {
             ProductDto productDto = new ProductDto();
             productDto.setProductId(product.getProductId());
             productDto.setName(product.getName());
+            productDto.setName2(product.getName2());
             productDto.setDescription(product.getDescription());
             productDto.setImg(product.getImg());
             productDto.setPrice(product.getPrice());
@@ -79,6 +81,7 @@ public class ProductBl {
         ProductDto productDto = new ProductDto();
         productDto.setProductId(product.getProductId());
         productDto.setName(product.getName());
+        productDto.setName2(product.getName2());
         productDto.setDescription(product.getDescription());
         productDto.setImg(product.getImg());
         productDto.setPrice(product.getPrice());
@@ -93,6 +96,7 @@ public class ProductBl {
     public ProductDto createProduct(ProductDto productDto, Transaction transaction){
         Product product = new Product();
         product.setName(productDto.getName());
+        product.setName2(productDto.getName2());
         product.setDescription(productDto.getDescription());
         product.setImg(productDto.getImg());
         product.setPrice(productDto.getPrice());
