@@ -926,7 +926,7 @@ public class ComputerPageTwo {
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements productDescription = doc1.select("div.w-full"); //extracion de detalle del PC
         Elements price = doc1.select(" div.w-full");
 
         //extracion del PC

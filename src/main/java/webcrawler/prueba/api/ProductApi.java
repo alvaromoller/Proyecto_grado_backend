@@ -80,6 +80,8 @@ public class ProductApi {
         //tienda 1, Dismac
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
+        //dirección producto 1 rebaja
+        String urlRebaja="https://www.dismac.com.bo/hpppc.html?queryID=80287dc04defc52a8d1d842a473a2222&objectID=24142&indexName=dis_prod_lpz_products";  //PC1
         //dirección producto 2
         String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
         //dirección producto 3
@@ -87,20 +89,20 @@ public class ProductApi {
 
         //tienda 2, Compucenter
         //dirección producto 4
-        String url4="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC4
+        String url4="https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook";  //PC4
         //dirección producto 5
-        String url5="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC5
+        String url5="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC5
         //dirección producto 6
-        String url6="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC6
+        String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
 
         //dirección producto 7
-        String url7="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC7
+        String url7="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC7
         //dirección producto 8
-        String url8="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC9
+        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC8
         //dirección producto 9
-        String url9="https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook";  //PC9
+        String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
 
-        return computerPageOne.productListAll(url, url2, url3, url4, url5, url6, url7, url8, url9);
+        return computerPageOne.productListAll(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9);
     }
     //FIN
 
@@ -108,25 +110,31 @@ public class ProductApi {
     //ENCONTRAR PRODUCT ID SIN BASE DE DATOS
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto findById(@PathVariable("id") Integer id, HttpServletRequest request)throws IOException{
+        //tienda 1, Dismac
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
+        //dirección producto 1 rebaja
+        String urlRebaja="https://www.dismac.com.bo/hpppc.html?queryID=80287dc04defc52a8d1d842a473a2222&objectID=24142&indexName=dis_prod_lpz_products";  //PC1
         //dirección producto 2
         String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
         //dirección producto 3
         String url3="https://www.dismac.com.bo/82a2007lm.html";  //Pc3
+
+        //tienda 2, Compucenter
         //dirección producto 4
-        String url4="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC4
+        String url4="https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook";  //PC4
         //dirección producto 5
-        String url5="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC5
+        String url5="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC5
         //dirección producto 6
-        String url6="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC6
+        String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
+
         //dirección producto 7
-        String url7="https://www.multilaptops.net/store2/191";  //PC7
+        String url7="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC7
         //dirección producto 8
-        String url8="https://www.multilaptops.net/store2/194";  //PC9
+        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC8
         //dirección producto 9
-        String url9="https://www.multilaptops.net/store2/181";  //PC9
-        return computerPageOne.findProductById(id, url, url2, url3, url4, url5, url6, url7, url8, url9);
+        String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
+        return computerPageOne.findProductById(id, url, urlRebaja,url2, url3, url4, url5, url6, url7, url8, url9);
     }
     //fin
 
