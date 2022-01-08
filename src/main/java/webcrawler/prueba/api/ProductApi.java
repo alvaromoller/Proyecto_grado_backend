@@ -80,7 +80,7 @@ public class ProductApi {
         //tienda 1, Dismac
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
-        //dirección producto 1 rebaja
+        //dirección producto 1.1 rebaja
         String urlRebaja="https://www.dismac.com.bo/hpppc.html?queryID=80287dc04defc52a8d1d842a473a2222&objectID=24142&indexName=dis_prod_lpz_products";  //PC1
         //dirección producto 2
         String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2

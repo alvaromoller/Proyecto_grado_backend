@@ -70,7 +70,7 @@ public class ComputerPageOne {
         String name2 ="";
         String img = "";
         String description = "";
-
+        String brand ="DELL";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
@@ -107,11 +107,12 @@ public class ComputerPageOne {
 
         productDto.setProductId(1);
         productDto.setName(name);
-        productDto.setName2(name2);
+        productDto.setName2(name2);//nombre Corto
         productDto.setShopName("Dismac");
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -121,7 +122,7 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
-    //PRODUCTO 1.1
+    //PRODUCTO 21, rebaja del producto 1
     public List<ProductDto> extractProductList1Rebaja(String url) throws IOException {
         System.out.println("Computadoras, Página Dismac url1" + url );
         Document doc1 = Jsoup.connect(url).get();        //.timeout(10000).get();
@@ -135,6 +136,8 @@ public class ComputerPageOne {
         String name2 ="";
         String img = "";
         String description = "";
+        String brand ="DELL";
+        String ram = "8 GB";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
@@ -170,19 +173,20 @@ public class ComputerPageOne {
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
         ProductDto productDto = new ProductDto();
 
-        productDto.setProductId(1);
+        productDto.setProductId(21);
         productDto.setName(name);
         productDto.setName2(name2);
         productDto.setShopName("Dismac");
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
 
         productDtos.add( productDto);
-        System.out.println("productDtos: 1 " + productDtos);
+        System.out.println("productDtos: 21 " + productDtos);
         return  productDtos;
     }
 
@@ -200,6 +204,7 @@ public class ComputerPageOne {
         String name2 ="";
         String img="";
         String description="";
+        String brand ="HP";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
@@ -245,6 +250,7 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -267,6 +273,7 @@ public class ComputerPageOne {
         String name2="";
         String img="";
         String description="";
+        String brand="Lenovo";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
@@ -312,6 +319,7 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -337,6 +345,7 @@ public class ComputerPageOne {
         String name2="";
         String img="";
         String description="";
+        String brand="Asus";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -396,11 +405,12 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(2);
 
         productDtos.add( productDto);
-        System.out.println("productDtos 9: " + productDtos);
+        System.out.println("productDtos 4: " + productDtos);
         return  productDtos;
     }
 
@@ -418,6 +428,7 @@ public class ComputerPageOne {
         String name2 ="";
         String img="";
         String description="";
+        String brand="DELL";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -477,11 +488,12 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(2);
 
         productDtos.add( productDto);
-        System.out.println("productDtos 7: " + productDtos);
+        System.out.println("productDtos 5: " + productDtos);
         return  productDtos;
     }
 
@@ -499,6 +511,7 @@ public class ComputerPageOne {
         String name2 = "";
         String img="";
         String description="";
+        String brand="HP";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -558,11 +571,12 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(2);
 
         productDtos.add( productDto);
-        System.out.println("productDtos 8: " + productDtos);
+        System.out.println("productDtos 6: " + productDtos);
         return  productDtos;
     }
 
@@ -582,6 +596,7 @@ public class ComputerPageOne {
         String name2="";
         String img = "";
         String description = "";
+        String brand="HP";
 
         //productName
         for (Element e : productName.select("div.mb-10")) {
@@ -637,94 +652,97 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(2);
 
         productDtos.add( productDto);
-        System.out.println("productDtos 6: " + productDtos);
+        System.out.println("productDtos 7: " + productDtos);
         return  productDtos;
     }
 
     //Producto 8
     public List<ProductDto> extractProductList8(String url) throws IOException {
-    System.out.println("Computadoras, Página CompuCenter url2" + url );
-    Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
-    Elements productName = doc1.select(" div.w-full");
-    Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
-    Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
-    Elements price = doc1.select(" div.w-full");
+        System.out.println("Computadoras, Página CompuCenter url2" + url );
+        Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
+        Elements productName = doc1.select(" div.w-full");
+        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
+        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
+        Elements price = doc1.select(" div.w-full");
 
-    //extracion del PC
-    String name="";
-    String name2="";
-    String img="";
-    String description="";
+        //extracion del PC
+        String name="";
+        String name2="";
+        String img="";
+        String description="";
+        String brand="HP";
 
-    //productName
-    for (Element e : productName.select("div.mb-10"))
-    {
-        name = e.select("h1" ).text(); //Obtener tipo de PC
+        //productName
+        for (Element e : productName.select("div.mb-10"))
+        {
+            name = e.select("h1" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre del PC: " + name);
+
+        //productName2 //opcional
+        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
+        {
+            name2 = e.select("span" ).text(); //Obtener tipo de PC
+        }
+        //System.out.println("Nombre2 opcional del PC: " + name2);
+
+
+        //imgProduct
+        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
+        {
+            img = e.select("  img ").attr("src"); //Obtener src, img del PC
+            //System.out.println("imagen : " + img);
+        }
+
+        //pruductDescription
+        for (Element e : productDescription.select("div.text-base"))
+        {
+            description = e.select(" div " ).text(); //Obtener marca del PC
+            //System.out.println("Descripción: \n" + description);
+        }
+
+        String precio="";
+        for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
+        {
+            precio = e.select("span  " ).text(); //Obtener precio del PC
+            //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
+
+        }
+        /**
+         //En replace se quito exitosamente el Bs: para convertir el precio en Double
+         String precio2 = precio.replace("Bs" , "");
+         System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
+         //se quito la coma
+         String precio3 = precio2.replace(",", "");
+         System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
+         Double precioConvertido = Double.parseDouble(precio3);
+         System.out.println("precio Convertido a Double " + precioConvertido );
+         */
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        ProductDto productDto = new ProductDto();
+
+        productDto.setProductId(8);
+        productDto.setName(name);
+        productDto.setName2(name2);
+        productDto.setShopName("CompuCenter");
+        productDto.setDescription(description);
+        productDto.setImg(img);
+        productDto.setPrice(precio);
+        productDto.setBrand(brand);
+        //llaves foraneas
+        productDto.setShopId(2);
+
+        productDtos.add( productDto);
+        System.out.println("productDtos 8: " + productDtos);
+        return  productDtos;
     }
-    //System.out.println("Nombre del PC: " + name);
-
-    //productName2 //opcional
-    for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1"))
-    {
-        name2 = e.select("span" ).text(); //Obtener tipo de PC
-    }
-    //System.out.println("Nombre2 opcional del PC: " + name2);
-
-
-    //imgProduct
-    for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg"))
-    {
-        img = e.select("  img ").attr("src"); //Obtener src, img del PC
-        //System.out.println("imagen : " + img);
-    }
-
-    //pruductDescription
-    for (Element e : productDescription.select("div.text-base"))
-    {
-        description = e.select(" div " ).text(); //Obtener marca del PC
-        //System.out.println("Descripción: \n" + description);
-    }
-
-    String precio="";
-    for (Element e : price.select("div.inline-block.align-bottom.mr-5"))
-    {
-        precio = e.select("span  " ).text(); //Obtener precio del PC
-        //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
-
-    }
-    /**
-     //En replace se quito exitosamente el Bs: para convertir el precio en Double
-     String precio2 = precio.replace("Bs" , "");
-     System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
-     //se quito la coma
-     String precio3 = precio2.replace(",", "");
-     System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
-     Double precioConvertido = Double.parseDouble(precio3);
-     System.out.println("precio Convertido a Double " + precioConvertido );
-     */
-    /////////////////////////////////////////////////////////////////////////
-    //PRUEBA de ARRAY SIN BASE DE DATOS
-    List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-    ProductDto productDto = new ProductDto();
-
-    productDto.setProductId(8);
-    productDto.setName(name);
-    productDto.setName2(name2);
-    productDto.setShopName("CompuCenter");
-    productDto.setDescription(description);
-    productDto.setImg(img);
-    productDto.setPrice(precio);
-    //llaves foraneas
-    productDto.setShopId(2);
-
-    productDtos.add( productDto);
-    System.out.println("productDtos 4: " + productDtos);
-    return  productDtos;
-}
 
     //Producto 9
     public List<ProductDto> extractProductList9(String url) throws IOException {
@@ -740,6 +758,7 @@ public class ComputerPageOne {
         String name2="";
         String img="";
         String description="";
+        String brand="HP";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -799,11 +818,12 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
+        productDto.setBrand(brand);
         //llaves foraneas
         productDto.setShopId(2);
 
         productDtos.add( productDto);
-        System.out.println("productDtos 5: " + productDtos);
+        System.out.println("productDtos 9: " + productDtos);
         return  productDtos;
     }
 

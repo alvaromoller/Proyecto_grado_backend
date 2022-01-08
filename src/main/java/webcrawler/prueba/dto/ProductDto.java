@@ -9,6 +9,8 @@ public class ProductDto {
     private String description;
     private String img;
     private String price;
+    private String brand;   //encuesta
+    private String ram;     //encuesta
 
     private Integer brandId;
     private Integer shopId;
@@ -76,8 +78,23 @@ public class ProductDto {
         this.price = price;
     }
 
-    //
+    public String getBrand() {
+        return brand;
+    }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getRam() {
+        return ram;
+    }
+
+    public void setRam(String ram) {
+        this.ram = ram;
+    }
+
+    //
     public String getShopName() {
         return shopName;
     }
@@ -85,7 +102,6 @@ public class ProductDto {
     public void setShopName(String shopName) {
         this.shopName = shopName;
     }
-
     //
 
     public Integer getBrandId() {
@@ -131,6 +147,8 @@ public class ProductDto {
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
                 ", price=" + price + '\'' +
+                ", brand=" + brand + '\'' +
+                ", ram=" + ram + '\'' +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +
                 ", shopName='" + shopName + '\'' +
