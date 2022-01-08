@@ -180,7 +180,8 @@ public class ComputerPageOne {
         productDto.setDescription(description);
         productDto.setImg(img);
         productDto.setPrice(precio);
-        productDto.setBrand(brand);
+        productDto.setBrand(brand);//encuesta
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -205,6 +206,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand ="HP";
+        String ram = "8 GB";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
@@ -251,6 +253,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -274,6 +277,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="Lenovo";
+        String ram = "8 GB";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
@@ -320,6 +324,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -346,6 +351,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="Asus";
+        String ram = "4 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -406,6 +412,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -429,6 +436,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="DELL";
+        String ram = "8 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -489,6 +497,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -512,6 +521,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
+        String ram = "8 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -572,6 +582,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -597,6 +608,7 @@ public class ComputerPageOne {
         String img = "";
         String description = "";
         String brand="HP";
+        String ram = "12 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10")) {
@@ -653,6 +665,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -676,6 +689,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
+        String ram = "16 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -736,6 +750,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -759,6 +774,7 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
+        String ram = "4 GB";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -819,6 +835,7 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
         //llaves foraneas
         productDto.setShopId(2);
 
