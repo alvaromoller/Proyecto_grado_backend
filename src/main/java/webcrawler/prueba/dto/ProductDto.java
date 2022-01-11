@@ -9,8 +9,10 @@ public class ProductDto {
     private String description;
     private String img;
     private String price;
-    private String brand;   //encuesta
-    private String ram;     //encuesta
+    private String brand;       //encuesta
+    private String ram;         //encuesta
+    private String processor;    //encuesta
+
 
     private Integer brandId;
     private Integer shopId;
@@ -92,6 +94,14 @@ public class ProductDto {
 
     public void setRam(String ram) {
         this.ram = ram;
+    }
+
+    public String getProcessor() {
+        return processor;
+    }
+
+    public void setProcessor(String processor) {
+        this.processor = processor;
     }
 
     //

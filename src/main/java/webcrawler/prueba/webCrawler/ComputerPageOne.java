@@ -70,7 +70,11 @@ public class ComputerPageOne {
         String name2 ="";
         String img = "";
         String description = "";
+        //encuesta
         String brand ="DELL";
+        String ram = "8 GB";
+        String processor= "Intel";
+
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
@@ -113,6 +117,8 @@ public class ComputerPageOne {
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
+        productDto.setRam(ram);
+        productDto.setProcessor(processor);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -138,7 +144,7 @@ public class ComputerPageOne {
         String description = "";
         String brand ="DELL";
         String ram = "8 GB";
-
+        String processor ="Intel";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
@@ -182,6 +188,7 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);//encuesta
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -207,7 +214,7 @@ public class ComputerPageOne {
         String description="";
         String brand ="HP";
         String ram = "8 GB";
-
+        String processor ="AMD Ryzen";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
@@ -254,6 +261,7 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -278,7 +286,7 @@ public class ComputerPageOne {
         String description="";
         String brand="Lenovo";
         String ram = "8 GB";
-
+        String processor ="AMD Ryzen";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
@@ -325,6 +333,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -352,6 +362,7 @@ public class ComputerPageOne {
         String description="";
         String brand="Asus";
         String ram = "4 GB";
+        String processor ="Intel";
 
         //productName
         for (Element e : productName.select("div.mb-10"))
@@ -413,6 +424,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -437,7 +450,7 @@ public class ComputerPageOne {
         String description="";
         String brand="DELL";
         String ram = "8 GB";
-
+        String processor ="Intel";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -498,6 +511,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -522,7 +537,7 @@ public class ComputerPageOne {
         String description="";
         String brand="HP";
         String ram = "8 GB";
-
+        String processor ="Intel";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -583,6 +598,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -609,7 +626,7 @@ public class ComputerPageOne {
         String description = "";
         String brand="HP";
         String ram = "12 GB";
-
+        String processor ="AMD Ryzen";
         //productName
         for (Element e : productName.select("div.mb-10")) {
             name = e.select("h1").text(); //Obtener tipo de PC
@@ -666,6 +683,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -690,7 +709,7 @@ public class ComputerPageOne {
         String description="";
         String brand="HP";
         String ram = "16 GB";
-
+        String processor ="Intel";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -751,6 +770,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -775,7 +796,7 @@ public class ComputerPageOne {
         String description="";
         String brand="HP";
         String ram = "4 GB";
-
+        String processor ="AMD Ryzen";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -836,6 +857,8 @@ public class ComputerPageOne {
         productDto.setPrice(precio);
         productDto.setBrand(brand);
         productDto.setRam(ram);
+        productDto.setProcessor(processor);
+
         //llaves foraneas
         productDto.setShopId(2);
 
