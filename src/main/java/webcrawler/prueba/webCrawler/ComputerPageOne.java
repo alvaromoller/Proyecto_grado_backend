@@ -73,7 +73,8 @@ public class ComputerPageOne {
         //encuesta
         String brand ="DELL";
         String ram = "8 GB";
-        String processor= "Intel";
+        String processor = "Intel";
+        String storage ="SSD 256 GB";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
@@ -119,6 +120,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -128,7 +130,7 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
-    //PRODUCTO 21, rebaja del producto 1
+    //PRODUCTO 21, rebaja
     public List<ProductDto> extractProductList1Rebaja(String url) throws IOException {
         System.out.println("Computadoras, Página Dismac url1" + url );
         Document doc1 = Jsoup.connect(url).get();        //.timeout(10000).get();
@@ -145,6 +147,7 @@ public class ComputerPageOne {
         String brand ="DELL";
         String ram = "8 GB";
         String processor ="Intel";
+        String storage ="SSD 256 GB";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
@@ -189,6 +192,8 @@ public class ComputerPageOne {
         productDto.setBrand(brand);//encuesta
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
+
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -215,6 +220,8 @@ public class ComputerPageOne {
         String brand ="HP";
         String ram = "8 GB";
         String processor ="AMD Ryzen";
+        String storage ="1 TB";
+
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
@@ -262,6 +269,8 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
+
         //llaves foraneas
         productDto.setShopId(1);
 
@@ -287,6 +296,7 @@ public class ComputerPageOne {
         String brand="Lenovo";
         String ram = "8 GB";
         String processor ="AMD Ryzen";
+        String storage ="SSD 256 GB";
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
@@ -334,6 +344,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
 
         //llaves foraneas
         productDto.setShopId(1);
@@ -363,7 +374,7 @@ public class ComputerPageOne {
         String brand="Asus";
         String ram = "4 GB";
         String processor ="Intel";
-
+        String storage ="SSD 128 GB";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -425,6 +436,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -451,6 +463,7 @@ public class ComputerPageOne {
         String brand="DELL";
         String ram = "8 GB";
         String processor ="Intel";
+        String storage ="SSD 256 GB";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -512,6 +525,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -538,6 +552,7 @@ public class ComputerPageOne {
         String brand="HP";
         String ram = "8 GB";
         String processor ="Intel";
+        String storage ="SSD 512 GB";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -599,7 +614,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
-
+        productDto.setStorage(storage);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -627,6 +642,7 @@ public class ComputerPageOne {
         String brand="HP";
         String ram = "12 GB";
         String processor ="AMD Ryzen";
+        String storage ="SSD 256 GB";
         //productName
         for (Element e : productName.select("div.mb-10")) {
             name = e.select("h1").text(); //Obtener tipo de PC
@@ -684,6 +700,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -710,6 +727,7 @@ public class ComputerPageOne {
         String brand="HP";
         String ram = "16 GB";
         String processor ="Intel";
+        String storage ="1 TB";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -771,6 +789,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
+        productDto.setStorage(storage);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -797,6 +816,7 @@ public class ComputerPageOne {
         String brand="HP";
         String ram = "4 GB";
         String processor ="AMD Ryzen";
+        String storage ="SSD 128 GB";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -858,7 +878,7 @@ public class ComputerPageOne {
         productDto.setBrand(brand);
         productDto.setRam(ram);
         productDto.setProcessor(processor);
-
+        productDto.setStorage(storage);
         //llaves foraneas
         productDto.setShopId(2);
 

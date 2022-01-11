@@ -9,9 +9,10 @@ public class ProductDto {
     private String description;
     private String img;
     private String price;
-    private String brand;       //encuesta
-    private String ram;         //encuesta
-    private String processor;    //encuesta
+    private String brand;       //encuesta, Marca
+    private String ram;         //encuesta; ,memoria Ram
+    private String processor;    //encuesta, procesador
+    private String storage;     //encuesta, almacenamiento
 
 
     private Integer brandId;
@@ -79,7 +80,7 @@ public class ProductDto {
     public void setPrice(String price) {
         this.price = price;
     }
-
+    //encuesta
     public String getBrand() {
         return brand;
     }
@@ -102,6 +103,14 @@ public class ProductDto {
 
     public void setProcessor(String processor) {
         this.processor = processor;
+    }
+
+    public String getStorage() {
+        return storage;
+    }
+
+    public void setStorage(String storage) {
+        this.storage = storage;
     }
 
     //
