@@ -13,6 +13,7 @@ public class ProductDto {
     private String ram;         //encuesta; ,memoria Ram
     private String processor;    //encuesta, procesador
     private String storage;     //encuesta, almacenamiento
+    private String tarjetaGrafica;  //encuesta
 
 
     private Integer brandId;
@@ -111,6 +112,14 @@ public class ProductDto {
 
     public void setStorage(String storage) {
         this.storage = storage;
+    }
+
+    public String getTarjetaGrafica() {
+        return tarjetaGrafica;
+    }
+
+    public void setTarjetaGrafica(String tarjetaGrafica) {
+        this.tarjetaGrafica = tarjetaGrafica;
     }
 
     //

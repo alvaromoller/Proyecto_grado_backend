@@ -72,9 +72,10 @@ public class ComputerPageOne {
         String description = "";
         //encuesta
         String brand ="DELL";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor = "Intel";
         String storage ="SSD 256 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
@@ -121,6 +122,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
         //llaves foraneas
         productDto.setShopId(1);
         productDto.setCategoryId(1);
@@ -145,9 +147,11 @@ public class ComputerPageOne {
         String img = "";
         String description = "";
         String brand ="DELL";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor ="Intel";
         String storage ="SSD 256 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product")) {
             name = e.select("h1 span").text(); //Obtener tipo de PC
@@ -193,6 +197,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(1);
@@ -218,9 +223,10 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand ="HP";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor ="AMD Ryzen";
         String storage ="1 TB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
 
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
@@ -270,6 +276,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(1);
@@ -294,9 +301,11 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="Lenovo";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor ="AMD Ryzen";
         String storage ="SSD 256 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.page-title-wrapper.product"))
         {
@@ -345,6 +354,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(1);
@@ -372,9 +382,11 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="Asus";
-        String ram = "4 GB";
+        String ram = "Ram: 4 GB";
         String processor ="Intel";
         String storage ="SSD 128 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -437,7 +449,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
-
+        productDto.setTarjetaGrafica(tarjetaGrafica);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -461,9 +473,11 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="DELL";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor ="Intel";
         String storage ="SSD 256 GB";
+        String tarjetaGrafica ="Tarjeta gráfica dedicada";
+
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -526,6 +540,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -550,9 +565,11 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
-        String ram = "8 GB";
+        String ram = "Ram: 8 GB";
         String processor ="Intel";
         String storage ="SSD 512 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -615,6 +632,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
         //llaves foraneas
         productDto.setShopId(2);
 
@@ -640,9 +658,11 @@ public class ComputerPageOne {
         String img = "";
         String description = "";
         String brand="HP";
-        String ram = "12 GB";
+        String ram = "Ram: 12 GB";
         String processor ="AMD Ryzen";
         String storage ="SSD 256 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.mb-10")) {
             name = e.select("h1").text(); //Obtener tipo de PC
@@ -701,6 +721,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -725,9 +746,11 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
-        String ram = "16 GB";
+        String ram = "Ram: 16 GB";
         String processor ="Intel";
         String storage ="1 TB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
+
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -790,6 +813,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
 
         //llaves foraneas
         productDto.setShopId(2);
@@ -814,9 +838,10 @@ public class ComputerPageOne {
         String img="";
         String description="";
         String brand="HP";
-        String ram = "4 GB";
+        String ram = "Ram: 4 GB";
         String processor ="AMD Ryzen";
         String storage ="SSD 128 GB";
+        String tarjetaGrafica ="Tarjeta gráfica integrada";
         //productName
         for (Element e : productName.select("div.mb-10"))
         {
@@ -879,6 +904,7 @@ public class ComputerPageOne {
         productDto.setRam(ram);
         productDto.setProcessor(processor);
         productDto.setStorage(storage);
+        productDto.setTarjetaGrafica(tarjetaGrafica);
         //llaves foraneas
         productDto.setShopId(2);
 
