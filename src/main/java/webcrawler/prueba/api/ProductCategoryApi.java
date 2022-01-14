@@ -139,7 +139,7 @@ public class ProductCategoryApi {
         // dirección producto 2
         String urlG2="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC5
         //dirección producto 3
-        String urlG3="https://compucenter.store/product/2631-equipo-dell-gaming-inspiron-gaming-g5-5510";  //PC6
+        String urlG3="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC6
         // dirección producto 4
         String urlG4="https://compucenter.store/product/2674-gamer-asus-gaming-tuf-516pr-ds77-wh";  //PC5
         //dirección producto 5

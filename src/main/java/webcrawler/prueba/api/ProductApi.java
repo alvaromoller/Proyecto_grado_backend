@@ -102,7 +102,24 @@ public class ProductApi {
         //dirección producto 9
         String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
 
-        return computerPageOne.productListAll(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9);
+        //tienda 1, Dismac
+        //dirección producto 24
+        String url24="https://www.dismac.com.bo/310h7la-abm.html";  //PC24
+        //dirección producto 25
+        String url25="https://www.dismac.com.bo/2b125la-abm.html";  //PC25
+        //dirección producto 26
+        String url26="https://www.dismac.com.bo/2t6a007fj.html";  //PC26
+        //dirección producto 27
+        String url27="https://www.dismac.com.bo/nbb-wah9-gray.html";  //PC27
+        //dirección producto 28
+        String url28="https://www.dismac.com.bo/nbb-wai9.html";  //PC28
+        //dirección producto 29
+        String url29="https://www.dismac.com.bo/machc-wah9lp.html";  //PC29
+        //dirección producto 30
+        String url30="https://www.dismac.com.bo/jh94x.html";  //PC30
+
+
+        return computerPageOne.productListAll(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9, url24, url25, url26, url27, url28, url29, url30);
     }
     //FIN
 
@@ -134,7 +151,25 @@ public class ProductApi {
         String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC8
         //dirección producto 9
         String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
-        return computerPageOne.findProductById(id, url, urlRebaja,url2, url3, url4, url5, url6, url7, url8, url9);
+
+        //tienda 1, Dismac
+        //dirección producto 24
+        String url24="https://www.dismac.com.bo/310h7la-abm.html";  //PC24
+        //dirección producto 25
+        String url25="https://www.dismac.com.bo/2b125la-abm.html";  //PC25
+        //dirección producto 26
+        String url26="https://www.dismac.com.bo/2t6a007fj.html";  //PC25
+        //dirección producto 27
+        String url27="https://www.dismac.com.bo/nbb-wah9-gray.html";  //PC27
+        //dirección producto 28
+        String url28="https://www.dismac.com.bo/nbb-wai9.html";  //PC28
+        //dirección producto 29
+        String url29="https://www.dismac.com.bo/machc-wah9lp.html";  //PC29
+        //dirección producto 30
+        String url30="https://www.dismac.com.bo/jh94x.html";  //PC30
+
+
+        return computerPageOne.findProductById(id, url, urlRebaja,url2, url3, url4, url5, url6, url7, url8, url9, url24,url25, url26, url27, url28, url29, url30 );
     }
     //fin
 

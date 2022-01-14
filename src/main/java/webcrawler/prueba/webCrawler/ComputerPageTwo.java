@@ -51,7 +51,7 @@ public class ComputerPageTwo {
     //Categoria Study, PC.com
     //PRODUCTO 1
     public List<ProductDto> extractStudyList(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        System.out.println("Categoria estudio, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
@@ -124,7 +124,7 @@ public class ComputerPageTwo {
 
     //PRODUCTO 2
     public List<ProductDto> extractStudyList2(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        //System.out.println("Computadoras, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
@@ -197,7 +197,7 @@ public class ComputerPageTwo {
 
     //PRODUCTO 3
     public List<ProductDto> extractStudyList3(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        //System.out.println("Computadoras, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
@@ -270,7 +270,7 @@ public class ComputerPageTwo {
 
     //PRODUCTO 4
     public List<ProductDto> extractStudyList4(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        //System.out.println("Computadoras, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
@@ -427,7 +427,7 @@ public class ComputerPageTwo {
 
     //Producto 2
     public List<ProductDto> extractGamerList2(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        //System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -508,7 +508,7 @@ public class ComputerPageTwo {
 
     //Producto 3
     public List<ProductDto> extractGamerList3(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        //System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -590,7 +590,7 @@ public class ComputerPageTwo {
 
     //Producto 4
     public List<ProductDto> extractGamerList4(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        //System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -672,7 +672,7 @@ public class ComputerPageTwo {
 
     //Producto 5
     public List<ProductDto> extractGamerList5(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url + "...");
+        //System.out.println("Computadoras, Página CompuCenter url" + url + "...");
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -758,7 +758,7 @@ public class ComputerPageTwo {
     //Categoria Work, Compucenter y Pc.com
     //Producto 1,
     public List<ProductDto> extractWorkList1(String url) throws IOException {
-        System.out.println("Categorias Gamers, Página CompuCenter url" + url );
+        System.out.println("Categorias Trabajo, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -840,7 +840,7 @@ public class ComputerPageTwo {
 
     //Producto 2,
     public List<ProductDto> extractWorkList2(String url) throws IOException {
-        System.out.println("Categorias Gamers, Página CompuCenter url" + url );
+        //System.out.println("Categorias Gamers, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -922,7 +922,7 @@ public class ComputerPageTwo {
 
     //Producto 3,
     public List<ProductDto> extractWorkList3(String url) throws IOException {
-        System.out.println("Categorias Gamers, Página CompuCenter url" + url );
+        //System.out.println("Categorias Gamers, Página CompuCenter url" + url );
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.w-full");
         Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
@@ -1004,7 +1004,7 @@ public class ComputerPageTwo {
 
     //Producto 4, Pc.com
     public List<ProductDto> extractWorkList4(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        //System.out.println("Computadoras, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
@@ -1077,7 +1077,7 @@ public class ComputerPageTwo {
 
     //Producto 5, PC.com
     public List<ProductDto> extractWorkList5(String url) throws IOException {
-        System.out.println("Computadoras, Página PC.com url" + url);
+        //System.out.println("Computadoras, Página PC.com url" + url);
         Document doc1 = Jsoup.connect(url).timeout(10000).get();
         Elements productName = doc1.select(" div.container");
         Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
