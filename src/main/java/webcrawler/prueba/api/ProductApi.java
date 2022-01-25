@@ -14,12 +14,13 @@ import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
 @RestController
 @RequestMapping(value = "/v1/product")
-public class ProductApi {
+public class ProductApi extends Thread{
 
     private ProductBl productBl;
     private TransactionBl transactionBl;
@@ -76,12 +77,16 @@ public class ProductApi {
     //LISTA DE PRODUCTOS SIN BASE DE DATOS
     //Prueba de listado de productos Sin base de datos
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    //void
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
         //tienda 1, Dismac
         //dirección producto 1
         String url="https://www.dismac.com.bo/o85pd.html";  //PC1
-        //dirección producto 1.1 rebaja
-        String urlRebaja="https://www.dismac.com.bo/hpppc.html?queryID=80287dc04defc52a8d1d842a473a2222&objectID=24142&indexName=dis_prod_lpz_products";  //PC1
+        //dirección repetida de producto 1
+        String urlRebaja="https://www.dismac.com.bo/o85pd.html";  //PC1
+        //direccion con 404
+        //String urlRebaja="https://www.dismac.com.bo/hpppc.html?queryID=80287dc04defc52a8d1d842a473a2222&objectID=24142&indexName=dis_prod_lpz_products";  //PC1
+
         //dirección producto 2
         String url2="https://www.dismac.com.bo/3g573lt-abm.html";  //Pc2
         //dirección producto 3
@@ -105,21 +110,30 @@ public class ProductApi {
         //tienda 1, Dismac
         //dirección producto 24
         String url24="https://www.dismac.com.bo/310h7la-abm.html";  //PC24
-        //dirección producto 25
-        String url25="https://www.dismac.com.bo/2b125la-abm.html";  //PC25
+
+        //Direccion 25, repetida de producto 24
+        String url25="https://www.dismac.com.bo/310h7la-abm.html";  //PC25
+        //direccion 404
+        //String url25="https://www.dismac.com.bo/2b125la-abm.html";  //PC25
+
         //dirección producto 26
         String url26="https://www.dismac.com.bo/2t6a007fj.html";  //PC26
         //dirección producto 27
         String url27="https://www.dismac.com.bo/nbb-wah9-gray.html";  //PC27
-        //dirección producto 28
+         //dirección producto 28
         String url28="https://www.dismac.com.bo/nbb-wai9.html";  //PC28
         //dirección producto 29
         String url29="https://www.dismac.com.bo/machc-wah9lp.html";  //PC29
         //dirección producto 30
         String url30="https://www.dismac.com.bo/jh94x.html";  //PC30
 
+        //Creacion del Hilo 1
+       //Thread hilo1 = new Thread(computerPageOne);
+        //hilo1.start();
 
         return computerPageOne.productListAll(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9, url24, url25, url26, url27, url28, url29, url30);
+        //return computerPageOne.run(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9, url24, url25, url26, url27, url28, url29, url30);
+
     }
     //FIN
 

@@ -1,18 +1,63 @@
 package webcrawler.prueba;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import webcrawler.prueba.webCrawler.ComputerPageOne;
-import webcrawler.prueba.webCrawler.ComputerPageThree;
-import webcrawler.prueba.webCrawler.ComputerPageTwo;
-import webcrawler.prueba.webCrawler.Example3;
+import webcrawler.prueba.webCrawler.*;
 
 @SpringBootApplication
 class PruebaApplication {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(PruebaApplication.class, args);
+		//Inicianlizando el Hilo
+		//ComputerPageOne hilo1 = new ComputerPageOne();
+		//hilo1.start();
+
+
+		ComputerPageOne hilo = new ComputerPageOne(
+				"https://www.dismac.com.bo/o85pd.html",
+				"https://www.dismac.com.bo/o85pd.html",
+				"https://www.dismac.com.bo/3g573lt-abm.html",
+				"https://www.dismac.com.bo/82a2007lm.html",
+				"https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook",
+				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593",
+				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca",
+				"https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la",
+				"https://compucenter.store/product/2548-equipo-hp-laptop-348-g7",
+				"https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm",
+				"https://www.dismac.com.bo/310h7la-abm.html",
+				"https://www.dismac.com.bo/310h7la-abm.html",
+				"https://www.dismac.com.bo/2t6a007fj.html",
+				"https://www.dismac.com.bo/nbb-wah9-gray.html",
+				"https://www.dismac.com.bo/nbb-wai9.html",
+				"https://www.dismac.com.bo/machc-wah9lp.html",
+				"https://www.dismac.com.bo/jh94x.html");
+		hilo.start();
+		//Hilos
+		/**
+		Proceso1 hilo1 = new Proceso1();
+		Proceso2 hilo2 = new Proceso2();
+
+		//Hilo 1
+		hilo1.start();
+		try{
+			hilo1.sleep(3000);
+		}catch (InterruptedException e){
+			System.out.println("Error en Hilo 1"+ e);
+		}
+
+		//Hilo 2
+		hilo2.start();
+		try {
+			hilo2.sleep(3000);
+		}catch (InterruptedException e){
+			System.out.println("Error en Hilo 2" + e);
+		}
+		*/
+
 
 		//1. extraer el html
 		//2. Analizar el HTML y extraer enlaces de la pagina

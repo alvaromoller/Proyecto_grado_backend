@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ComputerPageOne {
+public class ComputerPageOne extends Thread {
 
     //BrandDao
     private BrandDao brandDao;
@@ -33,21 +33,73 @@ public class ComputerPageOne {
     private ProductDao productDao;
     //ProductDetailDao
     private ProductDetailDao productDetailDao;  //precio
-    //
-
+    //Obtencion de direcciones Ips
+    private DirectionIp directionIp;
+    private String url;
+    private String urlRebaja;
+    private String url2;
+    private String url3;
+    private String url4;
+    private String url5;
+    private String url6;
+    private String url7;
+    private String url8;
+    private String url9;
+    private String url24;
+    private String url25;
+    private String url26;
+    private String url27;
+    private String url28;
+    private String url29;
+    private String url30;
 
     @Autowired
-    public ComputerPageOne(BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, ShopDao shopDao, ProductDetailDao productDetailDao, TransactionDao transactionDao){
+    public ComputerPageOne(DirectionIp directionIp , BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, ShopDao shopDao, ProductDetailDao productDetailDao, TransactionDao transactionDao){
         this.brandDao = brandDao;
         this.productTypeDao = productTypeDao;
         this.shopDao = shopDao;
         this.productDao = productDao;
         this.productDetailDao = productDetailDao;
         this.transactionDao = transactionDao;
+        this.directionIp = directionIp;
 
     }
 
-    public ComputerPageOne() {
+    public ComputerPageOne(
+                String url,
+                String urlRebaja,
+                String url2,
+                String url3,
+                String url4,
+                String url5,
+                String url6,
+                String url7,
+                String url8,
+                String url9,
+                String url24,
+                String url25,
+                String url26,
+                String url27,
+                String url28,
+                String url29,
+                String url30) {
+        this.url = url;
+        this.urlRebaja = urlRebaja;
+        this.url2 = url2;
+        this.url3 = url3;
+        this.url4 = url4;
+        this.url5 = url5;
+        this.url6 = url6;
+        this.url7 = url7;
+        this.url8 = url8;
+        this.url9 = url9;
+        this.url24 = url24;
+        this.url25 = url25;
+        this. url26 = url26;
+        this.url27 = url27;
+        this.url28 = url28;
+        this.url29 = url29;
+        this.url30 = url30;
 
     }
 
@@ -132,9 +184,9 @@ public class ComputerPageOne {
         return  productDtos;
     }
 
-    //PRODUCTO 21, rebaja
+    //PRODUCTO 21, rebaja, QUITAR 404
     public List<ProductDto> extractProductList1Rebaja(String url) throws IOException {
-        System.out.println("Computadoras, Página Dismac url1" + url );
+        //System.out.println("Computadoras, Página Dismac url1" + url );
         Document doc1 = Jsoup.connect(url).get();        //.timeout(10000).get();
         Elements productName = doc1.select(" div.columns");
         Elements imgProduct = doc1.select("div.gallery-placeholder");  //extraccion de imagen
@@ -1524,9 +1576,39 @@ public class ComputerPageOne {
     }
     */
 
-
     //LISTADO DE TODOS LOS PRODUCTOS
     public List<ProductDto> productListAll(String url, String urlRebaja, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9, String url24, String url25, String url26, String url27, String url28, String url29, String url30) throws IOException{
+        //llamando al metodo obtenerIp de la clase DirectionIp
+        //directionIp.obtenerIp();
+
+        //Primera Lista
+        /**
+         List<String> obj = new ArrayList<>();
+         obj.add("ejemplo1.com.bo");
+         obj.add("ejemplo2.com.bo");
+         obj.add("dismac.com.bo");
+         obj.add("compucenter.store");
+         obj.add("pc.com.bo");
+
+         //Segunda Lista
+         List<String> hostDismac= new ArrayList<>();
+         hostDismac.add("dismac.com.bo");
+         hostDismac.add("compucenter.store");
+         hostDismac.add("pc.com.bo");
+
+         for(String aux : obj){
+         System.out.println("Lista1, Host :  " + aux);
+         for (String aux2 :hostDismac) {
+         System.out.println("Lista2, Host :  " + aux2);
+
+         if (aux.equals(aux2)) {
+         System.out.println("las direcciones Host son iguales:  " + aux +" == "+ aux2);
+         }
+         }
+         }
+         */
+
+        //Productos Extraidos
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
         List<ProductDto> productDtos1Rebaja = new ArrayList<ProductDto>();
         List<ProductDto> productDtos2 = new ArrayList<ProductDto>();
@@ -1545,7 +1627,6 @@ public class ComputerPageOne {
         List<ProductDto> productDtos28 = new ArrayList<ProductDto>();
         List<ProductDto> productDtos29 = new ArrayList<ProductDto>();
         List<ProductDto> productDtos30 = new ArrayList<ProductDto>();
-
 
 
         //producto 1
@@ -1597,6 +1678,8 @@ public class ComputerPageOne {
         productDtos30 = extractProductList30(url30);
 
         //System.out.println("Tamaño: " + productDtos.size());
+
+
         List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
         productAll.addAll(productDtos);
         productAll.addAll(productDtos1Rebaja);
@@ -1618,12 +1701,142 @@ public class ComputerPageOne {
 
 
         //System.out.println("product all: " + productAll);
+
+        return  productAll;
+    }
+
+    //LISTADO DE TODOS LOS PRODUCTOS, para el hilo
+    public List<ProductDto> productListAll2() throws IOException{
+        //llamando al metodo obtenerIp de la clase DirectionIp
+        //directionIp.obtenerIp();
+
+        //Primera Lista
+        /**
+        List<String> obj = new ArrayList<>();
+        obj.add("ejemplo1.com.bo");
+        obj.add("ejemplo2.com.bo");
+        obj.add("dismac.com.bo");
+        obj.add("compucenter.store");
+        obj.add("pc.com.bo");
+
+        //Segunda Lista
+        List<String> hostDismac= new ArrayList<>();
+        hostDismac.add("dismac.com.bo");
+        hostDismac.add("compucenter.store");
+        hostDismac.add("pc.com.bo");
+
+        for(String aux : obj){
+            System.out.println("Lista1, Host :  " + aux);
+            for (String aux2 :hostDismac) {
+                System.out.println("Lista2, Host :  " + aux2);
+
+                if (aux.equals(aux2)) {
+                    System.out.println("las direcciones Host son iguales:  " + aux +" == "+ aux2);
+                }
+            }
+        }
+         */
+
+        //Productos Extraidos
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
+        List<ProductDto> productDtos1Rebaja = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos2 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos3 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos4 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos5 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos6 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos7 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos8 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos9 = new ArrayList<ProductDto>();
+
+        List<ProductDto> productDtos24 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos25 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos26 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos27 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos28 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos29 = new ArrayList<ProductDto>();
+        List<ProductDto> productDtos30 = new ArrayList<ProductDto>();
+
+
+        //producto 1
+        productDtos = extractProductList(url);
+        //System.out.println("producto1: " + productDtos);
+        //producto 21 rebaja
+        productDtos1Rebaja = extractProductList1Rebaja(urlRebaja);
+        //producto 2
+        productDtos2 = extractProductList2(url2);
+        //System.out.println("producto2 url2: " + productDtos2);
+
+        //producto 3
+        productDtos3 = extractProductList3(url3);
+        //System.out.println("producto3: " + productDtos3);
+        //producto 4
+        productDtos4 = extractProductList4(url4);
+        //System.out.println("producto4: " + productDtos4);
+        //producto 5
+        productDtos5 = extractProductList5(url5);
+        //System.out.println("producto5: " + productDtos5);
+
+        //producto 6
+        productDtos6 = extractProductList6(url6);
+        //System.out.println("producto6: " + productDtos6);
+        //producto 7
+        productDtos7 = extractProductList7(url7);
+        //System.out.println("producto7: " + productDtos7);
+        //producto 8
+        productDtos8 = extractProductList8(url8);
+        //System.out.println("producto8: " + productDtos8);
+
+        //producto 9
+        productDtos9 = extractProductList9(url9);
+        //System.out.println("producto9: " + productDtos9);
+
+        //producto24
+        productDtos24 = extractProductList24(url24);
+        //producto25
+        productDtos25 = extractProductList25(url25);
+        //producto26
+        productDtos26 = extractProductList26(url26);
+        //producto27
+        productDtos27 = extractProductList27(url27);
+        //producto28
+        productDtos28 = extractProductList28(url28);
+        //producto29
+        productDtos29 = extractProductList29(url29);
+        //producto30
+        productDtos30 = extractProductList30(url30);
+
+        //System.out.println("Tamaño: " + productDtos.size());
+
+
+        List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
+        productAll.addAll(productDtos);
+        productAll.addAll(productDtos1Rebaja);
+        productAll.addAll(productDtos2);
+        productAll.addAll(productDtos3);
+        productAll.addAll(productDtos4);
+        productAll.addAll(productDtos5);
+        productAll.addAll(productDtos6);
+        productAll.addAll(productDtos7);
+        productAll.addAll(productDtos8);
+        productAll.addAll(productDtos9);
+        productAll.addAll(productDtos24);
+        productAll.addAll(productDtos25);
+        productAll.addAll(productDtos26);
+        productAll.addAll(productDtos27);
+        productAll.addAll(productDtos28);
+        productAll.addAll(productDtos29);
+        productAll.addAll(productDtos30);
+
+
+        //System.out.println("product all: " + productAll);
+
         return  productAll;
     }
 
     //PRODUCTO POR ID
     public ProductDto findProductById(Integer productId, String url, String urlRebaja, String url2, String url3, String url4, String url5, String url6, String url7, String url8, String url9,  String url24,  String url25,  String url26,  String url27, String url28, String url29, String url30)throws IOException {
-        List<ProductDto> productDtosFor = productListAll(url, urlRebaja,url2, url3, url4, url5, url6, url7, url8, url9, url24, url25, url26, url27, url28, url29, url30); //se crea para el for y para llamar al metodo productListAll
+        List<ProductDto> productDtosFor = productListAll(url, urlRebaja, url2, url3, url4, url5, url6, url7, url8, url9, url24, url25, url26, url27, url28, url29, url30); //se crea para el for y para llamar al metodo productListAll
         ProductDto productAux = new ProductDto();                          // para el return, para guardar el listado final
 
         for(int i=0; i < productDtosFor.size(); i++) {
@@ -1645,6 +1858,53 @@ public class ComputerPageOne {
         return  productAux;
     }
 //FIN
+
+
+    //Creacion metodo para Hilo con actualizacion
+    //List<ProductDto>
+    public void run() {
+        //int i2 = 0;
+        while (true) {
+            //System.out.println(this.getName() + ": New Thread is running..." + i2++);
+            System.out.println(" Thread is running...");
+
+            //llamando al metodo con los productos
+            List<ProductDto> obj2 = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
+            try {
+                obj2 = productListAll2();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            try {
+                //Thread, Wait for one sec so it doesn't print too fast
+                Thread.sleep(30000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            //return obj2;
+        }//fin while
+    }
+
+    //probando hilo, con un for
+    public void run2() {
+        //int i = 0;
+        while (true) {
+            System.out.println(" Thread is running...");
+             for (int i=0; i < 5; i++){
+             System.out.println("Proceso 1, "+ i);
+             }
+
+            try {
+                //Wait for one sec so it doesn't print too fast
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 
