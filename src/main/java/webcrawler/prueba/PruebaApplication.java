@@ -3,21 +3,27 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import webcrawler.prueba.webCrawler.*;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 class PruebaApplication {
 
-	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
-		//Inicianlizando el Hilo
-		//ComputerPageOne hilo1 = new ComputerPageOne();
-		//hilo1.start();
+	@Autowired
+	private SimpMessagingTemplate template;	//con este template podems enviar mensajes al topic,enviamos a computerpageone
 
+	@PostConstruct		//
+	public void newThread(){
+		System.out.println("imprimiendo TEMPLATE");
+		System.out.println(template);
 
 		ComputerPageOne hilo = new ComputerPageOne(
+				template,
 				"https://www.dismac.com.bo/o85pd.html",
 				"https://www.dismac.com.bo/o85pd.html",
 				"https://www.dismac.com.bo/3g573lt-abm.html",
@@ -36,6 +42,16 @@ class PruebaApplication {
 				"https://www.dismac.com.bo/machc-wah9lp.html",
 				"https://www.dismac.com.bo/jh94x.html");
 		hilo.start();
+	}
+
+	public static void main(String[] args) throws IOException {
+		SpringApplication.run(PruebaApplication.class, args);
+		//Inicianlizando el Hilo
+		//ComputerPageOne hilo1 = new ComputerPageOne();
+		//hilo1.start();
+
+
+
 		//Hilos
 		/**
 		Proceso1 hilo1 = new Proceso1();

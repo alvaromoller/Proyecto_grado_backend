@@ -10,10 +10,13 @@ import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 import webcrawler.prueba.dao.*;
 import webcrawler.prueba.dto.*;
 import webcrawler.prueba.model.*;
+import webcrawler.prueba.webSocket.model.Greeting;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,6 +55,8 @@ public class ComputerPageOne extends Thread {
     private String url28;
     private String url29;
     private String url30;
+    private SimpMessagingTemplate template;
+
 
     @Autowired
     public ComputerPageOne(DirectionIp directionIp , BrandDao brandDao, ProductDao productDao, ProductTypeDao productTypeDao, ShopDao shopDao, ProductDetailDao productDetailDao, TransactionDao transactionDao){
@@ -62,27 +67,28 @@ public class ComputerPageOne extends Thread {
         this.productDetailDao = productDetailDao;
         this.transactionDao = transactionDao;
         this.directionIp = directionIp;
-
     }
 
     public ComputerPageOne(
-                String url,
-                String urlRebaja,
-                String url2,
-                String url3,
-                String url4,
-                String url5,
-                String url6,
-                String url7,
-                String url8,
-                String url9,
-                String url24,
-                String url25,
-                String url26,
-                String url27,
-                String url28,
-                String url29,
-                String url30) {
+            SimpMessagingTemplate template,
+            String url,
+            String urlRebaja,
+            String url2,
+            String url3,
+            String url4,
+            String url5,
+            String url6,
+            String url7,
+            String url8,
+            String url9,
+            String url24,
+            String url25,
+            String url26,
+            String url27,
+            String url28,
+            String url29,
+            String url30) {
+        this.template = template;
         this.url = url;
         this.urlRebaja = urlRebaja;
         this.url2 = url2;
@@ -101,6 +107,43 @@ public class ComputerPageOne extends Thread {
         this.url29 = url29;
         this.url30 = url30;
 
+    }
+
+    public ComputerPageOne(
+            String url,
+            String urlRebaja,
+            String url2,
+            String url3,
+            String url4,
+            String url5,
+            String url6,
+            String url7,
+            String url8,
+            String url9,
+            String url24,
+            String url25,
+            String url26,
+            String url27,
+            String url28,
+            String url29,
+            String url30) {
+        this.url = url;
+        this.urlRebaja = urlRebaja;
+        this.url2 = url2;
+        this.url3 = url3;
+        this.url4 = url4;
+        this.url5 = url5;
+        this.url6 = url6;
+        this.url7 = url7;
+        this.url8 = url8;
+        this.url9 = url9;
+        this.url24 = url24;
+        this.url25 = url25;
+        this. url26 = url26;
+        this.url27 = url27;
+        this.url28 = url28;
+        this.url29 = url29;
+        this.url30 = url30;
     }
 
 
@@ -1706,7 +1749,7 @@ public class ComputerPageOne extends Thread {
     }
 
     //LISTADO DE TODOS LOS PRODUCTOS, para el hilo
-    public List<ProductDto> productListAll2() throws IOException{
+    public List<ProductDto> productListAll2() {
         //llamando al metodo obtenerIp de la clase DirectionIp
         //directionIp.obtenerIp();
 
@@ -1759,53 +1802,56 @@ public class ComputerPageOne extends Thread {
 
 
         //producto 1
-        productDtos = extractProductList(url);
-        //System.out.println("producto1: " + productDtos);
-        //producto 21 rebaja
-        productDtos1Rebaja = extractProductList1Rebaja(urlRebaja);
-        //producto 2
-        productDtos2 = extractProductList2(url2);
-        //System.out.println("producto2 url2: " + productDtos2);
+        try {
+            productDtos = extractProductList(url);
+            //System.out.println("producto1: " + productDtos);
+            //producto 21 rebaja
+            productDtos1Rebaja = extractProductList1Rebaja(urlRebaja);
+            //producto 2
+            productDtos2 = extractProductList2(url2);
+            //System.out.println("producto2 url2: " + productDtos2);
 
-        //producto 3
-        productDtos3 = extractProductList3(url3);
-        //System.out.println("producto3: " + productDtos3);
-        //producto 4
-        productDtos4 = extractProductList4(url4);
-        //System.out.println("producto4: " + productDtos4);
-        //producto 5
-        productDtos5 = extractProductList5(url5);
-        //System.out.println("producto5: " + productDtos5);
+            //producto 3
+            productDtos3 = extractProductList3(url3);
+            //System.out.println("producto3: " + productDtos3);
+            //producto 4
+            productDtos4 = extractProductList4(url4);
+            //System.out.println("producto4: " + productDtos4);
+            //producto 5
+            productDtos5 = extractProductList5(url5);
+            //System.out.println("producto5: " + productDtos5);
 
-        //producto 6
-        productDtos6 = extractProductList6(url6);
-        //System.out.println("producto6: " + productDtos6);
-        //producto 7
-        productDtos7 = extractProductList7(url7);
-        //System.out.println("producto7: " + productDtos7);
-        //producto 8
-        productDtos8 = extractProductList8(url8);
-        //System.out.println("producto8: " + productDtos8);
+            //producto 6
+            productDtos6 = extractProductList6(url6);
+            //System.out.println("producto6: " + productDtos6);
+            //producto 7
+            productDtos7 = extractProductList7(url7);
+            //System.out.println("producto7: " + productDtos7);
+            //producto 8
+            productDtos8 = extractProductList8(url8);
+            //System.out.println("producto8: " + productDtos8);
 
-        //producto 9
-        productDtos9 = extractProductList9(url9);
-        //System.out.println("producto9: " + productDtos9);
+            //producto 9
+            productDtos9 = extractProductList9(url9);
+            //System.out.println("producto9: " + productDtos9);
 
-        //producto24
-        productDtos24 = extractProductList24(url24);
-        //producto25
-        productDtos25 = extractProductList25(url25);
-        //producto26
-        productDtos26 = extractProductList26(url26);
-        //producto27
-        productDtos27 = extractProductList27(url27);
-        //producto28
-        productDtos28 = extractProductList28(url28);
-        //producto29
-        productDtos29 = extractProductList29(url29);
-        //producto30
-        productDtos30 = extractProductList30(url30);
-
+            //producto24
+            productDtos24 = extractProductList24(url24);
+            //producto25
+            productDtos25 = extractProductList25(url25);
+            //producto26
+            productDtos26 = extractProductList26(url26);
+            //producto27
+            productDtos27 = extractProductList27(url27);
+            //producto28
+            productDtos28 = extractProductList28(url28);
+            //producto29
+            productDtos29 = extractProductList29(url29);
+            //producto30
+            productDtos30 = extractProductList30(url30);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //System.out.println("Tamaño: " + productDtos.size());
 
 
@@ -1865,21 +1911,23 @@ public class ComputerPageOne extends Thread {
     public void run() {
         //int i2 = 0;
         while (true) {
-            //System.out.println(this.getName() + ": New Thread is running..." + i2++);
-            System.out.println(" Thread is running...");
+            //Enviand mensaje de prueba a la consola en frontend
+            Greeting greeting = new Greeting("Hello word, " );
+            this.template.convertAndSend("/topic/greetings", greeting);
 
             //llamando al metodo con los productos
+            System.out.println(" Thread is running...");
             List<ProductDto> obj2 = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
-            try {
-                obj2 = productListAll2();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            obj2 = productListAll2();
+
+            //Enviand productos extraidos a la consola en frontend
+            this.template.convertAndSend("/topic/products", obj2);
+
 
 
             try {
                 //Thread, Wait for one sec so it doesn't print too fast
-                Thread.sleep(30000);
+                Thread.sleep(60000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -1892,6 +1940,7 @@ public class ComputerPageOne extends Thread {
     public void run2() {
         //int i = 0;
         while (true) {
+            //System.out.println(this.getName() + ": New Thread is running..." + i2++);
             System.out.println(" Thread is running...");
              for (int i=0; i < 5; i++){
              System.out.println("Proceso 1, "+ i);
