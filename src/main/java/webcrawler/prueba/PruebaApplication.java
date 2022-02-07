@@ -24,28 +24,38 @@ class PruebaApplication {
 
 		ComputerPageOne hilo = new ComputerPageOne(
 				template,
-				"https://www.dismac.com.bo/o85pd.html",
-				"https://www.dismac.com.bo/o85pd.html",
-				"https://www.dismac.com.bo/3g573lt-abm.html",
-				"https://www.dismac.com.bo/82a2007lm.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
 				"https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook",
 				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593",
 				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca",
 				"https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la",
 				"https://compucenter.store/product/2548-equipo-hp-laptop-348-g7",
 				"https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm",
-				"https://www.dismac.com.bo/310h7la-abm.html",
-				"https://www.dismac.com.bo/310h7la-abm.html",
-				"https://www.dismac.com.bo/2t6a007fj.html",
-				"https://www.dismac.com.bo/nbb-wah9-gray.html",
-				"https://www.dismac.com.bo/nbb-wai9.html",
-				"https://www.dismac.com.bo/machc-wah9lp.html",
-				"https://www.dismac.com.bo/jh94x.html");
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html");
 		hilo.start();
 	}
 
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
+		//SpringApplication.run(PruebaApplication.class, args);
+
+		//Ejemplo nueva estructura
+		Example3 example3 = new Example3();
+		String url = "https://www.imdb.com/chart/top";
+		//example3.listAllPagesExampleTwo(url);
+
+		//Compucenter
+		String url2 ="https://compucenter.store/category/23-equipo/77-laptop";
+		example3.compuCenterDell(url2);
+
 		//Inicianlizando el Hilo
 		//ComputerPageOne hilo1 = new ComputerPageOne();
 		//hilo1.start();
