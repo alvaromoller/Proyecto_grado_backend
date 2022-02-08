@@ -53,7 +53,7 @@ public class Example3 {
      }
 
 
-     //73 + 33 = 106 productos
+     // 35+ 38 + 67 = 140 productos
 
     //ejemplo 3, 24 productos
     //CompuCenter,Equipos Laptos
@@ -111,7 +111,7 @@ public class Example3 {
         System.out.println("-------------------");
     }
 /////////////////////////////////////////////////////////////////////////////////
-    //HP, Asus, Lenovo,Dell, Acer, MSi
+    //pC.COM : HP, Asus, Lenovo, Dell, Acer, MSi
 
     //ejemplo 5, 14 productos
     //Pc.com, HP
@@ -293,8 +293,32 @@ public class Example3 {
         }
         System.out.println("-------------------");
     }
-/////////////////////////////////////////////////////////////////////////////////
 
+    //Pc.com, datos de tienda
+    //https://www.pc.com.bo/index.html#
+    public void pcTienda(String url) throws IOException {
+        System.out.println("Pc.com Tienda, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.box-contact-info");
+
+        //ubicacion, descripcion
+        String nombre = "PC.COM";
+        String imagen = "https://www.pc.com.bo/assets/img/logo.png";
+        for (Element e : body.select("li"))
+        {
+            String descripcion = e.select(" div.textosobreimagen a ").text();   //no tiene descripcion
+            String location = e.select(" li span  ").text();
+            //System.out.println("- descripcion:  "+ descripcion);
+            System.out.println("  Ubicación: "+ location);
+        }
+        System.out.println("  Logo: "+ imagen);
+
+        System.out.println("-------------------");
+    }
+
+
+/////////////////////////////////////////////////////////////////////////////////
+    //Marcas: HP, Dell, Lenovo
 
     //ejemplo 11, 33 productos
     //PAgina, DISEÑO CREATIVO computación
@@ -321,6 +345,112 @@ public class Example3 {
 
             System.out.println("");
         }
+        System.out.println("-------------------");
+    }
+
+    //ejemplo 12, 6 productos
+    //Página, DISEÑO CREATIVO HP
+    //https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325
+    public void creativoHp(String url) throws IOException {
+        System.out.println("DISEÑO CREATIVO Hp, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.grid__products ");
+
+        //nombre, imagen
+        for (Element e : body.select("div.grid-product "))
+        {
+            String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String precio = e.select(" div.grid-product__price ").text();
+            String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            System.out.println("- nombre1(Marca): "+ nombre1);
+            System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+            System.out.println("  descripcion:  "+ descripcion);
+            System.out.println("  precio actual:  "+ precio);
+            System.out.println("  Imagen:   "+ imagen);
+
+            System.out.println("");
+        }
+        System.out.println("-------------------");
+    }
+
+    //ejemplo 13, 26 productos
+    //Página, DISEÑO CREATIVO Dell
+    //https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283
+    public void creativoDell(String url) throws IOException {
+        System.out.println("DISEÑO CREATIVO Dell, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.grid__products ");
+
+        //nombre, imagen
+        for (Element e : body.select("div.grid-product "))
+        {
+            String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String precio = e.select(" div.grid-product__price ").text();
+            String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            System.out.println("- nombre1(Marca): "+ nombre1);
+            System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+            System.out.println("  descripcion:  "+ descripcion);
+            System.out.println("  precio actual:  "+ precio);
+            System.out.println("  Imagen:   "+ imagen);
+
+            System.out.println("");
+        }
+        System.out.println("-------------------");
+    }
+
+    //ejemplo 14, 2 productos
+    //Página, DISEÑO CREATIVO Lenovo
+    //https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225
+    public void creativoLenovo(String url) throws IOException {
+        System.out.println("DISEÑO CREATIVO Lenovo, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.grid__products ");
+
+        //nombre, imagen
+        for (Element e : body.select("div.grid-product "))
+        {
+            String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String precio = e.select(" div.grid-product__price ").text();
+            String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            System.out.println("- nombre1(Marca): "+ nombre1);
+            System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+            System.out.println("  descripcion:  "+ descripcion);
+            System.out.println("  precio actual:  "+ precio);
+            System.out.println("  Imagen:   "+ imagen);
+
+            System.out.println("");
+        }
+        System.out.println("-------------------");
+    }
+
+    //Diseño creativo Computacion, datos de tienda
+    //https://www.pc.com.bo/index.html#
+    public void creativoTienda(String url) throws IOException {
+        System.out.println("Creativo computacion Tienda, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.et_pb_text_inner");
+
+        //ubicacion, descripcion
+        String nombre = "Computación, diseño creativo";
+        String imagen = "https://creativo.com.bo/wp-content/uploads/2021/08/DisenoAprobadoLogoCreativoLB.png";
+        for (Element e : body.select("div.x-el.x-el-span"))
+        {
+            String descripcion = e.select(" div.textosobreimagen a ").text();   //no tiene descripcion
+            String location = e.select(" div.x-el.x-el-span  ").text();
+            //System.out.println("- descripcion:  "+ descripcion);
+            System.out.println("  Ubicación: "+ location);
+        }
+        System.out.println("  Logo: "+ imagen);
+
         System.out.println("-------------------");
     }
 

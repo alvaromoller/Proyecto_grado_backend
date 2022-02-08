@@ -61,7 +61,14 @@ class PruebaApplication {
 		String url7 = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
 		String url8 = "https://www.pc.com.bo/assets/html/notebooks-acer.html";
 		String url9 = "https://www.pc.com.bo/assets/html/notebooks-msi.html";
+		//creativo Computacion
 		String url10 = "https://creativocomputacion.ecwid.com/Notebooks-c10743110";
+		String url11 = "https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325";
+		String url12= "https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283";
+		String url13 = "https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225";
+
+		String urlStorePc ="https://www.pc.com.bo/index.html#";
+		String urlStoreCreativo = "https://creativo.com.bo/";
 		//example3.listAllPagesExampleTwo(url);
 		//example3.compuCenterLaptops(url2);
 		//example3.compuCenterGaming(url3);
@@ -71,7 +78,13 @@ class PruebaApplication {
 		//example3.pcDell(url7);
 		//example3.pcAcer(url8);
 		//example3.pcMsi(url9);
-		example3.creativoLaptops(url10);
+		//example3.creativoLaptops(url10);
+		//example3.creativoHp(url11);
+		//example3.creativoDell(url12);
+		//example3.creativoLenovo(url13);
+		//example3.pcTienda(urlStorePc);
+		example3.creativoTienda(urlStoreCreativo);
+
 
 		//Inicianlizando el Hilo
 		//ComputerPageOne hilo1 = new ComputerPageOne();
