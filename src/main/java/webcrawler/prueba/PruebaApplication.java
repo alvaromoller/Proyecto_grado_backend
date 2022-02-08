@@ -49,12 +49,29 @@ class PruebaApplication {
 
 		//Ejemplo nueva estructura
 		Example3 example3 = new Example3();
+		//EJEMPLO
 		String url = "https://www.imdb.com/chart/top";
-		//example3.listAllPagesExampleTwo(url);
-
 		//Compucenter
 		String url2 ="https://compucenter.store/category/23-equipo/77-laptop";
-		example3.compuCenterDell(url2);
+		String url3 = "https://compucenter.store/category/23-equipo/238-gaming";
+		//Pc.com
+		String url4 ="https://www.pc.com.bo/assets/html/notebooks-hp.html";
+		String url5 = "https://www.pc.com.bo/assets/html/notebooks-asus.html";
+		String url6 = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
+		String url7 = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
+		String url8 = "https://www.pc.com.bo/assets/html/notebooks-acer.html";
+		String url9 = "https://www.pc.com.bo/assets/html/notebooks-msi.html";
+		String url10 = "https://creativocomputacion.ecwid.com/Notebooks-c10743110";
+		//example3.listAllPagesExampleTwo(url);
+		//example3.compuCenterLaptops(url2);
+		//example3.compuCenterGaming(url3);
+		//example3.pcHp(url4);
+		//example3.pcAsus(url5);
+		//example3.pcLenovo(url6);
+		//example3.pcDell(url7);
+		//example3.pcAcer(url8);
+		//example3.pcMsi(url9);
+		example3.creativoLaptops(url10);
 
 		//Inicianlizando el Hilo
 		//ComputerPageOne hilo1 = new ComputerPageOne();
