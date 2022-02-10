@@ -30,7 +30,6 @@ public class Example3 {
      System.out.println(String.format(msg, args));
      }
 
-
      //ejemplo 2
     //pagina, https://www.imdb.com/chart/top
      public void listAllPagesExampleTwo(String url) throws IOException {
@@ -51,6 +50,7 @@ public class Example3 {
              System.out.println("año: "+ anio.replaceAll( "[^\\d]", "" ));
          }
      }
+/////////////////////////////////////////////////////////////////////////////////
 
 
      // 35+ 38 + 67 = 140 productos

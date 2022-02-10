@@ -17,37 +17,29 @@ class PruebaApplication {
 	@Autowired
 	private SimpMessagingTemplate template;	//con este template podems enviar mensajes al topic,enviamos a computerpageone
 
-	@PostConstruct		//
+	@PostConstruct		//el PostConstruct se ejecuta despues del main
 	public void newThread(){
 		System.out.println("imprimiendo TEMPLATE");
 		System.out.println(template);
 
 		ComputerPageOne hilo = new ComputerPageOne(
 				template,
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
+				"https://compucenter.store/category/23-equipo/77-laptop",
+
 				"https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook",
 				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593",
 				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca",
 				"https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la",
 				"https://compucenter.store/product/2548-equipo-hp-laptop-348-g7",
-				"https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html",
-				"https://www.dismac.com.bo/computadora-dell-de-15-6-quot-intel-core-i5-11va-gen-8gb-ram-256-ssd-sistema-operativo-linux-hpppc.html");
+				"https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm");
 		hilo.start();
 	}
 
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(PruebaApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 
 		//Ejemplo nueva estructura
+		/**
 		Example3 example3 = new Example3();
 		//EJEMPLO
 		String url = "https://www.imdb.com/chart/top";
@@ -69,6 +61,7 @@ class PruebaApplication {
 
 		String urlStorePc ="https://www.pc.com.bo/index.html#";
 		String urlStoreCreativo = "https://creativo.com.bo/";
+		 */
 		//example3.listAllPagesExampleTwo(url);
 		//example3.compuCenterLaptops(url2);
 		//example3.compuCenterGaming(url3);
@@ -83,7 +76,7 @@ class PruebaApplication {
 		//example3.creativoDell(url12);
 		//example3.creativoLenovo(url13);
 		//example3.pcTienda(urlStorePc);
-		example3.creativoTienda(urlStoreCreativo);
+		//example3.creativoTienda(urlStoreCreativo);
 
 
 		//Inicianlizando el Hilo
