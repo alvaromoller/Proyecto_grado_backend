@@ -25,18 +25,18 @@ class PruebaApplication {
 		ComputerPageOne hilo = new ComputerPageOne(
 				template,
 				"https://compucenter.store/category/23-equipo/77-laptop",
-
+				"https://www.pc.com.bo/assets/html/notebooks-hp.html",
+				"https://www.pc.com.bo/assets/html/notebooks-dell.html ",
 				"https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook",
-				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593",
-				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca",
-				"https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la",
-				"https://compucenter.store/product/2548-equipo-hp-laptop-348-g7",
-				"https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm");
+				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593"
+
+		);
 		hilo.start();
 	}
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(PruebaApplication.class, args);
+
 
 		//Ejemplo nueva estructura
 		/**

@@ -74,13 +74,11 @@ public class ProductApi extends Thread{
 
 
 ///////////////////////////
-    //LISTA DE PRODUCTOS SIN BASE DE DATOS
-    //Prueba de listado de productos Sin base de datos
+    //COMPUCENTER, LISTA DE PRODUCTOS SIN BASE DE DATOS
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     //List<ProductDto>
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
-        //tienda 2, Compucenter
-        //Direccion Compucenter Productos
+        //tienda ,CompuCenter,Equipos Laptos
         String urlCompuCenter = "https://compucenter.store/category/23-equipo/77-laptop";
 
         //dirección producto 4
@@ -101,9 +99,25 @@ public class ProductApi extends Thread{
        //Thread hilo1 = new Thread(computerPageOne);
         //hilo1.start();
 
-        return computerPageOne.productListAllPrueba(urlCompuCenter, url4, url5, url6, url7, url8, url9);
-        //urlCompuCenter,
-        //computerPageOne.productListAllPrueba(url4, url5, url6, url7, url8, url9);
+        return computerPageOne.productListAllPrueba(urlCompuCenter, url4, url5, url6);
+    }
+    //FIN
+
+
+    //Pc.com, Marcas
+    @RequestMapping( path = "/productsPc" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDto> selectProductsPc(HttpServletRequest request)throws IOException {
+        //tienda ,CompuCenter,Equipos Laptos
+        String urlPcHp = "https://www.pc.com.bo/assets/html/notebooks-hp.html";
+        String urlPcDell = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
+        String urlPcLenovo = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
+        String urlPcAsus ="https://www.pc.com.bo/assets/html/notebooks-asus.html";
+
+        String urlCreativoHp = "https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325";
+        String urlCreativoDell = "https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283";
+        String urlCreativoLenovo = "https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225";
+
+        return computerPageOne.productListAllMarcas(urlPcHp, urlPcDell, urlPcLenovo, urlPcAsus,   urlCreativoHp, urlCreativoDell, urlCreativoLenovo);
     }
     //FIN
 
@@ -123,14 +137,8 @@ public class ProductApi extends Thread{
         //dirección producto 6
         String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
 
-        //dirección producto 7
-        String url7="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC7
-        //dirección producto 8
-        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC8
-        //dirección producto 9
-        String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
 
-        return computerPageOne.findProductById(id, url4, url5, url6, url7, url8, url9 );
+        return computerPageOne.findProductById(id, url4, url5, url6);
     }
     //fin
 

@@ -52,9 +52,9 @@ public class Example3 {
      }
 /////////////////////////////////////////////////////////////////////////////////
 
-
      // 35+ 38 + 67 = 140 productos
 
+    //USADOS
     //ejemplo 3, 24 productos
     //CompuCenter,Equipos Laptos
     //https://compucenter.store/category/23-equipo/77-laptop
@@ -111,7 +111,11 @@ public class Example3 {
         System.out.println("-------------------");
     }
 /////////////////////////////////////////////////////////////////////////////////
-    //pC.COM : HP, Asus, Lenovo, Dell, Acer, MSi
+
+    //USADOS
+    //PC.COM : 38 productos
+    // Hp, Dell, Lenovo, Asus
+    // Acer, MSi
 
     //ejemplo 5, 14 productos
     //Pc.com, HP
@@ -300,21 +304,24 @@ public class Example3 {
         System.out.println("Pc.com Tienda, " + url + "...");
         Document doc = Jsoup.connect(url).timeout(9000).get();
         Elements body = doc.select("div.box-contact-info");
+        //Salto de linea descriptionPage
+        body.select("br").append("\\nl"); //append salto de linea despues de un elemento
+        body.select("span").prepend("\\nl"); //append salto de linea Antes de un elemento
 
         //ubicacion, descripcion
         String nombre = "PC.COM";
         String imagen = "https://www.pc.com.bo/assets/img/logo.png";
-        for (Element e : body.select("li"))
+
+        for (Element e : body.select("ul"))
         {
-            String descripcion = e.select(" div.textosobreimagen a ").text();   //no tiene descripcion
-            String location = e.select(" li span  ").text();
-            //System.out.println("- descripcion:  "+ descripcion);
+            String location = e.select(" li span  ").text().replaceAll("\\\\nl", "\n");
             System.out.println("  Ubicación: "+ location);
         }
         System.out.println("  Logo: "+ imagen);
 
         System.out.println("-------------------");
     }
+
 
 
 /////////////////////////////////////////////////////////////////////////////////
@@ -433,20 +440,22 @@ public class Example3 {
     }
 
     //Diseño creativo Computacion, datos de tienda
-    //https://www.pc.com.bo/index.html#
+    //https://creativo.com.bo/
     public void creativoTienda(String url) throws IOException {
         System.out.println("Creativo computacion Tienda, " + url + "...");
         Document doc = Jsoup.connect(url).timeout(9000).get();
-        Elements body = doc.select("div.et_pb_text_inner");
+        Elements body = doc.select("div.et_pb_with_border.et_pb_module.et_pb_text");
+        //Salto de linea descriptionPage
+        body.select("br").append("\\nl"); //append salto de linea despues de un elemento
+        body.select("span").prepend("\\nl"); //append salto de linea Antes de un elemento
 
         //ubicacion, descripcion
         String nombre = "Computación, diseño creativo";
         String imagen = "https://creativo.com.bo/wp-content/uploads/2021/08/DisenoAprobadoLogoCreativoLB.png";
-        for (Element e : body.select("div.x-el.x-el-span"))
+        for (Element e : body.select("div.et_pb_text_inner"))
         {
-            String descripcion = e.select(" div.textosobreimagen a ").text();   //no tiene descripcion
-            String location = e.select(" div.x-el.x-el-span  ").text();
-            //System.out.println("- descripcion:  "+ descripcion);
+            //no tiene descripcion
+            String location = e.select(" div span ").text().replaceAll("\\\\nl", "\n");
             System.out.println("  Ubicación: "+ location);
         }
         System.out.println("  Logo: "+ imagen);

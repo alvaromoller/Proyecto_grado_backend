@@ -138,13 +138,11 @@ public class ProductCategoryApi {
         String urlG1="https://compucenter.store/product/2049-gamer-dell-portatil-inspiron-gaming-g3-3500";  //PC4
         // dirección producto 2
         String urlG2="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC5
-        //dirección producto 3
-        String urlG3="https://compucenter.store/product/2570-equipo-msi-gaming-gf65-thin";  //PC6
+        // dirección producto 3
+        String urlG3="https://compucenter.store/product/2674-gamer-asus-gaming-tuf-516pr-ds77-wh";  //PC5
         // dirección producto 4
-        String urlG4="https://compucenter.store/product/2674-gamer-asus-gaming-tuf-516pr-ds77-wh";  //PC5
-        //dirección producto 5
-        String urlG5="https://compucenter.store/product/teclado-gamer-retroiluminado-marvo-k632-usb";  //PC6
-        //Fin categoria gamer
+        String urlG4="https://compucenter.store/category/23-equipo/238-gaming";  //PC5
+
 
         //Categoria Work, Compucenter
         //dirección producto 1,
@@ -157,7 +155,7 @@ public class ProductCategoryApi {
         String urlW4="https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html";  //PC4
         // dirección producto 5
         String urlW5="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC5
-        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,  urlG1,urlG2,urlG3, urlG4, urlG5  ,urlW1,urlW2,urlW3,urlW4,urlW5 );
+        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,    urlG1,urlG2,urlG3,urlG4  ,urlW1,urlW2,urlW3,urlW4,urlW5 );
     }
     //FIN
 

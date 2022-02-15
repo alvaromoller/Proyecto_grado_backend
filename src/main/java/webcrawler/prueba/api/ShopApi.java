@@ -87,7 +87,12 @@ public class ShopApi {
         //dirección tienda 3
         String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
 
-        return computerPageOne.shopListAll(url, url2 ,url3);
+        //dirección tienda 4, Pc.com
+        String url4="https://www.pc.com.bo/index.html#";
+        //dirección tienda 5, Creativo computacion
+        String url5="https://creativo.com.bo/";
+
+        return computerPageOne.shopListAll(url, url2 ,url3, url4, url5);
     }
     //FIN
 
@@ -102,7 +107,12 @@ public class ShopApi {
         //dirección tienda 3
         String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
 
-        return computerPageOne.findShopById(id, url, url2, url3);
+        //dirección tienda 4, Pc.com
+        String url4="https://www.pc.com.bo/index.html#";
+        //dirección tienda 5, Creativo computacion
+        String url5="https://creativo.com.bo/";
+
+        return computerPageOne.findShopById(id, url, url2, url3, url4, url5);
     }
     //FIN
 ///////////////////////////
