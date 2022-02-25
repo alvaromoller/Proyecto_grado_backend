@@ -14,6 +14,8 @@ import webcrawler.prueba.dto.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ComputerPageOne extends Thread {
@@ -384,6 +386,7 @@ public class ComputerPageOne extends Thread {
             String descripcion = e.select(" div.text-base.text-justify ").text();
             String precio = e.select(" div.inline-block.align-bottom.mr-5 span ").text();
             String imagen = e.select(" div.relative.border-4.border-red-100 img  ").attr("src");
+
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
              System.out.println("  nombre2:  "+ nombre2);
@@ -392,8 +395,72 @@ public class ComputerPageOne extends Thread {
              System.out.println("  Imagen:   "+ imagen);
              System.out.println("");
              */
-            /////////////////////////////////////////////////////////////////////////
+            //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
+            //Marca
+            String marca = e.select(" div.flex.flex-col.mb-2 strong").text();   //extraccion de marca
 
+            //Regular expression to find digits
+            String regexMarca = "\\b(HP|Lenovo|Asus|Dell)\\b";
+            //Compiling the regular expression
+            Pattern patternMarca = Pattern.compile(regexMarca);
+            //Retrieving the matcher object
+            Matcher matcherMarca = patternMarca.matcher(marca);                         //identificacion de coincidencia de marca con el texto extraido
+            if(matcherMarca.find()) {
+                System.out.println("Match found Marca:  "+ matcherMarca.group());
+            } else {
+                System.out.println("Match not found");
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            //Memoria Ram
+            String ram = e.select(" div.text-base.text-justify ").text();
+
+            //Regular expression to find digits
+            String regexRam = "\\b(8\\s?GB|16\\s?GB|4\\s?GB|12\\s?GB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            //Compiling the regular expression
+            Pattern patternRam = Pattern.compile(regexRam);
+            //Retrieving the matcher object
+            Matcher matcherRam = patternRam.matcher(ram);
+            if(matcherRam.find()) {
+                System.out.println("Match found Ram:  "+ matcherRam.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
+            } else {
+                System.out.println("Match not Ram");
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            //Procesador
+            String procesador = e.select(" div.text-base.text-justify ").text();
+
+            //Regular expression to find digits
+            String regexProcesador = "\\b(Intel|Ryzen)\\b";
+            //Compiling the regular expression
+            Pattern patternProcesador = Pattern.compile(regexProcesador);
+            //Retrieving the matcher object
+            Matcher matcherProcesador = patternProcesador.matcher(procesador);
+            if(matcherProcesador.find()) {
+                System.out.println("Match found procesador2:  "+ matcherProcesador.group());
+            } else {
+                System.out.println("Match not found");
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            //Almacenamiento
+            String almacenamiento = e.select(" div.text-base.text-justify ").text();
+
+            //Regular expression to find digits
+            String regexAlmacenamiento = "\\b(128\\s?GB|240\\s?GB|256\\s?GB|500\\s?GB|512\\s?GB|\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            //Compiling the regular expression
+            Pattern patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
+            //Retrieving the matcher object
+            Matcher matcherAlmacenamiento = patternAlmacenamiento.matcher(almacenamiento);
+            if(matcherAlmacenamiento.find()) {
+                System.out.println("Match found Almacenamiento:  "+ matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
+            } else {
+                System.out.println("Match not Almacenamiento");
+            }
+
+
+            /////////////////////////////////////////////////////////////////////////
             //PRUEBA de ARRAY SIN BASE DE DATOS
             //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
             ProductDto productDto = new ProductDto();
@@ -404,10 +471,11 @@ public class ComputerPageOne extends Thread {
             productDto.setDescription(descripcion);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
-            //productDto.setBrand(brand);
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
+            //Usando expresiones regulares para buscar coincidencias
+            productDto.setBrand(matcherMarca.group());
+            productDto.setRam(matcherRam.group().replaceAll("[\\ \\\\]", ""));
+            productDto.setProcessor(matcherProcesador.group());
+            productDto.setStorage(matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
             productDto.setShopId(2);
@@ -610,6 +678,9 @@ public class ComputerPageOne extends Thread {
             }
         }
     }
+
+
+
     //////////////////////////////////////////////////////////////////////
     //NUEVAS MARCAS
 

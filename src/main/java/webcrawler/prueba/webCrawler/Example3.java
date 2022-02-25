@@ -47,7 +47,9 @@ public class Example3 {
 
              System.out.println("Titulo"+ titulo);
              System.out.println("Ranking"+ ranking);
-             System.out.println("año: "+ anio.replaceAll( "[^\\d]", "" ));
+             System.out.println("año: "+ anio);
+             System.out.println("año con replaceAll: "+ anio.replaceAll( "[^\\d]", "" ));
+
          }
      }
 /////////////////////////////////////////////////////////////////////////////////

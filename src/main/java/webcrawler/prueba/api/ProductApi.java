@@ -88,13 +88,6 @@ public class ProductApi extends Thread{
         //dirección producto 6
         String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
 
-        //dirección producto 7
-        String url7="https://compucenter.store/product/2520-equipo-hp-laptop-15-gw0007la";  //PC7
-        //dirección producto 8
-        String url8="https://compucenter.store/product/2548-equipo-hp-laptop-348-g7";  //PC8
-        //dirección producto 9
-        String url9="https://compucenter.store/product/2504-equipo-hp-laptop-14-dk1025wm";  //PC9
-
         //Creacion del Hilo 1
        //Thread hilo1 = new Thread(computerPageOne);
         //hilo1.start();

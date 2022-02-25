@@ -177,6 +177,9 @@ public class ProductDto {
                 ", price=" + price + '\'' +
                 ", brand=" + brand + '\'' +
                 ", ram=" + ram + '\'' +
+                ", processor=" + processor + '\'' +
+                ", storage=" + storage + '\'' +
+                ", tarjetaGrafica=" + tarjetaGrafica + '\'' +
                 ", brandId=" + brandId +
                 ", shopId=" + shopId +
                 ", shopName='" + shopName + '\'' +
