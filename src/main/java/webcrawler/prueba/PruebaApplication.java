@@ -24,32 +24,31 @@ class PruebaApplication {
 	public void newThread(){
 		System.out.println("imprimiendo TEMPLATE");
 		System.out.println(template);
-
+		//hilo para home
 		ComputerPageOne hilo = new ComputerPageOne(
 				template,
-				"https://compucenter.store/category/23-equipo/77-laptop",
-				"https://www.pc.com.bo/assets/html/notebooks-hp.html",
-				"https://www.pc.com.bo/assets/html/notebooks-dell.html ",
-				"https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook",
-				"https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593"
+				"https://compucenter.store/category/23-equipo/77-laptop",		//CompuCenter Laptops
+				"https://compucenter.store/category/23-equipo/238-gaming#",					//CompuCenter Gamer
+				"https://www.pc.com.bo/assets/html/notebooks-hp.html", 				//marca
+				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
 
 		);
 		hilo.start();
 	}
 
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
+		//SpringApplication.run(PruebaApplication.class, args);
 
-        ComputerPageOne obj = new ComputerPageOne();
-        String url="https://compucenter.store/category/23-equipo/77-laptop";
-        //obj.compuCenterLaptops(url);
+
+		ComputerPageOne obj2 = new ComputerPageOne();
+		obj2.techStoreLaptops("https://techstore.bo/product-category/mac/macbool-air/");
 
         //ejemplo 1
         //Identificar:
         // marca, procesador, memoria,almacenamiento, tarjeta grafica Opcional,
+		/**
         System.out.println("////////Marca////////////");
         String marca = "Hp - LATITUDE 3520 1 TB HHD 1 TB SSD 512 GB";
-
         //Regular expression to find digits
         String regexMarca = "\\b(Hp|Lenovo|Asus|Dell)\\b";
         //Compiling the regular expression
@@ -62,24 +61,7 @@ class PruebaApplication {
         } else {
             System.out.println("Match not found");
         }
-
-        /////////////////////////////////////////////////////////////////////////
-        //Almacenamiento
-        String almacenamiento = "HP - LATITUDE 1.0 TB HDD ";
-
-        //Regular expression to find digits
-        String regexAlmacenamiento = "\\b(\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
-
-		//Compiling the regular expression
-        Pattern patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
-        //Retrieving the matcher object
-        Matcher matcherAlmacenamiento = patternAlmacenamiento.matcher(almacenamiento);
-        if(matcherAlmacenamiento.find()) {
-            System.out.println("Match found Almacenamiento:  "+ matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
-        } else {
-            System.out.println("Match not found Almacenamiento");
-        }
-
+		*/
 
 
 

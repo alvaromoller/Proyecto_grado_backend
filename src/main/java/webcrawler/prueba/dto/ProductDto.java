@@ -1,5 +1,7 @@
 package webcrawler.prueba.dto;
 
+import java.util.List;
+
 public class ProductDto {
     //clase ProductoDto
     //sin status ni transaction
@@ -8,7 +10,10 @@ public class ProductDto {
     private String name2;
     private String description;
     private String img;
+    private List<String> img2;
     private String price;
+    private String stock;    //disponible, agotado
+
     private String brand;       //encuesta, Marca
     private String ram;         //encuesta; ,memoria Ram
     private String processor;    //encuesta, procesador
@@ -74,6 +79,14 @@ public class ProductDto {
         this.img = img;
     }
 
+    public List<String> getImg2() {
+        return img2;
+    }
+
+    public void setImg2(List<String> img2) {
+        this.img2 = img2;
+    }
+
     public String getPrice() {
         return price;
     }
@@ -81,6 +94,15 @@ public class ProductDto {
     public void setPrice(String price) {
         this.price = price;
     }
+
+    public String getStock() {
+        return stock;
+    }
+
+    public void setStock(String stock) {
+        this.stock = stock;
+    }
+
     //encuesta
     public String getBrand() {
         return brand;
@@ -174,7 +196,9 @@ public class ProductDto {
                 ", name2='" + name2 + '\'' +
                 ", description='" + description + '\'' +
                 ", img='" + img + '\'' +
+                ", img2=" + img2 +
                 ", price=" + price + '\'' +
+                ", stock=" + stock + '\'' +
                 ", brand=" + brand + '\'' +
                 ", ram=" + ram + '\'' +
                 ", processor=" + processor + '\'' +
@@ -187,4 +211,6 @@ public class ProductDto {
                 ", categoryId=" + categoryId +
                 '}';
     }
+
+
 }

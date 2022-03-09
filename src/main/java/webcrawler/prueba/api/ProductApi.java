@@ -80,19 +80,17 @@ public class ProductApi extends Thread{
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
         //tienda ,CompuCenter,Equipos Laptos
         String urlCompuCenter = "https://compucenter.store/category/23-equipo/77-laptop";
+        //tienda ,CompuCenter Gamer
+        String urlCompuCenterGamer = "https://compucenter.store/category/23-equipo/238-gaming#";
 
-        //dirección producto 4
-        String url4="https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook";  //PC4
-        //dirección producto 5
-        String url5="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC5
+        //https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593
         //dirección producto 6
         String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
 
         //Creacion del Hilo 1
        //Thread hilo1 = new Thread(computerPageOne);
         //hilo1.start();
-
-        return computerPageOne.productListAllPrueba(urlCompuCenter, url4, url5, url6);
+        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer,  url6);
     }
     //FIN
 

@@ -132,6 +132,9 @@ public class ProductCategoryApi {
         String urlS3="https://www.pc.com.bo/assets/html/hp14-dk1022wm.html";  //Pc3
         //dirección producto 4
         String urlS4="https://www.pc.com.bo/assets/html/hp13-ag0003la.html";  //Pc4
+        //dirección Tienda Hp Hogar
+        String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
+
 
         //Categoria Gamer, compucenter
         //dirección producto 1,
@@ -155,7 +158,9 @@ public class ProductCategoryApi {
         String urlW4="https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html";  //PC4
         // dirección producto 5
         String urlW5="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC5
-        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4,    urlG1,urlG2,urlG3,urlG4  ,urlW1,urlW2,urlW3,urlW4,urlW5 );
+        //dirección Tienda Hp Empresas
+        String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";  //
+        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4, urlTiendaHpHogar,    urlG1,urlG2,urlG3,urlG4  ,urlW1,urlW2,urlW3,urlW4,urlW5, urlTiendaHpEmpresas );
     }
     //FIN
 
