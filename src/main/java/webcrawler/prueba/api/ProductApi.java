@@ -82,6 +82,7 @@ public class ProductApi extends Thread{
         String urlCompuCenter = "https://compucenter.store/category/23-equipo/77-laptop";
         //tienda ,CompuCenter Gamer
         String urlCompuCenterGamer = "https://compucenter.store/category/23-equipo/238-gaming#";
+        String urlTechStore = "https://techstore.bo/product-category/mac/macbool-air/";
 
         //https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593
         //dirección producto 6
@@ -90,7 +91,7 @@ public class ProductApi extends Thread{
         //Creacion del Hilo 1
        //Thread hilo1 = new Thread(computerPageOne);
         //hilo1.start();
-        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer,  url6);
+        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer, urlTechStore, url6);
     }
     //FIN
 

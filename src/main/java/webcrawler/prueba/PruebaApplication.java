@@ -30,6 +30,7 @@ class PruebaApplication {
 				"https://compucenter.store/category/23-equipo/77-laptop",		//CompuCenter Laptops
 				"https://compucenter.store/category/23-equipo/238-gaming#",					//CompuCenter Gamer
 				"https://www.pc.com.bo/assets/html/notebooks-hp.html", 				//marca
+				"https://techstore.bo/product-category/mac/macbool-air/",
 				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
 
 		);
@@ -37,11 +38,11 @@ class PruebaApplication {
 	}
 
 	public static void main(String[] args) throws IOException {
-		//SpringApplication.run(PruebaApplication.class, args);
+		SpringApplication.run(PruebaApplication.class, args);
 
 
 		ComputerPageOne obj2 = new ComputerPageOne();
-		obj2.techStoreLaptops("https://techstore.bo/product-category/mac/macbool-air/");
+		//obj2.techStoreLaptops("https://techstore.bo/product-category/mac/macbool-air/");
 
         //ejemplo 1
         //Identificar:
