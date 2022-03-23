@@ -2,6 +2,9 @@ package webcrawler.prueba;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,15 +21,19 @@ import javax.annotation.PostConstruct;
 class PruebaApplication {
 
 	@Autowired
-	private SimpMessagingTemplate template;	//con este template podems enviar mensajes al topic,enviamos a computerpageone
+	private SimpMessagingTemplate templateHome;	//con este template podems enviar mensajes al topic,enviamos a computerpageone
+
+	@Autowired
+	private SimpMessagingTemplate templateCategory;	//con este template podems enviar mensajes al topic,enviamos a computerpageTwo
+
 
 	@PostConstruct		//el PostConstruct se ejecuta despues del main
 	public void newThread(){
-		System.out.println("imprimiendo TEMPLATE");
-		System.out.println(template);
 		//hilo para home
-		ComputerPageOne hilo = new ComputerPageOne(
-				template,
+		System.out.println("imprimiendo TEMPLATE HOME");
+		System.out.println(templateHome);
+		ComputerPageOne hiloHome = new ComputerPageOne(
+				templateHome,
 				"https://compucenter.store/category/23-equipo/77-laptop",		//CompuCenter Laptops
 				"https://compucenter.store/category/23-equipo/238-gaming#",					//CompuCenter Gamer
 				"https://www.pc.com.bo/assets/html/notebooks-hp.html", 				//marca
@@ -34,15 +41,47 @@ class PruebaApplication {
 				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
 
 		);
-		hilo.start();
+		hiloHome.start();
+
+		//hilo para Category
+		System.out.println("imprimiendo TEMPLATE CATEGORY");
+		System.out.println(templateHome);
+		ComputerPageTwo hiloCategory = new ComputerPageTwo(
+				templateCategory,
+				//Categoria Study y hogar, PC.com, Tienda Hp Hogar
+				"https://www.pc.com.bo/assets/html/hp15-ef0025wm.html",  //PC1
+				"https://www.pc.com.bo/assets/html/hp15-dy1751ms.html",  //Pc2
+				"https://www.pc.com.bo/assets/html/hp14-dk1022wm.html",  //Pc3
+				"https://www.pc.com.bo/assets/html/hp13-ag0003la.html",  //Pc4
+				"https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1",		//dirección Tienda Hp Hogar
+
+				//Categoria Gamer, compucenter
+				"https://compucenter.store/category/23-equipo/238-gaming",  				//dirección Tienda CompuCenter
+
+				//Categoria Work, Compucenter
+				"https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html",  //PC4
+				"https://www.pc.com.bo/assets/html/hp15-cs3073cl.html",  //PC5
+				"https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html"		//dirección Tienda Hp Empresas
+		);
+		hiloCategory.start();
+
 	}
 
+
 	public static void main(String[] args) throws IOException {
-		SpringApplication.run(PruebaApplication.class, args);
+        SpringApplication.run(PruebaApplication.class, args);
 
 
-		ComputerPageOne obj2 = new ComputerPageOne();
-		//obj2.techStoreLaptops("https://techstore.bo/product-category/mac/macbool-air/");
+        ComputerPageTwo obj2 = new ComputerPageTwo();
+        //obj2.tiendaHpEmpresas("https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html");
+
+        /**
+        int contadorId=0;
+        for (int i=1; i<=10; i++) {
+            contadorId=contadorId+1;
+            System.out.println(i+ ": "+ contadorId);
+        }
+         */
 
         //ejemplo 1
         //Identificar:

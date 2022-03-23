@@ -86,7 +86,7 @@ public class ProductApi extends Thread{
 
         //https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593
         //dirección producto 6
-        String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
+        String url6="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC6
 
         //Creacion del Hilo 1
        //Thread hilo1 = new Thread(computerPageOne);
@@ -117,20 +117,9 @@ public class ProductApi extends Thread{
     //ENCONTRAR PRODUCT ID SIN BASE DE DATOS
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ProductDto findById(@PathVariable("id") Integer id, HttpServletRequest request)throws IOException{
-
-        //tienda 2, Compucenter
-        //Direccion Compucenter Productos
-        String urlCompuCenter = "https://compucenter.store/category/23-equipo/77-laptop";
-
-        //dirección producto 4
-        String url4="https://compucenter.store/product/2502-equipo-asus-laptop-f512j-vivobook";  //PC4
-        //dirección producto 5
-        String url5="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC5
         //dirección producto 6
-        String url6="https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca";  //PC6
-
-
-        return computerPageOne.findProductById(id, url4, url5, url6);
+        String url6="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC6
+        return computerPageOne.findProductById(id, url6);
     }
     //fin
 
