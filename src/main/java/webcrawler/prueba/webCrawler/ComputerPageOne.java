@@ -893,12 +893,13 @@ public class ComputerPageOne extends Thread {
         for (Element e : body.select("div.item")) {
             String nombre1 = e.select(" div.textosobreimagen h2  ").text();
             String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion = " Sin descripción previa"; //sin descripcion previa
             String precio = e.select(" div.textosobreimagen b ").text();
             String imagen = e.select(" div.item-contenido img ").attr("src");
 
-            //obteniendo descripcion
-            String descripcion2 = descripcion.replace("..", "https://www.pc.com.bo/assets");
+            //obteniendo descripcion desde el enlace del producto
+            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
             String imagen2 = imagen.replace("..", "https://www.pc.com.bo/assets");
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
@@ -916,7 +917,8 @@ public class ComputerPageOne extends Thread {
             productDto.setName(nombre1);
             productDto.setName2(nombre2);
             productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion2);
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen2);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -953,12 +955,13 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" div.textosobreimagen h2  ").text();
             String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion = "Sin descripción previa"; // sin descripcion previa
             String precio = e.select(" div.textosobreimagen b ").text();
             String imagen = e.select(" div.item-contenido img ").attr("src");
 
             //obteniendo descripcion
-            String descripcion2 = descripcion.replace("d", "https://www.pc.com.bo/assets/html/d");
+            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion2 = descripcionLink.replace("d", "https://www.pc.com.bo/assets/html/d");
             String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
@@ -976,7 +979,8 @@ public class ComputerPageOne extends Thread {
             productDto.setName(nombre1);
             productDto.setName2(nombre2);
             productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion2);
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen2);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -1014,12 +1018,13 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" div.textosobreimagen h2  ").text();
             String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion = "Sin descripción previa";  //sin descripcion previa
             String precio = e.select(" div.textosobreimagen b ").text();
             String imagen = e.select(" img ").attr("src");
 
             //obteniendo descripcion
-            String descripcion2 = descripcion.replace("..", "https://www.pc.com.bo/assets");
+            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
             String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
@@ -1037,7 +1042,8 @@ public class ComputerPageOne extends Thread {
             productDto.setName(nombre1);
             productDto.setName2(nombre2);
             productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion2);
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen2);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -1075,12 +1081,13 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" div.textosobreimagen h2  ").text();
             String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion = "Sin descripción previa";  //sin descripcion previa
             String precio = e.select(" div.textosobreimagen b ").text();
             String imagen = e.select(" div.item-contenido img ").attr("src");
 
             //obteniendo descripcion
-            String descripcion2 = descripcion.replace("..", "https://www.pc.com.bo/assets");
+            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
+            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
             String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
@@ -1098,7 +1105,8 @@ public class ComputerPageOne extends Thread {
             productDto.setName(nombre1);
             productDto.setName2(nombre2);
             productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion2);
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen2);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -1135,9 +1143,12 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
             String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
-            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String descripcion = "Sin descripción previa"; //Sin descripción previa
             String precio = e.select(" div.grid-product__price ").text();
             String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href");
+
             /**
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
@@ -1155,6 +1166,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("Creativo Computación");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -1188,9 +1200,12 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
             String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
-            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String descripcion = "Sin descripción previa";  //Sin descripción previa
             String precio = e.select(" div.grid-product__price ").text();
             String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href");
+
             /**
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
@@ -1208,6 +1223,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("Creativo Computación");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             productDto.setBrand(brand);
@@ -1241,9 +1257,12 @@ public class ComputerPageOne extends Thread {
         {
             String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
             String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
-            String descripcion = e.select(" a.grid-product__title  ").attr("href");
+            String descripcion = "Sin descripción previa";  //Sin descripción previa
             String precio = e.select(" div.grid-product__price ").text();
             String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href");
+
             /**
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
@@ -1261,6 +1280,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("Creativo Computación");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             productDto.setBrand(brand);

@@ -7,6 +7,7 @@ public class Product {
     private String name;
     private String name2;
     private String description;
+    private String description2;
     private String img;
     private String price;
     private Integer status;
@@ -51,6 +52,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescription2() {
+        return description2;
+    }
+
+    public void setDescription2(String description2) {
+        this.description2 = description2;
     }
 
     public String getImg() {
@@ -155,6 +164,7 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", name2='" + name2 + '\'' +
                 ", description='" + description + '\'' +
+                ", description2='" + description2 + '\'' +
                 ", img='" + img + '\'' +
                 ", price=" + price + '\'' +
                 ", status=" + status +
