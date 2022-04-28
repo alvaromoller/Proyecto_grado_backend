@@ -270,6 +270,7 @@ public class ComputerPageOne extends Thread {
         String name2 = "";
         String img = "";
         String description = "";
+        String description2 = "";
         String brand = "HP";
         String ram = "8GB";
         String processor = "Intel";
@@ -297,9 +298,10 @@ public class ComputerPageOne extends Thread {
 
         //pruductDescription
         for (Element e : productDescription.select("div.text-base")) {
-            description = e.select(" div ").text(); //Obtener marca del PC
+            description = e.select(" div ").text(); //Obtener descripcion del PC
             //System.out.println("Descripción: \n" + description);
         }
+
 
         String precio = "";
         for (Element e : price.select("div.inline-block.align-bottom.mr-5")) {
@@ -327,6 +329,7 @@ public class ComputerPageOne extends Thread {
         productDto.setName2(name2);
         productDto.setShopName("CompuCenter");
         productDto.setDescription(description);
+        productDto.setDescription2(description2);
         productDto.setImg(img);
         productDto.setPrice(precio);
         productDto.setBrand(brand);
@@ -361,13 +364,17 @@ public class ComputerPageOne extends Thread {
             String nombre1 = e.select(" div.flex.flex-col.mb-2 strong  ").text();
             String nombre2 = e.select(" h1.font-semibold.text-lg ").text();
             String descripcion = e.select(" div.text-base.text-justify ").text();
+            String descripcion2 = e.select("  a ").attr("abs:href");
             String precio = e.select(" div.inline-block.align-bottom.mr-5 span ").text();
             String imagen = e.select(" div.relative.border-4.border-red-100 img  ").attr("src");
+
+            //for() productDto CompuCenter:
 
             /**
              System.out.println("- nombre1(Marca): "+ nombre1);
              System.out.println("  nombre2:  "+ nombre2);
              System.out.println("  descripcion:  "+ descripcion);
+             System.out.println("  descripcion2:  "+ descripcion2);
              System.out.println("  precio:  "+ precio);
              System.out.println("  Imagen:   "+ imagen);
              System.out.println("");
@@ -449,6 +456,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("CompuCenter");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             //Usando expresiones regulares para buscar coincidencias
@@ -473,7 +481,7 @@ public class ComputerPageOne extends Thread {
     //CompuCenter, 10 PRODUCTOS
     //https://compucenter.store/category/23-equipo/238-gaming#
     public List<ProductDto> compuCenterGamer(String url) throws IOException {
-        System.out.println("CompuCenter, Equipos Laptos, " + url + "...");
+        System.out.println("CompuCenter, Gamer Laptos, " + url + "...");
         Document doc = Jsoup.connect(url).timeout(9000).get();
         Elements body = doc.select("section.flex.flex-wrap.justify-center.items-center");
 
@@ -485,6 +493,7 @@ public class ComputerPageOne extends Thread {
             String nombre1 = e.select(" div.flex.flex-col.mb-2 strong  ").text();
             String nombre2 = e.select(" h1.font-semibold.text-lg ").text();
             String descripcion = e.select(" div.text-base.text-justify ").text();
+            String descripcion2 = e.select("  a ").attr("abs:href");
             String precio = e.select(" div.inline-block.align-bottom.mr-5 span ").text();
             String imagen = e.select(" div.relative.border-4.border-red-100 img  ").attr("src");
 
@@ -593,6 +602,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("CompuCenter");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             //Usando expresiones regulares para buscar coincidencias
@@ -610,7 +620,7 @@ public class ComputerPageOne extends Thread {
         }
 
         System.out.println("-------Fin------------");
-        System.out.println("CompuCenter productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
+        System.out.println("CompuCenter Gamer productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
         return productDtos;
     }
 
@@ -629,6 +639,7 @@ public class ComputerPageOne extends Thread {
             String nombre1 = e.select(" div.product-title-price-wrap  ").text();
             String nombre2 = e.select(" h1.font-semibold.text-lg ").text();         //no tiene
             String descripcion = e.select(" div.product-title-price-wrap ").text();
+            String descripcion2 = e.select(" div.product-title-price-wrap a ").attr("href");
             String precio = e.select(" span.price ").text();
             String imagen = e.select("a img.attachment-woocommerce_thumbnail  ").attr("src");
 
@@ -636,6 +647,7 @@ public class ComputerPageOne extends Thread {
              System.out.println("- nombre1(Marca): "+ nombre1);
              System.out.println("  nombre2:  "+ nombre2);
              System.out.println("  descripcion:  "+ descripcion);
+             System.out.println(" Techstore descripcion2:  "+ descripcion2);
              System.out.println("  precio:  "+ precio);
              System.out.println("  Imagen:   "+ imagen);
              System.out.println("");
@@ -720,6 +732,7 @@ public class ComputerPageOne extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("TechStore");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             //Usando expresiones regulares para buscar coincidencias
