@@ -691,6 +691,7 @@ public class ComputerPageTwo extends Thread {
             String nombre1 = e.select(" strong a ").text();
             String nombre2 = e.select(" div.grid-product__sku-inner ").text();
             String descripcion = e.select(" div.product-desc-features ul li  ").text().replaceAll("\\\\nl", "\n");
+            String descripcion2 = e.select(" strong a  ").attr("href");
             String precio = e.select(" div.price-box.price-final_price span.price ").text();
             String imagen = e.select(" div.product-item-photo-box img   ").attr("src");
             String stock = e.select("div.stock-messaging span").text();
@@ -707,6 +708,7 @@ public class ComputerPageTwo extends Thread {
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2():  "+ nombre2 );
             System.out.println("  descripcion:  "+ descripcion);
+            System.out.println("Tienda Hp Laptops para el Empresas  descripcion2:  "+ descripcion2);
             System.out.println("  precio actual:  "+ precio);
             System.out.println("  Imagen:   "+ imagen);
             System.out.println("stock: "+ stock);
@@ -722,6 +724,7 @@ public class ComputerPageTwo extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("Tienda oficial HP");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             productDto.setStock(stock);
