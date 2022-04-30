@@ -62,30 +62,34 @@ public class ComputerPageTwo extends Thread {
 
     public ComputerPageTwo(
             SimpMessagingTemplate template,
+            /**
             String urlS1,
             String urlS2,
             String urlS3,
             String urlS4,
+            */
             String urlTiendaHpHogar,
-
             String urlCompuCenterGamer,
-
+            /**
             String urlW4,
             String urlW5,
+            */
             String urlTiendaHpEmpresas
             )
     {
         this.template = template;
+        /**
         this.urlS1 = urlS1;
         this.urlS2 = urlS2;
         this.urlS3 = urlS3;
         this.urlS4 = urlS4;
+        */
         this.urlTiendaHpHogar = urlTiendaHpHogar;
-
         this.urlCompuCenterGamer = urlCompuCenterGamer;
-
+        /**
         this.urlW4 = urlW4;
         this.urlW5 = urlW5;
+        */
         this.urlTiendaHpEmpresas = urlTiendaHpEmpresas;
     }
 
@@ -754,12 +758,16 @@ public class ComputerPageTwo extends Thread {
 
     //LISTADO DE TODOS LOS PRODUCTOS
     // para el Api, productos category
-    public List<ProductDto> productListAll(String urlS1,String urlS2,String urlS3,String urlS4, String urlTiendaHpHogar,   String urlCompuCenterGamer,  String urlW4,String urlW5, String urlTiendaHpEmpresas) throws IOException{
+    //String urlS1,String urlS2,String urlS3,String urlS4,
+    // String urlW4,String urlW5,
+    public List<ProductDto> productListAll( String urlTiendaHpHogar,   String urlCompuCenterGamer,  String urlTiendaHpEmpresas) throws IOException{
         //categoria study
+        /**
         List<ProductDto> productStudy1 = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
         List<ProductDto> productStudy2 = new ArrayList<ProductDto>();
         List<ProductDto> productStudy3 = new ArrayList<ProductDto>();
         List<ProductDto> productStudy4 = new ArrayList<ProductDto>();
+        */
         List<ProductDto> productTiendaHpHogar = new ArrayList<ProductDto>();
 
         //categoria Gamer
@@ -770,11 +778,12 @@ public class ComputerPageTwo extends Thread {
         List<ProductDto> productWork1 = new ArrayList<ProductDto>();
         List<ProductDto> productWork2 = new ArrayList<ProductDto>();
         List<ProductDto> productWork3 = new ArrayList<ProductDto>();
-        */
         List<ProductDto> productWork4 = new ArrayList<ProductDto>();
         List<ProductDto> productWork5 = new ArrayList<ProductDto>();
+        */
         List<ProductDto> productTiendaHpEmpresas = new ArrayList<ProductDto>();
 
+        /**
         //study 1
         productStudy1 = extractStudyList(urlS1);
         //study 2
@@ -783,6 +792,7 @@ public class ComputerPageTwo extends Thread {
         productStudy3 = extractStudyList3(urlS3);
         //study 4
         productStudy4 = extractStudyList4(urlS4);
+        */
         //Tienda oficial Hp
         productTiendaHpHogar = tiendaHpHogar(urlTiendaHpHogar);
 
@@ -796,21 +806,24 @@ public class ComputerPageTwo extends Thread {
         productWork2 = extractWorkList2(urlW2);
         //work 3
         productWork3 = extractWorkList3(urlW3);
-         */
+
         //work 4
         productWork4 = extractWorkList4(urlW4);
         //work 5
         productWork5 = extractWorkList5(urlW5);
+        */
         //Tienda oficial Hp empresas
         productTiendaHpEmpresas = tiendaHpEmpresas(urlTiendaHpEmpresas);
 
 
         //System.out.println("Tamaño: " + productDtos.size());
         List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
+        /**
         productAll.addAll(productStudy1);
         productAll.addAll(productStudy2);
         productAll.addAll(productStudy3);
         productAll.addAll(productStudy4);
+        */
         productAll.addAll(productTiendaHpHogar);
 
         productAll.addAll(productGamerCompuCenter);
@@ -819,9 +832,9 @@ public class ComputerPageTwo extends Thread {
         productAll.addAll(productWork1);
         productAll.addAll(productWork2);
         productAll.addAll(productWork3);
-        */
         productAll.addAll(productWork4);
         productAll.addAll(productWork5);
+        */
         productAll.addAll(productTiendaHpEmpresas);
 
 
@@ -832,9 +845,11 @@ public class ComputerPageTwo extends Thread {
 
     //LISTADO ProductCategory  por categoriaId
     //llamando al metodo productListAll
-    public List<ProductDto> selectProductsByCategory(Integer categoryId, String urlS1, String urlS2, String urlS3, String urlS4, String urlTiendaHpHogar,  String urlG4,   String urlW4, String urlW5, String urlTiendaHpEmpresas)throws IOException{
+    //String urlS1, String urlS2, String urlS3, String urlS4,
+    //String urlW4, String urlW5,
+    public List<ProductDto> selectProductsByCategory(Integer categoryId,  String urlTiendaHpHogar,  String urlCompuCenterGamer,   String urlTiendaHpEmpresas)throws IOException{
         //List<Product> products = productDao.getProductListByCategory(categoryId);      //productos, se crea un for para recorrer products
-        List<ProductDto> productDtosFor = productListAll(urlS1,urlS2,urlS3,urlS4, urlTiendaHpHogar, urlG4,  urlW4,urlW5, urlTiendaHpEmpresas); //se crea para el for y para llamar al metodo productListAll y obtener sus datos extraidos
+        List<ProductDto> productDtosFor = productListAll( urlTiendaHpHogar, urlCompuCenterGamer,  urlTiendaHpEmpresas); //se crea para el for y para llamar al metodo productListAll y obtener sus datos extraidos
         List<ProductDto> productAux = new ArrayList<ProductDto>();      //return aux
 
         for(int i=0; i < productDtosFor.size(); i++) {
@@ -887,7 +902,7 @@ public class ComputerPageTwo extends Thread {
         //Llamamos a los metodos
         try {
             //selectProductsByCategory
-            productsByCategory = selectProductsByCategory(categoryId, urlS1, urlS2, urlS3, urlS4, urlTiendaHpHogar,  urlCompuCenterGamer,  urlW4, urlW5, urlTiendaHpEmpresas);
+            productsByCategory = selectProductsByCategory(categoryId,  urlTiendaHpHogar,  urlCompuCenterGamer,  urlTiendaHpEmpresas);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -138,7 +138,7 @@ public class ProductCategoryApi {
 
         //Categoria Gamer, compucenter
         // dirección producto: 10
-        String urlG4="https://compucenter.store/category/23-equipo/238-gaming";  //PCs
+        String urlCompuCenterGamer="https://compucenter.store/category/23-equipo/238-gaming";  //PCs
 
 
         //Categoria Work,  PC.COM y Tienda oficial Hp Empresas
@@ -148,7 +148,7 @@ public class ProductCategoryApi {
         String urlW5="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC5
         //dirección Tienda Hp Empresas
         String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";  //
-        return computerPageTwo.selectProductsByCategory(categoryId,urlS1,urlS2,urlS3,urlS4, urlTiendaHpHogar,   urlG4 , urlW4,urlW5, urlTiendaHpEmpresas );
+        return computerPageTwo.selectProductsByCategory(categoryId, urlTiendaHpHogar, urlCompuCenterGamer , urlTiendaHpEmpresas );
     }
     //FIN
 

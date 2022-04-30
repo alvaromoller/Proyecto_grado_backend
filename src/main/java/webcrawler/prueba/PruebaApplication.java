@@ -48,19 +48,23 @@ class PruebaApplication {
 		System.out.println(templateHome);
 		ComputerPageTwo hiloCategory = new ComputerPageTwo(
 				templateCategory,
-				//Categoria Study y hogar, PC.com, Tienda Hp Hogar
+				//Categoria hogar, Tienda Hp Hogar
+                /**
 				"https://www.pc.com.bo/assets/html/hp15-ef0025wm.html",  //PC1
 				"https://www.pc.com.bo/assets/html/hp15-dy1751ms.html",  //Pc2
 				"https://www.pc.com.bo/assets/html/hp14-dk1022wm.html",  //Pc3
 				"https://www.pc.com.bo/assets/html/hp13-ag0003la.html",  //Pc4
+                 */
 				"https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1",		//dirección Tienda Hp Hogar
 
 				//Categoria Gamer, compucenter
 				"https://compucenter.store/category/23-equipo/238-gaming",  				//dirección Tienda CompuCenter
 
-				//Categoria Work, Compucenter
+				//Categoria Work, Tienda Hp Empresas
+                /**
 				"https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html",  //PC4
 				"https://www.pc.com.bo/assets/html/hp15-cs3073cl.html",  //PC5
+                */
 				"https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html"		//dirección Tienda Hp Empresas
 		);
 		hiloCategory.start();
