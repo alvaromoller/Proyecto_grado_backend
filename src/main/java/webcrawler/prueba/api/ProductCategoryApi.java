@@ -123,7 +123,7 @@ public class ProductCategoryApi {
     //JOIN de tabla product con productCategory
     @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsByCategory(@PathVariable("categoryId") Integer categoryId, HttpServletRequest request)throws IOException{
-        //Categoria Study, PC.com y Tienda oficial Hp Hogar
+        //Categoria Study, PC.com,   PRUEBA DE EXTRACCION DE PRODUCTOS, pendiente para quitar
         //dirección producto 1,
         String urlS1="https://www.pc.com.bo/assets/html/hp15-ef0025wm.html";  //PC1
         //dirección producto 2
@@ -132,9 +132,9 @@ public class ProductCategoryApi {
         String urlS3="https://www.pc.com.bo/assets/html/hp14-dk1022wm.html";  //Pc3
         //dirección producto 4
         String urlS4="https://www.pc.com.bo/assets/html/hp13-ag0003la.html";  //Pc4
-        //dirección Tienda Hp Hogar
-        String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
 
+        //Categoria Hogar,dirección Tienda Hp Hogar
+        String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
 
         //Categoria Gamer, compucenter
         // dirección producto: 10

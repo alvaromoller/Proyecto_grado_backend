@@ -405,6 +405,7 @@ public class ComputerPageTwo extends Thread {
             String nombre1 = e.select(" strong a ").text();
             String nombre2 = e.select(" div.grid-product__sku-inner ").text();  //no tiene
             String descripcion = e.select(" div.product-desc-features ul li  ").text().replaceAll("\\\\nl", "\n");
+            String descripcion2 = e.select(" strong a  ").attr("href");
             String precio = e.select(" div.price-box.price-final_price span.price ").text();
             String imagen = e.select(" div.product-item-photo-box img   ").attr("src");
             String stock = e.select("div.stock-messaging span").text();
@@ -416,10 +417,12 @@ public class ComputerPageTwo extends Thread {
                 imagen = e.select(" div.product-item-photo-box img   ").attr("data-src");
                 System.out.println("imagen contiene data-src: "+ imagen);
             }
+
             /*
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2():  "+ nombre2 );
             System.out.println("  descripcion:  "+ descripcion);
+            System.out.println("Tienda Hp Laptops para el hogar  descripcion2:  "+ descripcion2);
             System.out.println("  precio actual:  "+ precio);
             System.out.println("  Imagen:   "+ imagen);
              System.out.println(" Stock:   "+ stock);
@@ -435,6 +438,7 @@ public class ComputerPageTwo extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("Tienda oficial HP");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setStock(stock);
             productDto.setPrice(precio);
@@ -844,6 +848,7 @@ public class ComputerPageTwo extends Thread {
                 productDto.setName(product.getName());
                 productDto.setName2(product.getName2());
                 productDto.setDescription(product.getDescription());
+                productDto.setDescription2(product.getDescription2());
                 productDto.setImg(product.getImg());
                 productDto.setPrice(product.getPrice());
                 productDto.setStock(product.getStock());
