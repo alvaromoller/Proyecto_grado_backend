@@ -470,7 +470,7 @@ public class ComputerPageTwo extends Thread {
     //Productos:10,
     //https://compucenter.store/category/23-equipo/238-gaming
     public List<ProductDto> compuCenterGaming(String url) throws IOException {
-        System.out.println("Equipos Gaming, " + url + "...");
+        System.out.println("CompuCenter Equipos Gaming, " + url + "...");
         Document doc = Jsoup.connect(url).timeout(9000).get();
         Elements body = doc.select("section.flex.flex-wrap.justify-center.items-center");
 
@@ -483,12 +483,15 @@ public class ComputerPageTwo extends Thread {
             String nombre1 = e.select(" div.flex.flex-col.mb-2 strong  ").text();
             String nombre2 = e.select(" h1.font-semibold.text-lg ").text();
             String descripcion = e.select(" div.text-base.text-justify ").text();
+            String descripcion2 = e.select(" a ").attr("abs:href");
             String precio = e.select(" div.inline-block.align-bottom.mr-5 span ").text();
             String imagen = e.select(" div.relative.border-4.border-red-100 img  ").attr("src");
+
             /**
             System.out.println("- nombre1(Marca): "+ nombre1);
             System.out.println("  nombre2:  "+ nombre2);
             System.out.println("  descripcion:  "+ descripcion);
+            System.out.println(" CompuCenter Equipos Gaming, descripcion2:  "+ descripcion2);
             System.out.println("  precio:  "+ precio);
             System.out.println("  Imagen:   "+ imagen);
             System.out.println("");
@@ -502,6 +505,7 @@ public class ComputerPageTwo extends Thread {
             productDto.setName2(nombre2);
             productDto.setShopName("CompuCenter");
             productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
             //llaves foraneas
