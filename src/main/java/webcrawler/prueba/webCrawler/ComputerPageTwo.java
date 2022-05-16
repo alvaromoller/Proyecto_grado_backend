@@ -34,16 +34,10 @@ public class ComputerPageTwo extends Thread {
     private ProductDetailDao productDetailDao;  //precio
     //CATEGORIAS
     //STUDY/HOME,  PC.COM y tienda oficial Hp
-    private String urlS1;
-    private String urlS2;
-    private String urlS3;
-    private String urlS4;
     private String urlTiendaHpHogar;
     //GAMER, CompuCenter
     private String urlCompuCenterGamer;
-    //WORK,  PC.COM y tienda oficial Hp
-    private String urlW4;
-    private String urlW5;
+    //WORK,  tienda oficial Hp
     private String urlTiendaHpEmpresas;
     //ProductsByCategory
     private Integer categoryId;
@@ -62,335 +56,23 @@ public class ComputerPageTwo extends Thread {
 
     public ComputerPageTwo(
             SimpMessagingTemplate template,
-            /**
-            String urlS1,
-            String urlS2,
-            String urlS3,
-            String urlS4,
-            */
             String urlTiendaHpHogar,
             String urlCompuCenterGamer,
-            /**
-            String urlW4,
-            String urlW5,
-            */
             String urlTiendaHpEmpresas
             )
     {
         this.template = template;
-        /**
-        this.urlS1 = urlS1;
-        this.urlS2 = urlS2;
-        this.urlS3 = urlS3;
-        this.urlS4 = urlS4;
-        */
         this.urlTiendaHpHogar = urlTiendaHpHogar;
         this.urlCompuCenterGamer = urlCompuCenterGamer;
-        /**
-        this.urlW4 = urlW4;
-        this.urlW5 = urlW5;
-        */
         this.urlTiendaHpEmpresas = urlTiendaHpEmpresas;
     }
 
     public ComputerPageTwo(){}
 
-    //CATEGORIAS 1, 2, 3 de las tiendas
+    //CATEGORIAS
 
-    //Hogar/Study, de PC.com y tienda oficial Hp
-    //PRODUCTO 1
-    public List<ProductDto> extractStudyList(String url) throws IOException {
-        System.out.println("Categoria estudio, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(HP)  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/hp/hp_15-ef0025wm.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h2 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(118);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(1);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos, categoria estudio: " + productDtos);
-        return  productDtos;
-    }
-
-    //PRODUCTO 2
-    public List<ProductDto> extractStudyList2(String url) throws IOException {
-        //System.out.println("Computadoras, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(HP)  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/hp/hp_15-dy1751ms.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h2 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(119);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(1);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos, categoria estudio : " + productDtos);
-        return  productDtos;
-    }
-
-    //PRODUCTO 3
-    public List<ProductDto> extractStudyList3(String url) throws IOException {
-        //System.out.println("Computadoras, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(Laptop HP)  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/hp/hp_14-dk1025wm.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h2 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(120);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(1);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos, categoria estudio : " + productDtos);
-        return  productDtos;
-    }
-
-    //PRODUCTO 4
-    public List<ProductDto> extractStudyList4(String url) throws IOException {
-        //System.out.println("Computadoras, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(Envy )  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1:matches(Notebook HP)  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/hp/hp_13-ag0003la.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h1 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(121);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(1);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos, categoria estudio : " + productDtos);
-        return  productDtos;
-    }
-
-    //PRODUCTOS:12, Tienda Hp para el HOGAR
+    //Categoria Hogar, Tienda Hp
+    //PRODUCTOS:12
     //https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1
     public List<ProductDto> tiendaHpHogar(String url) throws IOException {
         System.out.println("Tienda Hp Laptops para el hogar, " + url + "...");
@@ -455,7 +137,7 @@ public class ComputerPageTwo extends Thread {
             */
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
-            productDto.setShopId(4);
+            productDto.setShopId(6);
             productDto.setCategoryId(1);
 
             productDtos.add( productDto);
@@ -468,8 +150,6 @@ public class ComputerPageTwo extends Thread {
     }
 
 
-
-    ///////////////////////////////////////////////////////////////////////////////
     //Categoria Gamer, CompuCenter
     //Productos:10,
     //https://compucenter.store/category/23-equipo/238-gaming
@@ -527,154 +207,8 @@ public class ComputerPageTwo extends Thread {
 
 
     ///////////////////////////////////////////////////////////////////////////////
-    //Categoria Work, Compucenter y Pc.com
-    //Producto 4, Pc.com
-    public List<ProductDto> extractWorkList4(String url) throws IOException {
-        //System.out.println("Computadoras, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(Yoga )  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/lenovo/len_15-c740.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h2 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(146);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(3);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos categoria Trabajo: " + productDtos);
-        return  productDtos;
-    }
-
-    //Producto 5, PC.com
-    public List<ProductDto> extractWorkList5(String url) throws IOException {
-        //System.out.println("Computadoras, Página PC.com url" + url);
-        Document doc1 = Jsoup.connect(url).timeout(10000).get();
-        Elements productName = doc1.select(" div.container");
-        Elements imgProduct = doc1.select("div.container");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.container"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.container");
-        //Salto de linea descriptionPage
-        productDescription.select("strong").append("\\nl"); //append salto de linea despues de un elemento
-        productDescription.select("li").append("\\nl");
-        //productDescription.select("li").prepend("\\nl"); //append salto de linea Antes de un elemento
-        //
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-
-        //productName
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name = e.select(" h2:matches(HP)  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //Name 2
-        for (Element e : productName.select("div.col-md-6.text-white.py-5")) {
-            name2 = e.select(" h1  ").text(); //Obtener tipo de PC
-            //System.out.println("Nombre del PC: " + name);
-        }
-        //imgProduct
-        for (Element e : imgProduct.select("div.col-md-6.py-5") ) {
-            img = e.select(" div.col-md-6.py-5 > img  ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-        String img2 = img.replace("", "https://www.pc.com.bo/assets/img/productos/hp/hp_15-cs0073cl.png");
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.col-md-6.text-white.py-5")) {
-            description = e.select(" li ").text().replaceAll("\\\\nl", "\n"); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.precio")) {
-            precio = e.select(" h2 ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio );
-
-        }
-        //Convertir de String a Double
-        //Double precioConvertido = Double.parseDouble(precio.replace(",", "."));
-        //System.out.println("Precio: " + precioConvertido + ".00");
-
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(147);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("PC.COM");
-        productDto.setDescription(description);
-        productDto.setImg(img2);
-        productDto.setPrice(precio);
-        //llaves foraneas
-        productDto.setShopId(4);
-        productDto.setCategoryId(3);
-
-        productDtos.add( productDto);
-        System.out.println("productDtos categoria Trabajo: " + productDtos);
-        return  productDtos;
-    }
-
-    //PRODUCTOS:12,  Tienda Hp para empresas
+    //Categoria Work, Tienda Hp
+    //PRODUCTOS:12
     //https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html
     public List<ProductDto> tiendaHpEmpresas(String url) throws IOException {
         System.out.println("Tienda Hp Laptops para Empresas, " + url + "...");
@@ -741,7 +275,7 @@ public class ComputerPageTwo extends Thread {
              */
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
-            productDto.setShopId(4);
+            productDto.setShopId(6);
             productDto.setCategoryId(3);
 
             productDtos.add( productDto);
@@ -761,82 +295,28 @@ public class ComputerPageTwo extends Thread {
     //String urlS1,String urlS2,String urlS3,String urlS4,
     // String urlW4,String urlW5,
     public List<ProductDto> productListAll( String urlTiendaHpHogar,   String urlCompuCenterGamer,  String urlTiendaHpEmpresas) throws IOException{
-        //categoria study
-        /**
-        List<ProductDto> productStudy1 = new ArrayList<ProductDto>(); //se crea productDtos para tener el listado de products
-        List<ProductDto> productStudy2 = new ArrayList<ProductDto>();
-        List<ProductDto> productStudy3 = new ArrayList<ProductDto>();
-        List<ProductDto> productStudy4 = new ArrayList<ProductDto>();
-        */
+        //categoria Home
         List<ProductDto> productTiendaHpHogar = new ArrayList<ProductDto>();
-
         //categoria Gamer
         List<ProductDto> productGamerCompuCenter = new ArrayList<ProductDto>();
-
         //categoria Work
-        /**
-        List<ProductDto> productWork1 = new ArrayList<ProductDto>();
-        List<ProductDto> productWork2 = new ArrayList<ProductDto>();
-        List<ProductDto> productWork3 = new ArrayList<ProductDto>();
-        List<ProductDto> productWork4 = new ArrayList<ProductDto>();
-        List<ProductDto> productWork5 = new ArrayList<ProductDto>();
-        */
         List<ProductDto> productTiendaHpEmpresas = new ArrayList<ProductDto>();
 
-        /**
-        //study 1
-        productStudy1 = extractStudyList(urlS1);
-        //study 2
-        productStudy2 = extractStudyList2(urlS2);
-        //study 3
-        productStudy3 = extractStudyList3(urlS3);
-        //study 4
-        productStudy4 = extractStudyList4(urlS4);
-        */
-        //Tienda oficial Hp
+
+        //categoria Home
         productTiendaHpHogar = tiendaHpHogar(urlTiendaHpHogar);
-
-        //Gamer , CompuCenterGamer
+        //categoria Gamer
         productGamerCompuCenter = compuCenterGaming(urlCompuCenterGamer);
-
-        /**
-        //work 1
-        productWork1 = extractWorkList1(urlW1);
-        //work 2
-        productWork2 = extractWorkList2(urlW2);
-        //work 3
-        productWork3 = extractWorkList3(urlW3);
-
-        //work 4
-        productWork4 = extractWorkList4(urlW4);
-        //work 5
-        productWork5 = extractWorkList5(urlW5);
-        */
-        //Tienda oficial Hp empresas
+        //categoria Work
         productTiendaHpEmpresas = tiendaHpEmpresas(urlTiendaHpEmpresas);
 
 
         //System.out.println("Tamaño: " + productDtos.size());
         List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
-        /**
-        productAll.addAll(productStudy1);
-        productAll.addAll(productStudy2);
-        productAll.addAll(productStudy3);
-        productAll.addAll(productStudy4);
-        */
+
         productAll.addAll(productTiendaHpHogar);
-
         productAll.addAll(productGamerCompuCenter);
-
-        /**
-        productAll.addAll(productWork1);
-        productAll.addAll(productWork2);
-        productAll.addAll(productWork3);
-        productAll.addAll(productWork4);
-        productAll.addAll(productWork5);
-        */
         productAll.addAll(productTiendaHpEmpresas);
-
 
         //System.out.println("product all: " + productAll);
         return  productAll;
@@ -845,8 +325,6 @@ public class ComputerPageTwo extends Thread {
 
     //LISTADO ProductCategory  por categoriaId
     //llamando al metodo productListAll
-    //String urlS1, String urlS2, String urlS3, String urlS4,
-    //String urlW4, String urlW5,
     public List<ProductDto> selectProductsByCategory(Integer categoryId,  String urlTiendaHpHogar,  String urlCompuCenterGamer,   String urlTiendaHpEmpresas)throws IOException{
         //List<Product> products = productDao.getProductListByCategory(categoryId);      //productos, se crea un for para recorrer products
         List<ProductDto> productDtosFor = productListAll( urlTiendaHpHogar, urlCompuCenterGamer,  urlTiendaHpEmpresas); //se crea para el for y para llamar al metodo productListAll y obtener sus datos extraidos
@@ -883,7 +361,7 @@ public class ComputerPageTwo extends Thread {
                 //productDto.setProductTypeId(product.getProductTypeId());
 
                 productAux.add( productDto);
-                //System.out.println("productAux: " +i +", "+ productAux);    //muestra los arreglos de los productos que cumplen con la condicion
+                System.out.println("productAux: " +i +", "+ productAux);    //muestra los arreglos de los productos que cumplen con la condicion
             }//if
         }//for
         return  productAux;

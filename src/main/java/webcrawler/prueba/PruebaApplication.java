@@ -2,6 +2,8 @@ package webcrawler.prueba;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
@@ -37,8 +39,8 @@ class PruebaApplication {
 				"https://compucenter.store/category/23-equipo/77-laptop",		//CompuCenter Laptops
 				"https://compucenter.store/category/23-equipo/238-gaming#",					//CompuCenter Gamer
 				"https://www.pc.com.bo/assets/html/notebooks-hp.html", 				//marca
-				"https://techstore.bo/product-category/mac/macbool-air/",
-				"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
+				"https://techstore.bo/product-category/mac/macbool-air/"
+				//"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
 
 		);
 		hiloHome.start();
@@ -49,22 +51,12 @@ class PruebaApplication {
 		ComputerPageTwo hiloCategory = new ComputerPageTwo(
 				templateCategory,
 				//Categoria hogar, Tienda Hp Hogar
-                /**
-				"https://www.pc.com.bo/assets/html/hp15-ef0025wm.html",  //PC1
-				"https://www.pc.com.bo/assets/html/hp15-dy1751ms.html",  //Pc2
-				"https://www.pc.com.bo/assets/html/hp14-dk1022wm.html",  //Pc3
-				"https://www.pc.com.bo/assets/html/hp13-ag0003la.html",  //Pc4
-                 */
 				"https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1",		//dirección Tienda Hp Hogar
 
 				//Categoria Gamer, compucenter
 				"https://compucenter.store/category/23-equipo/238-gaming",  				//dirección Tienda CompuCenter
 
 				//Categoria Work, Tienda Hp Empresas
-                /**
-				"https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html",  //PC4
-				"https://www.pc.com.bo/assets/html/hp15-cs3073cl.html",  //PC5
-                */
 				"https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html"		//dirección Tienda Hp Empresas
 		);
 		hiloCategory.start();
@@ -76,16 +68,13 @@ class PruebaApplication {
         SpringApplication.run(PruebaApplication.class, args);
 
 
-        ComputerPageTwo obj2 = new ComputerPageTwo();
-        //obj2.tiendaHpEmpresas("https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html");
-
-        /**
-        int contadorId=0;
+        /** Contador del 1-10
+        int contadorId = 0;
         for (int i=1; i<=10; i++) {
             contadorId=contadorId+1;
             System.out.println(i+ ": "+ contadorId);
         }
-         */
+        */
 
         //ejemplo 1
         //Identificar:

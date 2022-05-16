@@ -1,12 +1,15 @@
 package webcrawler.prueba.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Shop {
     private Integer shopId;
     private String name;
     private String description;
     private String location;
+    private List<String> location2 = new ArrayList<String>();
     private String img;
     private Integer status;
 
@@ -47,6 +50,16 @@ public class Shop {
     public void setLocation(String location) {
         this.location = location;
     }
+    //List
+
+    public List<String> getLocation2() {
+        return location2;
+    }
+
+    public void setLocation2(List<String> location2) {
+        this.location2 = location2;
+    }
+    //List end
 
     public String getImg() {
         return img;
@@ -115,6 +128,7 @@ public class Shop {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", location='" + location + '\'' +
+                ", location2='" + location2 + '\'' +
                 ", img='" + img + '\'' +
                 ", status=" + status +
                 ", txId=" + transaction.getTxId() +

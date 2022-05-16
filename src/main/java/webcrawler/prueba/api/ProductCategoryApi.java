@@ -123,31 +123,14 @@ public class ProductCategoryApi {
     //JOIN de tabla product con productCategory
     @RequestMapping(path ="/productsByCategory/{categoryId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsByCategory(@PathVariable("categoryId") Integer categoryId, HttpServletRequest request)throws IOException{
-        //Categoria Study, PC.com,   PRUEBA DE EXTRACCION DE PRODUCTOS, pendiente para quitar
-        //dirección producto 1,
-        String urlS1="https://www.pc.com.bo/assets/html/hp15-ef0025wm.html";  //PC1
-        //dirección producto 2
-        String urlS2="https://www.pc.com.bo/assets/html/hp15-dy1751ms.html";  //Pc2
-        //dirección producto 3
-        String urlS3="https://www.pc.com.bo/assets/html/hp14-dk1022wm.html";  //Pc3
-        //dirección producto 4
-        String urlS4="https://www.pc.com.bo/assets/html/hp13-ag0003la.html";  //Pc4
-
-        //Categoria Hogar,dirección Tienda Hp Hogar
+        //tiendas CompuCenter y Hp
+        //Categoria Hogar
         String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
+        //Categoria Gamer
+        String urlCompuCenterGamer="https://compucenter.store/category/23-equipo/238-gaming";
+        //Categoria Work,
+        String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";
 
-        //Categoria Gamer, compucenter
-        // dirección producto: 10
-        String urlCompuCenterGamer="https://compucenter.store/category/23-equipo/238-gaming";  //PCs
-
-
-        //Categoria Work,  PC.COM y Tienda oficial Hp Empresas
-        //dirección producto 4
-        String urlW4="https://www.pc.com.bo/assets/html/lenovo_yoga_c740.html";  //PC4
-        // dirección producto 5
-        String urlW5="https://www.pc.com.bo/assets/html/hp15-cs3073cl.html";  //PC5
-        //dirección Tienda Hp Empresas
-        String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";  //
         return computerPageTwo.selectProductsByCategory(categoryId, urlTiendaHpHogar, urlCompuCenterGamer , urlTiendaHpEmpresas );
     }
     //FIN

@@ -8,7 +8,7 @@ import webcrawler.prueba.dto.CategoryDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
-import webcrawler.prueba.webCrawler.ComputerPageThree;
+import webcrawler.prueba.webCrawler.ExtractStores;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,14 +24,14 @@ public class CategoryApi {
 
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
-    private ComputerPageThree computerPageThree;
+    private ExtractStores extractStores;
 
     @Autowired
-    public CategoryApi (CategoryBl categoryBl,  ComputerPageOne computerPageOne,ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
+    public CategoryApi (CategoryBl categoryBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ExtractStores extractStores, TransactionBl transactionBl){
         this.categoryBl = categoryBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
-        this.computerPageThree = computerPageThree;
+        this.extractStores = extractStores;
         this.transactionBl = transactionBl;
     }
 

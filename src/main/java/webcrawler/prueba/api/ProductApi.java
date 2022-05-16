@@ -9,12 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
-import webcrawler.prueba.webCrawler.ComputerPageThree;
+import webcrawler.prueba.webCrawler.ExtractStores;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -26,16 +25,16 @@ public class ProductApi extends Thread{
     private TransactionBl transactionBl;
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
-    private ComputerPageThree computerPageThree;
+    private ExtractStores extractStores;
 
 
 
     @Autowired
-    public ProductApi (ProductBl productBl, ComputerPageOne computerPageOne,ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
+    public ProductApi (ProductBl productBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ExtractStores extractStores, TransactionBl transactionBl){
         this.productBl = productBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
-        this.computerPageThree = computerPageThree;
+        this.extractStores = extractStores;
         this.transactionBl = transactionBl;
     }
 /**
@@ -91,7 +90,7 @@ public class ProductApi extends Thread{
         //Creacion del Hilo 1
        //Thread hilo1 = new Thread(computerPageOne);
         //hilo1.start();
-        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer, urlTechStore, url6);
+        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer, urlTechStore);
     }
     //FIN
 
@@ -99,7 +98,7 @@ public class ProductApi extends Thread{
     //Pc.com, Marcas
     @RequestMapping( path = "/productsPc" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsPc(HttpServletRequest request)throws IOException {
-        //tienda ,CompuCenter,Equipos Laptos
+        //tiendas CompuCenter y creativo computacion
         String urlPcHp = "https://www.pc.com.bo/assets/html/notebooks-hp.html";
         String urlPcDell = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
         String urlPcLenovo = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
@@ -113,6 +112,34 @@ public class ProductApi extends Thread{
     }
     //FIN
 
+    //listado de productos por Tienda,
+    @RequestMapping(path ="/productsByStore/{storeId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<ProductDto> selectProductsByStore(@PathVariable("storeId") Integer storeId, HttpServletRequest request)throws IOException{
+        //tiendas CompuCenter y TechStore
+        String urlCompuCenter="https://compucenter.store/category/23-equipo/77-laptop";
+        String urlCompuCenterGamer="https://compucenter.store/category/23-equipo/238-gaming#";
+        String urlTechStore="https://techstore.bo/product-category/mac/macbool-air/";
+
+        //tiendas CompuCenter y creativo computacion
+        String urlPcHp = "https://www.pc.com.bo/assets/html/notebooks-hp.html";
+        String urlPcDell = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
+        String urlPcLenovo = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
+        String urlPcAsus ="https://www.pc.com.bo/assets/html/notebooks-asus.html";
+        String urlCreativoHp = "https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325";
+        String urlCreativoDell = "https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283";
+        String urlCreativoLenovo = "https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225";
+
+        //tiendas CompuCenter y Hp
+        //Categoria Hogar, Gamer y Work
+        String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
+        String urlCompuCenterGamer2="https://compucenter.store/category/23-equipo/238-gaming";
+        String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";
+
+        return computerPageOne.selectProductsByStore(storeId, urlCompuCenter, urlCompuCenterGamer , urlTechStore,
+                                                     urlPcHp, urlPcDell, urlPcLenovo, urlPcAsus, urlCreativoHp, urlCreativoDell, urlCreativoLenovo,
+                                                     urlTiendaHpHogar, urlCompuCenterGamer2, urlTiendaHpEmpresas);
+    }
+    //FIN
 
     //ENCONTRAR PRODUCT ID SIN BASE DE DATOS
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

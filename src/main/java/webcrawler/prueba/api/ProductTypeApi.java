@@ -9,11 +9,10 @@ import webcrawler.prueba.dto.ProductTypeDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
-import webcrawler.prueba.webCrawler.ComputerPageThree;
+import webcrawler.prueba.webCrawler.ExtractStores;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin(origins = {"http://localhost:4200"})
@@ -26,16 +25,16 @@ public class ProductTypeApi {
 
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
-    private ComputerPageThree computerPageThree;
+    private ExtractStores extractStores;
 
 
 
     @Autowired
-    public ProductTypeApi (ProductTypeBl productTypeBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
+    public ProductTypeApi (ProductTypeBl productTypeBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ExtractStores extractStores, TransactionBl transactionBl){
         this.productTypeBl = productTypeBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
-        this.computerPageThree = computerPageThree;
+        this.extractStores = extractStores;
         this.transactionBl = transactionBl;
 
     }

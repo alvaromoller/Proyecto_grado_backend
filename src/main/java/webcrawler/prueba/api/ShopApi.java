@@ -5,13 +5,12 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import webcrawler.prueba.bl.ShopBl;
 import webcrawler.prueba.bl.TransactionBl;
-import webcrawler.prueba.dto.ProductDetailDto;
 import webcrawler.prueba.dto.ProductDto;
 import webcrawler.prueba.dto.ShopDto;
 import webcrawler.prueba.model.Transaction;
 import webcrawler.prueba.util.TransactionUtil;
 import webcrawler.prueba.webCrawler.ComputerPageOne;
-import webcrawler.prueba.webCrawler.ComputerPageThree;
+import webcrawler.prueba.webCrawler.ExtractStores;
 import webcrawler.prueba.webCrawler.ComputerPageTwo;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,15 +26,15 @@ public class ShopApi {
     private TransactionBl transactionBl;
     private ComputerPageOne computerPageOne;
     private ComputerPageTwo computerPageTwo;
-    private ComputerPageThree computerPageThree;
+    private ExtractStores extractStores;
 
 
     @Autowired
-    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ComputerPageThree computerPageThree, TransactionBl transactionBl){
+    public ShopApi (ShopBl shopBl, ComputerPageOne computerPageOne, ComputerPageTwo computerPageTwo, ExtractStores extractStores, TransactionBl transactionBl){
         this. shopBl = shopBl;
         this.computerPageOne = computerPageOne;
         this.computerPageTwo = computerPageTwo;
-        this.computerPageThree = computerPageThree;
+        this.extractStores = extractStores;
         this.transactionBl = transactionBl;
     }
     public ShopApi(){}
@@ -84,15 +83,17 @@ public class ShopApi {
         String url="https://www.dismac.com.bo/empresa.html";  //tienda 1
         //dirección tienda 2
         String url2="https://compucenter.store/about";  //tienda 2, img y ubicacion, description
-        //dirección tienda 3
-        String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
+        //tienda 3, TechStore
+        String url3="https://techstore.bo/contactanos/";  //tienda 3, img, descripcipon y ubicacion
 
         //dirección tienda 4, Pc.com
         String url4="https://www.pc.com.bo/index.html#";
         //dirección tienda 5, Creativo computacion
         String url5="https://creativo.com.bo/";
+        //dirección tienda 6, Hp
+        String url6="https://www.hp.com/cl-es/hp-information.html";
 
-        return computerPageOne.shopListAll(url, url2 ,url3, url4, url5);
+        return extractStores.shopListAll(url, url2 , url3, url4, url5, url6);
     }
     //FIN
 
@@ -104,17 +105,23 @@ public class ShopApi {
         String url="https://www.dismac.com.bo/empresa.html";  //tienda 1
         //dirección tienda 2
         String url2="https://compucenter.store/about";  //tienda 2, img y ubicacion, description
-        //dirección tienda 3
-        String url3="https://www.multilaptops.net/acerca";  //tienda 3, img, descripcipon y ubicacion
+        //tienda 3, TechStore
+        String url3="https://techstore.bo/contactanos/";  //tienda 3, img, descripcipon y ubicacion
 
         //dirección tienda 4, Pc.com
         String url4="https://www.pc.com.bo/index.html#";
         //dirección tienda 5, Creativo computacion
         String url5="https://creativo.com.bo/";
+        //dirección tienda 6, Hp
+        String url6="https://www.hp.com/cl-es/hp-information.html";
 
-        return computerPageOne.findShopById(id, url, url2, url3, url4, url5);
+        return extractStores.findShopById(id, url, url2, url3,  url4, url5, url6);
     }
     //FIN
+
+
+
+
 ///////////////////////////
 
 
