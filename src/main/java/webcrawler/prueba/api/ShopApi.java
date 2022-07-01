@@ -93,7 +93,8 @@ public class ShopApi {
         //dirección tienda 6, Hp
         String url6="https://www.hp.com/cl-es/hp-information.html";
 
-        return extractStores.shopListAll(url, url2 , url3, url4, url5, url6);
+        //return extractStores.shopListAll(url, url2 , url3, url4, url5, url6);
+        return extractStores.shopListAll2();
     }
     //FIN
 

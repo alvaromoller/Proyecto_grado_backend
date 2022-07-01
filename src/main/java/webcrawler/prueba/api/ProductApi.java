@@ -77,39 +77,29 @@ public class ProductApi extends Thread{
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     //List<ProductDto>
     public List<ProductDto> selectProducts(HttpServletRequest request)throws IOException {
-        //tienda ,CompuCenter,Equipos Laptos
+        //tienda ,CompuCenter,Equipos Laptos, Gamer
         String urlCompuCenter = "https://compucenter.store/category/23-equipo/77-laptop";
-        //tienda ,CompuCenter Gamer
         String urlCompuCenterGamer = "https://compucenter.store/category/23-equipo/238-gaming#";
         String urlTechStore = "https://techstore.bo/product-category/mac/macbool-air/";
-
-        //https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593
-        //dirección producto 6
-        String url6="https://compucenter.store/product/2283-equipo-dell-laptop-inspiron-5593";  //PC6
-
-        //Creacion del Hilo 1
-       //Thread hilo1 = new Thread(computerPageOne);
-        //hilo1.start();
-        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer, urlTechStore);
+        String urlCreativoComputacion = "https://creativocomputacion.ecwid.com/Notebook-c10743110";
+        String urlDismac = "https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html";
+        return computerPageOne.productListAllPrueba(urlCompuCenter, urlCompuCenterGamer, urlTechStore, urlCreativoComputacion, urlDismac);
     }
     //FIN
 
 
-    //Pc.com, Marcas
+    // Marcas
+    /**
     @RequestMapping( path = "/productsPc" , method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ProductDto> selectProductsPc(HttpServletRequest request)throws IOException {
         //tiendas CompuCenter y creativo computacion
-        String urlPcHp = "https://www.pc.com.bo/assets/html/notebooks-hp.html";
-        String urlPcDell = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
-        String urlPcLenovo = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
-        String urlPcAsus ="https://www.pc.com.bo/assets/html/notebooks-asus.html";
-
         String urlCreativoHp = "https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325";
         String urlCreativoDell = "https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283";
         String urlCreativoLenovo = "https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225";
 
-        return computerPageOne.productListAllMarcas(urlPcHp, urlPcDell, urlPcLenovo, urlPcAsus,   urlCreativoHp, urlCreativoDell, urlCreativoLenovo);
+        return computerPageOne.productListAllMarcas( urlCreativoHp, urlCreativoDell, urlCreativoLenovo);
     }
+    */
     //FIN
 
     //listado de productos por Tienda,
@@ -119,25 +109,25 @@ public class ProductApi extends Thread{
         String urlCompuCenter="https://compucenter.store/category/23-equipo/77-laptop";
         String urlCompuCenterGamer="https://compucenter.store/category/23-equipo/238-gaming#";
         String urlTechStore="https://techstore.bo/product-category/mac/macbool-air/";
+        String urlCreativoComputacion = "https://creativocomputacion.ecwid.com/Notebook-c10743110";
+        String urlDismac = "https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html";
 
         //tiendas CompuCenter y creativo computacion
-        String urlPcHp = "https://www.pc.com.bo/assets/html/notebooks-hp.html";
-        String urlPcDell = "https://www.pc.com.bo/assets/html/notebooks-dell.html";
-        String urlPcLenovo = "https://www.pc.com.bo/assets/html/notebooks-lenovo.html";
-        String urlPcAsus ="https://www.pc.com.bo/assets/html/notebooks-asus.html";
+        /**
         String urlCreativoHp = "https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325";
         String urlCreativoDell = "https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283";
         String urlCreativoLenovo = "https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225";
-
+         */
         //tiendas CompuCenter y Hp
         //Categoria Hogar, Gamer y Work
         String urlTiendaHpHogar="https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1";
         String urlCompuCenterGamer2="https://compucenter.store/category/23-equipo/238-gaming";
         String urlTiendaHpEmpresas="https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html";
 
-        return computerPageOne.selectProductsByStore(storeId, urlCompuCenter, urlCompuCenterGamer , urlTechStore,
-                                                     urlPcHp, urlPcDell, urlPcLenovo, urlPcAsus, urlCreativoHp, urlCreativoDell, urlCreativoLenovo,
-                                                     urlTiendaHpHogar, urlCompuCenterGamer2, urlTiendaHpEmpresas);
+        return computerPageOne.selectProductsByStore(storeId, urlCompuCenter, urlCompuCenterGamer , urlTechStore, urlCreativoComputacion, urlDismac,
+                                                     //urlCreativoHp, urlCreativoDell, urlCreativoLenovo,
+                                                     urlTiendaHpHogar, urlCompuCenterGamer2, urlTiendaHpEmpresas
+        );
     }
     //FIN
 

@@ -32,29 +32,32 @@ public class ExtractStores {
 
     }
 
-
+/***/
     //LISTADO de TIENDAS, extraccion de tiendas  sin  BD
     //Tienda 1: Dismac
     public List<ShopDto> extractShopList(String url) throws IOException {
         System.out.println("Extrayendo inf. de Tienda 1, página DISMAC " + url + "...");
         Document doc = Jsoup.connect(url).get();      //.timeout(10000).get();
         Elements descriptionPage = doc.select(" div.first"); // buscando por clase, <div class = first >
-        Elements locationPage = doc.select("div.full");
+        Elements locationPage = doc.select("div.bh-sl-loc-list");
         Elements imgPage = doc.select(" div.category-view");
 
-        String description="";
-        String location ="";
+        String name="Dismac";
+        String description="Somos una empresa Boliviana fundada en el año de 1985  que pertenece a la industria retail.\n" +
+        "En una trayectoria de  más de 30 años,  nos hemos posicionado en el país como una de las marcas con mayor confianza para el mejoramiento del hogar.";
+        String location ="https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html";
         String img="";
         //Description
+
         for (Element e : descriptionPage.select("div.full"))
         {
             description = e.select("div.span-text" ).text();
             //System.out.println("Descripcion: " + description);
         }
         //location
-        for (Element e : locationPage.select("div.span-text"))
+        for (Element e : locationPage.select(" li "))
         {
-            location = e.select("span.text" ).text();
+            location = e.select("div.store-addr " ).text();
         }
         //System.out.println("Location: " + location);
 
@@ -71,7 +74,7 @@ public class ExtractStores {
         ShopDto shopDto = new ShopDto();
 
         shopDto.setShopId(1);
-        shopDto.setName("Dismac");
+        shopDto.setName(name);
         shopDto.setDescription(description);
         shopDto.setLocation(location);
         shopDto.setImg(img);
@@ -99,10 +102,14 @@ public class ExtractStores {
         locationPage.select("div.my-1 span").append("\\nl "); //append salto de linea
         //
 
-        String description="";
-        String location ="";
+        String name ="CompuCenter";
+        String description="Legalmente establecida en territorio nacional, nace un 22 de Febrero de 2010 enfocado a la comercialización de equipos de " +
+                "computación y soluciones informáticas a la necesitad de cada cliente sea de Hogar, Empresa y/o Institución Pública. Dando soluciones" +
+                " con las marcas más reconocidas a nivel mundial en equipos de cómputo y desarrollo de Software a medida.\n" ;
+        String location ="https://compucenter.store/#";
         String img="";
         //Description
+
         for (Element e : descriptionPage.select("section"))
         {
             description = e.select("div.mb-10 " ).text().replaceAll("\\\\nl", "\n");
@@ -122,13 +129,14 @@ public class ExtractStores {
             img = e.select(" a img ").attr("src"); //Obtener src, img del PC
             //System.out.println("Logo de la tienda 2: " + img);
         }
+
         /////////////////////////////////////////////////////////////////////////
         //PRUEBA de ARRAY SIN BASE DE DATOS
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
         ShopDto shopDto = new ShopDto();
 
         shopDto.setShopId(2);
-        shopDto.setName("CompuCenter");
+        shopDto.setName(name);
         shopDto.setDescription(description);
         shopDto.setLocation(location);
         shopDto.setImg("https://compucenter.store/_nuxt/img/logo_cc_lg.c362771.svg");
@@ -152,8 +160,11 @@ public class ExtractStores {
         locationPage.select("div.my-1 span").append("\\nl "); //append salto de linea
         //
 
-        String description="";
-        String location = "";
+        String name="TechStore";
+        String description="Tech Store Bolivia es una de la tiendas autorizadas de Apple para Bolivia, bajo la figura de Authorized Reseller." +
+                " Cuenta con una variedad de productos como ser iPhone, iPad, Apple Watch, Mac, Apple TV, Macbook Pro, Macbook Air, iMac, iMacPro," +
+                " accesorios, entretenimiento y soporte técnico.";
+        String location = "https://techstore.bo/product-category/mac/";
         String img="";
         //Description
         for (Element e : descriptionPage.select("div.wpb_column.vc_column_container "))
@@ -182,10 +193,10 @@ public class ExtractStores {
         ShopDto shopDto = new ShopDto();
 
         shopDto.setShopId(3);
-        shopDto.setName("TechStore");
+        shopDto.setName(name);
         shopDto.setDescription(description);
-        shopDto.setLocation("");
-        shopDto.setLocation2(locationList);
+        shopDto.setLocation(location);
+        //shopDto.setLocation2(locationList);
         shopDto.setImg(img);
 
         shopDtos.add( shopDto);
@@ -249,13 +260,13 @@ public class ExtractStores {
         //ubicacion, descripcion
         String nombre = "Computación, diseño creativo";
         String imagen = "https://creativo.com.bo/wp-content/uploads/2021/08/DisenoAprobadoLogoCreativoLB.png";
-
+        String location =" https://creativo.com.bo/";
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
         System.out.println("--------Inicio Tienda Creativo computacion-----------");
         for (Element e : body.select("div.et_pb_text_inner"))
         {
             //no tiene descripcion
-            String location = e.select(" div span ").text().replaceAll("\\\\nl", "\n");
+            //String location = e.select(" div span ").text().replaceAll("\\\\nl", "\n");
             //System.out.println("  Ubicación: "+ location);
 
             /////////////////////////////////////////////////////////////////////////
@@ -287,7 +298,7 @@ public class ExtractStores {
         String name = "Hp";
         String description ="";
         String imagen = "https://d1pc5hp1w29h96.cloudfront.net/logo/default/HP_logo.svg";
-
+        String location ="https://www.hp.com/cl-es/home.html";
 
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
         System.out.println("--------Inicio Tienda Hp----------");
@@ -303,7 +314,7 @@ public class ExtractStores {
             shopDto.setShopId(6);
             shopDto.setName(name);
             shopDto.setDescription(description);
-            shopDto.setLocation("");
+            shopDto.setLocation(location);
             shopDto.setImg(imagen);
 
             shopDtos.add( shopDto);
@@ -315,7 +326,7 @@ public class ExtractStores {
         return shopDtos;
     }
 
-
+/***/
     //LISTADO DE TODAS LAS TIENDAS
     public List<ShopDto> shopListAll(String url, String url2, String url3,  String url4, String url5, String url6) throws IOException{
         List<ShopDto> shopDtos = new ArrayList<ShopDto>(); //se crea productDtos para tener el listado de products
@@ -383,6 +394,227 @@ public class ExtractStores {
     }
 //FIN
 
+//PRUEBA NUEVO METODOS PARA TIENDAS
+    //Tienda 1: Dismac
+    public List<ShopDto> shopDismac() throws IOException {
+        System.out.println("Dismac  "  );
+        String name="Dismac";
+        String description="Somos una empresa Boliviana fundada en el año de 1985  que pertenece a la industria retail.\n" +
+                "En una trayectoria de  más de 30 años,  nos hemos posicionado en el país como una de las marcas con mayor confianza para el mejoramiento del hogar.";
+        String location ="https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html";
+        String img="https://www.dismac.com.bo/media/logo/stores/1/dismac.png";
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(1);
+        shopDto.setName(name);
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        shopDto.setImg(img);
+
+        shopDtos.add( shopDto);
+        System.out.println("Tienda 1: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Tienda 2: CompuCenter
+    public List<ShopDto> shopCompuCenter() throws IOException {
+        System.out.println(" CompuCenter  " );
+
+        String name ="CompuCenter";
+        String description="Legalmente establecida en territorio nacional, nace un 22 de Febrero de 2010 enfocado a la comercialización de equipos de " +
+                "computación y soluciones informáticas a la necesitad de cada cliente sea de Hogar, Empresa y/o Institución Pública. Dando soluciones" +
+                " con las marcas más reconocidas a nivel mundial en equipos de cómputo y desarrollo de Software a medida.\n" ;
+        String location ="https://compucenter.store/#";
+        String img="https://compucenter.store/_nuxt/img/logo_cc_lg.c362771.svg";
+
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(2);
+        shopDto.setName(name);
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        shopDto.setImg(img);
+
+        shopDtos.add( shopDto);
+        System.out.println("tienda 2: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Tienda 3: techstore
+    public List<ShopDto> shopTechStore() throws IOException {
+        System.out.println("TechStore "  );
+
+        String name="TechStore";
+        String description="Tech Store Bolivia es una de la tiendas autorizadas de Apple para Bolivia, bajo la figura de Authorized Reseller." +
+                " Cuenta con una variedad de productos como ser iPhone, iPad, Apple Watch, Mac, Apple TV, Macbook Pro, Macbook Air, iMac, iMacPro," +
+                " accesorios, entretenimiento y soporte técnico.";
+        String location = "https://techstore.bo/product-category/mac/";
+        String img="\thttps://techstore.bo/wp-content/uploads/2020/08/TechStoreBolivia-Authorized-Reseller-.png";
+        /////////////////////////////////////////////////////////////////////////
+        //PRUEBA de ARRAY SIN BASE DE DATOS
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        ShopDto shopDto = new ShopDto();
+
+        shopDto.setShopId(3);
+        shopDto.setName(name);
+        shopDto.setDescription(description);
+        shopDto.setLocation(location);
+        //shopDto.setLocation2(locationList);
+        shopDto.setImg(img);
+
+        shopDtos.add( shopDto);
+        System.out.println("tienda 3: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Tienda 4: Pc.COM
+    //https://www.pc.com.bo/index.html#
+    /**
+    public List<ShopDto> shopPcCom(String url) throws IOException {
+        System.out.println("Tienda 4, Pc.com " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Elements body = doc.select("div.box-contact-info");
+        //Salto de linea descriptionPage
+        body.select("br").append("\\nl"); //append salto de linea despues de un elemento
+        body.select("span").prepend("\\nl"); //append salto de linea Antes de un elemento
+
+        //ubicacion
+        String nombre = "PC.COM";
+        String location ="";
+        String imagen = "https://www.pc.com.bo/assets/img/slide/index/1.jpg";
+
+
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+        System.out.println("--------Inicio Tienda PC.COM-----------");
+        for (Element e : body.select("ul"))
+        {
+            location = e.select(" li span  ").text().replaceAll("\\\\nl", "\n");
+            //System.out.println("  Ubicación: "+ location);
+
+            /////////////////////////////////////////////////////////////////////////
+            //PRUEBA de ARRAY SIN BASE DE DATOS
+            ShopDto shopDto = new ShopDto();
+
+            shopDto.setShopId(4);
+            shopDto.setName(nombre);
+            shopDto.setDescription("Sin Descripción");
+            shopDto.setLocation(location);
+            shopDto.setImg(imagen);
+
+            shopDtos.add( shopDto);
+            //System.out.println("Tienda PC.COM: " + shopDto);
+
+        }
+        System.out.println("--------FIN-----------");
+        System.out.println("Tienda PC.COM: " + shopDtos);
+        return shopDtos;
+    }
+    */
+
+    //Tienda 5: Creativo computacion
+    //https://creativo.com.bo/
+    public List<ShopDto> shopCreativoComputacion() throws IOException {
+        System.out.println("Creativo computacion ");
+        //ubicacion, descripcion
+        String nombre = "Computación, diseño creativo";
+        String descripcion= "Sin descripción";
+        String location ="https://creativo.com.bo/";
+        String imagen = "https://creativo.com.bo/wp-content/uploads/2021/08/DisenoAprobadoLogoCreativoLB.png";
+
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+            /////////////////////////////////////////////////////////////////////////
+            //PRUEBA de ARRAY SIN BASE DE DATOS
+            ShopDto shopDto = new ShopDto();
+
+            shopDto.setShopId(5);
+            shopDto.setName(nombre);
+            shopDto.setDescription(descripcion);
+            shopDto.setLocation(location);
+            shopDto.setImg(imagen);
+
+            shopDtos.add( shopDto);
+            //System.out.println("Tienda PC.COM: " + shopDto);
+
+        System.out.println("Tienda Creativo computacion: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Tienda 6: Creativo computacion
+    //https://www.hp.com/cl-es/hp-information.html
+    public List<ShopDto> shopHp() throws IOException {
+        System.out.println("Tienda Hp " );
+
+        String name = "Hp";
+        String description ="Somos una compañía de tecnología que nació bajo la creencia de que las empresas deben hacer más que simplemente obtener una ganancia. Deben hacer del mundo un lugar mejor.\n" +
+                "Nuestros esfuerzos para mitigar el cambio climático, el estar en pro de los derechos humanos y la equidad digital demuestran que estamos haciendo todo lo posible para lograrlo.\n" +
+                "Con más de 80 años de acciones que prueban nuestras intenciones, tenemos la confianza necesaria para imaginar un mundo donde la innovación impulse contribuciones extraordinarias para la humanidad.\n" +
+                "Y nuestra tecnología –un portafolio de productos y servicios de sistemas personales, impresoras y soluciones de impresión en 3D– fue creada para inspirar ese progreso.\n" +
+                "Sabemos que las buenas ideas pueden venir de cualquier persona, en cualquier momento y lugar.\n" +
+                "Y solo hace falta una para cambiar el mundo.";
+        String location ="https://www.hp.com/cl-es/home.html";
+        String imagen = "https://d1pc5hp1w29h96.cloudfront.net/logo/default/HP_logo.svg";
+
+        List<ShopDto> shopDtos = new ArrayList<ShopDto>(); // se crea ShopDto para tener el listado de tiendas
+            /////////////////////////////////////////////////////////////////////////
+            //PRUEBA de ARRAY SIN BASE DE DATOS
+            ShopDto shopDto = new ShopDto();
+
+            shopDto.setShopId(6);
+            shopDto.setName(name);
+            shopDto.setDescription(description);
+            shopDto.setLocation(location);
+            shopDto.setImg(imagen);
+
+            shopDtos.add( shopDto);
+            //System.out.println("Tienda 6 Hp: " + shopDto);
+
+        System.out.println("Tienda 6 Hp: " + shopDtos);
+        return shopDtos;
+    }
+
+    //Listado de todas las tiendas
+    public List<ShopDto> shopListAll2() throws IOException{
+        List<ShopDto> shop1 = new ArrayList<ShopDto>(); //se crea productDtos para tener el listado de products
+        List<ShopDto> shop2 = new ArrayList<ShopDto>();
+        List<ShopDto> shop3 = new ArrayList<ShopDto>();
+
+        //PC.com, Creativo computacion
+        List<ShopDto> shop4 = new ArrayList<ShopDto>();
+        List<ShopDto> shop5 = new ArrayList<ShopDto>();
+        List<ShopDto> shop6 = new ArrayList<ShopDto>();
+
+
+        //Tienda 1
+        shop1 = shopDismac();
+        //Tienda 2
+        shop2 = shopCompuCenter();
+        //Tienda 3
+        shop3 = shopTechStore();
+
+        //Tienda PC.COM
+        //shop4 = pcTienda();
+        //Tienda Creativo computacion
+        shop5 = shopCreativoComputacion();
+        //Hp
+        shop6 = shopHp();
+
+        List<ShopDto> shopAll = new ArrayList<ShopDto>(); // Lista para guardar todos los productos
+        shopAll.addAll(shop1);
+        shopAll.addAll(shop2);
+        shopAll.addAll(shop3);
+        //shopAll.addAll(shop4);
+        shopAll.addAll(shop5);
+        shopAll.addAll(shop6);
+
+        //System.out.println("Shops all: " + shopAll);
+        return  shopAll;
+    }
 
 
 

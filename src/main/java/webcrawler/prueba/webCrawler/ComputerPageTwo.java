@@ -76,7 +76,7 @@ public class ComputerPageTwo extends Thread {
     //https://www.hp.com/cl-es/shop/notebooks.html?hp_facet_segment=Hogar&p=1
     public List<ProductDto> tiendaHpHogar(String url) throws IOException {
         System.out.println("Tienda Hp Laptops para el hogar, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(11000).get();
+        Document doc = Jsoup.connect(url).timeout(15000).get();
         Elements body = doc.select("div ol.products.list.items.product-items");
         //Salto de linea de descripcion
         //body.select("li").append("\\nl"); //append salto de linea despues de un elemento
@@ -155,7 +155,7 @@ public class ComputerPageTwo extends Thread {
     //https://compucenter.store/category/23-equipo/238-gaming
     public List<ProductDto> compuCenterGaming(String url) throws IOException {
         System.out.println("CompuCenter Equipos Gaming, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("section.flex.flex-wrap.justify-center.items-center");
 
 
@@ -205,14 +205,13 @@ public class ComputerPageTwo extends Thread {
     }
 
 
-
     ///////////////////////////////////////////////////////////////////////////////
     //Categoria Work, Tienda Hp
     //PRODUCTOS:12
     //https://www.hp.com/cl-es/shop/notebooks/notebooks-empresariales.html
     public List<ProductDto> tiendaHpEmpresas(String url) throws IOException {
         System.out.println("Tienda Hp Laptops para Empresas, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(20000).get();
         Elements body = doc.select("div ol.products.list.items.product-items");
         //Salto de linea de descripcion
         //body.select("li").append("\\nl"); //append salto de linea despues de un elemento

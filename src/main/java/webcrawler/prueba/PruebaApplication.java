@@ -36,12 +36,11 @@ class PruebaApplication {
 		System.out.println(templateHome);
 		ComputerPageOne hiloHome = new ComputerPageOne(
 				templateHome,
-				"https://compucenter.store/category/23-equipo/77-laptop",		//CompuCenter Laptops
-				"https://compucenter.store/category/23-equipo/238-gaming#",					//CompuCenter Gamer
-				"https://www.pc.com.bo/assets/html/notebooks-hp.html", 				//marca
-				"https://techstore.bo/product-category/mac/macbool-air/"
-				//"https://compucenter.store/product/2530-equipo-hp-laptop-15-dy1003ca"
-
+				"https://compucenter.store/category/23-equipo/77-laptop",		    //CompuCenter Laptops
+				"https://compucenter.store/category/23-equipo/238-gaming#",		//CompuCenter Gamer
+				"https://techstore.bo/product-category/mac/macbool-air/",               //TechStore
+                "https://creativocomputacion.ecwid.com/Notebook-c10743110",     //creativo computacion
+                "https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html" //Dismac
 		);
 		hiloHome.start();
 
@@ -67,6 +66,8 @@ class PruebaApplication {
 	public static void main(String[] args) throws IOException {
         SpringApplication.run(PruebaApplication.class, args);
 
+        //ComputerPageOne obj = new ComputerPageOne();
+        //obj.dismacComputadoras("https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html");
 
         /** Contador del 1-10
         int contadorId = 0;

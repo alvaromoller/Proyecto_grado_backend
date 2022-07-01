@@ -35,13 +35,12 @@ public class ComputerPageOne extends Thread {
     //Obtencion de direcciones Ips
     private DirectionIp directionIp;
     //CompuCenter
-    private String url6;
-    private String urlCompuCenter;      //CompuCenter
+    private String urlCompuCenter;          //CompuCenter
     private String urlCompuCenterGamer;
-    private String urlTechStore;        //TechStore
-    //PC.COM, marcas
-    private String urlPcHp;             //PC.COM
-    private String urlPcDell;
+    private String urlTechStore;            //TechStore
+    private String urlCreativoComputacion;  //CreativoComputacion
+    private String urlDismac;               //Dismac
+    //SimpMessagingTemplate
     private SimpMessagingTemplate template;
 
 
@@ -60,17 +59,17 @@ public class ComputerPageOne extends Thread {
             SimpMessagingTemplate template,
             String urlCompuCenter,
             String urlCompuCenterGamer,
-            String urlPcHp,
-            String urlTechStore
+            String urlTechStore,
+            String urlCreativoComputacion,
+            String urlDismac
             //String url6
     ) {
         this.template = template;
         this.urlCompuCenter = urlCompuCenter;
         this.urlCompuCenterGamer = urlCompuCenterGamer;
-        this.urlPcHp = urlPcHp;
         this.urlTechStore = urlTechStore;
-        //this.url6 = url6;
-
+        this.urlCreativoComputacion = urlCreativoComputacion;
+        this.urlDismac = urlDismac;
     }
 
     public ComputerPageOne() {
@@ -82,92 +81,6 @@ public class ComputerPageOne extends Thread {
 //LISTADO de PRODUCTOS, extraccion de Producto  sin  BD
 
     //tienda , CompuCenter
-    //Producto 4
-    public List<ProductDto> extractProductList4(String url) throws IOException {
-        System.out.println("Computadoras, Página CompuCenter url" + url);
-        Document doc1 = Jsoup.connect(url).get();    //.timeout(10000).get();
-        Elements productName = doc1.select(" div.w-full");
-        Elements imgProduct = doc1.select("div.w-full");  //extraccion de imagen
-        Elements productDescription = doc1.select("div.w-full.pt-4"); //extracion de detalle del PC
-        Elements price = doc1.select(" div.w-full");
-
-        //extracion del PC
-        String name = "";
-        String name2 = "";
-        String img = "";
-        String description = "";
-        String brand = "Asus";
-        String ram = "Ram: 4 GB";
-        String processor = "Intel";
-        String storage = "SSD 128 GB";
-        String tarjetaGrafica = "Tarjeta gráfica integrada";
-
-        //productName
-        for (Element e : productName.select("div.mb-10")) {
-            name2 = e.select("h1").text(); //Obtener tipo de PC
-        }
-        //System.out.println("Nombre del PC: " + name);
-
-        //productName //opcional
-        for (Element e : productName.select("div.flex.text-black.cursor-pointer.pb-1")) {
-            name = e.select("span").text(); //Obtener tipo de PC
-        }
-        //System.out.println("Nombre2 opcional del PC: " + name2);
-
-
-        //imgProduct
-        for (Element e : imgProduct.select("div.relative.border-4.border-red-100.rounded-lg")) {
-            img = e.select("  img ").attr("src"); //Obtener src, img del PC
-            //System.out.println("imagen : " + img);
-        }
-
-        //pruductDescription
-        for (Element e : productDescription.select("div.text-base")) {
-            description = e.select(" div ").text(); //Obtener marca del PC
-            //System.out.println("Descripción: \n" + description);
-        }
-
-        String precio = "";
-        for (Element e : price.select("div.inline-block.align-bottom.mr-5")) {
-            precio = e.select("span  ").text(); //Obtener precio del PC
-            //System.out.println("Precio: " + precio + " , se quitara Bs: xq no permite  convertir el precio a Double" );
-
-        }
-        //En replace se quito exitosamente el Bs: para convertir el precio en Double
-        /**
-         String precio2 = precio.replace("Bs" , "");
-         System.out.println("Precio 2: " + precio2 + " , se quito exitosamente el Bs para convertir el precio en Double" );
-         //se quito la coma
-         String precio3 = precio2.replace(",", "");
-         System.out.println("Precio 3: " + precio3 + " ,  se quito la coma ");
-         Double precioConvertido = Double.parseDouble(precio3);
-         System.out.println("precio Convertido a Double " + precioConvertido );
-         */
-        /////////////////////////////////////////////////////////////////////////
-        //PRUEBA de ARRAY SIN BASE DE DATOS
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        ProductDto productDto = new ProductDto();
-
-        productDto.setProductId(4);
-        productDto.setName(name);
-        productDto.setName2(name2);
-        productDto.setShopName("CompuCenter");
-        productDto.setDescription(description);
-        productDto.setImg(img);
-        productDto.setPrice(precio);
-        productDto.setBrand(brand);
-        productDto.setRam(ram);
-        productDto.setProcessor(processor);
-        productDto.setStorage(storage);
-        productDto.setTarjetaGrafica(tarjetaGrafica);
-        //llaves foraneas
-        productDto.setShopId(2);
-
-        productDtos.add(productDto);
-        System.out.println("productDtos 4: " + productDtos);
-        return productDtos;
-    }
-
     //Producto 6
     //List<ProductDto>
     public List<ProductDto> extractProductList6(String url) throws IOException {
@@ -265,7 +178,7 @@ public class ComputerPageOne extends Thread {
     //https://compucenter.store/category/23-equipo/77-laptop
     public List<ProductDto> compuCenterLaptops(String url) throws IOException {
         System.out.println("CompuCenter, Equipos Laptos, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("section.flex.flex-wrap.justify-center.items-center");
 
         int contadorId=0;  //para tener los Ids
@@ -294,10 +207,10 @@ public class ComputerPageOne extends Thread {
              */
             //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
             //Marca
-            String marca = e.select(" div.flex.flex-col.mb-2 strong").text();   //extraccion de marca
+            String marca = e.select(" div.flex.flex-col.mb-2 strong").text().toUpperCase();   //extraccion de marca
 
             //Regular expression to find digits
-            String regexMarca = "\\b(HP|Lenovo|Asus|Dell|Apple|MSI)\\b";
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI)\\b";
             //Compiling the regular expression
             Pattern patternMarca = Pattern.compile(regexMarca);
             //Retrieving the matcher object
@@ -328,10 +241,10 @@ public class ComputerPageOne extends Thread {
 
             /////////////////////////////////////////////////////////////////////////
             //Procesador
-            String procesador = e.select(" div.text-base.text-justify ").text();
+            String procesador = e.select(" div.text-base.text-justify ").text().toUpperCase();
 
             //Regular expression to find digits
-            String regexProcesador = "\\b(Intel|Ryzen)\\b";
+            String regexProcesador = "\\b(INTEL|RYZEN|AMD)\\b";
             //Compiling the regular expression
             Pattern patternProcesador = Pattern.compile(regexProcesador);
             //Retrieving the matcher object
@@ -347,15 +260,30 @@ public class ComputerPageOne extends Thread {
             String almacenamiento = e.select(" div.text-base.text-justify ").text().toUpperCase();
 
             //Regular expression to find digits
-            String regexAlmacenamiento = "\\b(128\\s?GB|240\\s?GB|256\\s?GB|500\\s?GB|512\\s?GB|1000\\s?GB|\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            String regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
             //Compiling the regular expression
             Pattern patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
             //Retrieving the matcher object
             Matcher matcherAlmacenamiento = patternAlmacenamiento.matcher(almacenamiento);
             if (matcherAlmacenamiento.find()) {
-                System.out.println("Match found Almacenamiento:  " + matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
+                System.out.println("Match found Almacenamiento:  " + matcherAlmacenamiento.group().replaceAll("[\\ \\\\ ]", "").replaceAll("\\p{Punct}", "")  );   //quitando espacio (16 GB) en medio de Ram
             } else {
-                System.out.println("Match not found Almacenamiento: " + almacenamiento);
+                System.out.println("Match not found Almacenamiento, no se encontro en :"+ almacenamiento);
+
+                almacenamiento = e.select(" a h1.font-semibold.text-lg ").text().toUpperCase(); //nueva busqueda por nombre2
+                System.out.println("nueva busqueda por nombre1:"+ almacenamiento);
+
+                //Regular expression to find digits
+                regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+                //Compiling the regular expression
+                patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
+                //Retrieving the matcher object
+                matcherAlmacenamiento = patternAlmacenamiento.matcher(almacenamiento);
+                if (matcherAlmacenamiento.find()) {
+                    System.out.println("Match found Almacenamiento:  " + matcherProcesador.group());
+                } else {
+                    System.out.println("Match not found");
+                }
             }
 
 
@@ -376,7 +304,7 @@ public class ComputerPageOne extends Thread {
             productDto.setBrand(matcherMarca.group());  //matcherMarca.group()
             productDto.setRam(matcherRam.group().replaceAll("[\\ \\\\]", ""));
             productDto.setProcessor(matcherProcesador.group());
-            productDto.setStorage(matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));
+            productDto.setStorage(matcherAlmacenamiento.group().replaceAll("[\\ \\\\ ]", "").replaceAll("\\p{Punct}", "") ); //.replaceAll("\\p{Punct}", "") sirve para quitar todos los signos y puntuacicon
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
             productDto.setShopId(2);
@@ -395,7 +323,7 @@ public class ComputerPageOne extends Thread {
     //https://compucenter.store/category/23-equipo/238-gaming#
     public List<ProductDto> compuCenterGamer(String url) throws IOException {
         System.out.println("CompuCenter, Gamer Laptos, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("section.flex.flex-wrap.justify-center.items-center");
 
         int contadorId=25;  //para los IDs
@@ -420,10 +348,10 @@ public class ComputerPageOne extends Thread {
              */
             //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
             //Marca
-            String marca = e.select(" div.flex.flex-col.mb-2 strong").text();   //extraccion de marca
+            String marca = e.select(" div.flex.flex-col.mb-2 strong").text().toUpperCase();   //extraccion de marca
 
             //Regular expression to find digits
-            String regexMarca = "\\b(HP|Lenovo|Asus|Dell|Apple|MSI)\\b";
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI)\\b";
             //Compiling the regular expression
             Pattern patternMarca = Pattern.compile(regexMarca);
             //Retrieving the matcher object
@@ -455,10 +383,10 @@ public class ComputerPageOne extends Thread {
 
             /////////////////////////////////////////////////////////////////////////
             //Procesador
-            String procesador = e.select(" div.text-base.text-justify ").text();    //busqueda en descripcion
+            String procesador = e.select(" div.text-base.text-justify ").text().toUpperCase();    //busqueda en descripcion
 
             //Regular expression to find digits
-            String regexProcesador = "\\b(Intel|Ryzen)\\b";
+            String regexProcesador = "\\b(INTEL|RYZEN)\\b";
             //Compiling the regular expression
             Pattern patternProcesador = Pattern.compile(regexProcesador);
             //Retrieving the matcher object
@@ -466,13 +394,13 @@ public class ComputerPageOne extends Thread {
             if (matcherProcesador.find()) {
                 System.out.println("Match found procesador:  " + matcherProcesador.group());
             } else {
-                System.out.println("Match not found procesador");
-                System.out.println("- busqueda por descripcion, no se encontro en : " + procesador);
-                System.out.println("nueva busqueda por nombre2:");
+                System.out.println("Match not found procesador, no se encontro en :"+ procesador);
 
-                procesador = e.select(" h1.font-semibold.text-lg ").text(); //nueva busqueda por nombre2
+                procesador = e.select(" h1.font-semibold.text-lg ").text().toUpperCase(); //nueva busqueda por nombre2
+                System.out.println("nueva busqueda por nombre2:"+procesador);
+
                 //Regular expression to find digits
-                regexProcesador = "\\b(Intel|Ryzen)\\b";
+                regexProcesador = "\\b(INTEL|RYZEN)\\b";
                 //Compiling the regular expression
                 patternProcesador = Pattern.compile(regexProcesador);
                 //Retrieving the matcher object
@@ -502,7 +430,6 @@ public class ComputerPageOne extends Thread {
                 System.out.println("Almacenamiento no encontrado en: " + almacenamiento);
 
             }
-
 
             /////////////////////////////////////////////////////////////////////////
             contadorId=contadorId+1;
@@ -541,7 +468,7 @@ public class ComputerPageOne extends Thread {
     //https://techstore.bo/product-category/mac/macbool-air/
     public List<ProductDto> techStoreLaptops(String url) throws IOException {
         System.out.println("Techstore,  Laptos, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("ul.products.columns-4.hongo-shop-standard");
 
         int contadorId=36;  //para los Ids
@@ -549,9 +476,9 @@ public class ComputerPageOne extends Thread {
         List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
         System.out.println("-------Inicio------------");
         for (Element e : body.select("li.hongo-alternate-image-wrap.product.type-product ")) {
-            String nombre1 = e.select(" div.product-title-price-wrap  ").text();
-            String nombre2 = e.select(" h1.font-semibold.text-lg ").text();         //no tiene
-            String descripcion = e.select(" div.product-title-price-wrap ").text();
+            String nombre1 = e.select(" div.product-title-price-wrap a h2  ").text();
+            String nombre2 ="";         //no tiene
+            String descripcion = e.select(" div.product-title-price-wrap a h2").text();
             String descripcion2 = e.select(" div.product-title-price-wrap a ").attr("href");
             String precio = e.select(" span.price ").text();
             String imagen = e.select("a img.attachment-woocommerce_thumbnail  ").attr("src");
@@ -567,10 +494,10 @@ public class ComputerPageOne extends Thread {
              */
             //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
             //Marca
-            String marca = e.select(" div.product-title-price-wrap  ").text(); //extraccion de marca
+            String marca = e.select(" div.product-title-price-wrap  ").text().toUpperCase(); //extraccion de marca
 
             //Regular expression to find digits
-            String regexMarca = "\\b(HP|Lenovo|Asus|Dell|Apple|MSI|MacBook)\\b";
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI|MACBOOK)\\b";
             //Compiling the regular expression
             Pattern patternMarca = Pattern.compile(regexMarca);
             //Retrieving the matcher object
@@ -585,7 +512,7 @@ public class ComputerPageOne extends Thread {
 
             /////////////////////////////////////////////////////////////////////////
             //Memoria Ram
-            String ram = e.select(" div.product-title-price-wrap  ").text(); //extraccion de Ram
+            String ram = e.select(" div.product-title-price-wrap  ").text().toUpperCase(); //extraccion de Ram
 
             //Regular expression to find digits
             String regexRam = "\\b(8\\s?GB|16\\s?GB|4\\s?GB|12\\s?GB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
@@ -602,10 +529,10 @@ public class ComputerPageOne extends Thread {
 
             /////////////////////////////////////////////////////////////////////////
             //Procesador
-            String procesador = ("Intel, Ryzen"); //extraccion de Procesador
+            String procesador = ("INTEL, RYZEN"); //extraccion de Procesador
 
             //Regular expression to find digits
-            String regexProcesador = "\\b(Intel|Ryzen)\\b";
+            String regexProcesador = "\\b(INTEL|RYZEN)\\b";
             //Compiling the regular expression
             Pattern patternProcesador = Pattern.compile(regexProcesador);
             //Retrieving the matcher object
@@ -618,7 +545,7 @@ public class ComputerPageOne extends Thread {
 
             /////////////////////////////////////////////////////////////////////////
             //Almacenamiento
-            String almacenamiento = e.select(" div.product-title-price-wrap  ").text(); //extraccion de Almacenamiento
+            String almacenamiento = e.select(" div.product-title-price-wrap  ").text().toUpperCase(); //extraccion de Almacenamiento
 
             //Regular expression to find digits
             String regexAlmacenamiento = "\\b(128|256|128\\s?GB|240\\s?GB|256\\s?GB|500\\s?GB|512\\s?GB|\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
@@ -667,17 +594,169 @@ public class ComputerPageOne extends Thread {
         return productDtos;
     }
 
+    //Creativo Computacion NoteBooks
+    //https://creativocomputacion.ecwid.com/Notebook-c10743110
+    public List<ProductDto> creativoComputacion(String url) throws IOException {
+        System.out.println("DISEÑO CREATIVO COMPUTACION, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(11000).get();
+        Elements body = doc.select("div.grid__products ");
+        String brand=" ";
+        int contadorId = 43;    //Para Ids
+
+        //Lista para guardar los productos que recorrera el for
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        System.out.println("-------Inicio------------");
+        for (Element e : body.select("div.grid-product "))
+        {
+            String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = "Sin descripción previa"; //Sin descripción previa
+            String precio = e.select(" div.grid-product__price ").text();
+            String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href");
+
+            /**
+             System.out.println("- nombre1(Marca): "+ nombre1);
+             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+             System.out.println("  descripcion:  "+ descripcion);
+             System.out.println("  precio actual:  "+ precio);
+             System.out.println("  Imagen:   "+ imagen);
+             */
+            //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
+            //Marca
+            String marca = e.select(" a.grid-product__title ").text().toUpperCase();   //extraccion de marca
+
+            //Regular expression to find digits
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI|THINKPAD)\\b";  //ThinkPad es el modelo de la marca Lenovo
+            //Compiling the regular expression
+            Pattern patternMarca = Pattern.compile(regexMarca);
+            //Retrieving the matcher object
+            Matcher matcherMarca = patternMarca.matcher(marca);                         //identificacion de coincidencia de marca con el texto extraido
+            if (matcherMarca.find()) {
+                System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
+                //System.out.println("- nombre1(Marca): "+ nombre1);
+            } else {
+                System.out.println("Match not found");
+                System.out.println("- nombre1(Marca): " + marca);
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            contadorId = contadorId + 1;
+            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(contadorId);//nombre1 + ""+ shop
+            productDto.setName(nombre1);
+            productDto.setName2(nombre2);
+            productDto.setShopName("Creativo Computación");
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
+            productDto.setImg(imagen);
+            productDto.setPrice(precio);
+            productDto.setBrand(matcherMarca.group());
+            //productDto.setRam(ram);
+            //productDto.setProcessor(processor);
+            //productDto.setStorage(storage);
+            //productDto.setTarjetaGrafica(tarjetaGrafica);
+            //llaves foraneas
+            productDto.setShopId(5);
+
+            productDtos.add( productDto);
+            System.out.println(" Creativo for(): " + productDto);   //muestra las listas de los productos por separado
+        }
+        System.out.println("-------Fin------------");
+        System.out.println("Creativo productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
+        return  productDtos;
+    }
+
+    //Dismac
+    //https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html
+    public List<ProductDto> dismacComputadoras(String url) throws IOException {
+        System.out.println("Dismac Computadoras, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(11000).get();
+        Elements body = doc.select("div.recent-slider.products-category ");
+        String brand=" ";
+        int contadorId = 76;    //Para Ids
+
+        //Lista para guardar los productos que recorrera el for
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        System.out.println("-------Inicio Dismac------------");
+        for (Element e : body.select("div.recent-container.list-view "))
+        {
+            String nombre1 = e.select(" strong.product-item-name a ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.sku-container.sku span ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = "Sin descripción previa"; //Sin descripción previa
+            String precio = e.select(" div.price-now ").text();
+            String imagen = e.select(" a.img-product img ").attr("src");
+
+            String descripcion2 = e.select(" strong.product-item-name a  ").attr("href");
+
+            /**
+             System.out.println("- nombre1(Marca): "+ nombre1);
+             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+             System.out.println("  descripcion:  "+ descripcion);
+             System.out.println("  precio actual:  "+ precio);
+             System.out.println("  Imagen:   "+ imagen);
+             */
+            //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
+            //Marca
+            String marca = e.select(" strong.product-item-name a ").text().toUpperCase();   //extraccion de marca
+
+            //Regular expression to find digits
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI|HUAWEI|MICROSOFT|SAMSUNG)\\b";  //ThinkPad es el modelo de la marca Lenovo
+            //Compiling the regular expression
+            Pattern patternMarca = Pattern.compile(regexMarca);
+            //Retrieving the matcher object
+            Matcher matcherMarca = patternMarca.matcher(marca);                         //identificacion de coincidencia de marca con el texto extraido
+            if (matcherMarca.find()) {
+                System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
+                //System.out.println("- nombre1(Marca): "+ nombre1);
+            } else {
+                System.out.println("Match not found");
+                System.out.println("- nombre1(Marca): " + marca);
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            contadorId = contadorId + 1;
+            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(contadorId);//nombre1 + ""+ shop
+            productDto.setName(nombre1);
+            productDto.setName2(nombre2);
+            productDto.setShopName("Dismac");
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
+            productDto.setImg(imagen);
+            productDto.setPrice(precio);
+            productDto.setBrand(matcherMarca.group());
+            //productDto.setRam(ram);
+            //productDto.setProcessor(processor);
+            //productDto.setStorage(storage);
+            //productDto.setTarjetaGrafica(tarjetaGrafica);
+            //llaves foraneas
+            productDto.setShopId(1);
+
+            productDtos.add( productDto);
+            System.out.println(" Dismac for(): " + productDto);   //muestra las listas de los productos por separado
+        }
+        System.out.println("-------Fin------------");
+        System.out.println("Dismac productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
+        return  productDtos;
+    }
 
     //LISTADO DE TODOS LOS PRODUCTOS
     //Para el Api, productos para home y cuestionario
     //, String url6
-    public List<ProductDto> productListAllPrueba(String urlCompuCenter, String urlCompuCenterGamer, String urlTechStore) throws IOException {
+    public List<ProductDto> productListAllPrueba(String urlCompuCenter, String urlCompuCenterGamer,
+                                                 String urlTechStore,
+                                                 String urlCreativoComputacion,
+                                                 String urlDismac) throws IOException {
         //Creacion de arrayList
         List<ProductDto> productsCompuCenter = new ArrayList<ProductDto>();
         List<ProductDto> productsCompuCenterGamer = new ArrayList<ProductDto>();
         List<ProductDto> productsTechStore = new ArrayList<ProductDto>();
-
-        //List<ProductDto> productDtos6 = new ArrayList<ProductDto>();
+        List<ProductDto> productsCreativoComputacion = new ArrayList<ProductDto>();
+        List<ProductDto> productsDismac = new ArrayList<ProductDto>();
 
         //llamamos a los metodos
         //CompuCenter
@@ -686,19 +765,18 @@ public class ComputerPageOne extends Thread {
         productsCompuCenterGamer = compuCenterGamer(urlCompuCenterGamer);
         //TechStore
         productsTechStore = techStoreLaptops(urlTechStore);
-
-        //producto 6
-        //productDtos6 = extractProductList6(url6);
-
+        // creativoComputacion
+        productsCreativoComputacion = creativoComputacion(urlCreativoComputacion);
+        //Dismac
+        productsDismac = dismacComputadoras(urlDismac);
 
         //agregamos en una sola lista
         List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
         productAll.addAll(productsCompuCenter);
         productAll.addAll(productsCompuCenterGamer);
         productAll.addAll(productsTechStore);
-
-        //productAll.addAll(productDtos6);
-
+        productAll.addAll(productsCreativoComputacion);
+        productAll.addAll(productsDismac);
 
         //System.out.println("product all: " + productAll);
 
@@ -712,6 +790,8 @@ public class ComputerPageOne extends Thread {
         List<ProductDto> productsCompuCenter = new ArrayList<ProductDto>();
         List<ProductDto> productsCompuCenterGamer = new ArrayList<ProductDto>();
         List<ProductDto> productsTechStore = new ArrayList<ProductDto>();
+        List<ProductDto> productsCreativoComputacion = new ArrayList<ProductDto>();
+        List<ProductDto> productsDismac = new ArrayList<ProductDto>();
 
         //List<ProductDto> productDtos6 = new ArrayList<ProductDto>();
 
@@ -724,10 +804,10 @@ public class ComputerPageOne extends Thread {
             productsCompuCenterGamer = compuCenterGamer(urlCompuCenterGamer);
             //TechStore
             productsTechStore = techStoreLaptops(urlTechStore);
-
-
-            //producto 6
-            //productDtos6 = extractProductList6(url6);
+            // creativoComputacion
+            productsCreativoComputacion = creativoComputacion(urlCreativoComputacion);
+            //Dismac
+            productsDismac = dismacComputadoras(urlDismac);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -738,8 +818,8 @@ public class ComputerPageOne extends Thread {
         productAll.addAll(productsCompuCenter);
         productAll.addAll(productsCompuCenterGamer);
         productAll.addAll(productsTechStore);
-
-        //productAll.addAll(productDtos6);
+        productAll.addAll(productsCreativoComputacion);
+        productAll.addAll(productsDismac);
         //System.out.println("product all: " + productAll);
 
         return productAll;
@@ -760,14 +840,6 @@ public class ComputerPageOne extends Thread {
             objHome = productListAllHilo();                                     //Se llama al metodo productListAllHilo() que contiene los productos
             this.template.convertAndSend("/topic/products", objHome);  //envio de productos extraidos a la consola en frontend
             System.out.println(" Fin Hilo objHome");
-
-            //PC.COM
-            System.out.println(" PC.COM marcas Thread is running...");
-            List<ProductDto> objMarca = new ArrayList<ProductDto>();
-            objMarca = productListAllHiloMarcas();
-            this.template.convertAndSend("/topic/products", objMarca);
-
-            System.out.println(" Fin Hilo objMarca");
 
             try {
                 //Thread, Wait for one sec so it doesn't print too fast
@@ -802,263 +874,12 @@ public class ComputerPageOne extends Thread {
 
     //////////////////////////////////////////////////////////////////////
     //NUEVAS MARCAS
-
-    //PC.COM, 38 PRODUCTOS : HP, Asus, Lenovo, Dell, Acer, MSi
-    // HP, 14 productos
-    //https://www.pc.com.bo/assets/html/notebooks-hp.html
-    public List<ProductDto> pcHp(String url) throws IOException {
-        System.out.println("PC.COM, HP, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
-        Elements body = doc.select("section.grid");
-
-        String brand = "HP";
-        int contadorId = 43;    // para los Ids
-
-        //Lista para guardar los productos que recorrera el for
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        System.out.println("-------Inicio------------");
-        for (Element e : body.select("div.item")) {
-            String nombre1 = e.select(" div.textosobreimagen h2  ").text();
-            String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = " Sin descripción previa"; //sin descripcion previa
-            String precio = e.select(" div.textosobreimagen b ").text();
-            String imagen = e.select(" div.item-contenido img ").attr("src");
-
-            //obteniendo descripcion desde el enlace del producto
-            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
-            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
-            String imagen2 = imagen.replace("..", "https://www.pc.com.bo/assets");
-            /**
-             System.out.println("- nombre1(Marca): "+ nombre1);
-             System.out.println("  nombre2(Procesador):  "+ nombre2 );
-             System.out.println("  descripcion:  "+ descripcion.replace("..", "https://www.pc.com.bo/assets"));
-             System.out.println("  precio actual:  "+ precio);
-             System.out.println("  Imagen:   "+ imagen.replace("..","https://www.pc.com.bo/assets"));
-             */
-            /////////////////////////////////////////////////////////////////////////
-            contadorId = contadorId + 1;    // para los Ids
-            //PRUEBA de ARRAY SIN BASE DE DATOS
-            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-            ProductDto productDto = new ProductDto();
-            productDto.setProductId(contadorId);
-            productDto.setName(nombre1);
-            productDto.setName2(nombre2);
-            productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion);
-            productDto.setDescription2(descripcion2);
-            productDto.setImg(imagen2);
-            productDto.setPrice(precio);
-            productDto.setBrand(brand);
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
-            //productDto.setTarjetaGrafica(tarjetaGrafica);
-            //llaves foraneas
-            productDto.setShopId(4);
-
-            productDtos.add(productDto);
-            System.out.println("for() productDto Pc.com Hp: " + productDto);   //muestra las listas de los productos por separado
-
-        }
-
-        System.out.println("-------Fin------------");
-        System.out.println("Pc.com productDtos HP: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
-        return productDtos;
-    }
-
-    //Dell, 2 productos
-    //https://www.pc.com.bo/assets/html/notebooks-dell.html
-    public List<ProductDto> pcDell(String url) throws IOException {
-        System.out.println("PC.COM, DELL, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
-        Elements body = doc.select("section.grid");
-
-        String brand="DELL";
-        int contadorId = 58;    //Para Ids
-        //Lista para guardar los productos que recorrera el for
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        System.out.println("-------Inicio------------");
-        for (Element e : body.select("div.item"))
-        {
-            String nombre1 = e.select(" div.textosobreimagen h2  ").text();
-            String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = "Sin descripción previa"; // sin descripcion previa
-            String precio = e.select(" div.textosobreimagen b ").text();
-            String imagen = e.select(" div.item-contenido img ").attr("src");
-
-            //obteniendo descripcion
-            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
-            String descripcion2 = descripcionLink.replace("d", "https://www.pc.com.bo/assets/html/d");
-            String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
-            /**
-             System.out.println("- nombre1(Marca): "+ nombre1);
-             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
-             System.out.println("  descripcion:  "+ descripcion.replace("d", "https://www.pc.com.bo/assets/html/d"));
-             System.out.println("  precio actual:  "+ precio);
-             System.out.println("  Imagen:   "+ imagen.replace("..","https://www.pc.com.bo/assets"));
-             */
-            /////////////////////////////////////////////////////////////////////////
-            contadorId = contadorId + 1;
-            //PRUEBA de ARRAY SIN BASE DE DATOS
-            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-            ProductDto productDto = new ProductDto();
-            productDto.setProductId(contadorId); //numero aleatorio
-            productDto.setName(nombre1);
-            productDto.setName2(nombre2);
-            productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion);
-            productDto.setDescription2(descripcion2);
-            productDto.setImg(imagen2);
-            productDto.setPrice(precio);
-            productDto.setBrand(brand);
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
-            //productDto.setTarjetaGrafica(tarjetaGrafica);
-            //llaves foraneas
-            productDto.setShopId(4);
-
-            productDtos.add( productDto);
-            System.out.println("for() productDto Pc.com Dell: " + productDto);   //muestra las listas de los productos por separado
-
-        }
-
-        System.out.println("-------Fin------------");
-        System.out.println("Pc.com productDtos Dell: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
-        return  productDtos;
-    }
-
-    //Lenovo, 5 productos
-    //https://www.pc.com.bo/assets/html/notebooks-lenovo.html
-    public List<ProductDto> pcLenovo(String url) throws IOException {
-        System.out.println("PC.COM, Lenovo, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
-        Elements body = doc.select("section.impresoras");
-
-        String brand="Lenovo";
-        int contadorId = 61;    //Para Ids
-
-        //Lista para guardar los productos que recorrera el for
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        System.out.println("-------Inicio------------");
-        for (Element e : body.select("div.col-md-4.d-flex.justify-content-center"))
-        {
-            String nombre1 = e.select(" div.textosobreimagen h2  ").text();
-            String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = "Sin descripción previa";  //sin descripcion previa
-            String precio = e.select(" div.textosobreimagen b ").text();
-            String imagen = e.select(" img ").attr("src");
-
-            //obteniendo descripcion
-            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
-            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
-            String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
-            /**
-             System.out.println("- nombre1(Marca): "+ nombre1);
-             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
-             System.out.println("  descripcion:  "+ descripcion.replace("..", "https://www.pc.com.bo/assets"));
-             System.out.println("  precio actual:  "+ precio);
-             System.out.println("  Imagen:   "+ imagen.replace("..","https://www.pc.com.bo/assets"));
-             */
-            /////////////////////////////////////////////////////////////////////////
-            contadorId = contadorId + 1;
-            //PRUEBA de ARRAY SIN BASE DE DATOS
-            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-            ProductDto productDto = new ProductDto();
-            productDto.setProductId(contadorId);//numero aleatorio
-            productDto.setName(nombre1);
-            productDto.setName2(nombre2);
-            productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion);
-            productDto.setDescription2(descripcion2);
-            productDto.setImg(imagen2);
-            productDto.setPrice(precio);
-            productDto.setBrand(brand);
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
-            //productDto.setTarjetaGrafica(tarjetaGrafica);
-            //llaves foraneas
-            productDto.setShopId(4);
-
-            productDtos.add( productDto);
-            System.out.println("for() productDto Pc.com Lenovo: " + productDto);   //muestra las listas de los productos por separado
-
-        }
-
-        System.out.println("-------Fin------------");
-        System.out.println("Pc.com productDtos Lenovo: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
-        return  productDtos;
-    }
-
-    //Asus, 11 productos
-    //https://www.pc.com.bo/assets/html/notebooks-asus.html
-    public List<ProductDto> pcAsus(String url) throws IOException {
-        System.out.println("PC.COM, Asus, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
-        Elements body = doc.select("section.grid");
-
-        String brand="Asus";
-        int contadorId = 68;    //Para Ids
-
-        //Lista para guardar los productos que recorrera el for
-        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-        System.out.println("-------Inicio------------");
-        for (Element e : body.select("div.item"))
-        {
-            String nombre1 = e.select(" div.textosobreimagen h2  ").text();
-            String nombre2 = e.select(" div.textosobreimagen p:matches(Intel|AMD) ").text(); //.replaceAll("\\\\nl", "\n")
-            String descripcion = "Sin descripción previa";  //sin descripcion previa
-            String precio = e.select(" div.textosobreimagen b ").text();
-            String imagen = e.select(" div.item-contenido img ").attr("src");
-
-            //obteniendo descripcion
-            String descripcionLink = e.select(" div.textosobreimagen a ").attr("href");
-            String descripcion2 = descripcionLink.replace("..", "https://www.pc.com.bo/assets");
-            String imagen2 = imagen.replace("..","https://www.pc.com.bo/assets");
-            /**
-             System.out.println("- nombre1(Marca): "+ nombre1);
-             System.out.println("  nombre2(Procesador):  "+ nombre2 );
-             System.out.println("  descripcion:  "+ descripcion.replace("..", "https://www.pc.com.bo/assets"));
-             System.out.println("  precio actual:  "+ precio);
-             System.out.println("  Imagen:   "+ imagen.replace("..","https://www.pc.com.bo/assets"));
-             */
-            /////////////////////////////////////////////////////////////////////////
-            contadorId = contadorId + 1;
-            //PRUEBA de ARRAY SIN BASE DE DATOS
-            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
-            ProductDto productDto = new ProductDto();
-            productDto.setProductId(contadorId);//numero aleatorio
-            productDto.setName(nombre1);
-            productDto.setName2(nombre2);
-            productDto.setShopName("Pc.com");
-            productDto.setDescription(descripcion);
-            productDto.setDescription2(descripcion2);
-            productDto.setImg(imagen2);
-            productDto.setPrice(precio);
-            productDto.setBrand(brand);
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
-            //productDto.setTarjetaGrafica(tarjetaGrafica);
-            //llaves foraneas
-            productDto.setShopId(4);
-
-            productDtos.add( productDto);
-            System.out.println("for() productDto Pc.com Asus: " + productDto);   //muestra las listas de los productos por separado
-        }
-        System.out.println("-------Fin------------");
-        System.out.println("Pc.com productDtos Asus: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
-        return  productDtos;
-    }
-
-
     //Creativo Computacion, 34 productos, Hp=6, Dell=26, Lenovo=2
     //Hp
     //https://creativocomputacion.ecwid.com/Notebooks-HP-c10840325
     public List<ProductDto> creativoHp(String url) throws IOException {
         System.out.println("DISEÑO CREATIVO Hp, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("div.grid__products ");
         String brand="HP";
         int contadorId = 81;    //Para Ids
@@ -1115,7 +936,7 @@ public class ComputerPageOne extends Thread {
     //https://creativocomputacion.ecwid.com/Notebooks-Dell-c10840283
     public List<ProductDto> creativoDell(String url) throws IOException {
         System.out.println("DISEÑO CREATIVO Dell, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("div.grid__products ");
         String brand="DELL";
         int contadorId = 88;    //Para Ids
@@ -1172,7 +993,7 @@ public class ComputerPageOne extends Thread {
     //https://creativocomputacion.ecwid.com/Lenovo-Notebooks-c20149225
     public List<ProductDto> creativoLenovo(String url) throws IOException {
         System.out.println("DISEÑO CREATIVO Lenovo, " + url + "...");
-        Document doc = Jsoup.connect(url).timeout(9000).get();
+        Document doc = Jsoup.connect(url).timeout(11000).get();
         Elements body = doc.select("div.grid__products ");
         String brand="Lenovo";
         int contadorId = 114;    //Para Ids
@@ -1227,83 +1048,48 @@ public class ComputerPageOne extends Thread {
     }
 
     //////////////////////////////////////////////////////////////////////
-    //NUEVO, metodo para el Api
-    public List<ProductDto> productListAllMarcas(String urlHp, String urlDell, String urlLenovo, String urlAsus,  String urlCreativoHp, String urlCreativoDell, String urlCreativoLenovo) throws IOException{
+    //NUEVO, metodo para el Api para marcas
+    /**
+    public List<ProductDto> productListAllMarcas( String urlCreativoHp, String urlCreativoDell, String urlCreativoLenovo) throws IOException{
         //Creacion de listas
-        List<ProductDto> productsHp = new ArrayList<ProductDto>();
-        List<ProductDto> productsDell = new ArrayList<ProductDto>();
-        List<ProductDto> productsLenovo = new ArrayList<ProductDto>();
-        List<ProductDto> productsAsus = new ArrayList<ProductDto>();
 
         List<ProductDto> productsCreativoHp = new ArrayList<ProductDto>();
         List<ProductDto> productsCreativoDell = new ArrayList<ProductDto>();
         List<ProductDto> productsCreativoLenovo = new ArrayList<ProductDto>();
 
-
         // Guardado de metodos en las listas
-        productsHp = pcHp(urlHp);
-        productsDell = pcDell(urlDell);
-        productsLenovo = pcLenovo(urlLenovo);
-        productsAsus = pcAsus(urlAsus);
-
         productsCreativoHp = creativoHp(urlCreativoHp);
         productsCreativoDell = creativoDell(urlCreativoDell);
         productsCreativoLenovo = creativoLenovo(urlCreativoLenovo);
 
         // Guardar el conjunto de listas en una sola lista
         List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
-        productAll.addAll(productsHp);
-        productAll.addAll(productsDell);
-        productAll.addAll(productsLenovo);
-        productAll.addAll(productsAsus);
-
         productAll.addAll(productsCreativoHp);
         productAll.addAll(productsCreativoDell);
         productAll.addAll(productsCreativoLenovo);
-
         //System.out.println("product all: " + productAll);
 
         return  productAll;
     }
-
-    //Nuevo metodo PARA EL HILO
-    public List<ProductDto> productListAllHiloMarcas() {
-        //Creacion de listas
-        List<ProductDto> productsHp = new ArrayList<ProductDto>();
-
-        //productos
-        try {
-            // Guardado de metodos en las listas
-            productsHp = pcHp(urlPcHp);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Guardar el conjunto de listas en una sola lista
-        List<ProductDto> productAll = new ArrayList<ProductDto>(); // Lista para guardar todos los productos
-        productAll.addAll(productsHp);
-        //System.out.println("product all: " + productAll);
-
-        return  productAll;
-    }
-
+    */
 
     //////////////////////////////////////////////////////////////////////
     //Probando Seleccionar productos por tienda
 
     //LISTADO ProductStore  por ShopId
-    //llamando al metodo productListAllPrueba, tiendas CompuCenter y TechStore
-    public List<ProductDto> selectProductsByStore(Integer shopId,  String urlCompuCenter, String urlCompuCenterGamer, String urlTechStore,
-                                                  String urlHp, String urlDell, String urlLenovo, String urlAsus,  String urlCreativoHp, String urlCreativoDell, String urlCreativoLenovo,
-                                                  String urlTiendaHpHogar,   String urlCompuCenterGamer2,  String urlTiendaHpEmpresas    )throws IOException{
+    //llamando al metodo productListAllPrueba, productListAllMarcas
+    //String urlHp, String urlDell, String urlLenovo, String urlAsus,
+    public List<ProductDto> selectProductsByStore(Integer shopId,  String urlCompuCenter, String urlCompuCenterGamer, String urlTechStore, String urlCreativoComputacion, String urlDismac,
+                                                  //String urlCreativoHp, String urlCreativoDell, String urlCreativoLenovo,
+                                                  String urlTiendaHpHogar,   String urlCompuCenterGamer2,  String urlTiendaHpEmpresas )throws IOException{
 
-        List<ProductDto> array1 = productListAllPrueba( urlCompuCenter, urlCompuCenterGamer,  urlTechStore);                                    // array1 guardara el metodo productListAllPrueba, tiendas CompuCenter y Techstore
-        List<ProductDto> array2 = productListAllMarcas( urlHp, urlDell, urlLenovo, urlAsus, urlCreativoHp, urlCreativoDell, urlCreativoLenovo); // array2 guardara el metodo productListAllMarcas, Tiendas PC.COM y creativo computacion
+        List<ProductDto> array1 = productListAllPrueba( urlCompuCenter, urlCompuCenterGamer,  urlTechStore, urlCreativoComputacion, urlDismac);                                // array1 guardara el metodo productListAllPrueba, tiendas CompuCenter y Techstore
+        //List<ProductDto> array2 = productListAllMarcas( urlCreativoHp, urlCreativoDell, urlCreativoLenovo);                                 // array2 guardara el metodo productListAllMarcas, Tiendas PC.COM y creativo computacion
         ComputerPageTwo computerPageTwo = new ComputerPageTwo();
-        List<ProductDto> array3 = computerPageTwo.productListAll( urlTiendaHpHogar, urlCompuCenterGamer2,  urlTiendaHpEmpresas);                // array3 guardara el metodo productListAll, de ComputerPageTwo, tiendas CompuCenter y Hp
+        List<ProductDto> array3 = computerPageTwo.productListAll( urlTiendaHpHogar, urlCompuCenterGamer2,  urlTiendaHpEmpresas);            // array3 guardara el metodo productListAll, de ComputerPageTwo, tiendas CompuCenter y Hp
 
         List<ProductDto> productAux = new ArrayList<ProductDto>();      //En productAux se guarda la lista productDtosFor, return productAux
+
         for(int i=0; i < array1.size(); i++) {
             ProductDto product = array1.get(i);
             ProductDto productDto = new ProductDto();
@@ -1330,7 +1116,7 @@ public class ComputerPageOne extends Thread {
             }//if
         }//Primer for()
         //System.out.println("primer for: "+ productAux);
-
+/**
         for(int i=0; i < array2.size(); i++) {
             ProductDto product = array2.get(i);
             ProductDto productDto = new ProductDto();
@@ -1357,7 +1143,7 @@ public class ComputerPageOne extends Thread {
             }//if
         }//Segundo for()
         //System.out.println("Segundo for: "+ productAux);
-
+*/
         for(int i=0; i < array3.size(); i++) {
             ProductDto product = array3.get(i);
             ProductDto productDto = new ProductDto();
