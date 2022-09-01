@@ -64,11 +64,14 @@ class PruebaApplication {
 
 
 	public static void main(String[] args) throws IOException {
-        SpringApplication.run(PruebaApplication.class, args);
+        //SpringApplication.run(PruebaApplication.class, args);
 
-        //ComputerPageOne obj = new ComputerPageOne();
-        //obj.dismacComputadoras("https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html");
+		ComputerPageOne obj = new ComputerPageOne();
+		obj.dismacComputadoras2("https://www.dismac.com.bo/categorias/54-electronica/computacion/computadoras.html");
 
+        /*ComputerPageOne obj = new ComputerPageOne();
+        obj.creativoComputacion2("https://creativocomputacion.ecwid.com/Notebook-c10743110");
+		*/
         /** Contador del 1-10
         int contadorId = 0;
         for (int i=1; i<=10; i++) {

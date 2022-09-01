@@ -219,8 +219,7 @@ public class ComputerPageOne extends Thread {
                 System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
                 //System.out.println("- nombre1(Marca): "+ nombre1);
             } else {
-                System.out.println("Match not found");
-                System.out.println("- nombre1(Marca): " + marca);
+                System.out.println("Match not found, no se encontro MARCA en nombre1:  "+ marca);
             }
 
             /////////////////////////////////////////////////////////////////////////
@@ -228,7 +227,7 @@ public class ComputerPageOne extends Thread {
             String ram = e.select(" div.text-base.text-justify ").text().toUpperCase();
 
             //Regular expression to find digits
-            String regexRam = "\\b(8\\s?GB|16\\s?GB|4\\s?GB|12\\s?GB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            String regexRam = "\\b(8\\s?GB|16\\s?GB|4\\s?GB|12\\s?GB |32\\s?GB\\,?)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
             //Compiling the regular expression
             Pattern patternRam = Pattern.compile(regexRam);
             //Retrieving the matcher object
@@ -236,7 +235,7 @@ public class ComputerPageOne extends Thread {
             if (matcherRam.find()) {
                 System.out.println("Match found Ram:" + matcherRam.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
             } else {
-                System.out.println("Match not found Ram: " + ram);
+                System.out.println("Match not found Ram en: " + ram);
             }
 
             /////////////////////////////////////////////////////////////////////////
@@ -260,7 +259,7 @@ public class ComputerPageOne extends Thread {
             String almacenamiento = e.select(" div.text-base.text-justify ").text().toUpperCase();
 
             //Regular expression to find digits
-            String regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            String regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |512GB\\,?|1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
             //Compiling the regular expression
             Pattern patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
             //Retrieving the matcher object
@@ -268,13 +267,12 @@ public class ComputerPageOne extends Thread {
             if (matcherAlmacenamiento.find()) {
                 System.out.println("Match found Almacenamiento:  " + matcherAlmacenamiento.group().replaceAll("[\\ \\\\ ]", "").replaceAll("\\p{Punct}", "")  );   //quitando espacio (16 GB) en medio de Ram
             } else {
-                System.out.println("Match not found Almacenamiento, no se encontro en :"+ almacenamiento);
-
+                System.out.println("Match not found Almacenamiento, no se encontro en almacenamiento :"+ almacenamiento);
                 almacenamiento = e.select(" a h1.font-semibold.text-lg ").text().toUpperCase(); //nueva busqueda por nombre2
-                System.out.println("nueva busqueda por nombre1:"+ almacenamiento);
+                System.out.println("nueva busqueda por nombre2: "+ almacenamiento);
 
                 //Regular expression to find digits
-                regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+                regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |250\\s?GB |256\\s?GB\\,? |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
                 //Compiling the regular expression
                 patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
                 //Retrieving the matcher object
@@ -282,7 +280,7 @@ public class ComputerPageOne extends Thread {
                 if (matcherAlmacenamiento.find()) {
                     System.out.println("Match found Almacenamiento:  " + matcherProcesador.group());
                 } else {
-                    System.out.println("Match not found");
+                    System.out.println("Match not found ");
                 }
             }
 
@@ -418,7 +416,7 @@ public class ComputerPageOne extends Thread {
             String almacenamiento = e.select(" div.text-base.text-justify ").text().toUpperCase();
 
             //Regular expression to find digits
-            String regexAlmacenamiento = "\\b(128\\s?GB|240\\s?GB|256\\s?GB|500\\s?GB|512\\s?GB|\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+            String regexAlmacenamiento = "\\b(128\\s?GB|240\\s?GB|256\\s?GB|500\\s?GB|512\\s?GB\\,?|\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
             //Compiling the regular expression
             Pattern patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
             //Retrieving the matcher object
@@ -426,8 +424,21 @@ public class ComputerPageOne extends Thread {
             if (matcherAlmacenamiento.find()) {
                 System.out.println("Match found Almacenamiento:  " + matcherAlmacenamiento.group().replaceAll("[\\ \\\\]", ""));   //quitando espacio (16 GB) en medio de Ram
             } else {
-                System.out.println("Match not Almacenamiento");
-                System.out.println("Almacenamiento no encontrado en: " + almacenamiento);
+                System.out.println("Match not found Almacenamiento, no se encontro en :"+ almacenamiento);
+                almacenamiento = e.select(" h1.font-semibold.text-lg ").text().toUpperCase();//nueva busqueda de almac. por nombre2
+                System.out.println("nueva busqueda por nombre2:"+ almacenamiento);
+
+                //Regular expression to find digits
+                regexAlmacenamiento = "\\b(128\\s?GB |240\\s?GB |256\\s?GB |480\\s?GB |500\\s?GB |512\\s?GB |1000\\s?GB |\\d+\\s?TB|\\d+.?\\d+?\\s?TB)\\b";    //  Encontrar 8 GB con espacio opcional = 8\\s?GB
+                //Compiling the regular expression
+                patternAlmacenamiento = Pattern.compile(regexAlmacenamiento);
+                //Retrieving the matcher object
+                matcherAlmacenamiento = patternAlmacenamiento.matcher(almacenamiento);
+                if (matcherAlmacenamiento.find()) {
+                    System.out.println("Match found Almacenamiento en nombre 2:  " + matcherProcesador.group());
+                } else {
+                    System.out.println("Match not found en nombre 2");
+                }
 
             }
 
@@ -653,10 +664,92 @@ public class ComputerPageOne extends Thread {
             productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
+            //Usando expresiones regulares para buscar coincidencias
             productDto.setBrand(matcherMarca.group());
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
+            productDto.setRam("ram");
+            productDto.setProcessor("processor");
+            productDto.setStorage("storage");
+            //productDto.setTarjetaGrafica(tarjetaGrafica);
+            //llaves foraneas
+            productDto.setShopId(5);
+
+            productDtos.add( productDto);
+            System.out.println(" Creativo for(): " + productDto);   //muestra las listas de los productos por separado
+        }
+        System.out.println("-------Fin------------");
+        System.out.println("Creativo productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
+        return  productDtos;
+    }
+
+    //Creativo 2
+    //https://creativocomputacion.ecwid.com/Notebook-c10743110
+    public List<ProductDto> creativoComputacion2(String url) throws IOException {
+        System.out.println("DISEÑO CREATIVO COMPUTACION 2, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(11000).get();
+        Elements body = doc.select("div.grid__products ");
+        Elements body2 = doc.select("div.grid__products ");     //2da busqueda, por producto individual
+
+        String brand=" ";
+        int contadorId = 43;    //Para Ids
+
+        //Lista para guardar los productos que recorrera el for
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        System.out.println("-------Inicio------------");
+        for (Element e : body.select("div.grid-product "))
+        {
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href"); //se obtiene la direccion del PC
+             body2 = doc.select("div.grid__products ");
+
+        }
+
+        for (Element e : body.select("div.grid-product "))
+        {
+            String nombre1 = e.select(" a.grid-product__title ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.grid-product__sku-inner ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = "Sin descripción previa"; //Sin descripción previa
+            String precio = e.select(" div.grid-product__price ").text();
+            String imagen = e.select(" div.grid-product__image-wrap img ").attr("src");
+
+            String descripcion2 = e.select(" a.grid-product__title  ").attr("href");
+
+            /**
+             System.out.println("- nombre1(Marca): "+ nombre1);
+             */
+            //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
+            //Marca
+            String marca = e.select(" a.grid-product__title ").text().toUpperCase();   //extraccion de marca
+
+            //Regular expression to find digits
+            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI|THINKPAD)\\b";  //ThinkPad es el modelo de la marca Lenovo
+            //Compiling the regular expression
+            Pattern patternMarca = Pattern.compile(regexMarca);
+            //Retrieving the matcher object
+            Matcher matcherMarca = patternMarca.matcher(marca);                         //identificacion de coincidencia de marca con el texto extraido
+            if (matcherMarca.find()) {
+                System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
+                //System.out.println("- nombre1(Marca): "+ nombre1);
+            } else {
+                System.out.println("Match not found");
+                System.out.println("- nombre1(Marca): " + marca);
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            contadorId = contadorId + 1;
+            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(contadorId);//nombre1 + ""+ shop
+            productDto.setName(nombre1);
+            productDto.setName2(nombre2);
+            productDto.setShopName("Creativo Computación");
+            productDto.setDescription(descripcion);
+            productDto.setDescription2(descripcion2);
+            productDto.setImg(imagen);
+            productDto.setPrice(precio);
+            //Usando expresiones regulares para buscar coincidencias
+            productDto.setBrand(matcherMarca.group());
+            productDto.setRam("ram");
+            productDto.setProcessor("processor");
+            productDto.setStorage("storage");
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
             productDto.setShopId(5);
@@ -703,7 +796,7 @@ public class ComputerPageOne extends Thread {
             String marca = e.select(" strong.product-item-name a ").text().toUpperCase();   //extraccion de marca
 
             //Regular expression to find digits
-            String regexMarca = "\\b(HP|LENOVO|ASUS|DELL|APPLE|MSI|HUAWEI|MICROSOFT|SAMSUNG)\\b";  //ThinkPad es el modelo de la marca Lenovo
+            String regexMarca = "\\b(HP|HPCORE|LENOVO|ASUS|DELL|APPLE|MSI|HUAWEI|MICROSOFT|SAMSUNG)\\b";  //ThinkPad es el modelo de la marca Lenovo
             //Compiling the regular expression
             Pattern patternMarca = Pattern.compile(regexMarca);
             //Retrieving the matcher object
@@ -712,8 +805,7 @@ public class ComputerPageOne extends Thread {
                 System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
                 //System.out.println("- nombre1(Marca): "+ nombre1);
             } else {
-                System.out.println("Match not found");
-                System.out.println("- nombre1(Marca): " + marca);
+                System.out.println("Match not found, no se encontro marca en nombre1:  "+ marca);
             }
 
             /////////////////////////////////////////////////////////////////////////
@@ -728,10 +820,11 @@ public class ComputerPageOne extends Thread {
             productDto.setDescription2(descripcion2);
             productDto.setImg(imagen);
             productDto.setPrice(precio);
-            productDto.setBrand(matcherMarca.group());
-            //productDto.setRam(ram);
-            //productDto.setProcessor(processor);
-            //productDto.setStorage(storage);
+            //Usando expresiones regulares para buscar coincidencias
+            productDto.setBrand("matcherMarca.group()");
+            productDto.setRam("ram");
+            productDto.setProcessor("processor");
+            productDto.setStorage("storage");
             //productDto.setTarjetaGrafica(tarjetaGrafica);
             //llaves foraneas
             productDto.setShopId(1);
@@ -743,6 +836,89 @@ public class ComputerPageOne extends Thread {
         System.out.println("Dismac productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
         return  productDtos;
     }
+
+    public List<ProductDto> dismacComputadoras2(String url) throws IOException {
+        System.out.println("Dismac Computadoras, " + url + "...");
+        Document doc = Jsoup.connect(url).timeout(11000).get();
+        Elements body = doc.select("div.recent-slider.products-category ");
+        //Elements body2 = doc.select("div.product.attribute.description");
+        String brand=" ";
+        //String descripcion2=""; // debe estar afuera para cada una de las PCs
+        int contadorId = 76;    //Para Ids
+
+        //Lista para guardar los productos que recorrera el for
+        List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+        System.out.println("-------Inicio Dismac------------");
+        for (Element e : body.select("div.recent-container.list-view "))
+        {
+            /*
+            String nombre1 = e.select(" strong.product-item-name a ").text(); //:matches(Lenovo|HP|Acer|ASUS|Sony|Dell)
+            String nombre2 = e.select(" div.sku-container.sku span ").text(); //Averiguar que es: REF DEC8CN8T?
+            String descripcion = "Sin descripción previa"; //Sin descripción previa
+            String precio = e.select(" div.price-now ").text();
+            String imagen = e.select(" a.img-product img ").attr("src");
+            String descripcion2 = e.select(" strong.product-item-name a  ").attr("href");
+            */
+            /**
+             System.out.println("- nombre1(Marca): "+ nombre1);
+             System.out.println("  nombre2(Procesador):  "+ nombre2 ); //con Precio Antiguo
+             System.out.println("  descripcion:  "+ descripcion);
+             System.out.println("  precio actual:  "+ precio);
+             System.out.println("  Imagen:   "+ imagen);
+             */
+
+            String descripcion2 = e.select(" strong.product-item-name a  ").attr("href");
+            Elements body2 = doc.select(descripcion2);  //intento ingresar al link de la descripcion de la PC
+            for (Element e2 : body2.select("div.recent-slider.products-category p.MsoNormal"))  //estructura de la descripcion de la Pc individual
+            {
+            //Marca, procesador, memoria, almacenamiento, tarjeta grafica Opcional,
+            //Marca
+            String marca = e.select(" span ").text().toUpperCase();   //extraccion de marca
+
+            //Regular expression to find digits
+            String regexMarca = "\\b(HP|HPCORE|LENOVO|ASUS|DELL|APPLE|MSI|HUAWEI|MICROSOFT|SAMSUNG)\\b";  //ThinkPad es el modelo de la marca Lenovo
+            //Compiling the regular expression
+            Pattern patternMarca = Pattern.compile(regexMarca);
+            //Retrieving the matcher object
+            Matcher matcherMarca = patternMarca.matcher(marca);                         //identificacion de coincidencia de marca con el texto extraido
+            if (matcherMarca.find()) {
+                System.out.println("Match found Marca:" + matcherMarca.group());   //eliminar espacios vacios
+                //System.out.println("- nombre1(Marca): "+ nombre1);
+            } else {
+                System.out.println("Match not found, no se encontro marca en nombre1:  "+ marca);
+            }
+
+            /////////////////////////////////////////////////////////////////////////
+            contadorId = contadorId + 1;
+            //List<ProductDto> productDtos = new ArrayList<ProductDto>(); // se crea productDtos para tener el listado de products
+            ProductDto productDto = new ProductDto();
+            productDto.setProductId(contadorId);//nombre1 + ""+ shop
+            productDto.setName("nombre1");
+            productDto.setName2("nombre2");
+            productDto.setShopName("Dismac");
+            productDto.setDescription("descripcion");
+            productDto.setDescription2(descripcion2);
+            productDto.setImg("imagen");
+            productDto.setPrice("precio");
+            //Usando expresiones regulares para buscar coincidencias
+            productDto.setBrand("matcherMarca.group()");
+            productDto.setRam("ram");
+            productDto.setProcessor("processor");
+            productDto.setStorage("storage");
+            //productDto.setTarjetaGrafica(tarjetaGrafica);
+            //llaves foraneas
+            productDto.setShopId(1);
+
+            productDtos.add( productDto);
+            System.out.println(" Dismac for(): " + productDto);   //muestra las listas de los productos por separado
+
+            }
+        }
+        System.out.println("-------Fin------------");
+        System.out.println("Dismac productDtos: " + productDtos);  //muestra  el conjunto de listas de productos en una sola lista
+        return  productDtos;
+    }
+
 
     //LISTADO DE TODOS LOS PRODUCTOS
     //Para el Api, productos para home y cuestionario
